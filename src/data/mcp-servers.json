@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "slug": "filesystem",
+    "name": "Filesystem",
+    "description": "Secure file operations with configurable access controls. Read, write, move, search, and manage files and directories with sandboxed permissions. The official reference implementation from the MCP team.",
+    "url": "https://www.npmjs.com/package/@modelcontextprotocol/server-filesystem",
+    "github": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+    "author": "Anthropic",
+    "category": "file-system",
+    "install_cmd": "npx -y @modelcontextprotocol/server-filesystem /path/to/allowed",
+    "tags": ["official", "files", "directories", "read-write"]
+  },
+  {
+    "id": "2",
+    "slug": "fetch",
+    "name": "Fetch",
+    "description": "Web content fetching and conversion for efficient LLM usage. Retrieves URLs and converts HTML to markdown, making web content digestible for AI agents without browser automation overhead.",
+    "url": "https://www.npmjs.com/package/@modelcontextprotocol/server-fetch",
+    "github": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+    "author": "Anthropic",
+    "category": "web",
+    "install_cmd": "npx -y @modelcontextprotocol/server-fetch",
+    "tags": ["official", "http", "markdown", "scraping"]
+  },
+  {
+    "id": "3",
+    "slug": "git",
+    "name": "Git",
+    "description": "Tools to read, search, and manipulate Git repositories. Supports diffing, logging, branching, committing, and searching through repository history — all through MCP tool calls.",
+    "url": "https://www.npmjs.com/package/@modelcontextprotocol/server-git",
+    "github": "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
+    "author": "Anthropic",
+    "category": "dev-tools",
+    "install_cmd": "npx -y @modelcontextprotocol/server-git",
+    "tags": ["official", "version-control", "repositories", "diff"]
+  },
+  {
+    "id": "4",
+    "slug": "memory",
+    "name": "Memory",
+    "description": "Knowledge graph-based persistent memory system. Stores entities, relations, and observations in a local graph that persists across sessions. Lets agents remember context, facts, and relationships long-term.",
+    "url": "https://www.npmjs.com/package/@modelcontextprotocol/server-memory",
+    "github": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+    "author": "Anthropic",
+    "category": "productivity",
+    "install_cmd": "npx -y @modelcontextprotocol/server-memory",
+    "tags": ["official", "knowledge-graph", "persistence", "context"]
+  },
+  {
+    "id": "5",
+    "slug": "brave-search",
+    "name": "Brave Search",
+    "description": "Web and local search using Brave's Search API. Perform web searches, get local business info, and retrieve search results — all from within your agent's MCP tool calls. The official Brave-maintained server.",
+    "url": "https://www.npmjs.com/package/@anthropic-ai/brave-search-mcp-server",
+    "github": "https://github.com/brave/brave-search-mcp-server",
+    "author": "Brave",
+    "category": "web",
+    "install_cmd": "npx -y brave-search-mcp-server",
+    "tags": ["search", "web", "local-search", "api"]
+  },
+  {
+    "id": "6",
+    "slug": "sequential-thinking",
+    "name": "Sequential Thinking",
+    "description": "Dynamic and reflective problem-solving through thought sequences. Enables agents to break complex problems into sequential reasoning steps, revise earlier thoughts, and branch into alternative paths. Great for planning and analysis tasks.",
+    "url": "https://www.npmjs.com/package/@modelcontextprotocol/server-sequential-thinking",
+    "github": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+    "author": "Anthropic",
+    "category": "productivity",
+    "install_cmd": "npx -y @modelcontextprotocol/server-sequential-thinking",
+    "tags": ["official", "reasoning", "planning", "chain-of-thought"]
+  },
+  {
+    "id": "7",
+    "slug": "github",
+    "name": "GitHub",
+    "description": "Repository management, file operations, and full GitHub API integration. Create repos, manage issues and PRs, search code, push commits, and manage branches — everything you need for GitHub workflows via MCP.",
+    "url": "https://www.npmjs.com/package/@modelcontextprotocol/server-github",
+    "github": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/github",
+    "author": "Anthropic",
+    "category": "dev-tools",
+    "install_cmd": "npx -y @modelcontextprotocol/server-github",
+    "tags": ["official", "repos", "issues", "pull-requests"]
+  },
+  {
+    "id": "8",
+    "slug": "slack",
+    "name": "Slack",
+    "description": "Channel management and messaging capabilities for Slack workspaces. List channels, read messages, post replies, search conversations, and manage threads. Now community-maintained by Zencoder.",
+    "url": "https://github.com/zencoderai/slack-mcp-server",
+    "github": "https://github.com/zencoderai/slack-mcp-server",
+    "author": "Zencoder",
+    "category": "communication",
+    "install_cmd": "npx -y slack-mcp-server",
+    "tags": ["messaging", "channels", "workspace", "chat"]
+  },
+  {
+    "id": "9",
+    "slug": "postgres",
+    "name": "PostgreSQL",
+    "description": "Read-only database access with schema inspection capabilities. Query PostgreSQL databases, explore table schemas, list tables, and run analytical queries — with read-only safety by default.",
+    "url": "https://www.npmjs.com/package/@modelcontextprotocol/server-postgres",
+    "github": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres",
+    "author": "Anthropic",
+    "category": "data",
+    "install_cmd": "npx -y @modelcontextprotocol/server-postgres postgresql://localhost/mydb",
+    "tags": ["database", "sql", "read-only", "schema"]
+  },
+  {
+    "id": "10",
+    "slug": "puppeteer",
+    "name": "Puppeteer",
+    "description": "Browser automation and web scraping via headless Chrome. Navigate pages, take screenshots, click elements, fill forms, and extract content. Gives agents full browser control for complex web interactions.",
+    "url": "https://www.npmjs.com/package/@anthropic-ai/puppeteer-mcp-server",
+    "github": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer",
+    "author": "Anthropic",
+    "category": "web",
+    "install_cmd": "npx -y @anthropic-ai/puppeteer-mcp-server",
+    "tags": ["browser", "automation", "scraping", "screenshots"]
+  }
+]

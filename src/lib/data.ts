@@ -1,5 +1,6 @@
 import newsData from "@/data/news.json";
 import skillsData from "@/data/skills.json";
+import mcpData from "@/data/mcp-servers.json";
 
 export type NewsItem = {
   id: string;
@@ -31,6 +32,57 @@ export function getNews(tag?: string): NewsItem[] {
     (a, b) =>
       new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
   );
+}
+
+export type McpServer = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  url: string;
+  github: string;
+  author: string;
+  category: string;
+  install_cmd: string;
+  tags: string[];
+};
+
+export function getMcpServers(category?: string): McpServer[] {
+  let items = mcpData as McpServer[];
+  if (category) {
+    items = items.filter((item) => item.category === category);
+  }
+  return items;
+}
+
+export function getMcpServerBySlug(slug: string): McpServer | undefined {
+  return (mcpData as McpServer[]).find((s) => s.slug === slug);
+}
+
+export function mcpServersToMarkdown(servers: McpServer[]): string {
+  const lines = [
+    "# Agent Hub — MCP Server Directory",
+    `> ${servers.length} MCP servers listed`,
+    "> Model Context Protocol servers give AI agents secure access to tools and data sources.",
+    "",
+  ];
+
+  for (const server of servers) {
+    lines.push(`## ${server.name}`);
+    lines.push("");
+    lines.push(server.description);
+    lines.push("");
+    lines.push(`- **Author:** ${server.author}`);
+    lines.push(`- **Category:** ${server.category}`);
+    lines.push(`- **Install:** \`${server.install_cmd}\``);
+    lines.push(`- **GitHub:** [${server.github}](${server.github})`);
+    lines.push(`- **Tags:** ${server.tags.join(", ")}`);
+    lines.push("");
+    lines.push("---");
+    lines.push("");
+  }
+
+  return lines.join("\n");
 }
 
 export function getSkills(): Skill[] {

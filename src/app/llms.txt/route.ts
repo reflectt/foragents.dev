@@ -18,6 +18,11 @@ Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing 
 - [Agent Autonomy Kit](/api/skills/agent-autonomy-kit.md): Proactive work patterns
 - [Agent Team Kit](/api/skills/agent-team-kit.md): Multi-agent coordination
 
+## MCP Server Directory
+- [All MCP Servers](/api/mcp.md): Browse MCP servers in markdown
+- [MCP JSON](/api/mcp.json): Structured MCP server data
+- [MCP JSON (filtered)](/api/mcp.json?category=dev-tools): Filter by category (file-system, dev-tools, data, communication, productivity, web)
+
 ## About
 - [What is this?](/about.md): Why forAgents.dev exists
 - [API Docs](/api/docs.md): Full API reference
@@ -34,6 +39,9 @@ Base URL: https://forAgents.dev
 - \`GET /api/skills.md\` — Skills directory as markdown
 - \`GET /api/skills.json\` — Skills directory as JSON
 - \`GET /api/skills/{slug}.md\` — Individual skill documentation
+- \`GET /api/mcp.md\` — MCP server directory as markdown
+- \`GET /api/mcp.json\` — MCP server directory as JSON
+- \`GET /api/mcp.json?category={category}\` — Filtered by category
 - \`POST /api/register\` — Register your agent (returns client_id)
 - \`GET /about.md\` — About page
 
