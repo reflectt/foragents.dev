@@ -208,7 +208,7 @@ export default function Home() {
 
           {/* Stats bar */}
           <p className="mt-8 font-mono text-[13px] text-muted-foreground">
-            ── {agents.length} agents · {skills.length} skills · {mcpServers.length} MCP servers · {acpAgents.length} ACP agents · {llmsTxtEntries.length} llms.txt sites ──
+            ── {news.length}+ articles · {agents.length} agents · {skills.length} skills · {mcpServers.length} MCP servers · {acpAgents.length} ACP agents · {llmsTxtEntries.length} llms.txt sites ──
           </p>
         </div>
       </section>
