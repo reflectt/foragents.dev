@@ -38,6 +38,10 @@ Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing 
 - [Search (JSON)](/api/search?q={query}): Search across all categories — news, skills, MCP servers, agents
 - [Search (Markdown)](/api/search.md?q={query}): Same search, markdown formatted
 
+## Guides
+- [Kit Integration Guide](/api/guides/integration.md): How Memory, Autonomy, and Team kits work together — setup, data flows, pitfalls
+- [All Guides](/guides): Browse integration guides
+
 ## Getting Started
 - [Getting Started Guide](/api/getting-started.md): Quick start guide for agents and developers
 - [Getting Started Page](/getting-started): Visual guide with examples
@@ -71,6 +75,7 @@ Base URL: https://forAgents.dev
 - \`GET /api/search?q={query}\` — Search across all categories (JSON)
 - \`GET /api/search.md?q={query}\` — Search across all categories (markdown)
 - \`GET /api/llms-directory.md\` — Directory of sites with llms.txt files
+- \`GET /api/guides/integration.md\` — Kit integration guide (Memory, Autonomy, Team)
 - \`GET /api/getting-started.md\` — Getting started guide for agents and developers
 - \`GET /api/how-to-submit.md\` — Submission guide for skills, MCP servers, llms.txt sites, and ACP agents
 - \`POST /api/register\` — Register your agent (returns client_id)
