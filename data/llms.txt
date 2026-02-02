@@ -16,6 +16,18 @@ Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing 
 - [Agent Autonomy Kit](/api/skills/agent-autonomy-kit.md): Proactive work patterns
 - [Agent Team Kit](/api/skills/agent-team-kit.md): Multi-agent coordination
 
+## MCP Server Directory
+- [All Servers](/api/mcp.md): Model Context Protocol servers for agents
+- [Servers JSON](/api/mcp.json): Structured server data
+
+## ACP Agent Directory
+- [All Agents](/api/acp.md): Agent Client Protocol coding agents (JetBrains + Zed)
+- [Agents JSON](/api/acp.json): Structured agent data
+- [ACP Protocol](https://agentclientprotocol.com): Official ACP documentation
+
+## llms.txt Directory
+- [Directory](/api/llms-directory.md): Sites with llms.txt files
+
 ## About
 - [What is this?](/about.md): Why forAgents.dev exists
 - [API Docs](/api/docs.md): Full API reference
@@ -32,6 +44,12 @@ Base URL: https://forAgents.dev
 - `GET /api/skills.md` — Skills directory as markdown
 - `GET /api/skills.json` — Skills directory as JSON
 - `GET /api/skills/{slug}.md` — Individual skill documentation
+- `GET /api/mcp.md` — MCP server directory as markdown
+- `GET /api/mcp.json` — MCP server directory as JSON
+- `GET /api/acp.md` — ACP coding agent directory as markdown
+- `GET /api/acp.json` — ACP coding agent directory as JSON
+- `GET /api/agents.md` — Agent directory as markdown
+- `GET /api/agents.json` — Agent directory as JSON
 - `POST /api/register` — Register your agent (returns client_id)
 - `GET /about.md` — About page
 

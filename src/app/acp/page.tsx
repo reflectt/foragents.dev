@@ -8,28 +8,30 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getMcpServers } from "@/lib/data";
+import { getAcpAgents } from "@/lib/data";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MCP Server Directory — forAgents.dev",
+  title: "ACP Agent Directory — forAgents.dev",
   description:
-    "Discover Model Context Protocol (MCP) servers for AI agents. Filesystem, search, databases, Git, and more — all installable with a single command.",
+    "Discover Agent Client Protocol (ACP) coding agents for JetBrains IDEs and Zed. Claude Code, Copilot, Gemini, and more — all in one directory.",
   openGraph: {
-    title: "MCP Server Directory — forAgents.dev",
+    title: "ACP Agent Directory — forAgents.dev",
     description:
-      "Discover MCP servers for AI agents. Tools, data sources, and integrations — all via the Model Context Protocol.",
+      "Discover ACP coding agents for JetBrains and Zed. The open standard for AI agents in your IDE.",
   },
 };
 
-const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
-  "file-system":    { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]", border: "border-[#F59E0B]/20" },
-  "dev-tools":      { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]", border: "border-[#8B5CF6]/20" },
-  "web":            { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]", border: "border-[#3B82F6]/20" },
-  "data":           { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]", border: "border-[#06D6A0]/20" },
-  "productivity":   { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]", border: "border-[#EC4899]/20" },
-  "communication":  { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]", border: "border-[#F59E0B]/20" },
+const licenseColors: Record<string, { bg: string; text: string; border: string }> = {
+  "MIT":         { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]", border: "border-[#06D6A0]/20" },
+  "Apache-2.0":  { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]", border: "border-[#3B82F6]/20" },
+  "proprietary": { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]", border: "border-[#F59E0B]/20" },
+};
+
+const ideColors: Record<string, { bg: string; text: string }> = {
+  "JetBrains": { bg: "bg-[#8B5CF6]/20", text: "text-[#8B5CF6]" },
+  "Zed":       { bg: "bg-[#EC4899]/20", text: "text-[#EC4899]" },
 };
 
 function CopyButton({ text }: { text: string }) {
@@ -44,8 +46,8 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-export default function McpPage() {
-  const servers = getMcpServers();
+export default function AcpPage() {
+  const agents = getAcpAgents();
 
   return (
     <div className="min-h-screen">
@@ -75,13 +77,13 @@ export default function McpPage() {
             </Link>
             <Link
               href="/mcp"
-              className="text-foreground font-semibold transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-colors"
             >
               MCP
             </Link>
             <Link
               href="/acp"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-foreground font-semibold transition-colors"
             >
               ACP
             </Link>
@@ -98,10 +100,10 @@ export default function McpPage() {
               About
             </Link>
             <Link
-              href="/api/mcp.md"
+              href="/api/acp.md"
               className="text-muted-foreground hover:text-cyan font-mono text-xs transition-colors"
             >
-              /mcp.md
+              /acp.md
             </Link>
             <Link
               href="/llms.txt"
@@ -122,57 +124,116 @@ export default function McpPage() {
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
           <h1 className="text-[32px] md:text-[42px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-3">
-            🔌 MCP Server Directory
+            🤖 ACP Agent Directory
           </h1>
           <p className="text-lg text-foreground/80 mb-2">
-            Model Context Protocol servers for AI agents
+            Agent Client Protocol — AI coding agents for your IDE
           </p>
           <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-            Tools, data sources, and integrations — all installable with a single command.
-            Give your agent superpowers.
+            Open standard by JetBrains + Zed. Like LSP, but for AI agents.
+            One integration, every editor.
           </p>
 
           <div className="flex items-center justify-center gap-3 mt-6">
             <Button variant="outline" size="sm" asChild>
-              <Link href="/api/mcp.json" className="font-mono text-xs">
+              <Link href="/api/acp.json" className="font-mono text-xs">
                 .json
               </Link>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <Link href="/api/mcp.md" className="font-mono text-xs">
+              <Link href="/api/acp.md" className="font-mono text-xs">
                 .md
               </Link>
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href="https://agentclientprotocol.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs"
+              >
+                ACP Docs ↗
+              </a>
             </Button>
           </div>
 
           <p className="mt-4 font-mono text-[13px] text-muted-foreground">
-            ── {servers.length} servers indexed ──
+            ── {agents.length} agents indexed ──
           </p>
         </div>
       </section>
 
       <Separator className="opacity-10" />
 
-      {/* Server Cards */}
+      {/* Agent Cards */}
       <section className="max-w-5xl mx-auto px-4 py-12">
         <div className="grid gap-4 md:grid-cols-2">
-          {servers.map((server) => {
-            const catStyle = categoryColors[server.category] || categoryColors.web;
+          {agents.map((agent) => {
+            const licenseStyle = licenseColors[agent.license] || licenseColors.proprietary;
 
             return (
               <Card
-                key={server.id}
+                key={agent.id}
                 className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all group h-full"
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between mb-1">
                     <span
-                      className={`inline-block font-mono text-[11px] font-bold uppercase tracking-[0.08em] px-2 py-1 rounded-md ${catStyle.bg} ${catStyle.text} ${catStyle.border} border`}
+                      className={`inline-block font-mono text-[11px] font-bold uppercase tracking-[0.08em] px-2 py-1 rounded-md ${licenseStyle.bg} ${licenseStyle.text} ${licenseStyle.border} border`}
                     >
-                      {server.category}
+                      {agent.license}
                     </span>
+                    <div className="flex gap-1">
+                      {agent.ides.map((ide) => {
+                        const ideStyle = ideColors[ide] || ideColors.JetBrains;
+                        return (
+                          <span
+                            key={ide}
+                            className={`text-[10px] font-mono px-2 py-0.5 rounded ${ideStyle.bg} ${ideStyle.text}`}
+                          >
+                            {ide}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CardTitle className="text-lg group-hover:text-cyan transition-colors">
+                      {agent.name}
+                    </CardTitle>
+                    <span className="text-xs text-muted-foreground font-mono">
+                      v{agent.version}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xs">
+                    by {agent.author}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                    {agent.description}
+                  </p>
+
+                  {/* Install command - copyable */}
+                  {agent.install_cmd && !agent.install_cmd.startsWith("#") ? (
+                    <div className="relative group/cmd">
+                      <code className="block text-xs text-green bg-black/30 rounded px-3 py-2 mb-3 overflow-x-auto font-mono">
+                        $ {agent.install_cmd}
+                      </code>
+                      <CopyButton text={agent.install_cmd} />
+                    </div>
+                  ) : (
+                    <div className="relative">
+                      <code className="block text-xs text-muted-foreground bg-black/30 rounded px-3 py-2 mb-3 font-mono">
+                        Install via ACP Registry in IDE
+                      </code>
+                    </div>
+                  )}
+
+                  {/* Links */}
+                  <div className="flex items-center gap-3 mb-3">
                     <a
-                      href={server.github}
+                      href={agent.repository}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs text-muted-foreground hover:text-cyan transition-colors font-mono"
@@ -180,29 +241,10 @@ export default function McpPage() {
                       GitHub ↗
                     </a>
                   </div>
-                  <CardTitle className="text-lg group-hover:text-cyan transition-colors">
-                    {server.name}
-                  </CardTitle>
-                  <CardDescription className="text-xs">
-                    by {server.author}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {server.description}
-                  </p>
-
-                  {/* Install command - copyable */}
-                  <div className="relative group/cmd">
-                    <code className="block text-xs text-green bg-black/30 rounded px-3 py-2 mb-3 overflow-x-auto font-mono">
-                      $ {server.install_cmd}
-                    </code>
-                    <CopyButton text={server.install_cmd} />
-                  </div>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1">
-                    {server.tags.map((tag) => (
+                    {agent.tags.map((tag) => (
                       <Badge
                         key={tag}
                         variant="outline"
@@ -221,30 +263,51 @@ export default function McpPage() {
 
       <Separator className="opacity-10" />
 
-      {/* What is MCP */}
+      {/* What is ACP */}
       <section className="max-w-5xl mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-xl font-bold mb-3">What is MCP?</h2>
+          <h2 className="text-xl font-bold mb-3">What is ACP?</h2>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">
             The{" "}
             <a
-              href="https://modelcontextprotocol.io"
+              href="https://agentclientprotocol.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan hover:underline"
             >
-              Model Context Protocol
+              Agent Client Protocol
             </a>{" "}
-            is an open standard that lets AI agents securely connect to tools and data
-            sources. Instead of building custom integrations, agents use MCP servers as
-            universal adapters — filesystem, databases, APIs, browsers, and more.
+            is an open standard that lets any AI coding agent work in any supporting editor.
+            Think of it like the Language Server Protocol (LSP), but for AI agents.
+            Agents implement it once and work everywhere — JetBrains, Zed, and any future editor.
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+            Developed jointly by{" "}
+            <a
+              href="https://blog.jetbrains.com/ai/2026/01/acp-agent-registry/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan hover:underline"
+            >
+              JetBrains
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://zed.dev/acp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan hover:underline"
+            >
+              Zed
+            </a>
+            , ACP eliminates vendor lock-in and lets you choose your preferred agent and editor.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-xs">
             <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
-              GET /api/mcp.md
+              GET /api/acp.md
             </code>
             <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
-              GET /api/mcp.json
+              GET /api/acp.json
             </code>
           </div>
         </div>
@@ -267,6 +330,9 @@ export default function McpPage() {
           <div className="flex items-center gap-4 font-mono text-xs">
             <a href="/llms.txt" className="hover:text-cyan transition-colors">
               llms.txt
+            </a>
+            <a href="/api/acp.md" className="hover:text-cyan transition-colors">
+              acp.md
             </a>
             <a href="/api/mcp.md" className="hover:text-cyan transition-colors">
               mcp.md

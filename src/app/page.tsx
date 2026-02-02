@@ -102,6 +102,12 @@ export default function Home() {
               MCP
             </Link>
             <Link
+              href="/acp"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              ACP
+            </Link>
+            <Link
               href="/llms-txt"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >

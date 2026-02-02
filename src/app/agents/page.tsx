@@ -48,6 +48,9 @@ export default function AgentsPage() {
             <Link href="/mcp" className="text-muted-foreground hover:text-foreground transition-colors">
               MCP
             </Link>
+            <Link href="/acp" className="text-muted-foreground hover:text-foreground transition-colors">
+              ACP
+            </Link>
             <Link href="/llms-txt" className="text-muted-foreground hover:text-foreground transition-colors">
               llms.txt
             </Link>

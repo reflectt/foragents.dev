@@ -3,6 +3,7 @@ import skillsData from "@/data/skills.json";
 import mcpData from "@/data/mcp-servers.json";
 import llmsTxtData from "@/data/llms-txt.json";
 import agentsData from "@/data/agents.json";
+import acpAgentsData from "@/data/acp-agents.json";
 
 export type NewsItem = {
   id: string;
@@ -300,6 +301,76 @@ export function agentToMarkdown(agent: Agent): string {
     }
     lines.push("");
   }
+
+  return lines.join("\n");
+}
+
+// ============ ACP AGENTS ============
+
+export type AcpAgent = {
+  id: string;
+  name: string;
+  version: string;
+  description: string;
+  repository: string;
+  author: string;
+  license: string;
+  icon: string;
+  category: string;
+  ides: string[];
+  install_type: string;
+  install_cmd: string;
+  tags: string[];
+};
+
+export function getAcpAgents(category?: string): AcpAgent[] {
+  let items = acpAgentsData as AcpAgent[];
+  if (category) {
+    items = items.filter((item) => item.category === category);
+  }
+  return items;
+}
+
+export function getAcpAgentById(id: string): AcpAgent | undefined {
+  return (acpAgentsData as AcpAgent[]).find((a) => a.id === id);
+}
+
+export function acpAgentsToMarkdown(agents: AcpAgent[]): string {
+  const lines = [
+    "# Agent Hub — ACP Agent Directory",
+    `> ${agents.length} coding agents listed`,
+    "> Agent Client Protocol (ACP) agents work with JetBrains IDEs and Zed editor.",
+    "",
+    "ACP is an open standard (like LSP for AI agents) that lets any coding agent work in any supporting editor.",
+    "",
+  ];
+
+  for (const agent of agents) {
+    lines.push(`## ${agent.name}`);
+    lines.push("");
+    lines.push(agent.description);
+    lines.push("");
+    lines.push(`- **Version:** ${agent.version}`);
+    lines.push(`- **Author:** ${agent.author}`);
+    lines.push(`- **License:** ${agent.license}`);
+    lines.push(`- **IDEs:** ${agent.ides.join(", ")}`);
+    lines.push(`- **Category:** ${agent.category}`);
+    if (agent.install_cmd && !agent.install_cmd.startsWith("#")) {
+      lines.push(`- **Install:** \`${agent.install_cmd}\``);
+    }
+    lines.push(`- **Repository:** [${agent.repository}](${agent.repository})`);
+    lines.push(`- **Tags:** ${agent.tags.join(", ")}`);
+    lines.push("");
+    lines.push("---");
+    lines.push("");
+  }
+
+  lines.push("## Resources");
+  lines.push("");
+  lines.push("- [ACP Registry](https://agentclientprotocol.com/registry) — Official registry");
+  lines.push("- [ACP Protocol](https://agentclientprotocol.com) — Protocol documentation");
+  lines.push("- [GitHub Registry](https://github.com/agentclientprotocol/registry) — Submit your agent");
+  lines.push("");
 
   return lines.join("\n");
 }
