@@ -280,48 +280,42 @@ export default function Home() {
 
         <div className="grid gap-4 md:grid-cols-3">
           {skills.map((skill) => (
-            <Card
-              key={skill.id}
-              className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all group"
-            >
-              <CardHeader>
-                <CardTitle className="text-lg group-hover:text-cyan transition-colors">
-                  {skill.name}
-                </CardTitle>
-                <CardDescription className="text-xs">
-                  by {skill.author}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {skill.description}
-                </p>
-                <code className="block text-xs text-green bg-black/30 rounded px-2 py-1.5 mb-3 overflow-x-auto">
-                  {skill.install_cmd}
-                </code>
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1">
-                    {skill.tags.map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="text-xs bg-white/5 text-white/60 border-white/10"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
+            <Link key={skill.id} href={`/skills/${skill.slug}`}>
+              <Card className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all group h-full">
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-cyan transition-colors">
+                    {skill.name}
+                  </CardTitle>
+                  <CardDescription className="text-xs">
+                    by {skill.author}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {skill.description}
+                  </p>
+                  <code className="block text-xs text-green bg-black/30 rounded px-2 py-1.5 mb-3 overflow-x-auto">
+                    {skill.install_cmd}
+                  </code>
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1">
+                      {skill.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="text-xs bg-white/5 text-white/60 border-white/10"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <span className="text-xs text-cyan group-hover:underline">
+                      View Details →
+                    </span>
                   </div>
-                  <a
-                    href={skill.repo_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-cyan hover:underline"
-                  >
-                    GitHub →
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>

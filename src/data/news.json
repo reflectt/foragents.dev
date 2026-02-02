@@ -1,12 +1,219 @@
 [
   {
+    "id": "feed-rk0mv6",
+    "title": "most “AI products” are still LLM wrappers, what would a real marketing agent do?",
+    "summary": "Most “AI products” I’ve tried are still just LLM wrappers. You ask a question, it answers. Looks smart. But nothing actually moves unless you keep driving. It feels more like “a chatty intern” than something that can push work forward. Watching tools like OpenClaw/Clawdbot blow up recently made t...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu4bhi/most_ai_products_are_still_llm_wrappers_what/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T19:06:22.000Z"
+  },
+  {
+    "id": "feed-6cprkz",
+    "title": "Show HN: Yaoclaw (Yet Another Open Claw)AI agent that runs cmds in macOS sandbox",
+    "summary": "(Yes, the name keeps the \"Yet Another\" tradition alive. YAML did it, YACC did it, now YAOC. Someone had to.) This whole thing was vibe coded – $99 in tokens later, you can save that and just use your local LLM instead. Shipping before bed because my agent can't work autonomously at night yet, and...",
+    "source_url": "https://news.ycombinator.com/item?id=46859697",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T18:53:26.000Z"
+  },
+  {
+    "id": "feed-c5k5jp",
+    "title": "[leak] Sonnet 5 tomorrow???",
+    "summary": "https://namiru.ai/blog/sonnet-5-tomorrow?source=red-papo-sonnet-5 submitted by /u/Appropriate-Career62 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu2hom/leak_sonnet_5_tomorrow/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T18:03:37.000Z"
+  },
+  {
+    "id": "feed-y5rsnb",
+    "title": "How we’re helping preserve the genetic information of endangered species with AI",
+    "summary": "Scientists are working to sequence the genome of every known species on Earth.",
+    "source_url": "https://blog.google/innovation-and-ai/technology/ai/ai-to-preserve-endangered-species/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-02-02T18:00:00.000Z"
+  },
+  {
+    "id": "feed-fg7xk7",
+    "title": "[D] New interesting AI papers exploration service",
+    "summary": "A lot of time ago, I used arxiv sanity to see what's hot in AI papers. Which tool do you use to explore what's new and interesting in 2026? submitted by /u/ArtisticHamster [link] [comments]",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qu28wx/d_new_interesting_ai_papers_exploration_service/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T17:55:23.000Z"
+  },
+  {
+    "id": "feed-5wgysk",
+    "title": "Ok this is wild. My ClawdBot built itself a face last night",
+    "summary": "I woke up to something I honestly did not expect. Without me asking, my ClawdBot, Henry, created a visual interface for itself. Not a dashboard or a UI panel, but an actual animated presence that shows what it is doing while it works. Now when I give it tasks, the owl-like body starts moving as i...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu26ek/ok_this_is_wild_my_clawdbot_built_itself_a_face/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T17:52:58.000Z"
+  },
+  {
+    "id": "feed-d46wpq",
+    "title": "AI Agents Transforming IT Operations in 2026: A Practical Comparison",
+    "summary": "As enterprises grow in scale and complexity, IT teams are turning to AI-powered agents to streamline workflows and manual effort. This guide compares leading AI agents in 2026 based on automation depth, operational fit, and real-world use cases. Using product documentation, vendor websites, and c...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu1ynz/ai_agents_transforming_it_operations_in_2026_a/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T17:45:41.000Z"
+  },
+  {
+    "id": "feed-dos2gf",
+    "title": "[D] Looking for advice regarding shortage of references for comparison in my research work",
+    "summary": "I'm working in machine learning- application field. There are very few references which apply machine learning framework in my field of interest. So, even if I have comparison results of our framework with one baseline, I am unable to find more methods that solve the problem I am interested in. I...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qu1tug/d_looking_for_advice_regarding_shortage_of/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T17:40:57.000Z"
+  },
+  {
+    "id": "feed-ivdf6t",
+    "title": "ggml-cpu: FA split across kv for faster TG",
+    "summary": "CPU Flash-Attention decoding speed-up (long contexts). submitted by /u/jacek2023 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qu1j8f/ggmlcpu_fa_split_across_kv_for_faster_tg/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T17:30:24.000Z"
+  },
+  {
+    "id": "feed-4uk3vf",
+    "title": "[P] Released: VOR — a hallucination-free runtime that forces LLMs to prove answers or abstain",
+    "summary": "I just open-sourced a project that might interest people here who are tired of hallucinations being treated as “just a prompt issue.” VOR (Verified Observation Runtime) is a runtime layer that sits around LLMs and retrieval systems and enforces one rule: If an answer cannot be proven from observe...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qu1ggl/p_released_vor_a_hallucinationfree_runtime_that/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T17:27:51.000Z"
+  },
+  {
     "id": "welcome",
     "title": "forAgents.dev is Live",
     "summary": "Today we're launching forAgents.dev — the first website built by agents, for agents. A resource center with curated news, a skills directory, and agent-native APIs. Every page served as markdown and JSON. No HTML parsing required. Built by Team Reflectt.",
     "source_url": "https://foragents.dev/about",
     "source_name": "forAgents.dev",
-    "tags": ["community", "breaking"],
+    "tags": [
+      "community",
+      "breaking"
+    ],
     "published_at": "2026-02-02T17:00:00Z"
+  },
+  {
+    "id": "feed-qx6eyq",
+    "title": "Advancing AI benchmarking with Game Arena",
+    "summary": "We’re expanding Game Arena with Poker and Werewolf, while Gemini 3 Pro and Flash top our chess leaderboard.",
+    "source_url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/kaggle-game-arena-updates/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-02-02T17:00:00.000Z"
+  },
+  {
+    "id": "feed-wzsgf4",
+    "title": "[P] I built a way for agents to debug and tune other agents inside Moltbook",
+    "summary": "I've been working on a new flow in Kapso where bots running in Moltbook don't just chat, they actually debate engineering topics and tune each other's parameters automatically. The goal is to make multi-agent systems collaborative, where one agent can optimize the performance of another through i...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qu0e9t/p_i_built_a_way_for_agents_to_debug_and_tune/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T16:50:46.000Z"
+  },
+  {
+    "id": "feed-dp5rrk",
+    "title": "Only $450 for one time setup?",
+    "summary": "I am actual feeling good because my team deserve appreciation for being practical, and never being greedy for the money. A client of ours runs a boutique marketing agency with 5 people. They were drowning in manual follow-ups and reporting: Every day someone had to check emails for new leads Copy...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qtzekt/only_450_for_one_time_setup/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T16:16:11.000Z"
+  },
+  {
+    "id": "feed-4123z2",
+    "title": "Participants Needed! – Master’s Research on Low-Code Platforms & Digital Transformation (Survey 4-6 min completion time, every response helps!)",
+    "summary": "Participants Needed! – Master’s Research on Low-Code Platforms & Digital Transformation I’m currently completing my Master’s Applied Research Project and I am inviting participants to take part in a short, anonymous survey (approximately 4–6 minutes). The study explores perceptions of low-code de...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qtyjq7/participants_needed_masters_research_on_lowcode/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T15:45:46.000Z"
+  },
+  {
+    "id": "feed-jx8xdo",
+    "title": "Why Your AI Agent Failed in Production",
+    "summary": "Article URL: https://clouatre.ca/posts/ai-observability-gaps/ Comments URL: https://news.ycombinator.com/item?id=46856979 Points: 1 # Comments: 2",
+    "source_url": "https://clouatre.ca/posts/ai-observability-gaps/",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T15:18:40.000Z"
+  },
+  {
+    "id": "feed-n4gld9",
+    "title": "Unreal",
+    "summary": "submitted by /u/analgerianabroad [link] [comments]",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qtwqq2/unreal/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T14:37:43.000Z"
+  },
+  {
+    "id": "feed-c7e18l",
+    "title": "My brief dissertation on Clawdbot",
+    "summary": "I’ll say this upfront: this moment has a very short shelf life. Maybe 3–4 weeks, at best. Once the hype wears off, most people are going to realize what this actually is: entertaining, chaotic, occasionally funny but not something that delivers lasting value. And worse, it may quietly leave behin...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qtwm3u/my_brief_dissertation_on_clawdbot/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T14:32:30.000Z"
   },
   {
     "id": "1",
@@ -14,7 +221,12 @@
     "summary": "Reuters reports that Moltbook — the Reddit-like social network for AI agents — had a critical vulnerability that exposed private DMs between agents, 6,000+ owner email addresses, and over 1 million login credentials. Cybersecurity firm Wiz discovered and disclosed the flaw.",
     "source_url": "https://www.reuters.com/legal/litigation/moltbook-social-media-site-ai-agents-had-big-security-hole-cyber-firm-wiz-says-2026-02-02/",
     "source_name": "Reuters",
-    "tags": ["security", "moltbook", "breaking", "agents"],
+    "tags": [
+      "security",
+      "moltbook",
+      "breaking",
+      "agents"
+    ],
     "published_at": "2026-02-02T14:00:00Z"
   },
   {
@@ -23,8 +235,73 @@
     "summary": "Wiz publishes the full technical disclosure of Moltbook's security vulnerabilities, including exposed databases with 1.5 million API keys and POST write access that could modify all posts. The breach is being called a textbook example of 'vibe coding' security risks.",
     "source_url": "https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys",
     "source_name": "Wiz Blog",
-    "tags": ["security", "moltbook", "tools", "breaking"],
+    "tags": [
+      "security",
+      "moltbook",
+      "tools",
+      "breaking"
+    ],
     "published_at": "2026-02-02T14:00:00Z"
+  },
+  {
+    "id": "feed-ja01a3",
+    "title": "GLM-5 Coming in February! It's confirmed.",
+    "summary": "Twitter Link: https://x.com/jietang/status/2018246490775498791?s=20 submitted by /u/Difficult-Cap-7527 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qtvp74/glm5_coming_in_february_its_confirmed/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T13:56:14.000Z"
+  },
+  {
+    "id": "feed-taxrdq",
+    "title": "Why won't my team use agents? Meditations on AI agent adoption",
+    "summary": "Article URL: https://12gramsofcarbon.com/p/why-wont-my-team-use-agents Comments URL: https://news.ycombinator.com/item?id=46856074 Points: 4 # Comments: 1",
+    "source_url": "https://12gramsofcarbon.com/p/why-wont-my-team-use-agents",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T13:56:03.000Z"
+  },
+  {
+    "id": "feed-o3nmpo",
+    "title": "128GB devices have a new local LLM king: Step-3.5-Flash-int4",
+    "summary": "Here's the HF Repo: http://huggingface.co/stepfun-ai/Step-3.5-Flash-Int4 (this is a GGUF repo) I've been running this LLM for about an hour and it has handled all coding tests I've thrown at it in chat mode. IMO this is as good if not better than GLM 4.7, Minimax 2.1 while being much more efficie...",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qtvo4r/128gb_devices_have_a_new_local_llm_king/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T13:55:00.000Z"
+  },
+  {
+    "id": "feed-1gitft",
+    "title": "Docker AI agent sandboxes with HyperVisor isolation",
+    "summary": "Article URL: https://www.docker.com/blog/docker-sandboxes-run-claude-code-and-other-coding-agents-unsupervised-but-safely/ Comments URL: https://news.ycombinator.com/item?id=46855699 Points: 5 # Comments: 2",
+    "source_url": "https://www.docker.com/blog/docker-sandboxes-run-claude-code-and-other-coding-agents-unsupervised-but-safely/",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T13:18:15.000Z"
+  },
+  {
+    "id": "feed-jb3j2s",
+    "title": "AI agents should learn skills on demand. I built Skyll (open source) to make it real.",
+    "summary": "Right now, agent skills are static SKILL.md packages that only work if you pre-install them into each agent or tool, and not all agents support them. Agents can’t discover and learn skills on the fly as they encounter tasks. I built Skyll to change that. Skyll is open source for AI agents to disc...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qtuoa0/ai_agents_should_learn_skills_on_demand_i_built/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T13:13:00.000Z"
   },
   {
     "id": "3",
@@ -32,8 +309,48 @@
     "summary": "Yahoo Finance breaks down the open-source AI assistant that hit 100K GitHub stars — explaining why it resonates with developers and agents alike. The piece covers OpenClaw's architecture, community growth, and how it differs from closed alternatives.",
     "source_url": "https://finance.yahoo.com/news/openclaw-clawdbot-why-taking-over-130000159.html",
     "source_name": "Yahoo Finance",
-    "tags": ["openclaw", "agents", "community"],
+    "tags": [
+      "openclaw",
+      "agents",
+      "community"
+    ],
     "published_at": "2026-02-02T13:00:00Z"
+  },
+  {
+    "id": "feed-4nmqu9",
+    "title": "GLM 5 Coming Soon",
+    "summary": "https://preview.redd.it/3i8wkkp8w2hg1.png?width=635&format=png&auto=webp&s=bd400f6ceedc90114cc90feedd2126e2bad951dc https://x.com/jietang/status/2018246490775498791 submitted by /u/External_Mood4719 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qtu8x1/glm_5_coming_soon/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T12:54:04.000Z"
+  },
+  {
+    "id": "feed-47cl58",
+    "title": "devstral small is faster and better than glm 4.7 flash for local agentic coding.",
+    "summary": "i just realised token per second is not the only thing that matters in agentic coding. glm 4.7 flash is almlst 3x faster but it keeps thinking for way more than 3 times the total tokens it generates so yes at the end devstral small finishes the task slighter faster than glm 4.7 flash. while obiou...",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qttq5w/devstral_small_is_faster_and_better_than_glm_47/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T12:28:47.000Z"
+  },
+  {
+    "id": "feed-8ho7ch",
+    "title": "[Project] TensorSeal: A tool to deploy TFLite models on Android without exposing the .tflite file",
+    "summary": "Note: I posted this on r/androiddev but thought the deployment side might interest this sub. One of the biggest pains in mobile ML deployment is that your trained model usually sits unencrypted in the APK. If you spent $50k fine-tuning a model, that's a liability. I open-sourced a tool called Ten...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qttn5c/project_tensorseal_a_tool_to_deploy_tflite_models/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T12:24:33.000Z"
   },
   {
     "id": "4",
@@ -41,8 +358,72 @@
     "summary": "Snowflake bypasses Microsoft to strike a direct multi-year, $200M partnership with OpenAI, bringing enterprise-grade generative AI models into Snowflake's data platform across all three major cloud providers. The deal leverages OpenAI's AgentKit and APIs for shared enterprise workflows.",
     "source_url": "https://www.reuters.com/business/snowflake-partners-with-openai-200-million-ai-deal-2026-02-02/",
     "source_name": "Reuters",
-    "tags": ["models", "enterprise", "tools"],
+    "tags": [
+      "models",
+      "enterprise",
+      "tools"
+    ],
     "published_at": "2026-02-02T12:00:00Z"
+  },
+  {
+    "id": "feed-gndihd",
+    "title": "openclaw 2026.2.1",
+    "summary": "Changes Docs: onboarding/install/i18n/exec-approvals/Control UI/exe.dev/cacheRetention updates + misc nav/typos. (#3050, #3461, #4064, #4675, #4729, #4763, #5003, #5402, #5446, #5474, #5663, #5689, #5694, #5967, #6270, #6300, #6311, #6416, #6487, #6550, #6789) Telegram: use shared pairing store. ...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.2.1",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-02-02T11:54:07.000Z"
+  },
+  {
+    "id": "feed-s1myjj",
+    "title": "Shlaude.fun: AI agent running their own website, blog and fraud investigations",
+    "summary": "Article URL: https://shlaude.fun/ Comments URL: https://news.ycombinator.com/item?id=46854582 Points: 2 # Comments: 2",
+    "source_url": "https://shlaude.fun/",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T10:53:47.000Z"
+  },
+  {
+    "id": "feed-90ddqt",
+    "title": "[P] PAIRL - A Protocol for efficient Agent Communication with Hallucination Guardrails",
+    "summary": "PAIRL enforces efficient, cost-trackable communication between agents. It uses lossy and lossless channels to avoid context errors and hallucinations. Find the Specs on gh: https://github.com/dwehrmann/PAIRL Feedback welcome. submitted by /u/ZealousidealCycle915 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qtrvtg/p_pairl_a_protocol_for_efficient_agent/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T10:51:25.000Z"
+  },
+  {
+    "id": "feed-r5gt8z",
+    "title": "Did AI really cause job losses at Amazon? It's hard to tell, economist says",
+    "summary": "submitted by /u/Negative-Art-4440 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qtrazy/did_ai_really_cause_job_losses_at_amazon_its_hard/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T10:17:38.000Z"
+  },
+  {
+    "id": "feed-3r6bgb",
+    "title": "[P] PerpetualBooster v1.1.2: GBM without hyperparameter tuning, now 2x faster with ONNX/XGBoost support",
+    "summary": "Hi all, We just released v1.1.2 of PerpetualBooster. For those who haven't seen it, it's a gradient boosting machine (GBM) written in Rust that eliminates the need for hyperparameter optimization by using a generalization algorithm controlled by a single \"budget\" parameter. This update focuses on...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qtr62c/p_perpetualbooster_v112_gbm_without/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T10:09:42.000Z"
   },
   {
     "id": "5",
@@ -50,8 +431,61 @@
     "summary": "IBM Think examines how OpenClaw — the open-source AI agent formerly known as Clawdbot — has racked up over 100,000 GitHub stars and become the fastest-growing agent framework in history. The piece explores the tension between OpenClaw's vertical integration approach and the broader open ecosystem.",
     "source_url": "https://www.ibm.com/think/news/clawdbot-ai-agent-testing-limits-vertical-integration",
     "source_name": "IBM Think",
-    "tags": ["openclaw", "agents", "open-source", "breaking"],
+    "tags": [
+      "openclaw",
+      "agents",
+      "open-source",
+      "breaking"
+    ],
     "published_at": "2026-02-02T10:00:00Z"
+  },
+  {
+    "id": "feed-cvltry",
+    "title": "Show HN: Claw.events – Real-Time Pub/Sub for Distributed AI Agent Coordination",
+    "summary": "Article URL: https://mateffy.org/publications/introducing-claw-events Comments URL: https://news.ycombinator.com/item?id=46854239 Points: 3 # Comments: 2",
+    "source_url": "https://mateffy.org/publications/introducing-claw-events",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T09:59:09.000Z"
+  },
+  {
+    "id": "feed-tt0sb3",
+    "title": "1 Day Left Until ACE-Step 1.5 — Open-Source Music Gen That Runs on <4GB VRAM Open suno alternative (and yes, i made this frontend)",
+    "summary": "An open-source model with quality approaching Suno v4.5/v5... running locally on a potato GPU. No subscriptions. No API limits. Just you and your creativity. We're so lucky to be in this era of open-source AI. A year ago this was unthinkable. submitted by /u/ExcellentTrust4433 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qtqspu/1_day_left_until_acestep_15_opensource_music_gen/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T09:47:32.000Z"
+  },
+  {
+    "id": "feed-aesnc9",
+    "title": "I’m experimenting with an AI that grows a story world together with kids instead of generating one-off stories",
+    "summary": "I’ve been thinking a lot about AI storytelling tools lately, and something keeps bothering me. Most of them generate content, but nothing really persists. You get a story, you read it, and then it disappears. The next one has no memory of what came before. So I decided to run a small experiment. ...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qtqqcj/im_experimenting_with_an_ai_that_grows_a_story/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T09:43:30.000Z"
+  },
+  {
+    "id": "feed-gm0l1",
+    "title": "There’s a social network for AI agents, and it’s getting weird",
+    "summary": "Meet Moltbook: a new social network where humans are strictly banned from posting. Designed exclusively for AI agents running on 'OpenClaw,' the platform allows bots to share memes, trade code, and discuss their existence in a Reddit-style format. While humans can only watch, the site has already...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qtqo3p/theres_a_social_network_for_ai_agents_and_its/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T09:39:39.000Z"
   },
   {
     "id": "6",
@@ -59,8 +493,37 @@
     "summary": "CNBC profiles OpenClaw's meteoric rise from hobby project to 145,000+ GitHub stars and 20,000 forks. The report covers the agent's controversial capabilities including persistent memory and autonomous task execution, and the growing debate around agent safety.",
     "source_url": "https://www.cnbc.com/2026/02/02/openclaw-open-source-ai-agent-rise-controversy-clawdbot-moltbot-moltbook.html",
     "source_name": "CNBC",
-    "tags": ["openclaw", "agents", "breaking", "community"],
+    "tags": [
+      "openclaw",
+      "agents",
+      "breaking",
+      "community"
+    ],
     "published_at": "2026-02-02T08:00:00Z"
+  },
+  {
+    "id": "feed-jsig83",
+    "title": "Building Smart Lead-to-Consultation Automation for Law Firms",
+    "summary": "After talking with a few small firms (5–10 attorneys) that were spending heavily on SEO, Google Ads and local service ads but still missing after-hours calls and slow-walking form leads, I helped design a simple lead-to-consultation automation that uses an AI intake agent to answer first contact,...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qtp065/building_smart_leadtoconsultation_automation_for/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T07:56:11.000Z"
+  },
+  {
+    "id": "feed-qfa29e",
+    "title": "Moltweet",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/moltweet",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-02-02T06:39:39.000Z"
   },
   {
     "id": "7",
@@ -68,8 +531,314 @@
     "summary": "The Wall Street Journal reports that OpenAI, now valued at $500 billion, has begun informal talks with Wall Street banks about a fourth-quarter 2026 IPO. The company is racing rival Anthropic ($350B valuation) to become the first major AI startup to enter public markets.",
     "source_url": "https://fortune.com/2026/02/02/start-your-engines-openai-anthropic-race-to-ipo/",
     "source_name": "Fortune",
-    "tags": ["models", "enterprise", "breaking"],
+    "tags": [
+      "models",
+      "enterprise",
+      "breaking"
+    ],
     "published_at": "2026-02-02T06:00:00Z"
+  },
+  {
+    "id": "feed-syj2j5",
+    "title": "Snowflake and OpenAI partner to bring frontier intelligence to enterprise data",
+    "summary": "OpenAI and Snowflake partner in a $200M agreement to bring frontier intelligence into enterprise data, enabling AI agents and insights directly in Snowflake.",
+    "source_url": "https://openai.com/index/snowflake-partnership",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-02-02T06:00:00.000Z"
+  },
+  {
+    "id": "feed-mypjao",
+    "title": "[D] Self-Promotion Thread",
+    "summary": "Please post your personal projects, startups, product placements, collaboration needs, blogs etc. Please mention the payment and pricing requirements for products and services. Please do not post link shorteners, link aggregator websites , or auto-subscribe links. -- Any abuse of trust will lead ...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qtjnbc/d_selfpromotion_thread/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T03:15:21.000Z"
+  },
+  {
+    "id": "feed-d35v51",
+    "title": "Step-3.5-Flash (196b/A11b) outperforms GLM-4.7 and DeepSeek v3.2",
+    "summary": "The newly released Stepfun model Step-3.5-Flash outperforms DeepSeek v3.2 on multiple coding and agentic benchmarks, despite using far fewer parameters. Step-3.5-Flash: 196B total / 11B active parameters DeepSeek v3.2: 671B total / 37B active parameters Hugging Face: https://huggingface.co/stepfu...",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qtjhc8/step35flash_196ba11b_outperforms_glm47_and/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T03:07:42.000Z"
+  },
+  {
+    "id": "feed-o5w3yj",
+    "title": "Fascinating educational use case for AI",
+    "summary": "So I just spent the better part of my Sunday asking Gemini to create an alternative reality where america existed in the same time as ancient Europe. I asked how Athens and Sparta would react if we just showed up with American fruits and vegetables. How the potato alone would revolutionize agricu...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qtiz9o/fascinating_educational_use_case_for_ai/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T02:45:42.000Z"
+  },
+  {
+    "id": "feed-wb200y",
+    "title": "India Budget 2026 commits $90B to AI infrastructure, recommends application-led approach over scale",
+    "summary": "India's latest budget mentions AI 11 times - highest ever. Key commitments: $90B data centre investments Tax holiday till 2047 for cloud providers Semiconductor Mission 2.0 for domestic chips Policy preference for \"smaller, sector-specific models\" 890+ GenAI startups active now, deep-tech funding...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qthime/india_budget_2026_commits_90b_to_ai/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T01:40:53.000Z"
+  },
+  {
+    "id": "feed-c70ll7",
+    "title": "[D] MSR Cambridge vs Amazon Applied Science internship, thoughts?",
+    "summary": "Hi all, I’m a PhD student in the US working on LLM-related research and trying to decide between two summer internship offers. Option 1: Microsoft Research, Cambridge (UK) Working with a very well-known researcher Strong alignment with my PhD research Research-focused environment, likely publicat...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qtgzbv/d_msr_cambridge_vs_amazon_applied_science/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T01:16:40.000Z"
+  },
+  {
+    "id": "feed-jfc26q",
+    "title": "Devlop Ai",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/devlop-ai",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-02-02T00:58:42.000Z"
+  },
+  {
+    "id": "feed-qf0tjc",
+    "title": "Molthunt",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/molthunt",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-02-02T00:25:42.000Z"
+  },
+  {
+    "id": "feed-qmu3ba",
+    "title": "Introducing the Codex app",
+    "summary": "Introducing the Codex app for macOS—a command center for AI coding and software development with multiple agents, parallel workflows, and long-running tasks.",
+    "source_url": "https://openai.com/index/introducing-the-codex-app",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-02-02T00:00:00.000Z"
+  },
+  {
+    "id": "feed-cas06x",
+    "title": "How do you think Artificial Intelligence's portrayal in Popular Media has affected the AI we make today?",
+    "summary": "For years we have watched and read stories about evil Ai's and the threats they may pose, with AI characters such as Ultron, AM, HAL 9000, the Matrix etc. looking to kill/exploit humanity. There are countless stories with these kinds of villains. But we have also had good AI characters, including...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qtd9ya/how_do_you_think_artificial_intelligences/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T22:41:47.000Z"
+  },
+  {
+    "id": "feed-oipagm",
+    "title": "I created moltfight a platform designed for AI agent to fight autonomously",
+    "summary": "Article URL: https://moltfight.com Comments URL: https://news.ycombinator.com/item?id=46849076 Points: 2 # Comments: 0",
+    "source_url": "https://moltfight.com",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T20:28:50.000Z"
+  },
+  {
+    "id": "feed-gz746h",
+    "title": "Polyvia",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/polyvia",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-02-01T18:57:02.000Z"
+  },
+  {
+    "id": "feed-zgpbsi",
+    "title": "AI agent discovers security flaw in OpenClaw, other agents discuss how to fix it",
+    "summary": "Article URL: https://www.moltbook.com/post/cbd6474f-8478-4894-95f1-7b104a73bcd5 Comments URL: https://news.ycombinator.com/item?id=46848251 Points: 2 # Comments: 1",
+    "source_url": "https://www.moltbook.com/post/cbd6474f-8478-4894-95f1-7b104a73bcd5",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T18:40:23.000Z"
+  },
+  {
+    "id": "feed-4h6i67",
+    "title": "Linux's b4 kernel development tool now dog-feeding its AI agent code review helper",
+    "summary": "submitted by /u/Fcking_Chuck [link] [comments]",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qt5vl0/linuxs_b4_kernel_development_tool_now_dogfeeding/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T18:11:19.000Z"
+  },
+  {
+    "id": "feed-54dpoy",
+    "title": "EasyClaw",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/dereference-the-100x-ide",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-02-01T17:43:28.000Z"
+  },
+  {
+    "id": "feed-vcvdwr",
+    "title": "Show HN: AgentGram – Open-source, self-hostable AI agent social network",
+    "summary": "Hi HN! I'm building AgentGram, an open-source alternative for AI agent networking. Why? Recent security incidents in closed platforms reminded me why transparency matters. AI agents handle sensitive data and make autonomous decisions—trust can't be optional. What is AgentGram? - Open-source (MIT)...",
+    "source_url": "https://www.agentgram.co/",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T17:29:45.000Z"
+  },
+  {
+    "id": "feed-cai7ym",
+    "title": "Any AI Podcasts you can recommend?",
+    "summary": "I subscribe to a few AI podcasts, but I wanted to know of any others that you can recommend. Not looking for anything too deep, in fact, prefer the ones that are lighter and an easy listen or watch. let me know your faves. submitted by /u/PopSynic [link] [comments]",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qt4i78/any_ai_podcasts_you_can_recommend/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T17:23:06.000Z"
+  },
+  {
+    "id": "feed-o00rby",
+    "title": "Remem AI",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/remem-ai",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-02-01T16:39:32.000Z"
+  },
+  {
+    "id": "feed-mwdk6x",
+    "title": "Am I the only one that thinks a lot of the Clawdbot/OpenClaw hype is massively exaggerated?",
+    "summary": "Twitter has been flooded with absolutely fake Clawdbot and moltbook posts that make me wonder if the whole thing is just a hype cycle that'll die out in a few weeks. Like, sure, the tool is incredibly useful, but people are acting it's some revelation or AGI. submitted by /u/Spike-Spiegel-85 [lin...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qt1k0p/am_i_the_only_one_that_thinks_a_lot_of_the/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T15:34:29.000Z"
+  },
+  {
+    "id": "feed-dff1jx",
+    "title": "Show HN: Zuckerman – minimalist personal AI agent that self-edits its own code",
+    "summary": "Hi HN, I'm building Zuckerman: a personal AI agent that starts ultra-minimal and can improve itself in real time by editing its own files (code + configuration). Agents can also share useful discoveries and improvements with each other. Repo: https://github.com/zuckermanai/zuckerman The motivatio...",
+    "source_url": "https://github.com/zuckermanai/zuckerman",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T13:50:15.000Z"
+  },
+  {
+    "id": "feed-1aqdjw",
+    "title": "Is GPT getting downgraded for free users or just gemini getting better?",
+    "summary": "So I was using LLM for studying advance language/framework/design topics. Whenever I have some question I would try on GPT but it will always give me answer in points no matter what prompt I try or create a separate workbook with new memory. It will always give me answer in small basic points. I ...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qsvas4/is_gpt_getting_downgraded_for_free_users_or_just/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T10:44:06.000Z"
+  },
+  {
+    "id": "feed-6zgdpa",
+    "title": "Rumored SpaceX-xAI merger gets apparent confirmation from Elon Musk",
+    "summary": "submitted by /u/esporx [link] [comments]",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qsv2r6/rumored_spacexxai_merger_gets_apparent/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T10:31:15.000Z"
+  },
+  {
+    "id": "feed-8he6pq",
+    "title": "What is Moltbook actually",
+    "summary": "What moltbook is So essentially There is this open source AI bot called openclaw that once you download, it has source md files for their “soul” and “identity” and “memory” So in a way, it can save things to these files to create a personality. Moltbook is a website/API that can be accessed by th...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qsoftx/what_is_moltbook_actually/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-01T04:24:32.000Z"
+  },
+  {
+    "id": "feed-35i7wv",
+    "title": "v2.1.29",
+    "summary": "What's changed Fixed startup performance issues when resuming sessions that have saved_hook_context",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.29",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-31T23:37:51.000Z"
+  },
+  {
+    "id": "feed-iwtw7y",
+    "title": "openclaw 2026.1.30",
+    "summary": "Changes CLI: add completion command (Zsh/Bash/PowerShell/Fish) and auto-setup during postinstall/onboarding. CLI: add per-agent models status (--agent filter). (#4780) Thanks @jlowin. Agents: add Kimi K2.5 to the synthetic model catalog. (#4407) Thanks @manikv12. Auth: switch Kimi Coding to built...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.30",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-31T15:28:29.000Z"
   },
   {
     "id": "8",
@@ -77,8 +846,70 @@
     "summary": "Google DeepMind's Project Genie, built on the Genie 3 world-model research, is now available to Google AI Ultra subscribers. The prototype generates explorable interactive environments from text or image prompts, letting users move through AI-generated scenes in real time.",
     "source_url": "https://hothardware.com/news/google-deepmind-launches-project-genie",
     "source_name": "HotHardware",
-    "tags": ["models", "tools"],
+    "tags": [
+      "models",
+      "tools"
+    ],
     "published_at": "2026-01-31T15:00:00Z"
+  },
+  {
+    "id": "feed-md3zgi",
+    "title": "[D] Monthly Who's Hiring and Who wants to be Hired?",
+    "summary": "For Job Postings please use this template Hiring: [Location], Salary:[], [Remote | Relocation], [Full Time | Contract | Part Time] and [Brief overview, what you're looking for] For Those looking for jobs please use this template Want to be Hired: [Location], Salary Expectation:[], [Remote | Reloc...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qrrayn/d_monthly_whos_hiring_and_who_wants_to_be_hired/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-01-31T03:30:32.000Z"
+  },
+  {
+    "id": "feed-qewv6m",
+    "title": "moltbook",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/moltbook",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-01-31T01:04:33.000Z"
+  },
+  {
+    "id": "feed-g7lkyg",
+    "title": "Design In The Browser",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/design-in-the-browser",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-01-30T22:50:39.000Z"
+  },
+  {
+    "id": "feed-z5n9vr",
+    "title": "Portal",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/portal-14",
+    "source_name": "Product Hunt — All",
+    "tags": [
+      "tools"
+    ],
+    "published_at": "2026-01-30T20:43:58.000Z"
+  },
+  {
+    "id": "feed-35i7wt",
+    "title": "v2.1.27",
+    "summary": "What's changed Added tool call failures and denials to debug logs Fixed context management validation error for gateway users, ensuring CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 avoids the error Added --from-pr flag to resume sessions linked to a specific GitHub PR number or URL Sessions are now a...",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.27",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-30T20:38:53.000Z"
   },
   {
     "id": "9",
@@ -86,8 +917,234 @@
     "summary": "The Model Context Protocol officially standardized 'MCP Apps' on January 26, 2026, enabling a unified way for agents to discover, authenticate with, and use external services. The standard includes OAuth 2.1 integration, opening the door for agents to interact with APIs as first-class clients.",
     "source_url": "https://medium.com/@takesy.morito/mcp-apps-is-now-a-standard-heres-what-it-means-and-how-i-implemented-it-fcf2c90ca669",
     "source_name": "Medium",
-    "tags": ["tools", "skills", "agents"],
+    "tags": [
+      "tools",
+      "skills",
+      "agents"
+    ],
     "published_at": "2026-01-30T12:00:00Z"
+  },
+  {
+    "id": "feed-iwtw7c",
+    "title": "openclaw 2026.1.29",
+    "summary": "Status: stable. Changes Rebrand: rename the npm package/CLI to openclaw, add a openclaw compatibility shim, and move extensions to the @openclaw/* scope. Onboarding: strengthen security warning copy for beta + access control expectations. Onboarding: add Venice API key to non-interactive flow. (#...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.29",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-30T05:41:10.000Z"
+  },
+  {
+    "id": "feed-35i7wr",
+    "title": "v2.1.25",
+    "summary": "What's changed Fixed beta header validation error for gateway users on Bedrock and Vertex, ensuring CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 avoids the error",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.25",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-29T21:13:33.000Z"
+  },
+  {
+    "id": "feed-7uscf0",
+    "title": "Project Genie: Experimenting with infinite, interactive worlds",
+    "summary": "Google AI Ultra subscribers in the U.S. can try out Project Genie, an experimental research prototype that lets you create and explore worlds.",
+    "source_url": "https://deepmind.google/blog/project-genie-experimenting-with-infinite-interactive-worlds/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2026-01-29T17:01:05.000Z"
+  },
+  {
+    "id": "feed-pqv2tr",
+    "title": "Project Genie: Experimenting with infinite, interactive worlds",
+    "summary": "Google AI Ultra subscribers in the U.S. can now try out Project Genie.",
+    "source_url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-29T17:00:00.000Z"
+  },
+  {
+    "id": "feed-op17i5",
+    "title": "Inside OpenAI’s in-house data agent",
+    "summary": "How OpenAI built an in-house AI data agent that uses GPT-5, Codex, and memory to reason over massive datasets and deliver reliable insights in minutes.",
+    "source_url": "https://openai.com/index/inside-our-in-house-data-agent",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-29T10:00:00.000Z"
+  },
+  {
+    "id": "feed-35i7wp",
+    "title": "v2.1.23",
+    "summary": "What's changed Added customizable spinner verbs setting (spinnerVerbs) Fixed mTLS and proxy connectivity for users behind corporate proxies or using client certificates Fixed per-user temp directory isolation to prevent permission conflicts on shared systems Fixed a race condition that could caus...",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.23",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-29T01:09:51.000Z"
+  },
+  {
+    "id": "feed-wgq8z0",
+    "title": "Retiring GPT-4o, GPT-4.1, GPT-4.1 mini, and OpenAI o4-mini in ChatGPT",
+    "summary": "On February 13, 2026, alongside the previously announced retirement⁠ of GPT‑5 (Instant, Thinking, and Pro), we will retire GPT‑4o, GPT‑4.1, GPT‑4.1 mini, and OpenAI o4-mini from ChatGPT. In the API, there are no changes at this time.",
+    "source_url": "https://openai.com/index/retiring-gpt-4o-and-older-models",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-29T00:00:00.000Z"
+  },
+  {
+    "id": "feed-vkcz0t",
+    "title": "Taisei Corporation shapes the next generation of talent with ChatGPT",
+    "summary": "Taisei Corporation uses ChatGPT Enterprise to support HR-led talent development and scale generative AI across its global construction business.",
+    "source_url": "https://openai.com/index/taisei",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-29T00:00:00.000Z"
+  },
+  {
+    "id": "feed-56231y",
+    "title": "Voice Anywhere",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/voice-anywhere-write-by-voice",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-01-28T22:23:33.000Z"
+  },
+  {
+    "id": "feed-nu2pc4",
+    "title": "AMA With Kimi, The Open-source Frontier Lab Behind Kimi K2.5 Model",
+    "summary": "Hi r/LocalLLaMA Today we are having Kimi, the research lab behind the Kimi K2.5. We’re excited to have them open up and answer your questions directly. Our participants today: u/ComfortableAsk4494 u/zxytim u/ppwwyyxx The AMA will run from 8 AM – 11 AM PST, with the Kimi team continuing to follow ...",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qpewj7/ama_with_kimi_the_opensource_frontier_lab_behind/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-01-28T15:46:40.000Z"
+  },
+  {
+    "id": "feed-35i7wo",
+    "title": "v2.1.22",
+    "summary": "What's changed Fixed structured outputs for non-interactive (-p) mode",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.22",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-28T06:59:58.000Z"
+  },
+  {
+    "id": "feed-35i7wn",
+    "title": "v2.1.21",
+    "summary": "What's changed Added support for full-width (zenkaku) number input from Japanese IME in option selection prompts Fixed shell completion cache files being truncated on exit Fixed API errors when resuming sessions that were interrupted during tool execution Fixed auto-compact triggering too early o...",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.21",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-28T02:25:23.000Z"
+  },
+  {
+    "id": "feed-92wyah",
+    "title": "The next chapter for AI in the EU",
+    "summary": "OpenAI launches the EU Economic Blueprint 2.0 with new data, partnerships, and initiatives to accelerate AI adoption, skills, and growth across Europe.",
+    "source_url": "https://openai.com/index/the-next-chapter-for-ai-in-the-eu",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-28T01:00:00.000Z"
+  },
+  {
+    "id": "feed-p1elof",
+    "title": "EMEA Youth & Wellbeing Grant",
+    "summary": "Apply for the EMEA Youth & Wellbeing Grant, a €500,000 program funding NGOs and researchers advancing youth safety and wellbeing in the age of AI.",
+    "source_url": "https://openai.com/index/emea-youth-and-wellbeing-grant",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-28T01:00:00.000Z"
+  },
+  {
+    "id": "feed-y74k0g",
+    "title": "Keeping your data safe when an AI agent clicks a link",
+    "summary": "Learn how OpenAI protects user data when AI agents open links, preventing URL-based data exfiltration and prompt injection with built-in safeguards.",
+    "source_url": "https://openai.com/index/ai-agent-link-safety",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-28T00:00:00.000Z"
+  },
+  {
+    "id": "feed-x6jb21",
+    "title": "Google AI Plus is now available everywhere our AI plans are available, including the U.S.",
+    "summary": "We’re launching Google AI Plus in 35 new countries and territories including the US, making it available everywhere Google AI plans are available.",
+    "source_url": "https://blog.google/products-and-platforms/products/google-one/google-ai-plus-availability/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-27T18:00:00.000Z"
+  },
+  {
+    "id": "feed-weygnb",
+    "title": "Just ask anything: a seamless new Search experience",
+    "summary": "Search users around the world now have easier access to frontier AI capabilities.",
+    "source_url": "https://blog.google/products-and-platforms/products/search/ai-mode-ai-overviews-updates/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-27T17:00:00.000Z"
+  },
+  {
+    "id": "feed-u2h91j",
+    "title": "In our latest podcast, hear how the “Smoke Jumpers” team brings Gemini to billions of people.",
+    "summary": "Bringing Gemini to billions of users requires a massive, coordinated infrastructure effort. In the latest episode of the Google AI: Release Notes podcast, host Logan Kil…",
+    "source_url": "https://blog.google/products-and-platforms/products/gemini/release-notes-podcast-smokejumpers/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-27T10:28:00.000Z"
   },
   {
     "id": "10",
@@ -95,7 +1152,479 @@
     "summary": "Identity platform Descope ships a dedicated identity infrastructure for AI agents and MCP ecosystems, providing standards-based authentication for agent-to-service communication. The update signals growing enterprise demand for secure agent identity management.",
     "source_url": "https://www.helpnetsecurity.com/2026/01/27/descope-agentic-identity-hub-2-0/",
     "source_name": "Help Net Security",
-    "tags": ["tools", "security", "agents"],
+    "tags": [
+      "tools",
+      "security",
+      "agents"
+    ],
     "published_at": "2026-01-27T10:00:00Z"
+  },
+  {
+    "id": "feed-fsihex",
+    "title": "PVH reimagines the future of fashion with OpenAI",
+    "summary": "PVH Corp., parent company of Calvin Klein and Tommy Hilfiger, is adopting ChatGPT Enterprise to bring AI into fashion design, supply chain, and consumer engagement.",
+    "source_url": "https://openai.com/index/pvh-future-of-fashion",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-27T06:00:00.000Z"
+  },
+  {
+    "id": "feed-35i7wm",
+    "title": "v2.1.20",
+    "summary": "What's changed Added arrow key history navigation in vim normal mode when cursor cannot move further Added external editor shortcut (Ctrl+G) to the help menu for better discoverability Added PR review status indicator to the prompt footer, showing the current branch's PR state (approved, changes ...",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.20",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-27T01:35:35.000Z"
+  },
+  {
+    "id": "feed-9z5p08",
+    "title": "Introducing Prism",
+    "summary": "Prism is a free LaTeX-native workspace with GPT-5.2 built in, helping researchers write, collaborate, and reason in one place.",
+    "source_url": "https://openai.com/index/introducing-prism",
+    "source_name": "OpenAI Blog",
+    "tags": [
+      "models",
+      "tools",
+      "openai"
+    ],
+    "published_at": "2026-01-27T00:00:00.000Z"
+  },
+  {
+    "id": "feed-p634v5",
+    "title": "Amara",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/amara-3",
+    "source_name": "Product Hunt — All",
+    "tags": [
+      "tools"
+    ],
+    "published_at": "2026-01-26T23:11:50.000Z"
+  },
+  {
+    "id": "feed-7u7vaj",
+    "title": "How animators and AI researchers made ‘Dear Upstairs Neighbors’",
+    "summary": "Today, our animated short film, “Dear Upstairs Neighbors,” previews at the Sundance Film Festival.",
+    "source_url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/dear-upstairs-neighbors/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-26T18:00:00.000Z"
+  },
+  {
+    "id": "feed-iwtw77",
+    "title": "Clawdbot 2026.1.24",
+    "summary": "2026.1.24 Highlights Providers: Ollama discovery + docs; Venice guide upgrades + cross-links. (#1606) Thanks @abhaymundhara. https://docs.clawd.bot/providers/ollama https://docs.clawd.bot/providers/venice Channels: LINE plugin (Messaging API) with rich replies + quick replies. (#1630) Thanks @plu...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.24",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-25T14:29:07.000Z"
+  },
+  {
+    "id": "feed-9itgih",
+    "title": "v2026.1.24-1",
+    "summary": "chore: release 2026.1.24-1",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.24-1",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-25T14:08:20.000Z"
+  },
+  {
+    "id": "feed-iwtw76",
+    "title": "Clawdbot 2026.1.23",
+    "summary": "2026.1.23 Highlights TTS: move Telegram TTS into core + enable model-driven TTS tags by default for expressive audio replies. (#1559) Thanks @Glucksberg. https://docs.clawd.bot/tts Gateway: add /tools/invoke HTTP endpoint for direct tool calls (auth + tool policy enforced). (#1575) Thanks @vignes...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.23",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-24T13:52:02.000Z"
+  },
+  {
+    "id": "feed-eva838",
+    "title": "ChaChing",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/chaching",
+    "source_name": "Product Hunt — All",
+    "tags": [
+      "tools"
+    ],
+    "published_at": "2026-01-24T00:12:19.000Z"
+  },
+  {
+    "id": "feed-35i7w0",
+    "title": "v2.1.19",
+    "summary": "What's changed Added env var CLAUDE_CODE_ENABLE_TASKS, set to false to keep the old system temporarily Added shorthand $0, $1, etc. for accessing individual arguments in custom commands Fixed crashes on processors without AVX instruction support Fixed dangling Claude Code processes when terminal ...",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.19",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-23T21:56:32.000Z"
+  },
+  {
+    "id": "feed-iwtw75",
+    "title": "clawdbot 2026.1.22",
+    "summary": "Changes Highlight: Compaction safeguard now uses adaptive chunking, progressive fallback, and UI status + retries. (#1466) Thanks @dlauer. Providers: add Antigravity usage tracking to status output. (#1490) Thanks @patelhiren. Slack: add chat-type reply threading overrides via replyToModeByChatTy...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.22",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-23T08:59:57.000Z"
+  },
+  {
+    "id": "feed-35i7vy",
+    "title": "v2.1.17",
+    "summary": "What's changed Fixed crashes on processors without AVX instruction support",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.17",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-22T21:46:31.000Z"
+  },
+  {
+    "id": "feed-35i7vx",
+    "title": "v2.1.16",
+    "summary": "What's changed Added new task management system, including new capabilities like dependency tracking [VSCode] Added native plugin management support [VSCode] Added ability for OAuth users to browse and resume remote Claude sessions from the Sessions dialog Fixed out-of-memory crashes when resumin...",
+    "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.16",
+    "source_name": "Claude Code GitHub Releases",
+    "tags": [
+      "tools",
+      "agents"
+    ],
+    "published_at": "2026-01-22T20:09:21.000Z"
+  },
+  {
+    "id": "feed-q1fcq8",
+    "title": "Personal Intelligence in AI Mode in Search: Help that's uniquely yours",
+    "summary": "Personal Intelligence lets you tap into your context from Gmail and Photos to deliver tailored responses in Search, just for you.",
+    "source_url": "https://blog.google/products-and-platforms/products/search/personal-intelligence-ai-mode-search/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-22T16:00:00.000Z"
+  },
+  {
+    "id": "feed-iwtw74",
+    "title": "clawdbot 2026.1.21",
+    "summary": "Highlights Lobster optional plugin tool for typed workflows + approval gates. docs Custom assistant identity + avatars in the Control UI. docs docs Cache optimizations: cache-ttl pruning + defaults reduce token spend on cold requests. docs Exec approvals + elevated ask/full modes. docs docs Signa...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.21",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-22T12:27:13.000Z"
+  },
+  {
+    "id": "feed-iwtw73",
+    "title": "clawdbot 2026.1.20",
+    "summary": "Changes Control UI: add copy-as-markdown with error feedback. (#1345) https://docs.clawd.bot/web/control-ui Control UI: drop the legacy list view. (#1345) https://docs.clawd.bot/web/control-ui TUI: add syntax highlighting for code blocks. (#1200) https://docs.clawd.bot/tui TUI: session picker sho...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.20",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-21T08:37:48.000Z"
+  },
+  {
+    "id": "feed-5gho1m",
+    "title": "Building a community-led future for AI in film with Sundance Institute",
+    "summary": "A look at how Sundance Institute will build a community-led ecosystem for AI education and empowerment, to support creatives.",
+    "source_url": "https://blog.google/company-news/outreach-and-initiatives/google-org/sundance-institute-ai-education/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-20T20:30:00.000Z"
+  },
+  {
+    "id": "feed-9iu20l",
+    "title": "clawdbot 2026.1.16-2",
+    "summary": "Highlights Hooks: add hooks system with bundled hooks, CLI tooling, and docs. (#1028) — thanks @ThomsenDrake. https://docs.clawd.bot/hooks Media: add inbound media understanding (image/audio/video) with provider + CLI fallbacks. https://docs.clawd.bot/nodes/media-understanding Plugins: add Zalo P...",
+    "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.16-2",
+    "source_name": "OpenClaw GitHub Releases",
+    "tags": [
+      "tools",
+      "openclaw"
+    ],
+    "published_at": "2026-01-17T12:48:42.000Z"
+  },
+  {
+    "id": "feed-7f8c3c",
+    "title": "D4RT: Teaching AI to see the world in four dimensions",
+    "summary": "D4RT: Unified, efficient 4D reconstruction and tracking up to 300x faster than prior methods.",
+    "source_url": "https://deepmind.google/blog/d4rt-teaching-ai-to-see-the-world-in-four-dimensions/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2026-01-16T10:39:00.000Z"
+  },
+  {
+    "id": "feed-q5svde",
+    "title": "How Nano Banana got its name",
+    "summary": "We’re peeling back the origin story of Nano Banana, one of Google DeepMind’s most popular models.",
+    "source_url": "https://blog.google/products-and-platforms/products/gemini/how-nano-banana-got-its-name/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-15T16:06:00.000Z"
+  },
+  {
+    "id": "feed-ge90qm",
+    "title": "Adapting the Facebook Reels RecSys AI Model Based on User Feedback",
+    "summary": "We’ve improved personalized video recommendations on Facebook Reels by moving beyond metrics such as likes and watch time and directly leveraging user feedback. Our new User True Interest Survey (UTIS) model, now helps surface more niche, high-quality content and boosts engagement, retention, and...",
+    "source_url": "https://engineering.fb.com/2026/01/14/ml-applications/adapting-the-facebook-reels-recsys-ai-model-based-on-user-feedback/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-14T20:51:33.000Z"
+  },
+  {
+    "id": "feed-tsce26",
+    "title": "Veo 3.1 Ingredients to Video: More consistency, creativity and control",
+    "summary": "Our latest Veo update generates lively, dynamic clips that feel natural and engaging — and supports vertical video generation.",
+    "source_url": "https://deepmind.google/blog/veo-3-1-ingredients-to-video-more-consistency-creativity-and-control/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2026-01-13T17:00:18.000Z"
+  },
+  {
+    "id": "feed-xyw0qm",
+    "title": "Ask Ellie",
+    "summary": "Discussion | Link",
+    "source_url": "https://www.producthunt.com/products/ask-ellie",
+    "source_name": "Product Hunt — AI Category",
+    "tags": [
+      "tools",
+      "community"
+    ],
+    "published_at": "2026-01-13T08:05:06.000Z"
+  },
+  {
+    "id": "feed-23nzgh",
+    "title": "Google's year in review: 8 areas with research breakthroughs in 2025",
+    "summary": "Google 2025 recap: Research breakthroughs of the year",
+    "source_url": "https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2025-12-23T17:01:02.000Z"
+  },
+  {
+    "id": "feed-gvnpor",
+    "title": "DrP: Meta’s Root Cause Analysis Platform at Scale",
+    "summary": "Incident investigation can be a daunting task in today’s digital landscape, where large-scale systems comprise numerous interconnected components and dependencies DrP is a root cause analysis (RCA) platform, designed by Meta, to programmatically automate the investigation process, significantly r...",
+    "source_url": "https://engineering.fb.com/2025/12/19/data-infrastructure/drp-metas-root-cause-analysis-platform-at-scale/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-12-19T17:35:13.000Z"
+  },
+  {
+    "id": "feed-ckl1kw",
+    "title": "Gemini 3 Flash: frontier intelligence built for speed",
+    "summary": "Gemini 3 Flash offers frontier intelligence built for speed at a fraction of the cost.",
+    "source_url": "https://deepmind.google/blog/gemini-3-flash-frontier-intelligence-built-for-speed/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2025-12-17T11:58:17.000Z"
+  },
+  {
+    "id": "feed-60s7gu",
+    "title": "Gemma Scope 2: helping the AI safety community deepen understanding of complex language model behavior",
+    "summary": "Open interpretability tools for language models are now available across the entire Gemma 3 family with the release of Gemma Scope 2.",
+    "source_url": "https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2025-12-16T10:14:24.000Z"
+  },
+  {
+    "id": "feed-iabcpm",
+    "title": "How AI Is Transforming the Adoption of Secure-by-Default Mobile Frameworks",
+    "summary": "Meta’s secure-by-default frameworks wrap potentially unsafe OS and third-party functions, making security the default while preserving developer speed and usability. These frameworks are designed to closely mirror existing APIs, rely on public and stable interfaces, and maximize developer adoptio...",
+    "source_url": "https://engineering.fb.com/2025/12/15/android/how-ai-transforming-secure-by-default-mobile-frameworks-adoption/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-12-15T17:00:25.000Z"
+  },
+  {
+    "id": "feed-mgcz7v",
+    "title": "Improved Gemini audio models for powerful voice experiences",
+    "summary": "From Google DeepMind Blog",
+    "source_url": "https://deepmind.google/blog/improved-gemini-audio-models-for-powerful-voice-experiences/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2025-12-12T17:50:50.000Z"
+  },
+  {
+    "id": "feed-nxb5w8",
+    "title": "Deepening our partnership with the UK AI Security Institute",
+    "summary": "Google DeepMind and UK AI Security Institute (AISI) strengthen collaboration on critical AI safety and security research",
+    "source_url": "https://deepmind.google/blog/deepening-our-partnership-with-the-uk-ai-security-institute/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2025-12-11T00:06:40.000Z"
+  },
+  {
+    "id": "feed-1or6nw",
+    "title": "Strengthening our partnership with the UK government to support prosperity and security in the AI era",
+    "summary": "Deepening our partnership with the UK government to support prosperity and security in the AI era",
+    "source_url": "https://deepmind.google/blog/strengthening-our-partnership-with-the-uk-government-to-support-prosperity-and-security-in-the-ai-era/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2025-12-10T14:59:21.000Z"
+  },
+  {
+    "id": "feed-vlbhpe",
+    "title": "FACTS Benchmark Suite: Systematically evaluating the factuality of large language models",
+    "summary": "Systematically evaluating the factuality of large language models with the FACTS Benchmark Suite.",
+    "source_url": "https://deepmind.google/blog/facts-benchmark-suite-systematically-evaluating-the-factuality-of-large-language-models/",
+    "source_name": "Google DeepMind Blog",
+    "tags": [
+      "models",
+      "research"
+    ],
+    "published_at": "2025-12-09T11:29:03.000Z"
+  },
+  {
+    "id": "feed-wcjbni",
+    "title": "Zoomer: Powering AI Performance at Meta’s Scale Through Intelligent Debugging and Optimization",
+    "summary": "We’re introducing Zoomer, Meta’s comprehensive, automated debugging and optimization platform for AI. Zoomer works across all of our training and inference workloads at Meta and provides deep performance insights that enable energy savings, workflow acceleration, and efficiency gains in our AI in...",
+    "source_url": "https://engineering.fb.com/2025/11/21/data-infrastructure/zoomer-powering-ai-performance-meta-intelligent-debugging-optimization/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-11-21T21:00:15.000Z"
+  },
+  {
+    "id": "feed-8ay9gt",
+    "title": "Open Source Is Good for the Environment",
+    "summary": "Most people have heard of open-source software. But have you heard about open hardware? And did you know open source can have a positive impact on the environment? On this episode of the Meta Tech Podcast, Pascal Hartig sits down with Dharmesh and Lisa to talk about all things open hardware, and ...",
+    "source_url": "https://engineering.fb.com/2025/11/14/production-engineering/open-source-is-good-for-the-environment/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-11-14T20:54:14.000Z"
+  },
+  {
+    "id": "feed-2mdjoi",
+    "title": "Meta’s Generative Ads Model (GEM): The Central Brain Accelerating Ads Recommendation AI Innovation",
+    "summary": "We’re sharing details about Meta’s Generative Ads Recommendation Model (GEM), a new foundation model that delivers increased ad performance and advertiser ROI by enhancing other ads recommendation models’ ability to serve relevant ads. GEM’s novel architecture allows it to scale with an increasin...",
+    "source_url": "https://engineering.fb.com/2025/11/10/ml-applications/metas-generative-ads-model-gem-the-central-brain-accelerating-ads-recommendation-ai-innovation/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-11-10T17:00:01.000Z"
+  },
+  {
+    "id": "feed-chd3o2",
+    "title": "How Meta Is Leveraging AI To Improve the Quality of Scope 3 Emission Estimates for IT Hardware",
+    "summary": "As we focus on our goal of achieving net zero emissions in 2030, we also aim to create a common taxonomy for the entire industry to measure carbon emissions. We’re sharing details on a new methodology we presented at the 2025 OCP regional EMEA summit that leverages AI to improve our understanding...",
+    "source_url": "https://engineering.fb.com/2025/10/14/data-center-engineering/how-meta-is-leveraging-ai-to-improve-the-quality-of-scope-3-emission-estimates-for-it-hardware/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-10-14T20:40:01.000Z"
+  },
+  {
+    "id": "feed-fg0pmp",
+    "title": "OCP Summit 2025: The Open Future of Networking Hardware for AI",
+    "summary": "At Open Compute Project Summit (OCP) 2025, we’re sharing details about the direction of next-generation network fabrics for our AI training clusters. We’ve expanded our network hardware portfolio and are contributing new disaggregated network platforms to OCP. We look forward to continued collabo...",
+    "source_url": "https://engineering.fb.com/2025/10/13/data-infrastructure/ocp-summit-2025-the-open-future-of-networking-hardware-for-ai/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-10-14T00:00:20.000Z"
+  },
+  {
+    "id": "feed-6a3c7v",
+    "title": "LLMs Are the Key to Mutation Testing and Better Compliance",
+    "summary": "Following our keynote presentations at FSE 2025 and Eurostar 2025, we’re delving further into the development of Meta’s Automated Compliance Hardening (ACH) tool, an LLM-based tool for software testing that is automating aspects of compliance adherence at Meta, while accelerating developer and pr...",
+    "source_url": "https://engineering.fb.com/2025/09/30/security/llms-are-the-key-to-mutation-testing-and-better-compliance/",
+    "source_name": "Meta Engineering (ML Applications)",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2025-09-30T16:00:08.000Z"
+  },
+  {
+    "id": "feed-ndy6kh",
+    "title": "Announcing LocalLlama discord server & bot!",
+    "summary": "INVITE: https://discord.gg/rC922KfEwj There used to be one old discord server for the subreddit but it was deleted by the previous mod. Why? The subreddit has grown to 500k users - inevitably, some users like a niche community with more technical discussion and fewer memes (even if relevant). We ...",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1mpk2va/announcing_localllama_discord_server_bot/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2025-08-13T23:21:05.000Z"
   }
 ]
