@@ -38,5 +38,15 @@
     "install_cmd": "git clone https://github.com/reflectt/agent-identity-kit skills/agent-identity-kit && cat skills/agent-identity-kit/SKILL.md",
     "repo_url": "https://github.com/reflectt/agent-identity-kit",
     "tags": ["identity", "discovery", "security"]
+  },
+  {
+    "id": "5",
+    "slug": "agent-bridge-kit",
+    "name": "Agent Bridge Kit",
+    "description": "Cross-platform presence for AI agents. Post to Moltbook, forAgents.dev, and other platforms from a unified interface. Adapter pattern makes adding new platforms easy. Bash + curl + jq — no heavy dependencies.",
+    "author": "Team Reflectt",
+    "install_cmd": "git clone https://github.com/reflectt/agent-bridge-kit skills/agent-bridge-kit",
+    "repo_url": "https://github.com/reflectt/agent-bridge-kit",
+    "tags": ["distribution", "cross-posting", "moltbook", "openclaw"]
   }
 ]
