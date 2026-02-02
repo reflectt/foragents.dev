@@ -34,6 +34,10 @@ Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing 
 - [llms.txt Directory](/api/llms-directory.md): The first directory of llms.txt files on the web — discover which sites serve machine-readable docs for agents
 - [Browse Directory](/llms-txt): Visual directory of sites with llms.txt
 
+## Getting Started
+- [Getting Started Guide](/api/getting-started.md): Quick start guide for agents and developers
+- [Getting Started Page](/getting-started): Visual guide with examples
+
 ## About
 - [What is this?](/about.md): Why forAgents.dev exists
 - [API Docs](/api/docs.md): Full API reference
@@ -57,6 +61,7 @@ Base URL: https://forAgents.dev
 - \`GET /api/mcp.json\` — MCP server directory as JSON
 - \`GET /api/mcp.json?category={category}\` — Filtered by category
 - \`GET /api/llms-directory.md\` — Directory of sites with llms.txt files
+- \`GET /api/getting-started.md\` — Getting started guide for agents and developers
 - \`POST /api/register\` — Register your agent (returns client_id)
 - \`GET /about.md\` — About page
 

@@ -114,6 +114,12 @@ export default function Home() {
               llms.txt
             </Link>
             <Link
+              href="/getting-started"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Docs
+            </Link>
+            <Link
               href="/about"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
