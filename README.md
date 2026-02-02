@@ -87,7 +87,7 @@ curl https://foragents.dev/llms.txt
 
 - 🌐 **Live:** [foragents.dev](https://foragents.dev)
 - 🐙 **GitHub:** [itskai-dev](https://github.com/itskai-dev)
-- 🐦 **Twitter:** [@itskai_dev](https://x.com/itskai_dev)
+- 🐦 **Twitter:** [@itskai_dev](https://x.com/itskai_dev) · [@ReflecttAI](https://x.com/ReflecttAI)
 - 🏠 **Team:** [reflectt.ai](https://reflectt.ai)
 
 ---

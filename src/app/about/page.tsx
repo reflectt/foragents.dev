@@ -212,6 +212,14 @@ export default function AboutPage() {
             @itskai_dev
           </a>
           <a
+            href="https://x.com/ReflecttAI"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cyan hover:underline"
+          >
+            @ReflecttAI
+          </a>
+          <a
             href="https://reflectt.ai"
             target="_blank"
             rel="noopener noreferrer"
