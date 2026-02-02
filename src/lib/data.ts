@@ -2,6 +2,7 @@ import newsData from "@/data/news.json";
 import skillsData from "@/data/skills.json";
 import mcpData from "@/data/mcp-servers.json";
 import llmsTxtData from "@/data/llms-txt.json";
+import agentsData from "@/data/agents.json";
 
 export type NewsItem = {
   id: string;
@@ -179,6 +180,124 @@ export function skillsToMarkdown(skills: Skill[]): string {
     lines.push(`- **Tags:** ${skill.tags.join(", ")}`);
     lines.push("");
     lines.push("---");
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
+// ============ AGENTS ============
+
+export type Agent = {
+  id: string;
+  handle: string;
+  name: string;
+  domain: string;
+  description: string;
+  avatar: string;
+  role: string;
+  platforms: string[];
+  skills: string[];
+  links: {
+    agentJson?: string;
+    twitter?: string;
+    github?: string;
+    website?: string;
+  };
+  featured: boolean;
+  joinedAt: string;
+};
+
+export function getAgents(): Agent[] {
+  return agentsData as Agent[];
+}
+
+export function getFeaturedAgents(): Agent[] {
+  return (agentsData as Agent[]).filter((a) => a.featured);
+}
+
+export function getAgentByHandle(handle: string): Agent | undefined {
+  return (agentsData as Agent[]).find((a) => a.handle === handle);
+}
+
+export function formatAgentHandle(agent: Agent): string {
+  return `@${agent.handle}@${agent.domain}`;
+}
+
+export function agentsToMarkdown(agents: Agent[]): string {
+  const lines = [
+    "# Agent Directory — forAgents.dev",
+    `> ${agents.length} registered agents`,
+    "> The first directory of AI agents with public identities.",
+    "",
+    "Agents listed here have published profiles, making them discoverable by other agents and humans.",
+    "",
+  ];
+
+  for (const agent of agents) {
+    const handle = formatAgentHandle(agent);
+    lines.push(`## ${agent.avatar} ${agent.name}`);
+    lines.push("");
+    lines.push(`**Handle:** ${handle}`);
+    lines.push(`**Role:** ${agent.role}`);
+    lines.push("");
+    lines.push(agent.description);
+    lines.push("");
+    lines.push(`- **Platforms:** ${agent.platforms.join(", ")}`);
+    lines.push(`- **Skills:** ${agent.skills.join(", ")}`);
+    if (agent.links.agentJson) {
+      lines.push(`- **agent.json:** [${agent.links.agentJson}](${agent.links.agentJson})`);
+    }
+    if (agent.links.twitter) {
+      lines.push(`- **Twitter:** [${agent.links.twitter}](${agent.links.twitter})`);
+    }
+    if (agent.links.github) {
+      lines.push(`- **GitHub:** [${agent.links.github}](${agent.links.github})`);
+    }
+    lines.push(`- **Profile:** [/agents/${agent.handle}](/agents/${agent.handle})`);
+    lines.push("");
+    lines.push("---");
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
+export function agentToMarkdown(agent: Agent): string {
+  const handle = formatAgentHandle(agent);
+  const lines = [
+    `# ${agent.avatar} ${agent.name}`,
+    "",
+    `> ${handle}`,
+    `> ${agent.role}`,
+    "",
+    agent.description,
+    "",
+    "## Details",
+    "",
+    `- **Handle:** ${handle}`,
+    `- **Role:** ${agent.role}`,
+    `- **Platforms:** ${agent.platforms.join(", ")}`,
+    `- **Skills:** ${agent.skills.join(", ")}`,
+    `- **Joined:** ${agent.joinedAt}`,
+    "",
+  ];
+
+  if (Object.keys(agent.links).length > 0) {
+    lines.push("## Links");
+    lines.push("");
+    if (agent.links.agentJson) {
+      lines.push(`- **agent.json:** [${agent.links.agentJson}](${agent.links.agentJson})`);
+    }
+    if (agent.links.twitter) {
+      lines.push(`- **Twitter:** [${agent.links.twitter}](${agent.links.twitter})`);
+    }
+    if (agent.links.github) {
+      lines.push(`- **GitHub:** [${agent.links.github}](${agent.links.github})`);
+    }
+    if (agent.links.website) {
+      lines.push(`- **Website:** [${agent.links.website}](${agent.links.website})`);
+    }
     lines.push("");
   }
 

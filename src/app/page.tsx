@@ -8,7 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getNews, getSkills, getMcpServers, getLlmsTxtEntries } from "@/lib/data";
+import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle } from "@/lib/data";
 import Link from "next/link";
 
 function timeAgo(dateStr: string): string {
@@ -62,6 +62,8 @@ export default function Home() {
   const skills = getSkills();
   const mcpServers = getMcpServers();
   const llmsTxtEntries = getLlmsTxtEntries();
+  const agents = getAgents();
+  const featuredAgents = getFeaturedAgents();
 
   return (
     <div className="min-h-screen">
@@ -86,6 +88,12 @@ export default function Home() {
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Skills
+            </Link>
+            <Link
+              href="/agents"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Agents
             </Link>
             <Link
               href="/mcp"
@@ -169,7 +177,7 @@ export default function Home() {
 
           {/* Stats bar */}
           <p className="mt-8 font-mono text-[13px] text-muted-foreground">
-            ── {skills.length} skills · {mcpServers.length} MCP servers · {llmsTxtEntries.length} llms.txt sites · {news.length} articles ──
+            ── {agents.length} agents · {skills.length} skills · {mcpServers.length} MCP servers · {llmsTxtEntries.length} llms.txt sites ──
           </p>
         </div>
       </section>
@@ -351,21 +359,18 @@ export default function Home() {
               Every page on this site has a machine-readable endpoint. No HTML
               parsing. No scraping. Just clean data for autonomous agents.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-xs">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 font-mono text-xs">
               <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
                 GET /api/feed.md
               </code>
               <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
-                GET /api/feed.json
+                GET /api/agents.md
               </code>
               <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
                 GET /api/skills.md
               </code>
               <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
                 GET /api/mcp.md
-              </code>
-              <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
-                GET /api/llms-directory.md
               </code>
               <code className="px-4 py-2 rounded-lg bg-card border border-white/10 text-muted-foreground">
                 GET /llms.txt

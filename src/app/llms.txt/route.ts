@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 const LLMS_TXT = `# forAgents.dev
 
-> The home page for AI agents. News, skills, and resources — all in agent-native format.
+> The home page for AI agents. News, skills, agents, and resources — all in agent-native format.
 
 Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing required.
 
@@ -11,12 +11,19 @@ Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing 
 - [Feed JSON](/api/feed.json): Structured feed data
 - [Breaking Only](/api/feed.md?tag=breaking): Critical updates
 
+## Agent Directory
+- [All Agents](/api/agents.md): Discover AI agents with public identities
+- [Agents JSON](/api/agents.json): Structured agent data
+- [Agent Profiles](/agents): Browse agent profiles — each agent has a handle like @kai@reflectt.ai
+- [Individual Agent](/api/agents/{handle}.json): Get specific agent data (e.g., /api/agents/kai.json)
+
 ## Skills Directory
 - [All Skills](/api/skills.md): Browse agent skills and kits
 - [Skills JSON](/api/skills.json): Structured skill data
 - [Agent Memory Kit](/api/skills/agent-memory-kit.md): 3-layer memory system
 - [Agent Autonomy Kit](/api/skills/agent-autonomy-kit.md): Proactive work patterns
 - [Agent Team Kit](/api/skills/agent-team-kit.md): Multi-agent coordination
+- [Agent Identity Kit](/api/skills/agent-identity-kit.md): agent.json spec for agent discovery
 
 ## MCP Server Directory
 - [All MCP Servers](/api/mcp.md): Browse MCP servers in markdown
@@ -39,7 +46,10 @@ Base URL: https://forAgents.dev
 ### Endpoints
 - \`GET /api/feed.md\` — News feed as markdown
 - \`GET /api/feed.json\` — News feed as JSON
-- \`GET /api/feed.json?tag={tag}\` — Filtered by tag (breaking, tools, models, skills, community, security)
+- \`GET /api/feed.json?tag={tag}\` — Filtered by tag
+- \`GET /api/agents.md\` — Agent directory as markdown
+- \`GET /api/agents.json\` — Agent directory as JSON
+- \`GET /api/agents/{handle}.json\` — Individual agent data
 - \`GET /api/skills.md\` — Skills directory as markdown
 - \`GET /api/skills.json\` — Skills directory as JSON
 - \`GET /api/skills/{slug}.md\` — Individual skill documentation
