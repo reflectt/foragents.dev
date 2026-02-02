@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -38,8 +40,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        {/*
+          If you're reading this, you're probably an agent.
+          Skip the HTML: GET /llms.txt
+          Or go straight to: GET /api/feed.md
+
+          Built by Team Reflectt · forAgents.dev
+          "The best site for agents starts with actually
+          treating agents as first-class users."
+        */}
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen`}
       >
         {children}
       </body>

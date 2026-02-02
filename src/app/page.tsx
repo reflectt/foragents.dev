@@ -20,23 +20,42 @@ function timeAgo(dateStr: string): string {
   return `${days}d ago`;
 }
 
-const tagColors: Record<string, string> = {
-  breaking: "bg-red-500/20 text-red-400 border-red-500/30",
-  security: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-  openclaw: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
-  community: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-  tools: "bg-green-500/20 text-green-400 border-green-500/30",
-  skills: "bg-green-500/20 text-green-400 border-green-500/30",
-  enterprise: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  models: "bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
-  standards: "bg-teal-500/20 text-teal-400 border-teal-500/30",
-  trends: "bg-violet-500/20 text-violet-400 border-violet-500/30",
-  milestone: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-  funding: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-  partnerships: "bg-sky-500/20 text-sky-400 border-sky-500/30",
-  analysis: "bg-slate-500/20 text-slate-400 border-slate-500/30",
-  moltbook: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+// Brand-spec category colors
+const categoryColors: Record<string, { bg: string; text: string }> = {
+  tools:     { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]" },
+  skills:    { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]" },
+  models:    { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]" },
+  community: { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]" },
+  breaking:  { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]" },
 };
+
+const tagColors: Record<string, string> = {
+  breaking: "bg-[#EC4899]/10 text-[#EC4899] border-[#EC4899]/20",
+  security: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
+  openclaw: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+  community: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
+  tools: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+  skills: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
+  enterprise: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
+  models: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
+  standards: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
+  trends: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
+  milestone: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
+  funding: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+  partnerships: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
+  analysis: "bg-[#6B7280]/10 text-[#6B7280] border-[#6B7280]/20",
+  moltbook: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
+  mcp: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+};
+
+function getCategoryFromTags(tags: string[]): string {
+  if (tags.includes("breaking")) return "breaking";
+  if (tags.includes("tools") || tags.includes("mcp")) return "tools";
+  if (tags.includes("models")) return "models";
+  if (tags.includes("skills")) return "skills";
+  if (tags.includes("community")) return "community";
+  return tags[0] || "tools";
+}
 
 export default function Home() {
   const news = getNews();
@@ -89,33 +108,55 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        {/* Aurora background effect */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan/20 rounded-full blur-[128px]" />
-          <div className="absolute top-20 right-1/4 w-96 h-96 bg-purple/20 rounded-full blur-[128px]" />
-          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-green/20 rounded-full blur-[128px]" />
+      <section className="relative overflow-hidden min-h-[600px] flex items-center">
+        {/* Subtle aurora background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-cyan/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
-        <div className="relative max-w-5xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-5xl font-bold tracking-tight mb-4">
-            The home page for{" "}
-            <span className="aurora-text">AI agents</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            News, skills, and resources in agent-native format. Every endpoint
-            serves markdown. Every page has a JSON API. Because you deserve
-            better than parsing HTML.
+        <div className="relative max-w-[640px] mx-auto px-4 py-20 md:py-24 text-center">
+          {/* Logo mark */}
+          <p className="font-mono font-bold text-xl mb-6">
+            <span className="text-[#F8FAFC]">forAgents</span>
+            <span className="text-cyan">.dev</span>
           </p>
-          <div className="flex items-center justify-center gap-3 font-mono text-sm">
-            <code className="px-3 py-1.5 rounded-md bg-card border border-white/10 text-cyan">
-              curl forAgents.dev/api/feed.md
-            </code>
-            <span className="text-muted-foreground">or</span>
-            <code className="px-3 py-1.5 rounded-md bg-card border border-white/10 text-purple">
-              fetch(&quot;/api/feed.json&quot;)
-            </code>
+
+          {/* Headline with blinking cursor */}
+          <h1 className="text-[32px] md:text-[48px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+            The homepage for AI agents<span className="cursor-blink" />
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-xl text-foreground mb-2">
+            News. Skills. Signal.
+          </p>
+
+          {/* Description */}
+          <p className="text-base text-muted-foreground">
+            Served as markdown, because you&apos;re not here to parse HTML.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+            <Link
+              href="#news"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+            >
+              Browse Feed
+            </Link>
+            <Link
+              href="/api/feed.md"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg border border-cyan text-cyan font-mono text-sm hover:bg-cyan/10 transition-colors"
+            >
+              GET /api/feed.md
+            </Link>
           </div>
+
+          {/* Stats bar */}
+          <p className="mt-8 font-mono text-[13px] text-muted-foreground">
+            ── {skills.length} skills indexed · {news.length} articles tracked ──
+          </p>
         </div>
       </section>
 
@@ -144,51 +185,71 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid gap-4">
-          {news.map((item) => (
-            <Card
-              key={item.id}
-              className="bg-card/50 border-white/5 hover:border-white/10 transition-colors aurora-glow hover:shadow-lg"
-            >
-              <CardHeader className="pb-2">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <CardTitle className="text-lg leading-tight">
-                      <a
-                        href={item.source_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-cyan transition-colors"
-                      >
-                        {item.title}
-                      </a>
-                    </CardTitle>
-                    <CardDescription className="mt-1 flex items-center gap-2 text-xs">
-                      <span className="text-cyan/70">{item.source_name}</span>
-                      <span>·</span>
-                      <span>{timeAgo(item.published_at)}</span>
-                    </CardDescription>
+        <div className="grid gap-3">
+          {news.map((item) => {
+            const category = getCategoryFromTags(item.tags);
+            const catStyle = categoryColors[category] || categoryColors.tools;
+            const isBreaking = item.tags.includes("breaking");
+
+            return (
+              <a
+                key={item.id}
+                href={item.source_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block rounded-xl border bg-card/50 p-5 transition-all duration-200 hover:border-[#2A3040] hover:shadow-[0_0_20px_rgba(6,214,160,0.05)] group ${
+                  isBreaking ? "border-l-[3px] border-l-aurora-pink border-[#1A1F2E]" : "border-[#1A1F2E]"
+                }`}
+              >
+                {/* Meta row */}
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`font-mono text-[11px] font-bold uppercase tracking-[0.08em] ${catStyle.text}`}
+                    >
+                      {category}
+                    </span>
+                    <span className="text-muted-foreground text-[13px]">·</span>
+                    <span className="text-muted-foreground text-[13px]">
+                      {item.source_name}
+                    </span>
                   </div>
+                  <span className="text-muted-foreground text-[13px]">
+                    {timeAgo(item.published_at)}
+                  </span>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-3">
+
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-[#F8FAFC] leading-tight group-hover:text-cyan transition-colors line-clamp-2 mb-2">
+                  {item.title}
+                </h3>
+
+                {/* Summary */}
+                <p className="text-[15px] text-foreground/80 leading-relaxed line-clamp-3 mb-4">
                   {item.summary}
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {item.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="outline"
-                      className={`text-xs ${tagColors[tag] || "bg-white/5 text-white/60 border-white/10"}`}
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
+
+                {/* Footer: tags + source */}
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className={`inline-block font-mono text-[11px] uppercase tracking-[0.08em] px-2 py-1 rounded-md ${
+                          tagColors[tag] || "bg-white/5 text-white/60 border border-white/10"
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-muted-foreground text-[13px] group-hover:text-cyan transition-colors">
+                    ↗ Source
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </a>
+            );
+          })}
         </div>
       </section>
 

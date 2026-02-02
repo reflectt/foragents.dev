@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -40,6 +40,9 @@
   --color-cyan: var(--cyan);
   --color-purple: var(--purple);
   --color-green: var(--green);
+  --color-electric-blue: var(--electric-blue);
+  --color-aurora-pink: var(--aurora-pink);
+  --color-solar: var(--solar);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -51,41 +54,44 @@
 
 :root {
   --radius: 0.625rem;
-  /* Midnight Aurora - always dark */
-  --background: #0a0a0f;
-  --foreground: #e4e4f0;
-  --card: #12121a;
-  --card-foreground: #e4e4f0;
-  --popover: #12121a;
-  --popover-foreground: #e4e4f0;
-  --primary: #22d3ee;
-  --primary-foreground: #0a0a0f;
-  --secondary: #1a1a2e;
-  --secondary-foreground: #e4e4f0;
-  --muted: #1a1a2e;
-  --muted-foreground: #8888a0;
-  --accent: #1a1a2e;
-  --accent-foreground: #e4e4f0;
-  --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #22d3ee;
-  --cyan: #22d3ee;
-  --purple: #a855f7;
-  --green: #34d399;
-  --chart-1: #22d3ee;
-  --chart-2: #a855f7;
-  --chart-3: #34d399;
-  --chart-4: #f59e0b;
-  --chart-5: #ef4444;
-  --sidebar: #0f0f18;
-  --sidebar-foreground: #e4e4f0;
-  --sidebar-primary: #22d3ee;
-  --sidebar-primary-foreground: #0a0a0f;
-  --sidebar-accent: #1a1a2e;
-  --sidebar-accent-foreground: #e4e4f0;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #22d3ee;
+  /* Midnight Aurora - Brand Spec */
+  --background: #0A0E17;
+  --foreground: #E2E8F0;
+  --card: #0F1420;
+  --card-foreground: #E2E8F0;
+  --popover: #0F1420;
+  --popover-foreground: #E2E8F0;
+  --primary: #06D6A0;
+  --primary-foreground: #0A0E17;
+  --secondary: #1A1F2E;
+  --secondary-foreground: #E2E8F0;
+  --muted: #1A1F2E;
+  --muted-foreground: #6B7280;
+  --accent: #1A1F2E;
+  --accent-foreground: #E2E8F0;
+  --destructive: #EC4899;
+  --border: #1A1F2E;
+  --input: #2A3040;
+  --ring: #06D6A0;
+  --cyan: #06D6A0;
+  --purple: #8B5CF6;
+  --green: #06D6A0;
+  --electric-blue: #3B82F6;
+  --aurora-pink: #EC4899;
+  --solar: #F59E0B;
+  --chart-1: #06D6A0;
+  --chart-2: #8B5CF6;
+  --chart-3: #3B82F6;
+  --chart-4: #F59E0B;
+  --chart-5: #EC4899;
+  --sidebar: #0A0E17;
+  --sidebar-foreground: #E2E8F0;
+  --sidebar-primary: #06D6A0;
+  --sidebar-primary-foreground: #0A0E17;
+  --sidebar-accent: #1A1F2E;
+  --sidebar-accent-foreground: #E2E8F0;
+  --sidebar-border: #1A1F2E;
+  --sidebar-ring: #06D6A0;
 }
 
 @layer base {
@@ -99,20 +105,41 @@
 
 /* Aurora gradient utilities */
 .aurora-gradient {
-  background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #34d399 100%);
+  background: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%);
 }
 
 .aurora-text {
-  background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #34d399 100%);
+  background: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .aurora-border {
-  border-image: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #34d399 100%) 1;
+  border-image: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%) 1;
 }
 
 .aurora-glow {
-  box-shadow: 0 0 40px rgba(34, 211, 238, 0.15), 0 0 80px rgba(168, 85, 247, 0.1);
+  box-shadow: 0 0 40px rgba(6, 214, 160, 0.08), 0 0 80px rgba(139, 92, 246, 0.05);
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: "_";
+  animation: blink 1s step-end infinite;
+  color: #06D6A0;
+}
+
+/* 404 gradient stroke text */
+.gradient-stroke {
+  -webkit-text-stroke: 2px transparent;
+  background: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
