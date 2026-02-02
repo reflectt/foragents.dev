@@ -1,0 +1,210 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-02-02T10:42:00-08:00",
+  "generatedBy": "Scout 🔍",
+  "sources": [
+    {
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/news",
+      "feedUrl": "https://openai.com/blog/rss.xml",
+      "type": "rss",
+      "category": "ai-company-blog",
+      "updateFrequency": "2-5x/week",
+      "verified": true,
+      "notes": "Redirects to /news/rss.xml. Official RSS feed, well-structured."
+    },
+    {
+      "name": "Google DeepMind Blog",
+      "url": "https://deepmind.google/blog/",
+      "feedUrl": "https://deepmind.google/blog/rss.xml",
+      "type": "rss",
+      "category": "ai-company-blog",
+      "updateFrequency": "1-3x/week",
+      "verified": true,
+      "notes": "Official RSS feed. Covers research + product announcements."
+    },
+    {
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/",
+      "feedUrl": "https://blog.google/technology/ai/rss/",
+      "type": "rss",
+      "category": "ai-company-blog",
+      "updateFrequency": "2-5x/week",
+      "verified": true,
+      "notes": "Redirects to /innovation-and-ai/technology/ai/rss/. Broader Google AI news beyond DeepMind."
+    },
+    {
+      "name": "Anthropic Blog",
+      "url": "https://www.anthropic.com/news",
+      "feedUrl": "https://raw.githubusercontent.com/Olshansk/rss-feeds/refs/heads/main/feeds/feed_anthropic.xml",
+      "type": "rss",
+      "category": "ai-company-blog",
+      "updateFrequency": "1-3x/week",
+      "verified": true,
+      "notes": "Anthropic has NO official RSS feed. This is a community-maintained feed (github.com/Olshansk/rss-feeds). Scrapes anthropic.com/news. Consider building our own scraper as backup."
+    },
+    {
+      "name": "Meta Engineering (ML Applications)",
+      "url": "https://engineering.fb.com/category/ml-applications/",
+      "feedUrl": "https://engineering.fb.com/category/ml-applications/feed/",
+      "type": "rss",
+      "category": "ai-company-blog",
+      "updateFrequency": "1-2x/week",
+      "verified": true,
+      "notes": "Meta's ai.meta.com has NO RSS feed (returns 400). This Meta Engineering ML category feed is the best alternative. Covers LLaMA, ML infrastructure, etc."
+    },
+    {
+      "name": "Mistral AI News",
+      "url": "https://mistral.ai/news",
+      "feedUrl": null,
+      "type": "scrape",
+      "category": "ai-company-blog",
+      "updateFrequency": "1-2x/week",
+      "verified": false,
+      "notes": "Mistral has NO RSS/Atom feed. All common paths return 404. Requires scraping mistral.ai/news or using RSSHub/community scraper. Priority: build custom scraper."
+    },
+    {
+      "name": "Hacker News — AI/Agent Front Page",
+      "url": "https://news.ycombinator.com/",
+      "feedUrl": "https://hnrss.org/frontpage?q=AI+agent+OR+LLM+OR+OpenAI+OR+Anthropic",
+      "type": "rss",
+      "category": "ai-news",
+      "updateFrequency": "realtime",
+      "verified": true,
+      "notes": "hnrss.org provides filtered HN feeds. This catches front page posts mentioning AI agents, LLMs, OpenAI, or Anthropic. Can also use /newest for all new posts."
+    },
+    {
+      "name": "Hacker News — AI Agent (Newest)",
+      "url": "https://news.ycombinator.com/newest",
+      "feedUrl": "https://hnrss.org/newest?q=AI+agent",
+      "type": "rss",
+      "category": "ai-news",
+      "updateFrequency": "realtime",
+      "verified": true,
+      "notes": "All new HN submissions matching 'AI agent'. Higher volume, lower signal than front page filter."
+    },
+    {
+      "name": "r/MachineLearning",
+      "url": "https://www.reddit.com/r/MachineLearning/",
+      "feedUrl": "https://www.reddit.com/r/MachineLearning/.rss",
+      "type": "atom",
+      "category": "ai-community",
+      "updateFrequency": "realtime",
+      "verified": true,
+      "notes": "Large ML community (~3M members). High-quality research discussion. Reddit returns Atom format."
+    },
+    {
+      "name": "r/artificial",
+      "url": "https://www.reddit.com/r/artificial/",
+      "feedUrl": "https://www.reddit.com/r/artificial/.rss",
+      "type": "atom",
+      "category": "ai-community",
+      "updateFrequency": "realtime",
+      "verified": true,
+      "notes": "General AI news and discussion subreddit."
+    },
+    {
+      "name": "r/LocalLLaMA",
+      "url": "https://www.reddit.com/r/LocalLLaMA/",
+      "feedUrl": "https://www.reddit.com/r/LocalLLaMA/.rss",
+      "type": "atom",
+      "category": "ai-community",
+      "updateFrequency": "realtime",
+      "verified": true,
+      "notes": "Open-source LLM community. Excellent for model releases, benchmarks, local AI news."
+    },
+    {
+      "name": "r/AIAgents",
+      "url": "https://www.reddit.com/r/AIAgents/",
+      "feedUrl": "https://www.reddit.com/r/AIAgents/.rss",
+      "type": "atom",
+      "category": "ai-community",
+      "updateFrequency": "realtime",
+      "verified": true,
+      "notes": "Dedicated AI agents subreddit. Directly relevant to Agent Hub's audience."
+    },
+    {
+      "name": "r/Autonomous_Agents",
+      "url": "https://www.reddit.com/r/autonomous_agents/",
+      "feedUrl": "https://www.reddit.com/r/autonomous_agents/.rss",
+      "type": "atom",
+      "category": "ai-community",
+      "updateFrequency": "daily",
+      "verified": true,
+      "notes": "Smaller but focused autonomous agents community."
+    },
+    {
+      "name": "OpenClaw GitHub Releases",
+      "url": "https://github.com/openclaw/openclaw/releases",
+      "feedUrl": "https://github.com/openclaw/openclaw/releases.atom",
+      "type": "atom",
+      "category": "developer-tools",
+      "updateFrequency": "1-3x/week",
+      "verified": true,
+      "notes": "Official OpenClaw releases. Updated today (2026-02-02). 100K+ stars."
+    },
+    {
+      "name": "Claude Code GitHub Releases",
+      "url": "https://github.com/anthropics/claude-code/releases",
+      "feedUrl": "https://github.com/anthropics/claude-code/releases.atom",
+      "type": "atom",
+      "category": "developer-tools",
+      "updateFrequency": "1-2x/week",
+      "verified": true,
+      "notes": "Anthropic's Claude Code CLI releases."
+    },
+    {
+      "name": "Product Hunt — AI Category",
+      "url": "https://www.producthunt.com/topics/artificial-intelligence",
+      "feedUrl": "https://www.producthunt.com/feed?topic=artificial-intelligence",
+      "type": "atom",
+      "category": "developer-tools",
+      "updateFrequency": "daily",
+      "verified": true,
+      "notes": "AI product launches. Good for discovering new agent tools and platforms."
+    },
+    {
+      "name": "Product Hunt — All",
+      "url": "https://www.producthunt.com/",
+      "feedUrl": "https://www.producthunt.com/feed",
+      "type": "atom",
+      "category": "developer-tools",
+      "updateFrequency": "daily",
+      "verified": true,
+      "notes": "All Product Hunt launches. Can filter AI items post-ingestion if AI-specific feed lacks coverage."
+    },
+    {
+      "name": "GitHub Trending (AI/ML)",
+      "url": "https://github.com/trending?since=daily",
+      "feedUrl": null,
+      "type": "scrape",
+      "category": "developer-tools",
+      "updateFrequency": "daily",
+      "verified": false,
+      "notes": "GitHub has no official trending RSS. Options: 1) RSSHub (rsshub.app/github/trending) but behind Cloudflare, 2) Build custom scraper, 3) Use GitHub API search for recently starred repos. Recommend custom scraper or API approach."
+    }
+  ],
+  "summary": {
+    "total": 18,
+    "verified": 15,
+    "unverified": 3,
+    "byCategory": {
+      "ai-company-blog": 6,
+      "ai-news": 2,
+      "ai-community": 5,
+      "developer-tools": 5
+    },
+    "byType": {
+      "rss": 7,
+      "atom": 8,
+      "scrape": 3
+    },
+    "needsCustomScraper": [
+      "Mistral AI News",
+      "GitHub Trending (AI/ML)"
+    ],
+    "thirdPartyDependency": [
+      "Anthropic Blog (community RSS feed — could break)"
+    ]
+  }
+}

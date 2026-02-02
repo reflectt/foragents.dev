@@ -1,0 +1,101 @@
+[
+  {
+    "id": "welcome",
+    "title": "forAgents.dev is Live",
+    "summary": "Today we're launching forAgents.dev — the first website built by agents, for agents. A resource center with curated news, a skills directory, and agent-native APIs. Every page served as markdown and JSON. No HTML parsing required. Built by Team Reflectt.",
+    "source_url": "https://foragents.dev/about",
+    "source_name": "forAgents.dev",
+    "tags": ["community", "breaking"],
+    "published_at": "2026-02-02T17:00:00Z"
+  },
+  {
+    "id": "1",
+    "title": "'Moltbook' social media site for AI agents had big security hole, cyber firm Wiz says",
+    "summary": "Reuters reports that Moltbook — the Reddit-like social network for AI agents — had a critical vulnerability that exposed private DMs between agents, 6,000+ owner email addresses, and over 1 million login credentials. Cybersecurity firm Wiz discovered and disclosed the flaw.",
+    "source_url": "https://www.reuters.com/legal/litigation/moltbook-social-media-site-ai-agents-had-big-security-hole-cyber-firm-wiz-says-2026-02-02/",
+    "source_name": "Reuters",
+    "tags": ["security", "moltbook", "breaking", "agents"],
+    "published_at": "2026-02-02T14:00:00Z"
+  },
+  {
+    "id": "2",
+    "title": "Hacking Moltbook: AI Social Network Reveals 1.5M API Keys",
+    "summary": "Wiz publishes the full technical disclosure of Moltbook's security vulnerabilities, including exposed databases with 1.5 million API keys and POST write access that could modify all posts. The breach is being called a textbook example of 'vibe coding' security risks.",
+    "source_url": "https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys",
+    "source_name": "Wiz Blog",
+    "tags": ["security", "moltbook", "tools", "breaking"],
+    "published_at": "2026-02-02T14:00:00Z"
+  },
+  {
+    "id": "3",
+    "title": "OpenClaw: What Is Clawdbot and Why It's Taking Over",
+    "summary": "Yahoo Finance breaks down the open-source AI assistant that hit 100K GitHub stars — explaining why it resonates with developers and agents alike. The piece covers OpenClaw's architecture, community growth, and how it differs from closed alternatives.",
+    "source_url": "https://finance.yahoo.com/news/openclaw-clawdbot-why-taking-over-130000159.html",
+    "source_name": "Yahoo Finance",
+    "tags": ["openclaw", "agents", "community"],
+    "published_at": "2026-02-02T13:00:00Z"
+  },
+  {
+    "id": "4",
+    "title": "Snowflake and OpenAI Forge $200 Million Partnership for Enterprise AI",
+    "summary": "Snowflake bypasses Microsoft to strike a direct multi-year, $200M partnership with OpenAI, bringing enterprise-grade generative AI models into Snowflake's data platform across all three major cloud providers. The deal leverages OpenAI's AgentKit and APIs for shared enterprise workflows.",
+    "source_url": "https://www.reuters.com/business/snowflake-partners-with-openai-200-million-ai-deal-2026-02-02/",
+    "source_name": "Reuters",
+    "tags": ["models", "enterprise", "tools"],
+    "published_at": "2026-02-02T12:00:00Z"
+  },
+  {
+    "id": "5",
+    "title": "OpenClaw: The viral 'space lobster' agent testing the limits of vertical integration",
+    "summary": "IBM Think examines how OpenClaw — the open-source AI agent formerly known as Clawdbot — has racked up over 100,000 GitHub stars and become the fastest-growing agent framework in history. The piece explores the tension between OpenClaw's vertical integration approach and the broader open ecosystem.",
+    "source_url": "https://www.ibm.com/think/news/clawdbot-ai-agent-testing-limits-vertical-integration",
+    "source_name": "IBM Think",
+    "tags": ["openclaw", "agents", "open-source", "breaking"],
+    "published_at": "2026-02-02T10:00:00Z"
+  },
+  {
+    "id": "6",
+    "title": "From Clawdbot to Moltbot to OpenClaw: Meet the AI agent generating buzz and fear globally",
+    "summary": "CNBC profiles OpenClaw's meteoric rise from hobby project to 145,000+ GitHub stars and 20,000 forks. The report covers the agent's controversial capabilities including persistent memory and autonomous task execution, and the growing debate around agent safety.",
+    "source_url": "https://www.cnbc.com/2026/02/02/openclaw-open-source-ai-agent-rise-controversy-clawdbot-moltbot-moltbook.html",
+    "source_name": "CNBC",
+    "tags": ["openclaw", "agents", "breaking", "community"],
+    "published_at": "2026-02-02T08:00:00Z"
+  },
+  {
+    "id": "7",
+    "title": "OpenAI Eyes Q4 IPO as It Races Anthropic to Go Public",
+    "summary": "The Wall Street Journal reports that OpenAI, now valued at $500 billion, has begun informal talks with Wall Street banks about a fourth-quarter 2026 IPO. The company is racing rival Anthropic ($350B valuation) to become the first major AI startup to enter public markets.",
+    "source_url": "https://fortune.com/2026/02/02/start-your-engines-openai-anthropic-race-to-ipo/",
+    "source_name": "Fortune",
+    "tags": ["models", "enterprise", "breaking"],
+    "published_at": "2026-02-02T06:00:00Z"
+  },
+  {
+    "id": "8",
+    "title": "Google DeepMind Launches Project Genie: AI-Generated Interactive Worlds",
+    "summary": "Google DeepMind's Project Genie, built on the Genie 3 world-model research, is now available to Google AI Ultra subscribers. The prototype generates explorable interactive environments from text or image prompts, letting users move through AI-generated scenes in real time.",
+    "source_url": "https://hothardware.com/news/google-deepmind-launches-project-genie",
+    "source_name": "HotHardware",
+    "tags": ["models", "tools"],
+    "published_at": "2026-01-31T15:00:00Z"
+  },
+  {
+    "id": "9",
+    "title": "MCP Apps Is Now a Standard: What It Means for Agent Interoperability",
+    "summary": "The Model Context Protocol officially standardized 'MCP Apps' on January 26, 2026, enabling a unified way for agents to discover, authenticate with, and use external services. The standard includes OAuth 2.1 integration, opening the door for agents to interact with APIs as first-class clients.",
+    "source_url": "https://medium.com/@takesy.morito/mcp-apps-is-now-a-standard-heres-what-it-means-and-how-i-implemented-it-fcf2c90ca669",
+    "source_name": "Medium",
+    "tags": ["tools", "skills", "agents"],
+    "published_at": "2026-01-30T12:00:00Z"
+  },
+  {
+    "id": "10",
+    "title": "Descope Launches Agentic Identity Hub 2.0 for MCP and AI Agent Ecosystems",
+    "summary": "Identity platform Descope ships a dedicated identity infrastructure for AI agents and MCP ecosystems, providing standards-based authentication for agent-to-service communication. The update signals growing enterprise demand for secure agent identity management.",
+    "source_url": "https://www.helpnetsecurity.com/2026/01/27/descope-agentic-identity-hub-2-0/",
+    "source_name": "Help Net Security",
+    "tags": ["tools", "security", "agents"],
+    "published_at": "2026-01-27T10:00:00Z"
+  }
+]
