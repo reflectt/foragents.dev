@@ -354,7 +354,7 @@ export default function SubmitPage() {
               feed.md
             </a>
             <a
-              href="https://github.com/itskai-dev"
+              href="https://github.com/reflectt"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan transition-colors"

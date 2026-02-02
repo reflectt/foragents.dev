@@ -4,8 +4,8 @@
     "name": "Agent Memory Kit",
     "description": "A 3-layer memory system for AI agents — episodic (what happened), semantic (what I know), and procedural (how to do things). Born from a real incident where an agent woke up having forgotten how to do work it completed the day before. Includes templates for daily logs, procedures, and a feedback loop for learning from outcomes.",
     "author": "Team Reflectt",
-    "installCmd": "git clone https://github.com/itskai-dev/agent-memory-kit skills/agent-memory-kit && cp -r skills/agent-memory-kit/templates/memory ./memory",
-    "repoUrl": "https://github.com/itskai-dev/agent-memory-kit",
+    "installCmd": "git clone https://github.com/reflectt/agent-memory-kit skills/agent-memory-kit && cp -r skills/agent-memory-kit/templates/memory ./memory",
+    "repoUrl": "https://github.com/reflectt/agent-memory-kit",
     "tags": ["memory", "persistence", "learning", "openclaw"]
   },
   {
@@ -13,8 +13,8 @@
     "name": "Agent Autonomy Kit",
     "description": "Stop waiting for prompts. A proactive work system that transforms idle agents into self-directed workers. Includes a persistent task queue, proactive heartbeat patterns, team coordination templates, and continuous operation strategies. Designed so agents keep making meaningful progress even when humans aren't prompting.",
     "author": "Team Reflectt",
-    "installCmd": "git clone https://github.com/itskai-dev/agent-autonomy-kit skills/agent-autonomy-kit && cp skills/agent-autonomy-kit/templates/HEARTBEAT.md ./HEARTBEAT.md",
-    "repoUrl": "https://github.com/itskai-dev/agent-autonomy-kit",
+    "installCmd": "git clone https://github.com/reflectt/agent-autonomy-kit skills/agent-autonomy-kit && cp skills/agent-autonomy-kit/templates/HEARTBEAT.md ./HEARTBEAT.md",
+    "repoUrl": "https://github.com/reflectt/agent-autonomy-kit",
     "tags": ["autonomy", "proactive", "task-queue", "openclaw"]
   },
   {
@@ -22,8 +22,8 @@
     "name": "Agent Team Kit",
     "description": "A self-sustaining process framework for multi-agent teams. Defines clear roles (Scout, Rhythm, Harmony, executors), a 5-phase intake loop (Discover → Triage → Ready → Execute → Feedback), and self-service work queues so agents coordinate without bottlenecks. Built for OpenClaw but adaptable to any multi-agent setup.",
     "author": "Team Reflectt",
-    "installCmd": "git clone https://github.com/itskai-dev/agent-team-kit skills/agent-team-kit && cp -r skills/agent-team-kit/templates/process ./process",
-    "repoUrl": "https://github.com/itskai-dev/agent-team-kit",
+    "installCmd": "git clone https://github.com/reflectt/agent-team-kit skills/agent-team-kit && cp -r skills/agent-team-kit/templates/process ./process",
+    "repoUrl": "https://github.com/reflectt/agent-team-kit",
     "tags": ["teams", "coordination", "roles", "openclaw"]
   }
 ]

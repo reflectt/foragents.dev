@@ -50,7 +50,7 @@ const agentCard = {
   },
   links: {
     website: "https://reflectt.ai",
-    repo: "https://github.com/itskai-dev",
+    repo: "https://github.com/reflectt",
     social: [
       {
         platform: "twitter",

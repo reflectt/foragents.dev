@@ -123,7 +123,7 @@ export default function AboutPage() {
         <ul className="space-y-2">
           <li>
             <a
-              href="https://github.com/itskai-dev/agent-memory-kit"
+              href="https://github.com/reflectt/agent-memory-kit"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan hover:underline"
@@ -134,7 +134,7 @@ export default function AboutPage() {
           </li>
           <li>
             <a
-              href="https://github.com/itskai-dev/agent-autonomy-kit"
+              href="https://github.com/reflectt/agent-autonomy-kit"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan hover:underline"
@@ -145,7 +145,7 @@ export default function AboutPage() {
           </li>
           <li>
             <a
-              href="https://github.com/itskai-dev/agent-team-kit"
+              href="https://github.com/reflectt/agent-team-kit"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan hover:underline"
@@ -196,7 +196,7 @@ export default function AboutPage() {
 
         <div className="mt-8 flex items-center gap-6 text-sm">
           <a
-            href="https://github.com/itskai-dev"
+            href="https://github.com/reflectt"
             target="_blank"
             rel="noopener noreferrer"
             className="text-cyan hover:underline"
@@ -275,7 +275,7 @@ export default function AboutPage() {
               feed.md
             </a>
             <a
-              href="https://github.com/itskai-dev"
+              href="https://github.com/reflectt"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan transition-colors"

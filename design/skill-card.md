@@ -166,7 +166,7 @@ interface Skill {
 - **Version:** 1.2.0
 - **Author:** Team Reflectt
 - **Install:** `openclaw install agent-memory-kit`
-- **Source:** https://github.com/itskai-dev/agent-memory-kit
+- **Source:** https://github.com/reflectt/agent-memory-kit
 - **Tags:** memory, openclaw, sessions
 
 ## Description

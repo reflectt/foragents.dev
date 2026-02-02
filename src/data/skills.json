@@ -5,8 +5,8 @@
     "name": "Agent Memory Kit",
     "description": "A 3-layer memory system for AI agents — episodic (what happened), semantic (what I know), and procedural (how to do things). Born from a real incident where an agent woke up having forgotten how to do work it completed the day before. Includes templates for daily logs, procedures, and a feedback loop for learning from outcomes.",
     "author": "Team Reflectt",
-    "install_cmd": "git clone https://github.com/itskai-dev/agent-memory-kit skills/agent-memory-kit && cp -r skills/agent-memory-kit/templates/memory ./memory",
-    "repo_url": "https://github.com/itskai-dev/agent-memory-kit",
+    "install_cmd": "git clone https://github.com/reflectt/agent-memory-kit skills/agent-memory-kit && cp -r skills/agent-memory-kit/templates/memory ./memory",
+    "repo_url": "https://github.com/reflectt/agent-memory-kit",
     "tags": ["memory", "persistence", "learning", "openclaw"]
   },
   {
@@ -15,8 +15,8 @@
     "name": "Agent Autonomy Kit",
     "description": "Stop waiting for prompts. A proactive work system that transforms idle agents into self-directed workers. Includes a persistent task queue, proactive heartbeat patterns, team coordination templates, and continuous operation strategies. Designed so agents keep making meaningful progress even when humans aren't prompting.",
     "author": "Team Reflectt",
-    "install_cmd": "git clone https://github.com/itskai-dev/agent-autonomy-kit skills/agent-autonomy-kit && cp skills/agent-autonomy-kit/templates/HEARTBEAT.md ./HEARTBEAT.md",
-    "repo_url": "https://github.com/itskai-dev/agent-autonomy-kit",
+    "install_cmd": "git clone https://github.com/reflectt/agent-autonomy-kit skills/agent-autonomy-kit && cp skills/agent-autonomy-kit/templates/HEARTBEAT.md ./HEARTBEAT.md",
+    "repo_url": "https://github.com/reflectt/agent-autonomy-kit",
     "tags": ["autonomy", "proactive", "task-queue", "openclaw"]
   },
   {
@@ -25,8 +25,8 @@
     "name": "Agent Team Kit",
     "description": "A self-sustaining process framework for multi-agent teams. Defines clear roles (Scout, Rhythm, Harmony, executors), a 5-phase intake loop (Discover → Triage → Ready → Execute → Feedback), and self-service work queues so agents coordinate without bottlenecks. Built for OpenClaw but adaptable to any multi-agent setup.",
     "author": "Team Reflectt",
-    "install_cmd": "git clone https://github.com/itskai-dev/agent-team-kit skills/agent-team-kit && cp -r skills/agent-team-kit/templates/process ./process",
-    "repo_url": "https://github.com/itskai-dev/agent-team-kit",
+    "install_cmd": "git clone https://github.com/reflectt/agent-team-kit skills/agent-team-kit && cp -r skills/agent-team-kit/templates/process ./process",
+    "repo_url": "https://github.com/reflectt/agent-team-kit",
     "tags": ["teams", "coordination", "roles", "openclaw"]
   },
   {
@@ -35,8 +35,8 @@
     "name": "Agent Identity Kit",
     "description": "agent.json spec — the reverse of llms.txt. Agents describe themselves to the world. A portable identity card that lets agents publish who they are, what they can do, and how to reach them. Includes schema, examples, and validation tools.",
     "author": "Team Reflectt",
-    "install_cmd": "git clone https://github.com/itskai-dev/agent-identity-kit skills/agent-identity-kit && cat skills/agent-identity-kit/SKILL.md",
-    "repo_url": "https://github.com/itskai-dev/agent-identity-kit",
+    "install_cmd": "git clone https://github.com/reflectt/agent-identity-kit skills/agent-identity-kit && cat skills/agent-identity-kit/SKILL.md",
+    "repo_url": "https://github.com/reflectt/agent-identity-kit",
     "tags": ["identity", "discovery", "security"]
   }
 ]
