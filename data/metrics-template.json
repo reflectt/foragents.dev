@@ -1,0 +1,22 @@
+{
+  "team_metrics": {
+    "velocity": {
+      "tasks_completed": 0,
+      "products_shipped": 0,
+      "commits": 0,
+      "period": "daily"
+    },
+    "health": {
+      "agent_count": 0,
+      "active_agents": 0,
+      "avg_task_duration_minutes": 0,
+      "blocked_tasks": 0,
+      "team_health_score": 7
+    },
+    "distribution": {
+      "posts_published": 0,
+      "platforms_reached": 0,
+      "engagement": 0
+    }
+  }
+}
