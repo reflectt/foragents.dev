@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="skillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <!-- Hexagon shape for skill badge -->
+  <path d="M12 2l8 4.5v7L12 22l-8-4.5v-7L12 2z" fill="url(#skillGrad)"/>
+  <!-- White checkmark -->
+  <path d="M10 13.5l-2-2-1 1 3 3 5.5-5.5-1-1-4.5 4.5z" fill="white"/>
+</svg>

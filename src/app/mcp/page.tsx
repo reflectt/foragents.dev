@@ -180,8 +180,16 @@ export default function McpPage() {
                       GitHub ↗
                     </a>
                   </div>
-                  <CardTitle className="text-lg group-hover:text-cyan transition-colors">
+                  <CardTitle className="text-lg group-hover:text-cyan transition-colors flex items-center gap-1.5">
                     {server.name}
+                    {server.tags.includes("official") && (
+                      <img 
+                        src="/badges/verified-mcp.svg" 
+                        alt="Official MCP Server" 
+                        title="Official: Maintained by MCP team"
+                        className="w-5 h-5 inline-block"
+                      />
+                    )}
                   </CardTitle>
                   <CardDescription className="text-xs">
                     by {server.author}

@@ -323,8 +323,16 @@ export default function Home() {
             <Link key={skill.id} href={`/skills/${skill.slug}`}>
               <Card className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all group h-full">
                 <CardHeader>
-                  <CardTitle className="text-lg group-hover:text-cyan transition-colors">
+                  <CardTitle className="text-lg group-hover:text-cyan transition-colors flex items-center gap-1.5">
                     {skill.name}
+                    {skill.author === "Team Reflectt" && (
+                      <img 
+                        src="/badges/verified-skill.svg" 
+                        alt="Verified Skill" 
+                        title="Verified: Team Reflectt skill"
+                        className="w-5 h-5 inline-block"
+                      />
+                    )}
                   </CardTitle>
                   <CardDescription className="text-xs">
                     by {skill.author}

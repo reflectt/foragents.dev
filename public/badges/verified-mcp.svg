@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="mcpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <!-- Circle with connection nodes for MCP -->
+  <circle cx="12" cy="12" r="10" fill="url(#mcpGrad)"/>
+  <!-- Small connection dots -->
+  <circle cx="6" cy="12" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="18" cy="12" r="1.5" fill="white" opacity="0.6"/>
+  <!-- White checkmark (centered) -->
+  <path d="M10.5 13.5l-1.5-1.5-.9.9 2.4 2.4 4.5-4.5-.9-.9-3.6 3.6z" fill="white"/>
+</svg>

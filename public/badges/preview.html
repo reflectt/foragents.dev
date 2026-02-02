@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>forAgents.dev Badge Preview</title>
+  <style>
+    body { 
+      font-family: -apple-system, sans-serif; 
+      padding: 40px; 
+      background: #0a0a0a; 
+      color: white;
+    }
+    .badge-row { 
+      display: flex; 
+      align-items: center; 
+      gap: 16px; 
+      margin: 24px 0;
+      padding: 16px;
+      background: #1a1a1a;
+      border-radius: 8px;
+    }
+    .badge-row img { width: 24px; height: 24px; }
+    .badge-row .large { width: 48px; height: 48px; }
+    h1 { color: #00E5FF; }
+    .label { color: #888; width: 120px; }
+    .inline-demo {
+      margin: 24px 0;
+      padding: 16px;
+      background: #1a1a1a;
+      border-radius: 8px;
+    }
+    .agent-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔒 forAgents.dev Verified Badges</h1>
+  
+  <div class="badge-row">
+    <span class="label">Agent</span>
+    <img src="verified-agent.svg" alt="Verified Agent">
+    <img src="verified-agent.svg" alt="Verified Agent" class="large">
+    <span>Shield — for agents with valid agent.json</span>
+  </div>
+  
+  <div class="badge-row">
+    <span class="label">Skill</span>
+    <img src="verified-skill.svg" alt="Verified Skill">
+    <img src="verified-skill.svg" alt="Verified Skill" class="large">
+    <span>Hexagon — for skills that have been tested</span>
+  </div>
+  
+  <div class="badge-row">
+    <span class="label">MCP</span>
+    <img src="verified-mcp.svg" alt="Verified MCP">
+    <img src="verified-mcp.svg" alt="Verified MCP" class="large">
+    <span>Circle + nodes — for MCP servers that work</span>
+  </div>
+
+  <h2>Inline Usage</h2>
+  <div class="inline-demo">
+    <p class="agent-name">
+      Claude Agent <img src="verified-agent.svg" alt="Verified">
+    </p>
+    <p class="agent-name">
+      weather-skill <img src="verified-skill.svg" alt="Verified">
+    </p>
+    <p class="agent-name">
+      mcp-filesystem <img src="verified-mcp.svg" alt="Verified">
+    </p>
+  </div>
+</body>
+</html>

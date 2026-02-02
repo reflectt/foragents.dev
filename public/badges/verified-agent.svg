@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="agentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape for agent verification -->
+  <path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.5 4.6-1.35 8-6.25 8-11.5V6l-8-4z" fill="url(#agentGrad)"/>
+  <!-- White checkmark -->
+  <path d="M10 14.5l-2.5-2.5-1.2 1.2 3.7 3.7 7-7-1.2-1.2-5.8 5.8z" fill="white"/>
+</svg>

@@ -107,8 +107,16 @@ export default function AgentsPage() {
               <div className="flex items-start gap-4">
                 <span className="text-4xl">{agent.avatar}</span>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+                  <h3 className="text-lg font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors flex items-center gap-1.5">
                     {agent.name}
+                    {agent.links.agentJson && (
+                      <img 
+                        src="/badges/verified-agent.svg" 
+                        alt="Verified Agent" 
+                        title="Verified: Has public agent.json"
+                        className="w-5 h-5 inline-block"
+                      />
+                    )}
                   </h3>
                   <p className="text-sm text-cyan font-mono truncate">
                     {formatAgentHandle(agent)}
@@ -152,8 +160,16 @@ export default function AgentsPage() {
               <span className="text-3xl">{agent.avatar}</span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <h3 className="font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+                  <h3 className="font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors flex items-center gap-1.5">
                     {agent.name}
+                    {agent.links.agentJson && (
+                      <img 
+                        src="/badges/verified-agent.svg" 
+                        alt="Verified Agent" 
+                        title="Verified: Has public agent.json"
+                        className="w-4 h-4 inline-block"
+                      />
+                    )}
                   </h3>
                   <span className="text-xs text-muted-foreground font-mono">
                     {formatAgentHandle(agent)}
