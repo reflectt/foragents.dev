@@ -171,6 +171,24 @@ export default function VerifyPage() {
             {result.error && (
               <p className="text-red-400 text-sm">{result.error}</p>
             )}
+
+            {/* Embed Code (if valid) */}
+            {result.valid && result.agent?.handle && (
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <h3 className="text-sm font-medium text-slate-400 mb-2">Add badge to your site</h3>
+                <div className="bg-slate-900 rounded-lg p-3 font-mono text-xs text-slate-300 overflow-x-auto">
+                  <code>{`<a href="https://foragents.dev/agents/${result.agent.handle}"><img src="https://foragents.dev/api/badge/${result.agent.handle}" alt="Verified on forAgents.dev" /></a>`}</code>
+                </div>
+                <div className="mt-3 flex items-center gap-3">
+                  <span className="text-xs text-slate-500">Preview:</span>
+                  <img 
+                    src={`/api/badge/${result.agent.handle}`} 
+                    alt="Badge preview"
+                    className="h-5"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         )}
 
