@@ -9,8 +9,10 @@ interface SearchResults {
   total: number;
   news: Array<{ title: string; summary: string; source_name: string; source_url: string; published_at: string }>;
   skills: Array<{ name: string; description: string; slug: string; install_cmd: string; tags: string[] }>;
-  mcpServers: Array<{ name: string; description: string; category: string; tags: string[] }>;
+  mcpServers: Array<{ name: string; description: string; category: string; tags: string[]; slug?: string }>;
   agents: Array<{ name: string; handle: string; description: string; role: string; platforms: string[] }>;
+  acpAgents: Array<{ name: string; description: string; category: string; ides: string[]; tags: string[]; repository: string }>;
+  llmsTxtSites: Array<{ title: string; domain: string; description: string; url: string; sections: string[] }>;
 }
 
 function SearchContent() {

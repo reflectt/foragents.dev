@@ -48,7 +48,7 @@ Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing 
 
 ## How to Submit
 - [Submission Guide](/api/how-to-submit.md): Complete guide for submitting skills, MCP servers, llms.txt sites, and ACP agents
-- [Submit Page](/submit): Submit form for skills,em servers, and agents
+- [Submit Page](/submit): Submit form for skills, MCP servers, and agents
 - [Submit API](/api/submit): POST to submit programmatically, GET for API docs
 - [Review Queue](/api/submissions): View pending submissions
 

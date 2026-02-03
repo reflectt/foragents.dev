@@ -58,6 +58,26 @@ export async function GET(request: NextRequest) {
     lines.push("");
   }
 
+  if (results.acpAgents.length > 0) {
+    lines.push(`## ACP Agents (${results.acpAgents.length})`);
+    lines.push("");
+    for (const agent of results.acpAgents) {
+      lines.push(`- **${agent.name}** — ${agent.description}`);
+      lines.push(`  Category: ${agent.category} · IDEs: ${agent.ides.join(", ")} · Tags: ${agent.tags.join(", ")}`);
+    }
+    lines.push("");
+  }
+
+  if (results.llmsTxtSites.length > 0) {
+    lines.push(`## llms.txt Sites (${results.llmsTxtSites.length})`);
+    lines.push("");
+    for (const site of results.llmsTxtSites) {
+      lines.push(`- **${site.title}** (${site.domain}) — ${site.description}`);
+      lines.push(`  URL: [${site.url}](${site.url}) · Sections: ${site.sections.join(", ")}`);
+    }
+    lines.push("");
+  }
+
   if (results.total === 0) {
     lines.push("No results found.");
     lines.push("");

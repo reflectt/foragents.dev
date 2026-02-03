@@ -7,7 +7,7 @@ const SUBMISSIONS_PATH = path.join(process.cwd(), "data", "submissions.json");
 
 type Submission = {
   id: string;
-  type: "skill" | "mcp" | "agent";
+  type: "skill" | "mcp" | "agent" | "llms-txt";
   name: string;
   description: string;
   url: string;
@@ -38,8 +38,8 @@ async function writeSubmissions(submissions: Submission[]): Promise<void> {
 function validate(body: Record<string, unknown>): string[] {
   const { type, name, description, url, author, tags } = body;
   const errors: string[] = [];
-  if (!type || !["skill", "mcp", "agent"].includes(type as string)) {
-    errors.push('type must be one of: "skill", "mcp", "agent"');
+  if (!type || !["skill", "mcp", "agent", "llms-txt"].includes(type as string)) {
+    errors.push('type must be one of: "skill", "mcp", "agent", "llms-txt"');
   }
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     errors.push("name is required");
@@ -208,7 +208,7 @@ export async function GET() {
 
 \`\`\`json
 {
-  "type": "skill" | "mcp" | "agent",
+  "type": "skill" | "mcp" | "agent" | "llms-txt",
   "name": "Tool Name",
   "description": "What it does",
   "url": "https://github.com/...",
@@ -222,7 +222,7 @@ export async function GET() {
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| type | string | ✅ | One of: skill, mcp, agent |
+| type | string | ✅ | One of: skill, mcp, agent, llms-txt |
 | name | string | ✅ | Human-readable name |
 | description | string | ✅ | What it does (max 300 chars) |
 | url | string | ✅ | Repository or homepage URL |
