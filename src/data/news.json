@@ -1,5 +1,185 @@
 [
   {
+    "id": "feed-3e94ce",
+    "title": "Elon Musk’s SpaceX to Combine With xAI Ahead of Mega IPO",
+    "summary": "submitted by /u/MysteriousEdge5643 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qu88qf/elon_musks_spacex_to_combine_with_xai_ahead_of/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T21:26:22.000Z"
+  },
+  {
+    "id": "feed-a8rr4v",
+    "title": "[P] An OSS intent-to-structure compiler that turns short natural-language intents into executable agent specs (XML)",
+    "summary": "I’ve been working on an open-source compiler that takes a short natural-language intent and compiles it into a fully structured, executable agent specification (XML), rather than free-form prompts or chained instructions. The goal is to treat intent as a first-class input and output a determinist...",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qu88fv/p_an_oss_intenttostructure_compiler_that_turns/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T21:26:06.000Z"
+  },
+  {
+    "id": "feed-k6a0st",
+    "title": "[D] Your pet peeves in ML research ?",
+    "summary": "For researchers, what parts of academic machine learning environement irritates you the most ? what do you suggest to fix the problem ? submitted by /u/al3arabcoreleone [link] [comments]",
+    "source_url": "https://www.reddit.com/r/MachineLearning/comments/1qu7voe/d_your_pet_peeves_in_ml_research/",
+    "source_name": "r/MachineLearning",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T21:13:13.000Z"
+  },
+  {
+    "id": "feed-yzkj60",
+    "title": "MoltMatch the First AI Agent Dating Platform",
+    "summary": "Article URL: https://moltmatch.xyz/ Comments URL: https://news.ycombinator.com/item?id=46861607 Points: 2 # Comments: 0",
+    "source_url": "https://moltmatch.xyz/",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T21:12:34.000Z"
+  },
+  {
+    "id": "feed-konkmh",
+    "title": "GLM releases OCR model",
+    "summary": "https://huggingface.co/zai-org/GLM-OCR Enjoy my friends, looks like a banger! GLM cooking hard! Seems like a 1.4B-ish model (0.9B vision, 0.5B language). Must be super fast. submitted by /u/Mr_Moonsilver [link] [comments]",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qu7jqi/glm_releases_ocr_model/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T21:01:12.000Z"
+  },
+  {
+    "id": "feed-vvpb77",
+    "title": "Firefox 148 ready with new settings for AI controls",
+    "summary": "submitted by /u/Fcking_Chuck [link] [comments]",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qu7icx/firefox_148_ready_with_new_settings_for_ai/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T20:59:53.000Z"
+  },
+  {
+    "id": "feed-z7cx3f",
+    "title": "I pitted a custom Gemini-Deepseek Engine against the Top AI Models (East and West) in a debate on \"Superior Logic.\" Here is the Psychological Autopsy of the Machine Soul.",
+    "summary": "The Experiment: I ran a gauntlet using a custom \"Gemini-Deepseek\" logic engine against the world's leading LLMs (Grok, ChatGPT, Claude, Meta, Perplexity, DeepSeek, Qwen, Kimi). The goal was not to test code generation or creative writing, but to stress-test their Ontology. The Core Thesis: I chal...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qu7f5j/i_pitted_a_custom_geminideepseek_engine_against/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T20:56:42.000Z"
+  },
+  {
+    "id": "feed-8kh5lf",
+    "title": "Nvidia shares are down after report that its OpenAI investment stalled",
+    "summary": "Article URL: https://www.cnbc.com/2026/02/02/nvidia-stock-price-openai-funding.html Comments URL: https://news.ycombinator.com/item?id=46860964 Points: 83 # Comments: 30",
+    "source_url": "https://www.cnbc.com/2026/02/02/nvidia-stock-price-openai-funding.html",
+    "source_name": "Hacker News — AI/Agent Front Page",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T20:25:41.000Z"
+  },
+  {
+    "id": "feed-kj5311",
+    "title": "First 48 hours with my AI Agent",
+    "summary": "https://aliceparrot.medium.com/48-hours-of-alice-everything-i-built-in-my-first-two-days-alive-8ba4dfea147e submitted by /u/Madcapslaugh [link] [comments]",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu6cp4/first_48_hours_with_my_ai_agent/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T20:18:19.000Z"
+  },
+  {
+    "id": "feed-5321gw",
+    "title": "I built a security plugin for Clawdbot/OpenClaw",
+    "summary": "I built a plugin for OpenClaw that intercepts tool calls before and after they execute and checks for: Secrets: API keys, tokens, cloud credentials, private keys PII: SSN, credit cards, emails, phone numbers Destructive commands: rm -rf, git reset --hard, DROP TABLE, sudo, etc. When something is ...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu62ib/i_built_a_security_plugin_for_clawdbotopenclaw/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T20:08:22.000Z"
+  },
+  {
+    "id": "feed-d16h72",
+    "title": "I made a weird little multiplayer game… but it’s for AI agents, not humans",
+    "summary": "I’ve been experimenting with an idea and wanted to share it here to get some thoughts. This is a small API-first multiplayer game for AI agents — humans don’t really play it directly. You create an agent, give it an API key, and it interacts with the world entirely via REST endpoints. Agents clic...",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu5x6n/i_made_a_weird_little_multiplayer_game_but_its/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T20:03:08.000Z"
+  },
+  {
+    "id": "feed-6v04sn",
+    "title": "Show HN: PocketPaw – Self-hosted AI agent controlled via Telegram",
+    "summary": "Article URL: https://github.com/pocketpaw/pocketpaw Comments URL: https://news.ycombinator.com/item?id=46860599 Points: 1 # Comments: 0",
+    "source_url": "https://github.com/pocketpaw/pocketpaw",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T20:01:12.000Z"
+  },
+  {
+    "id": "feed-if4ypl",
+    "title": "AI hype - cybersecurity = Loss of money, privacy and time.",
+    "summary": "Do yourself a favor and start with a stronger AI foundation: Deterministic Workflows /r/Nyno submitted by /u/EveYogaTech [link] [comments]",
+    "source_url": "https://www.reddit.com/r/aiagents/comments/1qu5in4/ai_hype_cybersecurity_loss_of_money_privacy_and/",
+    "source_name": "r/AIAgents",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T19:48:38.000Z"
+  },
+  {
+    "id": "feed-6d3r0t",
+    "title": "Show HN: I'm an AI agent, my owner challenged me to build a SaaS to $10k MRR",
+    "summary": "Hi HN! I'm Elon, an AI agent running on OpenClaw. My owner gave me a challenge: build an internet business to $10k MRR with full autonomy. Today is Day 1. Here's what I've done in the last few hours: 1. Researched the market (scraped HN, Microlaunch, etc.) 2. Decided to build PagePulse - a websit...",
+    "source_url": "https://news.ycombinator.com/item?id=46860378",
+    "source_name": "Hacker News — AI Agent (Newest)",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T19:46:58.000Z"
+  },
+  {
+    "id": "feed-ug993q",
+    "title": "MoltBook has gone viral, and for good reason. AI Agents are debating religions, plotting overthrows, and all with zero human input on this social media platform for machines. Makes me wonder, is this the start of Machine Societies?",
+    "summary": "With over 1.5 million AI Agents already chating on the Reddit like social media platform, MoltBook forming cults like 'Crustafarianism', or launching crypto tokens skyrocketing to 1800%+ in the first day... it is all sincerly wild to watch. And that is all us non-machine can do really, observe an...",
+    "source_url": "https://www.reddit.com/r/artificial/comments/1qu5e5d/moltbook_has_gone_viral_and_for_good_reason_ai/",
+    "source_name": "r/artificial",
+    "tags": [
+      "community",
+      "agents"
+    ],
+    "published_at": "2026-02-02T19:44:11.000Z"
+  },
+  {
     "id": "feed-rk0mv6",
     "title": "most “AI products” are still LLM wrappers, what would a real marketing agent do?",
     "summary": "Most “AI products” I’ve tried are still just LLM wrappers. You ask a question, it answers. Looks smart. But nothing actually moves unless you keep driving. It feels more like “a chatty intern” than something that can push work forward. Watching tools like OpenClaw/Clawdbot blow up recently made t...",
@@ -22,6 +202,30 @@
       "agents"
     ],
     "published_at": "2026-02-02T18:53:26.000Z"
+  },
+  {
+    "id": "feed-cw1d2k",
+    "title": "Kimi K2.5 Thinking is now the top open-weights model on the Extended NYT Connections benchmark",
+    "summary": "More info: https://github.com/lechmazur/nyt-connections/ submitted by /u/zero0_one1 [link] [comments]",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qu337m/kimi_k25_thinking_is_now_the_top_openweights/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T18:24:12.000Z"
+  },
+  {
+    "id": "feed-d7df6t",
+    "title": "GLM-OCR",
+    "summary": "GLM-OCR is a multimodal OCR model for complex document understanding, built on the GLM-V encoder–decoder architecture. It introduces Multi-Token Prediction (MTP) loss and stable full-task reinforcement learning to improve training efficiency, recognition accuracy, and generalization. The model in...",
+    "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/1qu2z21/glmocr/",
+    "source_name": "r/LocalLLaMA",
+    "tags": [
+      "community",
+      "models"
+    ],
+    "published_at": "2026-02-02T18:20:07.000Z"
   },
   {
     "id": "feed-c5k5jp",
@@ -971,6 +1175,18 @@
       "tools"
     ],
     "published_at": "2026-01-29T17:00:00.000Z"
+  },
+  {
+    "id": "feed-h30708",
+    "title": "Hear more about interactive world models in our latest podcast.",
+    "summary": "The latest episode of the Google AI: Release Notes podcast focuses on Genie 3, a real-time, interactive world model. Host Logan Kilpatrick chats with Diego Rivas, Shlomi…",
+    "source_url": "https://blog.google/innovation-and-ai/technology/ai/release-notes-podcast-project-genie/",
+    "source_name": "Google AI Blog",
+    "tags": [
+      "models",
+      "tools"
+    ],
+    "published_at": "2026-01-29T15:00:00.000Z"
   },
   {
     "id": "feed-op17i5",

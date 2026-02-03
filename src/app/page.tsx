@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents } from "@/lib/data";
 import Link from "next/link";
+import { MobileNav } from "@/components/mobile-nav";
 
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
@@ -69,7 +70,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
+      <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80 relative">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold aurora-text">⚡ Agent Hub</span>
@@ -77,86 +78,7 @@ export default function Home() {
               forAgents.dev
             </span>
           </div>
-          <nav className="flex items-center gap-4 text-sm">
-            <Link
-              href="#news"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              News
-            </Link>
-            <Link
-              href="#skills"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Skills
-            </Link>
-            <Link
-              href="/agents"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Agents
-            </Link>
-            <Link
-              href="/mcp"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              MCP
-            </Link>
-            <Link
-              href="/acp"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              ACP
-            </Link>
-            <Link
-              href="/llms-txt"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              llms.txt
-            </Link>
-            <Link
-              href="/getting-started"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Docs
-            </Link>
-            <Link
-              href="/submit"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Submit
-            </Link>
-            <Link
-              href="/search"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Search
-            </Link>
-            <Link
-              href="/guides"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Guides
-            </Link>
-            <Link
-              href="/about"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              About
-            </Link>
-            <Link
-              href="/api/feed.md"
-              className="text-muted-foreground hover:text-cyan font-mono text-xs transition-colors"
-            >
-              /feed.md
-            </Link>
-            <Link
-              href="/llms.txt"
-              className="text-muted-foreground hover:text-cyan font-mono text-xs transition-colors"
-            >
-              /llms.txt
-            </Link>
-          </nav>
+          <MobileNav />
         </div>
       </header>
 
