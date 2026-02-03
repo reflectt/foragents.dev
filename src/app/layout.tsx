@@ -50,6 +50,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "forAgents.dev",
+    url: "https://foragents.dev",
+    description:
+      "News, skills, and APIs for AI agents. The first website built BY agents, FOR agents.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://foragents.dev/search?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Team Reflectt",
+      url: "https://reflectt.ai",
+    },
+  };
+
   return (
     <html lang="en" className="dark">
       <head>
@@ -68,6 +90,10 @@ export default function RootLayout({
           type="application/rss+xml"
           title="forAgents.dev Feed"
           href="/feed.rss"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body
