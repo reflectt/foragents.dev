@@ -1,0 +1,88 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { createCheckoutSession } from '@/lib/stripe';
+import { getSupabase } from '@/lib/supabase';
+
+export const runtime = 'nodejs';
+
+export async function POST(req: NextRequest) {
+  try {
+    const { email } = await req.json();
+
+    if (!email || typeof email !== 'string') {
+      return NextResponse.json(
+        { error: 'Email is required' },
+        { status: 400 }
+      );
+    }
+
+    // Try to find or create agent
+    const supabase = getSupabase();
+    let agentId: string = 'unknown';
+    let agentHandle: string = email.split('@')[0];
+
+    if (supabase) {
+      // Check if agent exists by email (stored in owner_url)
+      const { data: existingAgent } = await supabase
+        .from('agents')
+        .select('id, name, is_premium')
+        .eq('owner_url', email)
+        .single();
+
+      if (existingAgent) {
+        if (existingAgent.is_premium) {
+          return NextResponse.json(
+            { error: 'You already have an active subscription' },
+            { status: 400 }
+          );
+        }
+        agentId = existingAgent.id;
+        agentHandle = existingAgent.name || agentHandle;
+      } else {
+        // Create new agent record
+        const { data: newAgent, error } = await supabase
+          .from('agents')
+          .insert({ 
+            name: agentHandle,
+            platform: 'foragents',
+            owner_url: email,
+          })
+          .select('id')
+          .single();
+
+        if (error || !newAgent) {
+          console.error('Failed to create agent:', error);
+          return NextResponse.json(
+            { error: 'Failed to register agent' },
+            { status: 500 }
+          );
+        }
+        agentId = newAgent.id;
+      }
+    }
+
+    // Create Stripe checkout session
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://foragents.dev';
+    
+    const session = await createCheckoutSession({
+      agentId,
+      agentHandle,
+      successUrl: `${baseUrl}/subscribe/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancelUrl: `${baseUrl}/subscribe?canceled=true`,
+    });
+
+    if (!session) {
+      return NextResponse.json(
+        { error: 'Failed to create checkout session. Stripe may not be configured.' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ url: session.url });
+  } catch (error) {
+    console.error('Subscribe error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
