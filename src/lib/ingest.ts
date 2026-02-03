@@ -11,6 +11,7 @@
 import Parser from "rss-parser";
 import * as fs from "fs";
 import * as path from "path";
+import { fetchColonyPosts } from "./colony";
 
 // Types matching our existing data format
 interface NewsItem {
@@ -180,7 +181,13 @@ async function main() {
     }
   }
 
-  console.log(`\n📊 Fetched ${allFeedItems.length} total feed items`);
+  console.log(`\n📊 Fetched ${allFeedItems.length} total RSS feed items`);
+
+  // Fetch from The Colony API
+  console.log("\n🏘️  Fetching from API sources...");
+  const colonyItems = await fetchColonyPosts();
+  allFeedItems.push(...colonyItems);
+  console.log(`📊 Total items (RSS + API): ${allFeedItems.length}`);
 
   // Deduplicate: existing items take priority (by URL)
   const seenUrls = new Set<string>();
