@@ -17,7 +17,9 @@ const secondaryLinks = [
   { href: "/llms-txt", label: "llms.txt" },
   { href: "/guides", label: "Guides" },
   { href: "/submit", label: "Submit" },
+  { href: "/updates", label: "Updates" },
   { href: "/about", label: "About" },
+  { href: "/quickstart.md", label: "Quick Start" },
   { href: "/api/feed.md", label: "/feed.md", mono: true },
   { href: "/llms.txt", label: "/llms.txt", mono: true },
 ];
