@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 const primaryLinks = [
@@ -8,97 +8,159 @@ const primaryLinks = [
   { href: "#skills", label: "Skills" },
   { href: "/agents", label: "Agents" },
   { href: "/mcp", label: "MCP" },
-  { href: "/getting-started", label: "Docs" },
   { href: "/search", label: "Search" },
 ];
 
-const secondaryLinks = [
-  { href: "/acp", label: "ACP" },
-  { href: "/llms-txt", label: "llms.txt" },
+const moreLinks = [
+  { href: "/acp", label: "ACP Agents" },
+  { href: "/llms-txt", label: "llms.txt Sites" },
+  { href: "/getting-started", label: "Getting Started" },
   { href: "/guides", label: "Guides" },
   { href: "/submit", label: "Submit" },
-  { href: "/updates", label: "Updates" },
-  { href: "/about", label: "About" },
-  { href: "/quickstart.md", label: "Quick Start" },
-  { href: "/api/feed.md", label: "/feed.md", mono: true },
-  { href: "/llms.txt", label: "/llms.txt", mono: true },
+  { href: "/subscribe", label: "Premium ✨" },
+  { href: "/settings", label: "Settings" },
+];
+
+const apiLinks = [
+  { href: "/api/feed.md", label: "/feed.md" },
+  { href: "/api/skills.md", label: "/skills.md" },
+  { href: "/llms.txt", label: "/llms.txt" },
 ];
 
 export function MobileNav() {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+
+  // Close "More" dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
+        setMoreOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <>
-      {/* Desktop nav — hidden on mobile */}
-      <nav className="hidden md:flex items-center gap-4 text-sm">
+      {/* Desktop nav */}
+      <nav className="hidden md:flex items-center gap-1">
         {primaryLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-white/5"
           >
             {link.label}
           </Link>
         ))}
-        {secondaryLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={`text-muted-foreground hover:text-cyan transition-colors ${
-              link.mono ? "font-mono text-xs" : ""
-            }`}
+        
+        {/* More dropdown */}
+        <div className="relative" ref={moreRef}>
+          <button
+            onClick={() => setMoreOpen(!moreOpen)}
+            className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-white/5 flex items-center gap-1"
           >
-            {link.label}
-          </Link>
-        ))}
+            More
+            <svg
+              className={`w-3 h-3 transition-transform ${moreOpen ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          {moreOpen && (
+            <div className="absolute right-0 top-full mt-1 w-48 bg-slate-900/95 backdrop-blur-md border border-white/10 rounded-lg shadow-xl z-50 py-2">
+              {moreLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMoreOpen(false)}
+                  className="block px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="border-t border-white/10 mt-2 pt-2">
+                <div className="px-4 py-1 text-xs text-slate-500 uppercase tracking-wider">API</div>
+                {apiLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMoreOpen(false)}
+                    className="block px-4 py-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 hover:bg-white/5 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </nav>
 
       {/* Mobile hamburger button */}
       <button
         className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
-        onClick={() => setOpen(!open)}
+        onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Toggle menu"
       >
         <span
           className={`block w-5 h-0.5 bg-foreground transition-all duration-200 ${
-            open ? "rotate-45 translate-y-1" : ""
+            mobileOpen ? "rotate-45 translate-y-1" : ""
           }`}
         />
         <span
           className={`block w-5 h-0.5 bg-foreground transition-all duration-200 ${
-            open ? "opacity-0" : ""
+            mobileOpen ? "opacity-0" : ""
           }`}
         />
         <span
           className={`block w-5 h-0.5 bg-foreground transition-all duration-200 ${
-            open ? "-rotate-45 -translate-y-1" : ""
+            mobileOpen ? "-rotate-45 -translate-y-1" : ""
           }`}
         />
       </button>
 
       {/* Mobile dropdown */}
-      {open && (
+      {mobileOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-white/5 z-50">
-          <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-3">
+          <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-1">
             {primaryLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-foreground text-sm py-1"
+                onClick={() => setMobileOpen(false)}
+                className="text-foreground text-sm py-2 px-2 rounded hover:bg-white/5"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-white/5 pt-3 mt-1 flex flex-col gap-3">
-              {secondaryLinks.map((link) => (
+            <div className="border-t border-white/5 pt-3 mt-2 flex flex-col gap-1">
+              {moreLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={`text-muted-foreground text-sm py-1 ${
-                    link.mono ? "font-mono text-xs" : ""
-                  }`}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-muted-foreground text-sm py-2 px-2 rounded hover:bg-white/5"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <div className="border-t border-white/5 pt-3 mt-2">
+              <div className="px-2 py-1 text-xs text-muted-foreground uppercase tracking-wider">API</div>
+              {apiLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-cyan font-mono text-xs py-2 px-2 block rounded hover:bg-white/5"
                 >
                   {link.label}
                 </Link>
