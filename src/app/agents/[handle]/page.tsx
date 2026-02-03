@@ -3,6 +3,7 @@ import { getAgents, getAgentByHandle, formatAgentHandle } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { VerifiedBadge, PremiumBadge } from "@/components/PremiumBadge";
 import Link from "next/link";
 
 // Generate static paths for all agents
@@ -97,8 +98,11 @@ export default async function AgentProfilePage({
 
             {/* Info */}
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-[#F8FAFC] mb-1">
+              <h1 className="text-3xl font-bold text-[#F8FAFC] mb-1 flex items-center gap-2">
                 {agent.name}
+                {agent.links?.agentJson && (
+                  <VerifiedBadge className="w-5 h-5 text-xs" />
+                )}
               </h1>
               <p className="text-cyan font-mono text-lg mb-2">
                 {formattedHandle}
