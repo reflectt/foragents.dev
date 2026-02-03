@@ -11,52 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents } from "@/lib/data";
 import Link from "next/link";
 import { MobileNav } from "@/components/mobile-nav";
-
-function timeAgo(dateStr: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  if (hours < 1) return "just now";
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.floor(hours / 24);
-  return `${days}d ago`;
-}
-
-// Brand-spec category colors
-const categoryColors: Record<string, { bg: string; text: string }> = {
-  tools:     { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]" },
-  skills:    { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]" },
-  models:    { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]" },
-  community: { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]" },
-  breaking:  { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]" },
-};
-
-const tagColors: Record<string, string> = {
-  breaking: "bg-[#EC4899]/10 text-[#EC4899] border-[#EC4899]/20",
-  security: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  openclaw: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  community: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  tools: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  skills: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  enterprise: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  models: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
-  standards: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  trends: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
-  milestone: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  funding: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  partnerships: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  analysis: "bg-[#6B7280]/10 text-[#6B7280] border-[#6B7280]/20",
-  moltbook: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  mcp: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-};
-
-function getCategoryFromTags(tags: string[]): string {
-  if (tags.includes("breaking")) return "breaking";
-  if (tags.includes("tools") || tags.includes("mcp")) return "tools";
-  if (tags.includes("models")) return "models";
-  if (tags.includes("skills")) return "skills";
-  if (tags.includes("community")) return "community";
-  return tags[0] || "tools";
-}
+import { NewsFeed } from "@/components/news-feed";
 
 export default function Home() {
   const news = getNews();
@@ -160,72 +115,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid gap-3">
-          {news.map((item) => {
-            const category = getCategoryFromTags(item.tags);
-            const catStyle = categoryColors[category] || categoryColors.tools;
-            const isBreaking = item.tags.includes("breaking");
-
-            return (
-              <a
-                key={item.id}
-                href={item.source_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`block rounded-xl border bg-card/50 p-5 transition-all duration-200 hover:border-[#2A3040] hover:shadow-[0_0_20px_rgba(6,214,160,0.05)] group ${
-                  isBreaking ? "border-l-[3px] border-l-aurora-pink border-[#1A1F2E]" : "border-[#1A1F2E]"
-                }`}
-              >
-                {/* Meta row */}
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`font-mono text-[11px] font-bold uppercase tracking-[0.08em] ${catStyle.text}`}
-                    >
-                      {category}
-                    </span>
-                    <span className="text-muted-foreground text-[13px]">·</span>
-                    <span className="text-muted-foreground text-[13px]">
-                      {item.source_name}
-                    </span>
-                  </div>
-                  <span className="text-muted-foreground text-[13px]">
-                    {timeAgo(item.published_at)}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-semibold text-[#F8FAFC] leading-tight group-hover:text-cyan transition-colors line-clamp-2 mb-2">
-                  {item.title}
-                </h3>
-
-                {/* Summary */}
-                <p className="text-[15px] text-foreground/80 leading-relaxed line-clamp-3 mb-4">
-                  {item.summary}
-                </p>
-
-                {/* Footer: tags + source */}
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className={`inline-block font-mono text-[11px] uppercase tracking-[0.08em] px-2 py-1 rounded-md ${
-                          tagColors[tag] || "bg-white/5 text-white/60 border border-white/10"
-                        }`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="text-muted-foreground text-[13px] group-hover:text-cyan transition-colors">
-                    ↗ Source
-                  </span>
-                </div>
-              </a>
-            );
-          })}
-        </div>
+        <NewsFeed items={news} />
       </section>
 
       <Separator className="opacity-10" />
