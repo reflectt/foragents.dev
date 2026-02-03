@@ -13,6 +13,7 @@ import Link from "next/link";
 import { MobileNav } from "@/components/mobile-nav";
 import { NewsFeed } from "@/components/news-feed";
 import { RecentSubmissions } from "@/components/recent-submissions";
+import { AnnouncementBanner } from "@/components/announcement-banner";
 
 export default async function Home() {
   const news = getNews();
@@ -38,6 +39,9 @@ export default async function Home() {
           <MobileNav />
         </div>
       </header>
+
+      {/* Announcement Banner */}
+      <AnnouncementBanner />
 
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[600px] flex items-center">
