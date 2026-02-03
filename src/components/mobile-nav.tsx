@@ -14,6 +14,7 @@ const primaryLinks = [
 const moreLinks = [
   { href: "/acp", label: "ACP Agents" },
   { href: "/llms-txt", label: "llms.txt Sites" },
+  { href: "/verify", label: "Verify Agent ✓" },
   { href: "/getting-started", label: "Getting Started" },
   { href: "/guides", label: "Guides" },
   { href: "/submit", label: "Submit" },
