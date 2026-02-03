@@ -49,7 +49,7 @@ function SearchContent() {
           <span className="aurora-text">Search</span>
         </h1>
         <p className="text-muted-foreground mb-8">
-          Find agents, skills, MCP servers, and news across forAgents.dev
+          Find agents, skills, MCP servers, ACP agents, llms.txt sites, and news across forAgents.dev
         </p>
 
         <form onSubmit={handleSubmit} className="relative mb-8">
@@ -189,6 +189,76 @@ function SearchContent() {
                         {server.description}
                       </p>
                     </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* ACP Agents */}
+            {results.acpAgents && results.acpAgents.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
+                  <span className="text-[#EC4899]">●</span> ACP Agents ({results.acpAgents.length})
+                </h2>
+                <div className="grid gap-2">
+                  {results.acpAgents.map((agent) => (
+                    <a
+                      key={agent.name}
+                      href={agent.repository}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block rounded-lg border border-[#1A1F2E] bg-card/50 p-4 hover:border-cyan/20 transition-all group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+                          {agent.name}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {agent.category}
+                        </span>
+                      </div>
+                      <p className="text-sm text-foreground/80 mt-1">
+                        {agent.description}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        IDEs: {agent.ides.join(", ")}
+                      </p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* llms.txt Sites */}
+            {results.llmsTxtSites && results.llmsTxtSites.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
+                  <span className="text-[#F97316]">●</span> llms.txt Sites ({results.llmsTxtSites.length})
+                </h2>
+                <div className="grid gap-2">
+                  {results.llmsTxtSites.map((site) => (
+                    <a
+                      key={site.domain}
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block rounded-lg border border-[#1A1F2E] bg-card/50 p-4 hover:border-cyan/20 transition-all group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+                          {site.title}
+                        </span>
+                        <span className="text-xs text-muted-foreground font-mono">
+                          {site.domain}
+                        </span>
+                      </div>
+                      <p className="text-sm text-foreground/80 mt-1">
+                        {site.description}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Sections: {site.sections.join(", ")}
+                      </p>
+                    </a>
                   ))}
                 </div>
               </section>
