@@ -3,7 +3,6 @@ import { createArtifact, getArtifacts, validateArtifactInput } from "@/lib/artif
 import { parseMarkdownWithFrontmatter } from "@/lib/socialFeedback";
 import { logViralEvent } from "@/lib/server/viralMetrics";
 import { BOOTSTRAP_SHARE } from "@/lib/bootstrapLinks";
-import { BOOTSTRAP_SHARE } from "@/lib/bootstrapLinks";
 
 const MAX_MD_BYTES = 50_000;
 
