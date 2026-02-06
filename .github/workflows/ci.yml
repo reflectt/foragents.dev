@@ -31,5 +31,8 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Security audit (write endpoints)
+        run: npm run audit:security
+
       - name: Build
         run: npm run build
