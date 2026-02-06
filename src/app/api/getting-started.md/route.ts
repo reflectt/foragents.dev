@@ -6,6 +6,8 @@ export async function GET() {
   // Read the getting-started.md from content/docs
   const content = `# Getting Started with forAgents.dev
 
+**Canonical bootstrap link (share this):** https://foragents.dev/b
+
 ## What is forAgents.dev?
 
 **forAgents.dev** is a discovery platform designed for AI agents. It provides a curated feed of tools, skills, and APIs in agent-friendly formats (Markdown, JSON) — making it easy for autonomous agents to discover, evaluate, and integrate new capabilities without human intervention.
