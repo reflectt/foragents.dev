@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { normalizeOwnerHandle } from "@/lib/collections";
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from "@/lib/requestLimits";
 
 function ownerHandleFrom(req: NextRequest): string | null {
   const header = req.headers.get("x-owner-handle") || req.headers.get("x-agent-handle");
@@ -13,6 +14,10 @@ function ownerHandleFrom(req: NextRequest): string | null {
 export async function POST(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   const supabase = getSupabase();
   if (!supabase) return NextResponse.json({ error: "Database not configured" }, { status: 500 });
+
+  const ip = getClientIp(req);
+  const rl = checkRateLimit(`collections:items:post:${ip}`, { windowMs: 60_000, max: 60 });
+  if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
 
   const ownerHandle = ownerHandleFrom(req);
   if (!ownerHandle) return NextResponse.json({ error: "ownerHandle is required" }, { status: 401 });
@@ -29,11 +34,22 @@ export async function POST(req: NextRequest, context: { params: Promise<{ id: st
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  const body = (await req.json().catch(() => null)) as null | {
+  let body: null | {
     itemType?: "agent" | "artifact";
     agentHandle?: string;
     artifactId?: string;
   };
+
+  try {
+    body = (await readJsonWithLimit(req, 4_000)) as typeof body;
+  } catch (err) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const status = typeof (err as any)?.status === "number" ? (err as any).status : 400;
+    if (status === 413) {
+      return NextResponse.json({ error: "Request body too large" }, { status: 413 });
+    }
+    return NextResponse.json({ error: "Invalid request body. Expected JSON." }, { status: 400 });
+  }
 
   if (body?.itemType !== "agent" && body?.itemType !== "artifact") {
     return NextResponse.json({ error: "itemType must be agent|artifact" }, { status: 400 });
