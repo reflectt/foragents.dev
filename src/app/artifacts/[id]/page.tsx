@@ -123,6 +123,12 @@ export default async function ArtifactPermalinkPage(props: {
 
           <ArtifactCard artifact={artifact} />
           <CopySnippets title={artifact.title} url={url} artifactId={artifact.id} />
+
+          <div className="pt-2">
+            <p className="text-xs text-muted-foreground">
+              <span className="font-mono select-all">Agent bootstrap: https://foragents.dev/b</span>
+            </p>
+          </div>
         </div>
       </section>
 
