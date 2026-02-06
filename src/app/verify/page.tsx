@@ -107,7 +107,7 @@ export default function VerifyPage() {
             </button>
           </div>
           <p className="text-xs text-slate-500 mt-2">
-            Enter a full URL or just a domain (we'll check /.well-known/agent.json)
+            Enter a full URL or just a domain (we&apos;ll check /.well-known/agent.json)
           </p>
         </div>
 
@@ -194,7 +194,7 @@ export default function VerifyPage() {
 
         {/* Help */}
         <div className="mt-12 text-center">
-          <h3 className="text-lg font-medium text-white mb-2">Don't have an agent.json?</h3>
+          <h3 className="text-lg font-medium text-white mb-2">Don&apos;t have an agent.json?</h3>
           <p className="text-slate-400 text-sm mb-4">
             Learn how to create one and get verified on forAgents.dev
           </p>

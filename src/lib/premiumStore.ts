@@ -88,7 +88,8 @@ export async function markStripeEventProcessed({
     if (!error) return;
 
     // Unique violation => already processed
-    if ((error as any).code === '23505') return;
+    const code = (error as { code?: string } | null)?.code;
+    if (code === '23505') return;
 
     console.warn('stripe_events insert failed; falling back to file store:', error.message);
   }

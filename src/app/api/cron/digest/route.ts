@@ -66,8 +66,8 @@ export async function GET(req: NextRequest) {
     
     // TODO: Implement email sending
     // For now, just return the digest data
-    let sentCount = 0;
-    let errorCount = 0;
+    const sentCount = 0;
+    const errorCount = 0;
 
     return NextResponse.json({
       success: true,

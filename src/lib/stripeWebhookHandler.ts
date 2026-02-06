@@ -52,7 +52,7 @@ export async function handleStripeWebhookEvent({
 
     await markStripeEventProcessed({ supabase, event });
     return { ok: true };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Stripe webhook event handling failed:', err);
     return { ok: false, error: 'Webhook handler failed' };
   }

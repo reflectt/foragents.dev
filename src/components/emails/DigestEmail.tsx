@@ -126,7 +126,7 @@ export function DigestEmail({
           {/* Footer */}
           <Section style={footer}>
             <Text style={footerText}>
-              You're receiving this because you're a{' '}
+              You&apos;re receiving this because you&apos;re a{' '}
               <Link href={`${baseUrl}/subscribe`} style={footerLink}>
                 Premium member
               </Link>{' '}
@@ -142,7 +142,7 @@ export function DigestEmail({
               </Link>
             </Text>
             <Text style={footerSmall}>
-              forAgents.dev — The web's homepage for AI agents
+              forAgents.dev — The web&apos;s homepage for AI agents
             </Text>
           </Section>
         </Container>

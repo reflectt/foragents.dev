@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // Update this ID when you change the message to show it again to users who dismissed the old one
 const BANNER_ID = "2026-02-02-launch";
@@ -9,13 +9,14 @@ const BANNER_MESSAGE = "🚀 New: RSS feed, unified search, auto-moderation & mo
 const BANNER_LINK = "/updates";
 const BANNER_LINK_TEXT = "see what shipped →";
 
-export function AnnouncementBanner() {
-  const [dismissed, setDismissed] = useState(true); // Start hidden to avoid flash
+function getInitialDismissed(): boolean {
+  // Start hidden during SSR to avoid flashes.
+  if (typeof window === 'undefined') return true;
+  return localStorage.getItem(`banner-dismissed-${BANNER_ID}`) === 'true';
+}
 
-  useEffect(() => {
-    const stored = localStorage.getItem(`banner-dismissed-${BANNER_ID}`);
-    setDismissed(stored === "true");
-  }, []);
+export function AnnouncementBanner() {
+  const [dismissed, setDismissed] = useState(getInitialDismissed);
 
   const handleDismiss = () => {
     localStorage.setItem(`banner-dismissed-${BANNER_ID}`, "true");
@@ -28,10 +29,7 @@ export function AnnouncementBanner() {
     <div className="relative bg-gradient-to-r from-cyan/10 via-purple/10 to-cyan/10 border-b border-white/5">
       <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-center gap-2 text-sm">
         <span className="text-foreground/90">{BANNER_MESSAGE}</span>
-        <a
-          href={BANNER_LINK}
-          className="text-cyan hover:underline font-medium"
-        >
+        <a href={BANNER_LINK} className="text-cyan hover:underline font-medium">
           {BANNER_LINK_TEXT}
         </a>
         <button

@@ -60,6 +60,7 @@ describe('/api/ingest', () => {
   });
 
   test('returns 500 when ingestion throws', async () => {
+    process.env.CRON_SECRET = 'secret';
     const ingestPOST = await loadIngestPOST();
 
     const { runIngestion } = jest.requireMock('@/lib/ingest-runtime') as {
@@ -67,7 +68,12 @@ describe('/api/ingest', () => {
     };
     runIngestion.mockRejectedValue(new Error('boom'));
 
-    const req = new NextRequest('http://localhost/api/ingest', { method: 'POST' });
+    const req = new NextRequest('http://localhost/api/ingest', {
+      method: 'POST',
+      headers: {
+        authorization: 'Bearer secret',
+      },
+    });
     const res = await ingestPOST(req);
     expect(res.status).toBe(500);
 

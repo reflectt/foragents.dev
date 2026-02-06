@@ -25,14 +25,20 @@ function SearchContent() {
 
   useEffect(() => {
     if (!initialQuery) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     fetch(`/api/search?q=${encodeURIComponent(initialQuery)}`)
       .then((res) => res.json())
       .then((data) => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setResults(data);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLoading(false);
+      });
   }, [initialQuery]);
 
   function handleSubmit(e: React.FormEvent) {
