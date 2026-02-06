@@ -84,7 +84,7 @@ describe("bootstrap share link", () => {
 
     const req = new NextRequest("http://localhost/b");
     const res = await GET(req);
-    expect(res.status).toBe(307);
+    expect(res.status).toBe(302);
 
     const loc = res.headers.get("location") ?? "";
     expect(loc).toContain("/api/bootstrap.md");

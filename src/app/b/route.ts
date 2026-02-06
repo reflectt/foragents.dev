@@ -7,5 +7,5 @@ import { NextResponse } from "next/server";
  */
 export async function GET() {
   // Use a stable absolute base so redirects are deterministic in non-request contexts (tests, edge).
-  return NextResponse.redirect(new URL("/api/bootstrap.md", "https://forAgents.dev"), 307);
+  return NextResponse.redirect(new URL("/api/bootstrap.md", "https://foragents.dev"), 302);
 }
