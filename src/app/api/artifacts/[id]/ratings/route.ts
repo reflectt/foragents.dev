@@ -7,6 +7,7 @@ import {
   type RatingFrontmatter,
 } from "@/lib/socialFeedback";
 import { upsertArtifactRating } from "@/lib/server/artifactFeedback";
+import { logViralEvent } from "@/lib/server/viralMetrics";
 
 const MAX_MD_BYTES = 20_000;
 
@@ -67,6 +68,8 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     raw_md: parsed.raw_md,
     notes_md: parsed.body_md || null,
   });
+
+  void logViralEvent("rating_created_or_updated", { artifact_id: artifactId });
 
   return NextResponse.json({ success: true, rating }, { status: created ? 201 : 200 });
 }

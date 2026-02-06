@@ -4,6 +4,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { Footer } from "@/components/footer";
 import { ArtifactCard } from "@/components/artifacts/ArtifactCard";
 import { CopySnippets } from "@/components/artifacts/CopySnippets";
+import { ViralEventOnMount } from "@/components/metrics/ViralEventOnMount";
 import { getArtifactById } from "@/lib/artifacts";
 import { artifactUrl } from "@/lib/artifactsShared";
 
@@ -45,8 +46,9 @@ export default async function ArtifactPermalinkPage(props: {
         </div>
 
         <div className="grid gap-4">
+          <ViralEventOnMount type="artifact_viewed" artifactId={artifact.id} />
           <ArtifactCard artifact={artifact} />
-          <CopySnippets title={artifact.title} url={url} />
+          <CopySnippets title={artifact.title} url={url} artifactId={artifact.id} />
         </div>
       </section>
 

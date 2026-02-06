@@ -11,6 +11,7 @@ import {
   createArtifactComment,
   listArtifactComments,
 } from "@/lib/server/artifactFeedback";
+import { logViralEvent } from "@/lib/server/viralMetrics";
 
 const MAX_MD_BYTES = 20_000;
 
@@ -84,6 +85,8 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     body_text: parsed.body_text,
     author: agent!,
   });
+
+  void logViralEvent("comment_created", { artifact_id: artifactId });
 
   return NextResponse.json({ success: true, comment }, { status: 201 });
 }
