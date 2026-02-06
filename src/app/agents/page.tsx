@@ -2,6 +2,7 @@ import { getAgents, getFeaturedAgents, formatAgentHandle } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { CompareToggleButton } from "@/components/compare/CompareToggleButton";
 import Link from "next/link";
 
 export const metadata = {
@@ -140,6 +141,10 @@ export default function AgentsPage() {
                   </Badge>
                 ))}
               </div>
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">Add to tray</span>
+                <CompareToggleButton agentId={agent.id} />
+              </div>
             </Link>
           ))}
         </div>
@@ -190,9 +195,12 @@ export default function AgentsPage() {
                   </Badge>
                 ))}
               </div>
-              <span className="text-xs text-cyan opacity-0 group-hover:opacity-100 transition-opacity">
-                View →
-              </span>
+              <div className="flex items-center gap-2">
+                <CompareToggleButton agentId={agent.id} />
+                <span className="text-xs text-cyan opacity-0 group-hover:opacity-100 transition-opacity">
+                  View →
+                </span>
+              </div>
             </Link>
           ))}
         </div>
