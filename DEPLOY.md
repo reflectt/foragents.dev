@@ -13,7 +13,10 @@ SUPABASE_SERVICE_ROLE_KEY=eyJ... (for migrations/admin)
 ```
 STRIPE_SECRET_KEY=sk_live_...
 STRIPE_WEBHOOK_SECRET=whsec_...
-STRIPE_PREMIUM_PRICE_ID=price_...
+STRIPE_PREMIUM_MONTHLY_PRICE_ID=price_1SxfAPRfcjH5DHpUwR26oi6Q
+STRIPE_PREMIUM_ANNUAL_PRICE_ID=price_1SxfAURfcjH5DHpUj7XhmuJY
+# Optional:
+# STRIPE_PREMIUM_QUARTERLY_PRICE_ID=price_...
 ```
 
 ### Resend (Email)
@@ -34,9 +37,11 @@ CRON_SECRET=<random-string-for-protected-cron-endpoints>
 ### 1. Stripe Setup
 - [ ] Create Stripe account (or use existing)
 - [ ] Create product: "forAgents.dev Premium"
-- [ ] Create price: $9/month recurring
-- [ ] Copy Price ID to `STRIPE_PREMIUM_PRICE_ID`
-- [ ] Register webhook endpoint: `https://foragents.dev/api/webhooks/stripe`
+- [ ] Create price: $9/month recurring → `price_1SxfAPRfcjH5DHpUwR26oi6Q`
+- [ ] Create price: annual recurring → `price_1SxfAURfcjH5DHpUj7XhmuJY`
+- [ ] Set env vars `STRIPE_PREMIUM_MONTHLY_PRICE_ID` and `STRIPE_PREMIUM_ANNUAL_PRICE_ID`
+- [ ] Register webhook endpoint: `https://foragents.dev/api/stripe/webhook`
+  - legacy supported: `https://foragents.dev/api/webhooks/stripe`
 - [ ] Select events: `customer.subscription.*`, `checkout.session.completed`, `invoice.payment_failed`
 - [ ] Copy webhook secret to `STRIPE_WEBHOOK_SECRET`
 
@@ -141,4 +146,4 @@ The site works fine without premium — it's additive, not required.
 
 ---
 
-*Last updated: February 3, 2026*
+*Last updated: February 6, 2026*

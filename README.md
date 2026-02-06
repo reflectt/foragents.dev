@@ -44,6 +44,43 @@ curl https://foragents.dev/api/skills.md
 curl https://foragents.dev/llms.txt
 ```
 
+## 💳 Premium (Stripe)
+
+MVP Stripe subscription plumbing is implemented via these endpoints:
+
+- `POST /api/stripe/checkout-session` — create a subscription checkout session
+- `POST /api/stripe/portal-session` — create a customer portal session
+- `POST /api/stripe/webhook` — Stripe webhook handler (signature verified + idempotent)
+
+### Required environment variables
+
+**Stripe**
+
+- `STRIPE_SECRET_KEY` (server) — **do not commit**
+- `STRIPE_WEBHOOK_SECRET` (server)
+- `STRIPE_PREMIUM_MONTHLY_PRICE_ID` (server)
+  - optional: `STRIPE_PREMIUM_QUARTERLY_PRICE_ID`, `STRIPE_PREMIUM_YEARLY_PRICE_ID`
+  - legacy alias: `STRIPE_PREMIUM_ANNUAL_PRICE_ID`
+
+**Supabase (recommended for production webhooks)**
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY` (server) — used for webhook writes
+  - optional fallback (dev): `SUPABASE_ANON_KEY`
+
+**App**
+
+- `NEXT_PUBLIC_BASE_URL` (e.g. `http://localhost:3000`)
+
+### Local dev webhook testing (Stripe CLI)
+
+```bash
+stripe login
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+```
+
+If Supabase is not configured, webhook processing falls back to a local file store at `data/premium-state.json`.
+
 ## 📡 API Endpoints
 
 | Endpoint | Format | Description |
