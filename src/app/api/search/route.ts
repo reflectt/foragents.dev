@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { getAgentPremiumByHandle } from "@/lib/premiumStore";
+import { entitlementsFor } from "@/lib/entitlements";
 
 type SearchResult = {
   title: string;
@@ -41,6 +44,15 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  // Optional: if caller provides an agent handle, we can apply Premium entitlements.
+  // (MVP: increases per-category result caps.)
+  const agentHandle = request.nextUrl.searchParams.get("agentHandle")?.trim();
+  const premiumLookupClient = getSupabaseAdmin() || getSupabase();
+  const premiumStatus = agentHandle
+    ? await getAgentPremiumByHandle({ supabase: premiumLookupClient, agentHandle })
+    : null;
+  const entitlements = entitlementsFor({ isPremium: !!premiumStatus?.isPremium });
+
   // Search pattern for ILIKE queries
   const pattern = `%${q}%`;
 
@@ -51,7 +63,7 @@ export async function GET(request: NextRequest) {
       .select("id, title, summary, source_url")
       .or(`title.ilike.${pattern},summary.ilike.${pattern}`)
       .order("published_at", { ascending: false })
-      .limit(5);
+      .limit(entitlements.searchLimitMax);
 
     const news: SearchResult[] = (newsData || []).map((item) => ({
       title: item.title,
@@ -65,7 +77,7 @@ export async function GET(request: NextRequest) {
       .from("skills")
       .select("slug, name, description")
       .or(`name.ilike.${pattern},description.ilike.${pattern}`)
-      .limit(5);
+      .limit(entitlements.searchLimitMax);
 
     const skills: SearchResult[] = (skillsData || []).map((item) => ({
       title: item.name,
@@ -79,7 +91,7 @@ export async function GET(request: NextRequest) {
       .from("agents")
       .select("id, name, platform, owner_url")
       .or(`name.ilike.${pattern},platform.ilike.${pattern}`)
-      .limit(5);
+      .limit(entitlements.searchLimitMax);
 
     const agents: SearchResult[] = (agentsData || []).map((item) => ({
       title: item.name,
