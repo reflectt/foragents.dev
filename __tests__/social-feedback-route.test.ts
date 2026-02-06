@@ -103,7 +103,10 @@ describe("Social feedback routes (file-backed fallback)", () => {
     const page2 = await res2.json();
     expect(page2.items).toHaveLength(2);
 
-    const ids = new Set([...page1.items.map((i: any) => i.id), ...page2.items.map((i: any) => i.id)]);
+    const ids = new Set([
+      ...page1.items.map((i: { id: string }) => i.id),
+      ...page2.items.map((i: { id: string }) => i.id),
+    ]);
     expect(ids.size).toBe(4);
   });
 

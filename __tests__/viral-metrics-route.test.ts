@@ -117,7 +117,9 @@ describe("/api/metrics/viral", () => {
       },
     });
 
-    const a = json.items.find((i: any) => i.artifact_id === "art_a");
-    expect(a.counts.artifact_viewed).toBe(2);
+    const a = (json.items as Array<{ artifact_id: string; counts: { artifact_viewed: number } }>).find(
+      (i) => i.artifact_id === "art_a"
+    );
+    expect(a?.counts.artifact_viewed).toBe(2);
   });
 });

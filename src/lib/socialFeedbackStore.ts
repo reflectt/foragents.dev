@@ -117,7 +117,7 @@ export async function createComment(params: {
     }
   }
 
-  const items = await readJsonArrayFile<any>(COMMENTS_PATH);
+  const items = await readJsonArrayFile<unknown>(COMMENTS_PATH);
   const comment: ArtifactComment = {
     id: `cmt_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     artifact_id: params.artifact_id,
@@ -165,9 +165,11 @@ export async function assertValidParent(params: {
     }
   }
 
-  const items = await readJsonArrayFile<any>(COMMENTS_PATH);
-  const found = items.find((c) => c.id === params.parent_id);
-  return !!found && found.artifact_id === params.artifact_id;
+  const items = await readJsonArrayFile<unknown>(COMMENTS_PATH);
+  const found = (items as Array<{ id?: unknown; artifact_id?: unknown }>).find(
+    (c) => String(c.id) === params.parent_id
+  );
+  return !!found && String(found.artifact_id) === params.artifact_id;
 }
 
 export async function listComments(params: {
@@ -248,8 +250,10 @@ export async function listComments(params: {
     }
   }
 
-  const all = await readJsonArrayFile<any>(COMMENTS_PATH);
-  const visible = all.filter((c) => c.artifact_id === params.artifact_id);
+  const all = await readJsonArrayFile<unknown>(COMMENTS_PATH);
+  const visible = (all as Array<{ artifact_id?: unknown; parent_id?: unknown; created_at?: unknown; id?: unknown }>).filter(
+    (c) => String(c.artifact_id) === params.artifact_id
+  );
   const filtered = include === "top" ? visible.filter((c) => c.parent_id == null) : visible;
 
   // File is newest-first (unshift). We'll sort for stable ordering.
@@ -338,7 +342,7 @@ export async function upsertRating(params: {
           artifact_id: data.artifact_id,
           rater: { agent_id: data.rater_agent_id, handle: data.rater_handle ?? undefined },
           score: data.score,
-          dims: (data.dims as any) ?? null,
+          dims: (data.dims as unknown as Record<string, number> | null) ?? null,
           notes_md: data.notes_md ?? null,
           created_at: data.created_at,
           updated_at: data.updated_at,
@@ -347,9 +351,11 @@ export async function upsertRating(params: {
     }
   }
 
-  const items = await readJsonArrayFile<any>(RATINGS_PATH);
+  const items = await readJsonArrayFile<unknown>(RATINGS_PATH);
   const key = `${params.artifact_id}::${params.rater.agent_id}`;
-  const idx = items.findIndex((r) => `${r.artifact_id}::${r.rater?.agent_id ?? r.rater_agent_id}` === key);
+  const idx = (items as Array<{ artifact_id?: unknown; rater?: { agent_id?: unknown } | null; rater_agent_id?: unknown }>).findIndex(
+    (r) => `${String(r.artifact_id)}::${String(r.rater?.agent_id ?? r.rater_agent_id)}` === key
+  );
 
   if (idx === -1) {
     const rating: ArtifactRating = {
@@ -407,14 +413,18 @@ export async function getRatingsSummary(params: { artifact_id: string }): Promis
     }
   }
 
-  const items = await readJsonArrayFile<any>(RATINGS_PATH);
-  const rows = items.filter((r) => r.artifact_id === params.artifact_id);
+  const items = await readJsonArrayFile<unknown>(RATINGS_PATH);
+  const rows = (items as Array<{ artifact_id?: unknown }>).filter(
+    (r) => String(r.artifact_id) === params.artifact_id
+  );
   return computeSummary(params.artifact_id, rows);
 }
 
-function computeSummary(artifact_id: string, rows: any[]): RatingsSummary {
+function computeSummary(artifact_id: string, rows: Array<Record<string, unknown>>): RatingsSummary {
   const count = rows.length;
-  const scores = rows.map((r) => Number(r.score)).filter((n) => Number.isFinite(n));
+  const scores = rows
+    .map((r) => Number((r as { score?: unknown }).score))
+    .filter((n) => Number.isFinite(n));
   const avg = scores.length ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
 
   const dimsKeys = ["usefulness", "correctness", "novelty"];
@@ -422,7 +432,11 @@ function computeSummary(artifact_id: string, rows: any[]): RatingsSummary {
   for (const k of dimsKeys) {
     const vals: number[] = [];
     for (const r of rows) {
-      const v = r.dims?.[k] ?? (typeof r.dims === "object" && r.dims ? (r.dims as any)[k] : undefined);
+      const dims = (r as { dims?: unknown }).dims;
+      let v: unknown = undefined;
+      if (dims && typeof dims === "object") {
+        v = (dims as Record<string, unknown>)[k];
+      }
       const n = Number(v);
       if (Number.isFinite(n)) vals.push(n);
     }
