@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSupabase } from '@/lib/supabase';
+import { requireCronAuth } from '@/lib/server/cron-auth';
+import { requireSupabaseAdmin } from '@/lib/server/supabase-admin';
 import { generateDailyDigest } from '@/lib/digest';
 
 /**
@@ -15,16 +16,13 @@ import { generateDailyDigest } from '@/lib/digest';
  * }
  */
 export async function GET(req: NextRequest) {
-  // Verify cron secret to prevent unauthorized access
-  const authHeader = req.headers.get('authorization');
-  const cronSecret = process.env.CRON_SECRET || 'dev-secret';
-  
-  if (authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const auth = requireCronAuth(req);
+  if (!auth.authorized) return auth.response;
 
-  const supabase = getSupabase();
-  if (!supabase) {
+  let supabase;
+  try {
+    supabase = requireSupabaseAdmin();
+  } catch {
     return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
   }
 

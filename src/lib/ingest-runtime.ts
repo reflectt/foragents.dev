@@ -8,6 +8,7 @@
 
 import Parser from "rss-parser";
 import { fetchColonyPosts } from "./colony";
+import { assertSafeUrl } from "./server/ssrf";
 
 // Must match the existing NewsItem type
 export interface NewsItem {
@@ -106,6 +107,9 @@ async function fetchFeed(source: Source): Promise<NewsItem[]> {
   if (!source.feedUrl || !source.verified) return [];
 
   try {
+    // SSRF hardening: only allow hosts present in our bundled sources.json and block private IPs.
+    await assertSafeUrl(source.feedUrl, { allowHosts: ALLOWED_FEED_HOSTS });
+
     const feed = await parser.parseURL(source.feedUrl);
     const items: NewsItem[] = [];
     const tags =
@@ -153,6 +157,20 @@ async function fetchFeed(source: Source): Promise<NewsItem[]> {
  * We import it statically so it works on Vercel (read-only fs).
  */
 import sourcesJson from "../../data/sources.json";
+
+const ALLOWED_FEED_HOSTS: Set<string> = new Set(
+  ((sourcesJson as SourcesFile).sources || [])
+    .map((s) => s.feedUrl)
+    .filter((u): u is string => !!u)
+    .map((u) => {
+      try {
+        return new URL(u).hostname.toLowerCase();
+      } catch {
+        return null;
+      }
+    })
+    .filter((h): h is string => !!h)
+);
 
 /**
  * Run full ingestion: fetch all RSS feeds + Colony posts.

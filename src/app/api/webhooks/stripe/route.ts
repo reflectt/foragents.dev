@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { constructWebhookEvent } from '@/lib/stripe';
-import { getSupabase } from '@/lib/supabase';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { getSupabaseAdmin } from '@/lib/server/supabase-admin';
 import Stripe from 'stripe';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const supabase = getSupabase();
+  const supabase = getSupabaseAdmin();
 
   try {
     switch (event.type) {
@@ -63,7 +64,7 @@ export async function POST(req: NextRequest) {
 
 async function handleCheckoutComplete(
   session: Stripe.Checkout.Session,
-  supabase: ReturnType<typeof getSupabase>
+  supabase: SupabaseClient | null
 ) {
   const agentId = session.metadata?.agentId;
   const customerId = session.customer as string;
@@ -84,7 +85,7 @@ async function handleCheckoutComplete(
 
 async function handleSubscriptionChange(
   subscription: Stripe.Subscription,
-  supabase: ReturnType<typeof getSupabase>
+  supabase: SupabaseClient | null
 ) {
   if (!supabase) return;
 
@@ -138,7 +139,7 @@ async function handleSubscriptionChange(
 
 async function handleSubscriptionDeleted(
   subscription: Stripe.Subscription,
-  supabase: ReturnType<typeof getSupabase>
+  supabase: SupabaseClient | null
 ) {
   if (!supabase) return;
 
@@ -167,7 +168,7 @@ async function handleSubscriptionDeleted(
 
 async function handlePaymentFailed(
   invoice: Stripe.Invoice,
-  supabase: ReturnType<typeof getSupabase>
+  supabase: SupabaseClient | null
 ) {
   if (!supabase) return;
 

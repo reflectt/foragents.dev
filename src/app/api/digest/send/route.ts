@@ -1,20 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { render } from '@react-email/components';
-import { getSupabase } from '@/lib/supabase';
+import { requireCronAuth } from '@/lib/server/cron-auth';
+import { getSupabaseAdmin } from '@/lib/server/supabase-admin';
 import { sendDigestEmail } from '@/lib/resend';
 import { DigestEmail } from '@/components/emails/DigestEmail';
 
-// Protect this endpoint with a secret key
-const CRON_SECRET = process.env.CRON_SECRET || '';
-
 export async function POST(req: NextRequest) {
-  // Verify the request is from our cron job
-  const authHeader = req.headers.get('authorization');
-  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const auth = requireCronAuth(req);
+  if (!auth.authorized) return auth.response;
 
-  const supabase = getSupabase();
+  const supabase = getSupabaseAdmin();
   if (!supabase) {
     return NextResponse.json(
       { error: 'Database not configured' },
@@ -135,17 +130,15 @@ export async function POST(req: NextRequest) {
 
 // Also support GET for manual testing (with auth)
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization');
-  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const auth = requireCronAuth(req);
+  if (!auth.authorized) return auth.response;
 
   return NextResponse.json({
     message: 'Digest endpoint ready. Use POST to send.',
     configured: {
-      supabase: !!getSupabase(),
+      supabaseAdmin: !!getSupabaseAdmin(),
       resend: !!process.env.RESEND_API_KEY,
-      cronSecret: !!CRON_SECRET,
+      cronSecret: !!process.env.CRON_SECRET,
     },
   });
 }
