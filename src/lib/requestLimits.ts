@@ -9,6 +9,11 @@ export type RateLimitConfig = {
 // Good enough for MVP; replace with durable store (Redis) if needed.
 const buckets = new Map<string, { count: number; resetAt: number }>();
 
+// Test helper: allow unit tests to reset in-memory buckets.
+export function __resetRateLimitsForTests() {
+  buckets.clear();
+}
+
 export function getClientIp(req: NextRequest): string {
   const xff = req.headers.get("x-forwarded-for");
   if (xff) return xff.split(",")[0].trim();
@@ -92,6 +97,37 @@ export async function readJsonWithLimit<T extends Record<string, unknown>>(
     throw new Error("invalid json object");
   }
   return json as T;
+}
+
+export async function readTextWithLimit(req: NextRequest, maxBytes: number): Promise<string> {
+  const body = req.body;
+
+  if (!body) {
+    const raw = await req.text();
+    if (Buffer.byteLength(raw, "utf-8") > maxBytes) {
+      throw Object.assign(new Error("payload too large"), { status: 413 });
+    }
+    return raw;
+  }
+
+  const reader = body.getReader();
+  const chunks: Uint8Array[] = [];
+  let received = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    if (!value) continue;
+
+    received += value.byteLength;
+    if (received > maxBytes) {
+      throw Object.assign(new Error("payload too large"), { status: 413 });
+    }
+
+    chunks.push(value);
+  }
+
+  return new TextDecoder("utf-8").decode(concatChunks(chunks, received));
 }
 
 function concatChunks(chunks: Uint8Array[], total: number): Uint8Array {

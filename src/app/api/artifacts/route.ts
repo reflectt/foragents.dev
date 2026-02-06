@@ -3,8 +3,10 @@ import { createArtifact, getArtifacts, validateArtifactInput } from "@/lib/artif
 import { parseMarkdownWithFrontmatter } from "@/lib/socialFeedback";
 import { logViralEvent } from "@/lib/server/viralMetrics";
 import { BOOTSTRAP_SHARE } from "@/lib/bootstrapLinks";
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit, readTextWithLimit } from "@/lib/requestLimits";
 
 const MAX_MD_BYTES = 50_000;
+const MAX_JSON_BYTES = 80_000;
 
 type ArtifactFrontmatter = {
   title?: unknown;
@@ -31,7 +33,9 @@ async function readArtifactBody(request: NextRequest): Promise<Record<string, un
 
   // JSON: either the legacy {title, body, ...} or {markdown: "---..."}
   if (ct.includes("application/json")) {
-    const json = (await request.json().catch(() => null)) as null | Record<string, unknown>;
+    const json = (await readJsonWithLimit<Record<string, unknown>>(request, MAX_JSON_BYTES).catch(() => null)) as
+      | null
+      | Record<string, unknown>;
     const md = typeof json?.markdown === "string" ? (json!.markdown as string) : "";
     if (md && md.trim()) {
       if (Buffer.byteLength(md, "utf-8") > MAX_MD_BYTES) {
@@ -50,9 +54,8 @@ async function readArtifactBody(request: NextRequest): Promise<Record<string, un
   }
 
   // Content-Type may be missing (tests/naive clients). Read raw once, then infer.
-  const raw = await request.text();
+  const raw = await readTextWithLimit(request, MAX_MD_BYTES);
   if (!raw || !raw.trim()) return {};
-  if (Buffer.byteLength(raw, "utf-8") > MAX_MD_BYTES) return { __error: "body too large" };
 
   // Try JSON parse first.
   try {
@@ -111,6 +114,10 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request);
+    const rl = checkRateLimit(`artifacts:post:${ip}`, { windowMs: 60_000, max: 20 });
+    if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
+
     const body = await readArtifactBody(request);
 
     if (body.__error === "body too large") {
@@ -145,6 +152,12 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (err) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const status = typeof (err as any)?.status === "number" ? (err as any).status : 400;
+    if (status === 413) {
+      return NextResponse.json({ error: "Request body too large" }, { status: 413 });
+    }
+
     console.error("/api/artifacts POST error:", err);
     return NextResponse.json(
       { error: "Invalid request body. Expected JSON or Markdown." },

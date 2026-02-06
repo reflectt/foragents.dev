@@ -17,6 +17,12 @@ describe("UGC sanitizer", () => {
     expect(html).not.toContain("javascript:");
   });
 
+  test("removes data: URLs from links", () => {
+    const html = renderCommentLineToHtml('[x](data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==)');
+    expect(html).toContain("<a");
+    expect(html).not.toContain("data:");
+  });
+
   test("does not allow raw HTML injection", () => {
     const html = renderCommentLineToHtml('<img src=x onerror=alert(1)>hello');
     expect(html).toContain("hello");
