@@ -37,9 +37,10 @@ export default function SubscribeSuccessPage() {
         if (!cancelled) {
           setState({ status: 'success', agentHandle: data.agentHandle || null, isPremium: !!data.isPremium });
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (!cancelled) {
-          setState({ status: 'error', message: err?.message || 'Activation failed' });
+          const message = err instanceof Error ? err.message : 'Activation failed';
+          setState({ status: 'error', message });
         }
       }
     }
@@ -68,7 +69,7 @@ export default function SubscribeSuccessPage() {
         <h1 className="text-3xl font-bold text-white mb-4">{title}</h1>
 
         {state.status === 'loading' && (
-          <p className="text-slate-400 mb-8">We're confirming your subscription and turning on Premium…</p>
+          <p className="text-slate-400 mb-8">We&apos;re confirming your subscription and turning on Premium…</p>
         )}
 
         {state.status === 'success' && (
@@ -84,7 +85,7 @@ export default function SubscribeSuccessPage() {
             <div className="font-medium mb-1">Almost done</div>
             <div className="text-yellow-200/90">{state.message}</div>
             <div className="text-yellow-200/80 mt-2">
-              If this doesn't resolve in a minute, email{' '}
+              If this doesn&apos;t resolve in a minute, email{' '}
               <a href="mailto:support@foragents.dev" className="text-cyan-300 hover:underline">
                 support@foragents.dev
               </a>{' '}
@@ -106,7 +107,7 @@ export default function SubscribeSuccessPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-cyan-400">✓</span>
-              You'll receive your first daily digest tomorrow at 7 AM UTC
+              You&apos;ll receive your first daily digest tomorrow at 7 AM UTC
             </li>
           </ul>
         </div>

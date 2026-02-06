@@ -56,8 +56,9 @@ export async function GET(req: NextRequest) {
       const res = await activatePremiumFromCheckoutSession({ session: full, supabase });
       if (res.ok) repaired += 1;
       else errors.push({ sessionId: s.id, error: res.error });
-    } catch (err: any) {
-      errors.push({ sessionId: s.id, error: err?.message || 'unknown_error' });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'unknown_error';
+      errors.push({ sessionId: s.id, error: message });
     }
   }
 
