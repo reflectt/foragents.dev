@@ -1,4 +1,5 @@
 import { AgentJson, AgentVerification } from './types';
+import { safeFetch } from './server/ssrf';
 
 // Simple in-memory cache (1 hour TTL)
 const verificationCache = new Map<string, AgentVerification & { cachedAt: number }>();
@@ -21,7 +22,7 @@ export function parseAgentHandle(handle: string): { name: string; domain: string
 export async function fetchAgentJson(domain: string): Promise<AgentJson | null> {
   try {
     const url = `https://${domain}/.well-known/agent.json`;
-    const response = await fetch(url, {
+    const response = await safeFetch(url, {
       headers: { 'Accept': 'application/json' },
       // 10 second timeout
       signal: AbortSignal.timeout(10000),

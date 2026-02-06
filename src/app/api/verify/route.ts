@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { safeFetch } from '@/lib/server/ssrf';
 
 interface AgentJson {
   name?: string;
@@ -50,7 +51,7 @@ export async function GET(req: NextRequest) {
 
   try {
     // Check 1: Fetch the URL
-    const response = await fetch(targetUrl, {
+    const response = await safeFetch(targetUrl, {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'forAgents.dev Verification Bot',

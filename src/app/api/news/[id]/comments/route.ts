@@ -97,7 +97,7 @@ async function fetchFromSupabase(newsItemId: string, sort: string): Promise<Comm
 
 async function fetchFromFile(newsItemId: string, sort: string): Promise<Comment[]> {
   const all = await readComments();
-  let comments = all.filter(c => c.newsItemId === newsItemId && c.status === "visible");
+  const comments = all.filter(c => c.newsItemId === newsItemId && c.status === "visible");
   
   if (sort === "oldest") {
     comments.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());

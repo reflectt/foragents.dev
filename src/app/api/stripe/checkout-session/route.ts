@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createCheckoutSession } from '@/lib/stripe';
-import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
+import { getSupabaseAdmin } from '@/lib/server/supabase-admin';
 
 export const runtime = 'nodejs';
 
@@ -22,17 +22,32 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'agentHandle or email is required' }, { status: 400 });
     }
 
+    const cleanEmail = typeof email === 'string' ? email.trim() : undefined;
+
+    const rawHandle =
+      typeof agentHandle === 'string'
+        ? agentHandle
+        : typeof cleanEmail === 'string'
+          ? cleanEmail.split('@')[0]
+          : undefined;
+
+    const cleanHandle = typeof rawHandle === 'string' ? rawHandle.replace(/^@/, '').trim() : '';
+
+    if (!cleanHandle) {
+      return NextResponse.json({ error: 'Invalid agentHandle/email' }, { status: 400 });
+    }
+
+    const cleanPlan: 'monthly' | 'quarterly' | 'annual' =
+      plan === 'annual' || plan === 'quarterly' || plan === 'monthly' ? plan : 'monthly';
+
     const supabase = getSupabaseAdmin();
 
     let agentId = 'unknown';
-    let finalHandle = (agentHandle || (email as string).split('@')[0] || 'unknown') as string;
-
-    // Normalize inputs
-    const cleanHandle = typeof finalHandle === 'string' ? finalHandle.replace(/^@/, '').trim() : 'unknown';
-    const cleanEmail = typeof email === 'string' ? email.trim() : undefined;
+    let finalHandle = cleanHandle;
 
     if (supabase) {
-      if (agentHandle) {
+      if (typeof agentHandle === 'string' && agentHandle.trim()) {
+        // Find existing agent by handle
         const { data: agent } = await supabase
           .from('agents')
           .select('id, handle, is_premium')
@@ -47,7 +62,7 @@ export async function POST(req: NextRequest) {
           agentId = agent.id;
           finalHandle = agent.handle || cleanHandle;
         } else if (cleanEmail) {
-          // Create a minimal agent row if handle doesn't exist.
+          // Create minimal agent row
           const { data: created, error } = await supabase
             .from('agents')
             .insert({
@@ -68,7 +83,7 @@ export async function POST(req: NextRequest) {
           finalHandle = created.handle;
         }
       } else if (cleanEmail) {
-        // Try to find or create agent by owner_url (email)
+        // Find or create by email
         const { data: agent } = await supabase
           .from('agents')
           .select('id, handle, name, is_premium')
@@ -110,7 +125,7 @@ export async function POST(req: NextRequest) {
     const session = await createCheckoutSession({
       agentId,
       agentHandle: finalHandle,
-      plan,
+      plan: cleanPlan,
       successUrl: `${baseUrl}/subscribe/success?session_id={CHECKOUT_SESSION_ID}`,
       cancelUrl: `${baseUrl}/pricing?canceled=true`,
     });

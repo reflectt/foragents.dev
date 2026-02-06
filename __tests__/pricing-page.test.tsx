@@ -3,12 +3,19 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
+type LinkProps = {
+  href: string;
+  children?: React.ReactNode;
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
 jest.mock('next/link', () => {
-  return ({ href, children, ...props }: any) => (
+  const LinkMock = ({ href, children, ...props }: LinkProps) => (
     <a href={href} {...props}>
       {children}
     </a>
   );
+  LinkMock.displayName = 'Link';
+  return LinkMock;
 });
 
 // Keep this test focused on the Pricing page shell.

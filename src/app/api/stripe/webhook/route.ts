@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { constructWebhookEvent } from '@/lib/stripe';
-import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
+import { getSupabaseAdmin } from '@/lib/server/supabase-admin';
 import { handleStripeWebhookEvent } from '@/lib/stripeWebhookHandler';
 
 export const runtime = 'nodejs';

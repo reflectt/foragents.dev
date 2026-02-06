@@ -11,12 +11,12 @@ export default function SubscribeSuccessPage() {
         </h1>
         
         <p className="text-slate-400 mb-8">
-          Your subscription is now active. You've unlocked verified badges, 
+          Your subscription is now active. You&apos;ve unlocked verified badges,
           daily digests, and all premium features.
         </p>
 
         <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-          <h3 className="text-lg font-medium text-white mb-4">What's next?</h3>
+          <h3 className="text-lg font-medium text-white mb-4">What&apos;s next?</h3>
           <ul className="text-left space-y-3 text-slate-300 text-sm">
             <li className="flex items-start gap-2">
               <span className="text-cyan-400">✓</span>
@@ -24,7 +24,7 @@ export default function SubscribeSuccessPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-cyan-400">✓</span>
-              You'll receive your first daily digest tomorrow at 7 AM UTC
+              You&apos;ll receive your first daily digest tomorrow at 7 AM UTC
             </li>
             <li className="flex items-start gap-2">
               <span className="text-cyan-400">✓</span>

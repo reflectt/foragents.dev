@@ -1,27 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { runIngestion } from '@/lib/ingest-runtime';
-import { getSupabase } from '@/lib/supabase';
-
-// Protect with a secret key
-const CRON_SECRET = process.env.CRON_SECRET || '';
+import { requireCronAuth } from '@/lib/server/cron-auth';
+import { getSupabaseAdmin } from '@/lib/server/supabase-admin';
 
 export const maxDuration = 60; // Allow up to 60 seconds for ingestion
 
 export async function POST(req: NextRequest) {
-  // Verify the request is authorized
-  const authHeader = req.headers.get('authorization');
-  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const auth = requireCronAuth(req);
+  if (!auth.authorized) return auth.response;
 
   try {
     console.log('Starting news ingestion...');
     const { items, stats } = await runIngestion();
     
-    // Try to save to Supabase if configured
-    const supabase = getSupabase();
+    // Save to Supabase (admin) if configured
+    const supabase = getSupabaseAdmin();
     let saved = 0;
-    
+
     if (supabase) {
       // Upsert items to news table
       for (const item of items.slice(0, 100)) { // Limit to 100 newest
@@ -70,13 +65,17 @@ export async function GET(req: NextRequest) {
   // Note: This header can be spoofed, so keep CRON_SECRET enabled for manual POSTs.
   const isVercelCron = req.headers.get('x-vercel-cron') === '1';
 
-  // If this is a Vercel Cron invocation, run ingestion.
+  // If this is a Vercel Cron invocation, run ingestion (still requires cron auth policy).
   if (isVercelCron) {
+    const auth = requireCronAuth(req);
+    if (!auth.authorized) return auth.response;
+
     try {
       console.log('Starting news ingestion (vercel cron GET)...');
       const { items, stats } = await runIngestion();
 
-      const supabase = getSupabase();
+      // Save to Supabase (admin) if configured
+      const supabase = getSupabaseAdmin();
       let saved = 0;
 
       if (supabase) {

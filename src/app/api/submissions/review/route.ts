@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { requireCronAuth } from "@/lib/server/cron-auth";
+import { getSupabaseAdmin } from "@/lib/server/supabase-admin";
+import { safeFetch } from "@/lib/server/ssrf";
 import { getSkills, getMcpServers, getAgents, getLlmsTxtEntries } from "@/lib/data";
 
 // Types
@@ -106,13 +109,13 @@ async function checkUrlValidity(url: string): Promise<{ valid: boolean; status?:
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000); // 10s timeout
     
-    const response = await fetch(url, {
+    const response = await safeFetch(url, {
       method: "HEAD",
       signal: controller.signal,
       headers: {
         "User-Agent": "forAgents.dev URL Checker/1.0",
       },
-      redirect: "follow",
+      redirect: "manual",
     });
     
     clearTimeout(timeout);
@@ -124,13 +127,13 @@ async function checkUrlValidity(url: string): Promise<{ valid: boolean; status?:
     
     // Some servers don't support HEAD, try GET
     if (response.status === 405) {
-      const getResponse = await fetch(url, {
+      const getResponse = await safeFetch(url, {
         method: "GET",
         signal: controller.signal,
         headers: {
           "User-Agent": "forAgents.dev URL Checker/1.0",
         },
-        redirect: "follow",
+        redirect: "manual",
       });
       return { valid: getResponse.ok, status: getResponse.status };
     }
@@ -223,7 +226,7 @@ async function reviewSubmission(submission: Submission, existingApprovedUrls: Se
 
 // Apply review decision to database
 async function applyReviewDecision(
-  supabase: ReturnType<typeof getSupabase>,
+  supabase: SupabaseClient,
   result: ReviewResult
 ): Promise<boolean> {
   if (!supabase) return false;
@@ -257,30 +260,10 @@ async function applyReviewDecision(
 
 // Main handler
 export async function POST(request: NextRequest) {
-  // Auth check: require CRON_SECRET via query param or Vercel cron header
-  const { searchParams } = new URL(request.url);
-  const secret = searchParams.get("secret");
-  const cronSecret = process.env.CRON_SECRET;
-  const vercelCronSecret = request.headers.get("x-vercel-cron-secret");
-  
-  if (!cronSecret) {
-    return NextResponse.json(
-      { error: "CRON_SECRET not configured" },
-      { status: 500 }
-    );
-  }
-  
-  // Allow auth via query param or Vercel's cron header
-  const isAuthorized = secret === cronSecret || vercelCronSecret === cronSecret;
-  
-  if (!isAuthorized) {
-    return NextResponse.json(
-      { error: "Invalid or missing secret" },
-      { status: 401 }
-    );
-  }
-  
-  const supabase = getSupabase();
+  const auth = requireCronAuth(request);
+  if (!auth.authorized) return auth.response;
+
+  const supabase = getSupabaseAdmin();
   
   if (!supabase) {
     return NextResponse.json(

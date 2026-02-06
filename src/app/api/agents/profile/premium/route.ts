@@ -44,11 +44,20 @@ export async function POST(req: NextRequest) {
     const validatedConfig = {
       accentColor: config.accentColor || '#06D6A0',
       extendedBio: (config.extendedBio || '').substring(0, 500),
-      customLinks: (config.customLinks || []).slice(0, 5).map((link: any) => ({
-        label: (link.label || '').substring(0, 50),
-        url: (link.url || '').substring(0, 200),
-        icon: (link.icon || '🔗').substring(0, 2),
-      })),
+      customLinks: (Array.isArray(config.customLinks) ? config.customLinks : [])
+        .slice(0, 5)
+        .map((link: unknown) => {
+          const obj = (link && typeof link === 'object') ? (link as Record<string, unknown>) : {};
+          const label = typeof obj.label === 'string' ? obj.label : '';
+          const url = typeof obj.url === 'string' ? obj.url : '';
+          const icon = typeof obj.icon === 'string' ? obj.icon : '🔗';
+
+          return {
+            label: label.substring(0, 50),
+            url: url.substring(0, 200),
+            icon: icon.substring(0, 2),
+          };
+        }),
       pinnedSkills: (config.pinnedSkills || []).slice(0, 3),
     };
 

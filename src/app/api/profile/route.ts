@@ -101,10 +101,17 @@ export async function PUT(req: NextRequest) {
     const sanitizedConfig = {
       extendedBio: (premiumConfig.extendedBio || '').slice(0, 500),
       pinnedSkills: (premiumConfig.pinnedSkills || []).slice(0, 3),
-      customLinks: (premiumConfig.customLinks || []).slice(0, 5).map((link: any) => ({
-        label: (link.label || '').slice(0, 50),
-        url: (link.url || '').slice(0, 200),
-      })),
+      customLinks: (Array.isArray(premiumConfig.customLinks) ? premiumConfig.customLinks : [])
+        .slice(0, 5)
+        .map((link: unknown) => {
+          const obj = (link && typeof link === 'object') ? (link as Record<string, unknown>) : {};
+          const label = typeof obj.label === 'string' ? obj.label : '';
+          const url = typeof obj.url === 'string' ? obj.url : '';
+          return {
+            label: label.slice(0, 50),
+            url: url.slice(0, 200),
+          };
+        }),
       accentColor: /^#[0-9A-Fa-f]{6}$/.test(premiumConfig.accentColor) 
         ? premiumConfig.accentColor 
         : '#22d3ee',

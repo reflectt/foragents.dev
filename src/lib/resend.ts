@@ -19,8 +19,8 @@ export async function sendDigestEmail({
 }: {
   to: string;
   recipientName: string;
-  newAgents: any[];
-  trendingAgents: any[];
+  newAgents: Array<{ name?: string; handle?: string; description?: string }>;
+  trendingAgents: Array<{ name?: string; handle?: string; description?: string }>;
   stats: {
     totalAgents: number;
     newToday: number;
