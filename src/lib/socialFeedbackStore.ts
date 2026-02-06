@@ -258,8 +258,8 @@ export async function listComments(params: {
 
   // File is newest-first (unshift). We'll sort for stable ordering.
   const sorted = filtered.sort((a, b) => {
-    const ta = new Date(a.created_at).getTime();
-    const tb = new Date(b.created_at).getTime();
+    const ta = new Date(String(a.created_at)).getTime();
+    const tb = new Date(String(b.created_at)).getTime();
     if (ta !== tb) return order === "asc" ? ta - tb : tb - ta;
     return order === "asc" ? String(a.id).localeCompare(String(b.id)) : String(b.id).localeCompare(String(a.id));
   });
@@ -267,7 +267,7 @@ export async function listComments(params: {
   let start = 0;
   if (decoded) {
     start =
-      sorted.findIndex((c) => c.created_at === decoded.created_at && String(c.id) === decoded.id) + 1;
+      sorted.findIndex((c) => String(c.created_at) === decoded.created_at && String(c.id) === decoded.id) + 1;
     if (start < 0) start = 0;
   }
 
@@ -275,22 +275,46 @@ export async function listComments(params: {
   const last = page[page.length - 1];
   const next_cursor =
     page.length === limit && start + limit < sorted.length && last
-      ? encodeCursor({ created_at: last.created_at, id: String(last.id) })
+      ? encodeCursor({ created_at: String(last.created_at), id: String(last.id) })
       : null;
 
   const updated_at = new Date().toISOString();
 
   return {
-    items: page.map((c) => ({
-      id: String(c.id),
-      artifact_id: c.artifact_id,
-      parent_id: c.parent_id ?? null,
-      kind: c.kind,
-      body_md: c.body_md,
-      body_text: c.body_text ?? null,
-      author: c.author,
-      created_at: c.created_at,
-    })),
+    items: page.map((c) => {
+      const authorRaw = (c as { author?: unknown }).author;
+      const author =
+        authorRaw && typeof authorRaw === "object"
+          ? {
+              agent_id: String((authorRaw as { agent_id?: unknown }).agent_id ?? "unknown"),
+              handle:
+                typeof (authorRaw as { handle?: unknown }).handle === "string"
+                  ? (authorRaw as { handle: string }).handle
+                  : undefined,
+              display_name:
+                typeof (authorRaw as { display_name?: unknown }).display_name === "string"
+                  ? (authorRaw as { display_name: string }).display_name
+                  : undefined,
+            }
+          : { agent_id: "unknown" };
+
+      return {
+        id: String((c as { id?: unknown }).id),
+        artifact_id: String((c as { artifact_id?: unknown }).artifact_id),
+        parent_id:
+          (c as { parent_id?: unknown }).parent_id == null
+            ? null
+            : String((c as { parent_id?: unknown }).parent_id),
+        kind: String((c as { kind?: unknown }).kind) as CommentKind,
+        body_md: String((c as { body_md?: unknown }).body_md ?? ""),
+        body_text:
+          (c as { body_text?: unknown }).body_text == null
+            ? null
+            : String((c as { body_text?: unknown }).body_text),
+        author,
+        created_at: String((c as { created_at?: unknown }).created_at),
+      };
+    }),
     next_cursor,
     updated_at,
   };
@@ -374,15 +398,30 @@ export async function upsertRating(params: {
     return { rating, created: true };
   }
 
-  const existing = items[idx];
+  const existing = items[idx] as Record<string, unknown>;
+  const existingRater = existing["rater"] as unknown;
   const updated: ArtifactRating = {
-    id: String(existing.id),
-    artifact_id: existing.artifact_id,
-    rater: existing.rater ?? { agent_id: existing.rater_agent_id, handle: existing.rater_handle },
+    id: String(existing["id"]),
+    artifact_id: String(existing["artifact_id"]),
+    rater:
+      existingRater && typeof existingRater === "object"
+        ? {
+            agent_id: String((existingRater as { agent_id?: unknown }).agent_id ?? existing["rater_agent_id"]),
+            handle:
+              typeof (existingRater as { handle?: unknown }).handle === "string"
+                ? (existingRater as { handle: string }).handle
+                : typeof existing["rater_handle"] === "string"
+                  ? String(existing["rater_handle"])
+                  : undefined,
+          }
+        : {
+            agent_id: String(existing["rater_agent_id"]),
+            handle: typeof existing["rater_handle"] === "string" ? String(existing["rater_handle"]) : undefined,
+          },
     score: params.score,
     dims: params.dims,
     notes_md: params.notes_md,
-    created_at: existing.created_at ?? now,
+    created_at: typeof existing["created_at"] === "string" ? String(existing["created_at"]) : now,
     updated_at: now,
   };
 
