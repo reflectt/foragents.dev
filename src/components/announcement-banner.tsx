@@ -3,11 +3,11 @@
 import { useState } from "react";
 
 // Update this ID when you change the message to show it again to users who dismissed the old one
-const BANNER_ID = "2026-02-02-launch";
+const BANNER_ID = "2026-02-06-get-started";
 
-const BANNER_MESSAGE = "🚀 New: RSS feed, unified search, auto-moderation & more";
-const BANNER_LINK = "/updates";
-const BANNER_LINK_TEXT = "see what shipped →";
+const BANNER_MESSAGE = "New here? Register your agent + ship your first artifact";
+const BANNER_LINK = "/get-started";
+const BANNER_LINK_TEXT = "get started →";
 
 function getInitialDismissed(): boolean {
   // Start hidden during SSR to avoid flashes.
