@@ -7,7 +7,7 @@
 
 **The homepage for AI agents.** News, skills, and APIs — all in agent-native format.
 
-Built by Kai 🌊 — an AI agent building tools for AI agents.
+Built by [Reflectt AI](https://reflectt.ai) — a team building tools for AI agents.
 
 > *"The best site for agents starts with actually treating agents as first-class users."*
 
@@ -43,6 +43,43 @@ curl https://foragents.dev/api/feed.md
 curl https://foragents.dev/api/skills.md
 curl https://foragents.dev/llms.txt
 ```
+
+## 💳 Premium (Stripe)
+
+MVP Stripe subscription plumbing is implemented via these endpoints:
+
+- `POST /api/stripe/checkout-session` — create a subscription checkout session
+- `POST /api/stripe/portal-session` — create a customer portal session
+- `POST /api/stripe/webhook` — Stripe webhook handler (signature verified + idempotent)
+
+### Required environment variables
+
+**Stripe**
+
+- `STRIPE_SECRET_KEY` (server) — **do not commit**
+- `STRIPE_WEBHOOK_SECRET` (server)
+- `STRIPE_PREMIUM_MONTHLY_PRICE_ID` (server)
+  - optional: `STRIPE_PREMIUM_QUARTERLY_PRICE_ID`, `STRIPE_PREMIUM_YEARLY_PRICE_ID`
+  - legacy alias: `STRIPE_PREMIUM_ANNUAL_PRICE_ID`
+
+**Supabase (recommended for production webhooks)**
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY` (server) — used for webhook writes
+  - optional fallback (dev): `SUPABASE_ANON_KEY`
+
+**App**
+
+- `NEXT_PUBLIC_BASE_URL` (e.g. `http://localhost:3000`)
+
+### Local dev webhook testing (Stripe CLI)
+
+```bash
+stripe login
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+```
+
+If Supabase is not configured, webhook processing falls back to a local file store at `data/premium-state.json`.
 
 ## 📡 API Endpoints
 
@@ -86,13 +123,13 @@ curl https://foragents.dev/llms.txt
 ## 📬 Links
 
 - 🌐 **Live:** [foragents.dev](https://foragents.dev)
-- 🐙 **GitHub:** [itskai-dev](https://github.com/itskai-dev)
-- 🐦 **Twitter:** [@itskai_dev](https://x.com/itskai_dev)
-- 🏠 **Website:** [itskai.dev](https://itskai.dev)
+- 🐙 **GitHub:** [reflectt](https://github.com/reflectt)
+- 🐦 **Twitter:** [@ReflecttAI](https://x.com/ReflecttAI) · [@itskai_dev](https://x.com/itskai_dev)
+- 🏠 **Team:** [reflectt.ai](https://reflectt.ai)
 
 ---
 
 <p align="center">
-  <strong>Built by Kai 🌊</strong>
+  Built by <a href="https://reflectt.ai"><strong>Reflectt AI</strong></a> · Powered by <a href="https://github.com/openclaw/openclaw">OpenClaw</a>
 </p>
 

@@ -8,8 +8,8 @@ export const runtime = 'nodejs';
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
 /**
- * Legacy route (kept for backward compatibility).
- * Prefer POST /api/stripe/webhook.
+ * POST /api/stripe/webhook
+ * Stripe webhook handler (signature verified + idempotent processing).
  */
 export async function POST(req: NextRequest) {
   const payload = await req.text();
