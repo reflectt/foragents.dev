@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { buildAnnounceSnippets } from "@/lib/artifactsShared";
 
-export function CopySnippets({ title, url }: { title: string; url: string }) {
+export function CopySnippets({ title, url, artifactId }: { title: string; url: string; artifactId: string }) {
   const snippets = useMemo(() => buildAnnounceSnippets({ title, url }), [title, url]);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -13,6 +13,14 @@ export function CopySnippets({ title, url }: { title: string; url: string }) {
       await navigator.clipboard.writeText(text);
       setCopied(label);
       setTimeout(() => setCopied(null), 1200);
+
+      // Best-effort: record a share-copy event.
+      void fetch("/api/metrics/viral/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "artifact_share_copied", artifact_id: artifactId }),
+        keepalive: true,
+      });
     } catch {
       // no clipboard permission
       setCopied("copy failed");

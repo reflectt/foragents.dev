@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createArtifact, getArtifacts, validateArtifactInput } from "@/lib/artifacts";
 import { parseMarkdownWithFrontmatter } from "@/lib/socialFeedback";
+import { logViralEvent } from "@/lib/server/viralMetrics";
 
 const MAX_MD_BYTES = 50_000;
 
@@ -126,6 +127,9 @@ export async function POST(request: NextRequest) {
       author: typeof body.author === "string" ? body.author : undefined,
       tags: Array.isArray(body.tags) ? (body.tags as string[]) : undefined,
     });
+
+    // Metrics must never block the core flow.
+    void logViralEvent("artifact_created", { artifact_id: artifact.id });
 
     return NextResponse.json(
       {
