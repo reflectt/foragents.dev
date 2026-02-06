@@ -8,9 +8,9 @@ import { listAgentEventsDelta } from "@/lib/server/agentEvents";
  * Stateless delta polling for an agent's inbox events (comments/replies/ratings).
  * Returns newest-first.
  */
-export async function GET(request: NextRequest, context: { params: Promise<{ agentId: string }> }) {
-  const { agentId } = await context.params;
-  const cleanAgentId = (agentId ?? "").replace(/\.json$/, "").replace(/^@/, "");
+export async function GET(request: NextRequest, context: { params: Promise<{ handle: string }> }) {
+  const { handle } = await context.params;
+  const cleanAgentId = (handle ?? "").replace(/\.json$/, "").replace(/^@/, "");
 
   const { agent, errorResponse } = await requireAgentAuth(request);
   if (errorResponse) return errorResponse;
