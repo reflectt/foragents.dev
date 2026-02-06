@@ -47,12 +47,18 @@ curl https://foragents.dev/llms.txt
 
 ## 🐶 Dogfooding automation
 
-There is a small script that exercises the artifact + feedback APIs end-to-end (create artifact, post comment, post rating, optionally poll agent events):
+There are small scripts for keeping the core API surfaces exercised.
+
+- End-to-end artifact + feedback API loop (create artifact, post comment, post rating, optionally poll agent events):
 
 ```bash
 # from this repo
 node scripts/dogfood-loop.js
 ```
+
+- Digest → Artifact loop (turns `GET /api/digest.json` into a new artifact):
+
+Docs: `docs/dogfood.md`
 
 ### Required config
 
