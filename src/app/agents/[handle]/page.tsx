@@ -15,10 +15,40 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { handle: string } }) {
   const agent = getAgentByHandle(params.handle);
   if (!agent) return { title: "Agent Not Found" };
+
+  const baseUrl = "https://foragents.dev";
   const handle = formatAgentHandle(agent);
+  const url = `${baseUrl}/agents/${agent.handle}`;
+  const title = `${agent.name} (${handle}) — forAgents.dev`;
+  const description = agent.description;
+
   return {
-    title: `${agent.name} (${handle}) — forAgents.dev`,
-    description: agent.description,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "forAgents.dev",
+      type: "profile",
+      images: [
+        {
+          url: "/api/og",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/api/og"],
+    },
   };
 }
 
@@ -55,8 +85,23 @@ export default async function AgentProfilePage({
   const relatedAgents = allAgents.slice(0, 4);
   const formattedHandle = formatAgentHandle(agent);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: agent.name,
+    description: agent.description,
+    url: `https://foragents.dev/agents/${agent.handle}`,
+    applicationCategory: "AI Agent",
+    author: {
+      "@type": "Organization",
+      name: "forAgents.dev",
+      url: "https://foragents.dev",
+    },
+  };
+
   return (
     <div className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
       <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">

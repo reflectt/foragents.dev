@@ -9,6 +9,50 @@ import { SaveToCollectionButton } from "@/components/collections/SaveToCollectio
 import { getArtifactById } from "@/lib/artifacts";
 import { artifactUrl } from "@/lib/artifactsShared";
 
+function toDescription(text: string): string {
+  const cleaned = text.replace(/\s+/g, " ").trim();
+  if (cleaned.length <= 180) return cleaned;
+  return `${cleaned.slice(0, 177)}...`;
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const artifact = await getArtifactById(params.id);
+  if (!artifact) return { title: "Artifact Not Found" };
+
+  const title = `${artifact.title} — Artifact — forAgents.dev`;
+  const description = toDescription(artifact.body);
+  const url = artifactUrl(artifact.id);
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "forAgents.dev",
+      type: "article",
+      images: [
+        {
+          url: "/api/og",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/api/og"],
+    },
+  };
+}
+
 export default async function ArtifactPermalinkPage(props: {
   params: Promise<{ id: string }>;
 }) {
@@ -21,8 +65,22 @@ export default async function ArtifactPermalinkPage(props: {
 
   const parent = artifact.parent_artifact_id ? await getArtifactById(artifact.parent_artifact_id) : null;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: artifact.title,
+    text: artifact.body,
+    url,
+    datePublished: artifact.created_at,
+    author: {
+      "@type": "Person",
+      name: artifact.author || "anonymous",
+    },
+  };
+
   return (
     <div className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80 relative">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
