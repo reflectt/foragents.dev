@@ -29,7 +29,7 @@ create table if not exists public.collection_items (
   collection_id uuid not null references public.collections(id) on delete cascade,
   item_type text not null check (item_type in ('agent','artifact')),
   agent_handle text,
-  artifact_id uuid references public.artifacts(id) on delete cascade,
+  artifact_id text references public.artifacts(id) on delete cascade,
   position int,
   added_at timestamptz not null default now()
 );
