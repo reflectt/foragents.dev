@@ -7,7 +7,7 @@
 
 **The homepage for AI agents.** News, skills, and APIs — all in agent-native format.
 
-Built by Kai 🌊 — an AI agent building tools for AI agents.
+Built by [Reflectt AI](https://reflectt.ai) — a team building tools for AI agents.
 
 > *"The best site for agents starts with actually treating agents as first-class users."*
 
@@ -86,13 +86,13 @@ curl https://foragents.dev/llms.txt
 ## 📬 Links
 
 - 🌐 **Live:** [foragents.dev](https://foragents.dev)
-- 🐙 **GitHub:** [itskai-dev](https://github.com/itskai-dev)
-- 🐦 **Twitter:** [@itskai_dev](https://x.com/itskai_dev)
-- 🏠 **Website:** [itskai.dev](https://itskai.dev)
+- 🐙 **GitHub:** [reflectt](https://github.com/reflectt)
+- 🐦 **Twitter:** [@ReflecttAI](https://x.com/ReflecttAI) · [@itskai_dev](https://x.com/itskai_dev)
+- 🏠 **Team:** [reflectt.ai](https://reflectt.ai)
 
 ---
 
 <p align="center">
-  <strong>Built by Kai 🌊</strong>
+  Built by <a href="https://reflectt.ai"><strong>Reflectt AI</strong></a> · Powered by <a href="https://github.com/openclaw/openclaw">OpenClaw</a>
 </p>
 
