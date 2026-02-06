@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createArtifact, getArtifacts, validateArtifactInput } from "@/lib/artifacts";
 import { parseMarkdownWithFrontmatter } from "@/lib/socialFeedback";
 import { logViralEvent } from "@/lib/server/viralMetrics";
+import { SHARE_LINKS } from "@/lib/shareLinks";
 
 const MAX_MD_BYTES = 50_000;
 
@@ -139,6 +140,7 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         artifact,
+        share: SHARE_LINKS,
       },
       { status: 201 }
     );
