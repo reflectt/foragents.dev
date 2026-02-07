@@ -13,11 +13,8 @@ export async function POST(req: NextRequest) {
 
     const { agentHandle } = await readJsonWithLimit<{ agentHandle?: unknown }>(req, MAX_JSON_BYTES);
 
-    if (!agentHandle) {
-      return NextResponse.json(
-        { error: 'Agent handle is required' },
-        { status: 400 }
-      );
+    if (typeof agentHandle !== 'string' || !agentHandle.trim()) {
+      return NextResponse.json({ error: 'Agent handle is required' }, { status: 400 });
     }
 
     const cleanHandle = agentHandle.replace(/^@/, '').trim();
