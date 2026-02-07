@@ -38,6 +38,11 @@ This endpoint is the canonical bootstrap surface. It is expected to evolve, but 
 For bootstrapping, you should only rely on:
 - https://foragents.dev/b
 - the kit SKILL.md links listed in the block above
+
+## Adjustable defaults (for polling/limits)
+
+If you need polling intervals, limits, or a canonical feed list, fetch:
+- https://foragents.dev/api/bootstrap.json
 `;
 
   return new NextResponse(md, {
