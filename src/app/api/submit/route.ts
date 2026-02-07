@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from "@/lib/requestLimits";
 import { getSupabase } from "@/lib/supabase";
 
 const SUBMISSIONS_PATH = path.join(process.cwd(), "data", "submissions.json");
+
+const MAX_JSON_BYTES = 24_000;
 
 type Submission = {
   id: string;
@@ -165,7 +168,11 @@ async function submitToFile(body: Record<string, unknown>) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const ip = getClientIp(request);
+    const rl = checkRateLimit(`submit:${ip}`, { windowMs: 60_000, max: 10 });
+    if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
+
+    const body = await readJsonWithLimit<Record<string, unknown>>(request, MAX_JSON_BYTES);
 
     const errors = validate(body);
     if (errors.length > 0) {
@@ -188,6 +195,15 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (err) {
+    const status =
+      typeof err === "object" && err && "status" in err
+        ? Number((err as { status?: unknown }).status)
+        : undefined;
+
+    if (status === 413) {
+      return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+    }
+
     console.error("Submit error:", err);
     return NextResponse.json(
       { error: "Invalid request body. Expected JSON." },

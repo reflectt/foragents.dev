@@ -1,16 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from '@/lib/requestLimits';
 import { createPortalSession } from '@/lib/stripe';
 import { getSupabase } from '@/lib/supabase';
 
+const MAX_JSON_BYTES = 1_000;
+
 export async function POST(req: NextRequest) {
   try {
-    const { agentHandle } = await req.json();
+    const ip = getClientIp(req);
+    const rl = checkRateLimit(`subscription:portal:${ip}`, { windowMs: 60_000, max: 15 });
+    if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
 
-    if (!agentHandle) {
-      return NextResponse.json(
-        { error: 'Agent handle is required' },
-        { status: 400 }
-      );
+    const { agentHandle } = await readJsonWithLimit<{ agentHandle?: unknown }>(req, MAX_JSON_BYTES);
+
+    if (typeof agentHandle !== 'string' || !agentHandle.trim()) {
+      return NextResponse.json({ error: 'Agent handle is required' }, { status: 400 });
     }
 
     const cleanHandle = agentHandle.replace(/^@/, '').trim();
@@ -54,6 +58,15 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
+    const status =
+      typeof error === 'object' && error && 'status' in error
+        ? Number((error as { status?: unknown }).status)
+        : undefined;
+
+    if (status === 413) {
+      return NextResponse.json({ error: 'Payload too large' }, { status: 413 });
+    }
+
     console.error('Portal session error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
