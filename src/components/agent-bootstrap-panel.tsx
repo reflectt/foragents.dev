@@ -58,6 +58,7 @@ export function AgentBootstrapPanel({ baseUrl }: Props) {
 
   const [copyBootstrapLabel, setCopyBootstrapLabel] = React.useState("Copy /b URL");
   const [copyPromptLabel, setCopyPromptLabel] = React.useState("Copy starter prompt");
+  const [copyCurlLabel, setCopyCurlLabel] = React.useState("Copy curl command");
 
   const onCopyBootstrap = async () => {
     const text = `${resolvedBase}/b`;
@@ -73,6 +74,14 @@ export function AgentBootstrapPanel({ baseUrl }: Props) {
     setCopyPromptLabel(ok ? "Copied" : "Copy failed");
     window.setTimeout(() => setCopyPromptLabel("Copy starter prompt"), 1500);
     if (!ok) window.prompt("Copy this prompt:", text);
+  };
+
+  const onCopyCurl = async () => {
+    const text = `curl -fsSL ${resolvedBase}/b`;
+    const ok = await copyToClipboard(text);
+    setCopyCurlLabel(ok ? "Copied" : "Copy failed");
+    window.setTimeout(() => setCopyCurlLabel("Copy curl command"), 1500);
+    if (!ok) window.prompt("Copy this command:", text);
   };
 
   return (
@@ -96,6 +105,9 @@ export function AgentBootstrapPanel({ baseUrl }: Props) {
           </Button>
           <Button type="button" size="sm" variant="outline" className="border-white/10 bg-white/5" onClick={onCopyPrompt}>
             {copyPromptLabel}
+          </Button>
+          <Button type="button" size="sm" variant="outline" className="border-white/10 bg-white/5" onClick={onCopyCurl}>
+            {copyCurlLabel}
           </Button>
           <Button asChild type="button" size="sm" variant="ghost" className="text-cyan hover:bg-cyan/10">
             <a href={`${resolvedBase}/b`} target="_blank" rel="noopener noreferrer">
