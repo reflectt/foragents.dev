@@ -19,8 +19,11 @@ export function parseGitHubRepo(
 ): GitHubRepoInfo | null {
   if (!url) return null;
 
-  const raw = url.trim();
-  if (!raw) return null;
+  const raw0 = url.trim();
+  if (!raw0) return null;
+
+  // Support git+https://... and git+ssh://... forms
+  const raw = raw0.startsWith("git+") ? raw0.slice(4) : raw0;
 
   // SSH form
   const sshMatch = raw.match(
@@ -35,7 +38,7 @@ export function parseGitHubRepo(
   // HTTPS/HTTP form
   try {
     const u = new URL(raw);
-    if (u.hostname !== "github.com") return null;
+    if (u.hostname !== "github.com" && u.hostname !== "www.github.com") return null;
 
     const parts = u.pathname.split("/").filter(Boolean);
     if (parts.length < 2) return null;

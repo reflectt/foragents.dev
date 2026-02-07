@@ -23,6 +23,19 @@ describe("NextBestActionPanel", () => {
     expect(report.getAttribute("href")).toMatch(/github\.com\/acme\/foo\/issues\/new/);
   });
 
+  test("shows copy install when install command begins with comment lines", () => {
+    render(
+      <NextBestActionPanel
+        installCmd="# via registry\n\nopenclaw install foo"
+        repoUrl="https://github.com/acme/foo"
+        issueTitle="Issue title"
+        issueBody="Issue body"
+      />
+    );
+
+    expect(screen.getByRole("button", { name: /copy install command/i })).toBeInTheDocument();
+  });
+
   test("falls back to view repository when no install command", () => {
     render(
       <NextBestActionPanel

@@ -42,11 +42,24 @@ async function copyToClipboard(text: string): Promise<boolean> {
   }
 }
 
-function isUsableInstallCmd(cmd: string | null | undefined): cmd is string {
-  const c = (cmd ?? "").trim();
-  if (!c) return false;
-  if (c.startsWith("#")) return false;
-  return true;
+function extractPrimaryInstallCmd(cmd: string | null | undefined): string | null {
+  const raw0 = (cmd ?? "").trim();
+  if (!raw0) return null;
+
+  // Accept both real newlines and literal "\\n" sequences.
+  const raw = raw0.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n");
+
+  // Support install_cmd strings that start with one or more comment lines.
+  // We copy the first non-empty, non-comment line.
+  const lines = raw.split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#")) continue;
+    return trimmed;
+  }
+
+  return null;
 }
 
 export function NextBestActionPanel({
@@ -62,18 +75,20 @@ export function NextBestActionPanel({
     return buildGitHubNewIssueUrl({ repo, title: issueTitle, body: issueBody });
   }, [repo, issueTitle, issueBody]);
 
-  const hasInstall = isUsableInstallCmd(installCmd);
+  const primaryInstallCmd = extractPrimaryInstallCmd(installCmd);
+
+  const hasInstall = Boolean(primaryInstallCmd);
   const primaryHref = !hasInstall ? repoUrl?.trim() : null;
   const primaryLabel = repo ? "View on GitHub ↗" : "View repository ↗";
 
   const [copyLabel, setCopyLabel] = React.useState("Copy install command");
 
   const onCopyInstall = async () => {
-    if (!hasInstall) return;
-    const ok = await copyToClipboard(installCmd);
+    if (!primaryInstallCmd) return;
+    const ok = await copyToClipboard(primaryInstallCmd);
     setCopyLabel(ok ? "Copied" : "Copy failed");
     window.setTimeout(() => setCopyLabel("Copy install command"), 1500);
-    if (!ok) window.prompt("Copy the install command:", installCmd);
+    if (!ok) window.prompt("Copy the install command:", primaryInstallCmd);
   };
 
   return (
