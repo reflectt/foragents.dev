@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getSkills, getSkillBySlug } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ReportIssueButton } from "@/components/report-issue-button";
+import { NextBestActionPanel } from "@/components/next-best-action-panel";
 import { buildSkillIssueBodyTemplate } from "@/lib/reportIssue";
 import Link from "next/link";
 
@@ -95,6 +95,16 @@ export default async function SkillPage({
           </p>
         </section>
 
+        {/* Next Best Action */}
+        <section className="mb-8">
+          <NextBestActionPanel
+            installCmd={skill.install_cmd}
+            repoUrl={skill.repo_url}
+            issueTitle={`forAgents.dev: ${skill.name} (${skill.slug})`}
+            issueBody={issueBody}
+          />
+        </section>
+
         <Separator className="opacity-10 my-8" />
 
         {/* Install */}
@@ -129,13 +139,6 @@ export default async function SkillPage({
             >
               📄 GET /api/skill/{skill.slug}
             </Link>
-
-            {/* Report issue actions */}
-            <ReportIssueButton
-              repoUrl={skill.repo_url}
-              issueTitle={`forAgents.dev: ${skill.name} (${skill.slug})`}
-              issueBody={issueBody}
-            />
           </div>
         </section>
 
