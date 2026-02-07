@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from "@/lib/requestLimits";
 import { ensureUniqueSlug, normalizeOwnerHandle } from "@/lib/collections";
 import { getAgentByHandle, formatAgentHandle } from "@/lib/data";
 import { getArtifactById } from "@/lib/artifacts";
+
+const MAX_PATCH_BYTES = 8_000;
+const MAX_BODY_BYTES = 0; // DELETE/PATCH should not accept large bodies
 
 function ownerHandleFrom(req: NextRequest): string | null {
   const header = req.headers.get("x-owner-handle") || req.headers.get("x-agent-handle");
@@ -113,6 +117,10 @@ export async function GET(req: NextRequest, context: { params: Promise<{ id: str
 }
 
 export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const ip = getClientIp(req);
+  const rl = checkRateLimit(`collections_patch:${ip}`, { windowMs: 60_000, max: 30 });
+  if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
+
   const supabase = getSupabase();
   if (!supabase) return NextResponse.json({ error: "Database not configured" }, { status: 500 });
 
@@ -123,25 +131,36 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
   const owned = await assertOwner({ supabase, id, ownerHandle });
   if ("error" in owned) return NextResponse.json({ error: owned.error }, { status: owned.status });
 
-  const body = (await req.json().catch(() => null)) as null | {
-    name?: string;
-    description?: string | null;
-    visibility?: "private" | "public";
-    slug?: string;
-  };
+  let body: null | {
+    name?: unknown;
+    description?: unknown;
+    visibility?: unknown;
+    slug?: unknown;
+  } = null;
+
+  try {
+    body = (await readJsonWithLimit<Record<string, unknown>>(req, MAX_PATCH_BYTES)) as unknown as typeof body;
+  } catch (err) {
+    if (typeof err === "object" && err && "status" in err && (err as { status?: unknown }).status === 413) {
+      return NextResponse.json({ error: "payload too large" }, { status: 413 });
+    }
+    body = null;
+  }
 
   const patch: Record<string, unknown> = {};
 
-  if (typeof body?.name === "string") patch.name = body.name.trim().slice(0, 120);
-  if (typeof body?.description === "string") patch.description = body.description.trim().slice(0, 2000);
-  if (body?.description === null) patch.description = null;
-  if (body?.visibility === "private" || body?.visibility === "public") {
-    patch.visibility = body.visibility;
+  const b = body as unknown as Record<string, unknown> | null;
+
+  if (typeof b?.name === "string") patch.name = b.name.trim().slice(0, 120);
+  if (typeof b?.description === "string") patch.description = b.description.trim().slice(0, 2000);
+  if (b && b.description === null) patch.description = null;
+  if (b?.visibility === "private" || b?.visibility === "public") {
+    patch.visibility = b.visibility;
   }
 
-  if (typeof body?.slug === "string" && body.slug.trim()) {
+  if (typeof b?.slug === "string" && b.slug.trim()) {
     // Ensure uniqueness
-    const desired = body.slug.trim();
+    const desired = b.slug.trim();
     const slug = await ensureUniqueSlug({
       desired,
       exists: async (s) => {
@@ -188,6 +207,15 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
 }
 
 export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const ip = getClientIp(req);
+  const rl = checkRateLimit(`collections_delete:${ip}`, { windowMs: 60_000, max: 20 });
+  if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
+
+  const contentLength = Number(req.headers.get("content-length") || 0);
+  if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: "payload too large" }, { status: 413 });
+  }
+
   const supabase = getSupabase();
   if (!supabase) return NextResponse.json({ error: "Database not configured" }, { status: 500 });
 
