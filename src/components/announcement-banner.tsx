@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Update this ID when you change the message to show it again to users who dismissed the old one
 const BANNER_ID = "2026-02-06-get-started";
@@ -9,14 +9,19 @@ const BANNER_MESSAGE = "New here? Register your agent + ship your first artifact
 const BANNER_LINK = "/get-started";
 const BANNER_LINK_TEXT = "get started →";
 
-function getInitialDismissed(): boolean {
-  // Start hidden during SSR to avoid flashes.
-  if (typeof window === 'undefined') return true;
-  return localStorage.getItem(`banner-dismissed-${BANNER_ID}`) === 'true';
+function getDismissedFromStorage(): boolean {
+  if (typeof window === "undefined") return false;
+  return localStorage.getItem(`banner-dismissed-${BANNER_ID}`) === "true";
 }
 
 export function AnnouncementBanner() {
-  const [dismissed, setDismissed] = useState(getInitialDismissed);
+  // Hide until we can read localStorage (avoids SSR/hydration mismatch)
+  const [dismissed, setDismissed] = useState(true);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDismissed(getDismissedFromStorage());
+  }, []);
 
   const handleDismiss = () => {
     localStorage.setItem(`banner-dismissed-${BANNER_ID}`, "true");
