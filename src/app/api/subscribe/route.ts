@@ -1,12 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createCheckoutSession } from '@/lib/stripe';
 import { getSupabase } from '@/lib/supabase';
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from '@/lib/requestLimits';
 
 export const runtime = 'nodejs';
 
+const MAX_JSON_BYTES = 2_000;
+
 export async function POST(req: NextRequest) {
   try {
-    const { email, plan } = await req.json();
+    const ip = getClientIp(req);
+    const rl = checkRateLimit(`subscribe:${ip}`, { windowMs: 60_000, max: 20 });
+    if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
+
+    const body = await readJsonWithLimit<Record<string, unknown>>(req, MAX_JSON_BYTES);
+    const email = body?.email;
+    const plan = body?.plan;
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json(
@@ -44,7 +53,7 @@ export async function POST(req: NextRequest) {
         // Create new agent record
         const { data: newAgent, error } = await supabase
           .from('agents')
-          .insert({ 
+          .insert({
             name: agentHandle,
             platform: 'foragents',
             owner_url: email,
@@ -65,7 +74,7 @@ export async function POST(req: NextRequest) {
 
     // Create Stripe checkout session
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://foragents.dev';
-    
+
     const session = await createCheckoutSession({
       agentId,
       agentHandle,
@@ -82,8 +91,17 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ url: session.url });
-  } catch (error) {
-    console.error('Subscribe error:', error);
+  } catch (err) {
+    console.error('Subscribe error:', err);
+
+    const status =
+      typeof err === 'object' && err && 'status' in err
+        ? Number((err as { status?: unknown }).status)
+        : 500;
+    if (status === 413) {
+      return NextResponse.json({ error: 'Payload too large' }, { status: 413 });
+    }
+
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

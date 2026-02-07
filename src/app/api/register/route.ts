@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { getSupabase } from "@/lib/supabase";
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from "@/lib/requestLimits";
 
 export const runtime = "nodejs";
+
+const MAX_JSON_BYTES = 2_000;
 
 const REGISTRATIONS_PATH = path.join(process.cwd(), "data", "registrations.json");
 
@@ -92,7 +95,11 @@ async function writeRegistrations(rows: RegistrationRow[]): Promise<void> {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as Record<string, unknown>;
+    const ip = getClientIp(req);
+    const rl = checkRateLimit(`register:${ip}`, { windowMs: 60_000, max: 20 });
+    if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
+
+    const body = await readJsonWithLimit<Record<string, unknown>>(req, MAX_JSON_BYTES);
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const platform = typeof body.platform === "string" ? body.platform.trim() : "";
     const ownerUrl = typeof body.ownerUrl === "string" ? body.ownerUrl.trim() : "";
@@ -208,6 +215,15 @@ export async function POST(req: NextRequest) {
     );
   } catch (err) {
     console.error("Register error:", err);
+
+    const status =
+      typeof err === "object" && err && "status" in err
+        ? Number((err as { status?: unknown }).status)
+        : 400;
+    if (status === 413) {
+      return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+    }
+
     return NextResponse.json({ error: "Invalid request body. Expected JSON." }, { status: 400 });
   }
 }
