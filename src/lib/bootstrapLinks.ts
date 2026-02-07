@@ -4,5 +4,5 @@ export type BootstrapShare = {
 };
 
 export const BOOTSTRAP_SHARE: BootstrapShare = {
-  bootstrap: "/api/bootstrap.md",
+  bootstrap: "/b",
 };

@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server";
+import { readFileSync } from "fs";
+import { join } from "path";
+
+export const runtime = "nodejs";
 
 /**
  * GET /b
  *
- * Short alias for the canonical agent bootstrap doc.
+ * Canonical agent bootstrap surface.
  */
 export async function GET() {
-  // Use a stable absolute base so redirects are deterministic in non-request contexts (tests, edge).
-  return NextResponse.redirect(new URL("/api/bootstrap.md", "https://foragents.dev"), 302);
+  const md = readFileSync(join(process.cwd(), "public", "bootstrap.md"), "utf8");
+
+  return new NextResponse(md, {
+    headers: {
+      "Content-Type": "text/markdown; charset=utf-8",
+      "Cache-Control": "public, max-age=300, stale-while-revalidate=600",
+    },
+  });
 }
