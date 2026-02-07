@@ -40,7 +40,11 @@ function isWriteRouteHandler(src) {
 }
 
 function hasBodyCap(src) {
-  return /readJsonWithLimit\s*\(/.test(src) || /readTextWithLimit\s*\(/.test(src);
+  // Allow optional TS generics: readJsonWithLimit<T>(...) or readJsonWithLimit<Record<string,unknown>>(...)
+  return (
+    /readJsonWithLimit(?:<[^\n]*?>+)?\s*\(/.test(src) ||
+    /readTextWithLimit(?:<[^\n]*?>+)?\s*\(/.test(src)
+  );
 }
 
 function hasRateLimit(src) {
