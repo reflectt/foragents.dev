@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createCheckoutSession } from '@/lib/stripe';
 import { getSupabaseAdmin } from '@/lib/server/supabase-admin';
+import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from '@/lib/requestLimits';
 
 export const runtime = 'nodejs';
+
+const MAX_JSON_BYTES = 2_000;
 
 /**
  * POST /api/stripe/checkout-session
@@ -16,7 +19,14 @@ export const runtime = 'nodejs';
  */
 export async function POST(req: NextRequest) {
   try {
-    const { agentHandle, email, plan } = await req.json();
+    const ip = getClientIp(req);
+    const rl = checkRateLimit(`stripe:checkout-session:${ip}`, { windowMs: 60_000, max: 20 });
+    if (!rl.ok) return rateLimitResponse(rl.retryAfterSec);
+
+    const body = await readJsonWithLimit<Record<string, unknown>>(req, MAX_JSON_BYTES);
+    const agentHandle = body.agentHandle;
+    const email = body.email;
+    const plan = body.plan;
 
     if (!agentHandle && !email) {
       return NextResponse.json({ error: 'agentHandle or email is required' }, { status: 400 });
@@ -122,6 +132,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error('Checkout session error:', error);
+
+    const status =
+      typeof error === 'object' && error && 'status' in error
+        ? Number((error as { status?: unknown }).status)
+        : 500;
+    if (status === 413) {
+      return NextResponse.json({ error: 'Payload too large' }, { status: 413 });
+    }
+
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
