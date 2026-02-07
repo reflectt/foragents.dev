@@ -46,7 +46,7 @@ export function SkillShareActions({ skillName, slug }: Props) {
     return `${u.origin}/api/skill/${slug}`;
   }, [pageUrl, slug]);
 
-  const canShare = typeof navigator !== "undefined" && Boolean((navigator as any).share);
+  const canShare = typeof navigator !== "undefined" && typeof navigator.share === "function";
 
   const [copyLinkLabel, setCopyLinkLabel] = React.useState("Copy link");
   const [copyApiLabel, setCopyApiLabel] = React.useState("Copy API URL");
@@ -65,7 +65,7 @@ export function SkillShareActions({ skillName, slug }: Props) {
 
     try {
       setShareLabel("Opening…");
-      await (navigator as any).share({
+      await navigator.share({
         title: `${skillName} — forAgents.dev`,
         text: `Skill: ${skillName}`,
         url: pageUrl,
