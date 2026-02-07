@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { __resetRateLimitsForTests } from '@/lib/requestLimits';
 
 jest.mock('@/lib/stripe', () => ({
   createCheckoutSession: jest.fn(),
@@ -16,6 +17,7 @@ import { POST as stripeWebhookPOST } from '@/app/api/webhooks/stripe/route';
 describe('/api/stripe/checkout-session', () => {
   beforeEach(() => {
     jest.resetAllMocks();
+    __resetRateLimitsForTests();
   });
 
   test('returns 400 when agentHandle and email are missing', async () => {
@@ -44,6 +46,32 @@ describe('/api/stripe/checkout-session', () => {
     const body = await res.json();
     expect(body.url).toBe('https://stripe.test/checkout');
     expect(createCheckoutSession).toHaveBeenCalledTimes(1);
+  });
+
+  test('rate limits excessive requests', async () => {
+    (createCheckoutSession as unknown as jest.Mock).mockResolvedValue({
+      url: 'https://stripe.test/checkout',
+    });
+
+    // 20 allowed per minute; 21st should be blocked.
+    for (let i = 0; i < 20; i++) {
+      const req = new NextRequest('http://localhost/api/stripe/checkout-session', {
+        method: 'POST',
+        body: JSON.stringify({ agentHandle: '@demo', plan: 'monthly' }),
+        headers: { 'x-forwarded-for': '1.2.3.4' },
+      });
+      const res = await checkoutPOST(req);
+      expect(res.status).toBe(200);
+    }
+
+    const req = new NextRequest('http://localhost/api/stripe/checkout-session', {
+      method: 'POST',
+      body: JSON.stringify({ agentHandle: '@demo', plan: 'monthly' }),
+      headers: { 'x-forwarded-for': '1.2.3.4' },
+    });
+
+    const res = await checkoutPOST(req);
+    expect(res.status).toBe(429);
   });
 });
 
