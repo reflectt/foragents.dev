@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { Separator } from "@/components/ui/separator";
+import changelog from "@/data/changelog.json";
 
 export const metadata = {
   title: "Changelog — forAgents.dev",
@@ -28,31 +29,7 @@ type ChangelogEntry = {
   tags: Array<"feature" | "fix" | "improvement">;
 };
 
-const changelog: ChangelogEntry[] = [
-  {
-    date: "2026-02-08",
-    title: "Major Feature Release",
-    description:
-      "Added comprehensive search functionality, creator profiles with detailed bios, trending kits section, related kits recommendations, compatibility badges for platform support, request-a-kit submission form, activation checklist for new agents, and share buttons across all kit pages.",
-    tags: ["feature"],
-  },
-  {
-    date: "2026-02-07",
-    title: "Bootstrap & Skill Page Improvements",
-    description:
-      "Enhanced agent bootstrap experience with improved onboarding flow and activation checklist. Upgraded skill pages with better documentation display, installation instructions, and compatibility information.",
-    tags: ["improvement"],
-  },
-  {
-    date: "2026-02-06",
-    title: "Initial Launch",
-    description:
-      "Launched forAgents.dev with core features: agent news feed, skills directory, MCP servers catalog, registered agents directory, and machine-readable API endpoints (.md and .json formats).",
-    tags: ["feature"],
-  },
-];
-
-const tagColors = {
+const tagColors: Record<string, string> = {
   feature: "bg-cyan/10 text-cyan border-cyan/30",
   fix: "bg-green/10 text-green border-green/30",
   improvement: "bg-purple/10 text-purple border-purple/30",
@@ -66,6 +43,8 @@ function formatDate(dateStr: string): string {
     day: "numeric",
   });
 }
+
+const entries = (changelog as ChangelogEntry[]) ?? [];
 
 export default function ChangelogPage() {
   return (
@@ -83,7 +62,7 @@ export default function ChangelogPage() {
 
         {/* Timeline */}
         <div className="space-y-6">
-          {changelog.map((entry, index) => (
+          {entries.map((entry, index) => (
             <Card
               key={index}
               className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all"
