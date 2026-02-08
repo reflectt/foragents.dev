@@ -38,39 +38,33 @@ export default function StatusPage() {
   // Mock service data - in production this would come from an API
   const services: Service[] = [
     {
-      name: "Website",
-      status: "operational",
-      uptime: 99.98,
-      lastChecked: lastRefresh,
-    },
-    {
       name: "API",
       status: "operational",
       uptime: 99.95,
       lastChecked: lastRefresh,
     },
     {
-      name: "Skills Registry",
+      name: "Website",
       status: "operational",
-      uptime: 99.92,
+      uptime: 99.98,
       lastChecked: lastRefresh,
     },
     {
-      name: "News Feed",
+      name: "CDN",
       status: "operational",
-      uptime: 99.89,
+      uptime: 99.99,
+      lastChecked: lastRefresh,
+    },
+    {
+      name: "Database",
+      status: "operational",
+      uptime: 99.92,
       lastChecked: lastRefresh,
     },
     {
       name: "Search",
       status: "operational",
       uptime: 99.97,
-      lastChecked: lastRefresh,
-    },
-    {
-      name: "MCP Discovery",
-      status: "operational",
-      uptime: 99.94,
       lastChecked: lastRefresh,
     },
   ];
