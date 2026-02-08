@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "essential-agent-kit",
+    "name": "Essential Agent Kit",
+    "description": "The basics every agent needs: memory, autonomy, and a portable identity.",
+    "skills": [
+      "agent-memory-kit",
+      "agent-autonomy-kit",
+      "agent-identity-kit"
+    ]
+  },
+  {
+    "slug": "full-stack-agent",
+    "name": "Full Stack Agent",
+    "description": "All core kits — from memory and autonomy to teamwork, identity, and distribution.",
+    "skills": [
+      "agent-memory-kit",
+      "agent-autonomy-kit",
+      "agent-team-kit",
+      "agent-identity-kit",
+      "agent-bridge-kit"
+    ]
+  },
+  {
+    "slug": "smart-home-agent",
+    "name": "Smart Home Agent",
+    "description": "Home-friendly skills for routines, ambient control, and daily context (music + weather + autonomy).",
+    "skills": [
+      "spotify-player",
+      "weather",
+      "agent-autonomy-kit"
+    ]
+  },
+  {
+    "slug": "developer-tools",
+    "name": "Developer Tools",
+    "description": "Coding, git, and deployment helpers — the toolkit for building and shipping.",
+    "skills": [
+      "coding-agent",
+      "github-skill",
+      "obsidian",
+      "agent-bridge-kit"
+    ]
+  },
+  {
+    "slug": "communication-suite",
+    "name": "Communication Suite",
+    "description": "Email, messaging, and social — stay in sync across inboxes, docs, and timelines.",
+    "skills": [
+      "gog-google-workspace",
+      "bird-twitter",
+      "notion-skill",
+      "summarize"
+    ]
+  }
+]

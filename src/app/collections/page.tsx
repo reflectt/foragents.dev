@@ -1,165 +1,92 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useOwnerHandle } from "@/components/collections/useOwnerHandle";
+import type { Metadata } from "next";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { getSkillCollections } from "@/lib/skillCollections";
+import { MyCollectionsClient } from "@/app/collections/my-collections-client";
 
-type CollectionRow = {
-  id: string;
-  name: string;
-  description: string | null;
-  visibility: "private" | "public";
-  slug: string;
-  itemCount: number;
-  updatedAt: string;
+export const metadata: Metadata = {
+  title: "Collections — forAgents.dev",
+  description: "Curated skill bundles for AI agents — plus your own saved lists.",
+  openGraph: {
+    title: "Collections — forAgents.dev",
+    description: "Curated skill bundles for AI agents — plus your own saved lists.",
+    url: "https://foragents.dev/collections",
+    siteName: "forAgents.dev",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Collections — forAgents.dev",
+    description: "Curated skill bundles for AI agents — plus your own saved lists.",
+  },
 };
 
-export default function CollectionsPage() {
-  const { ownerHandle, setOwnerHandle, ready } = useOwnerHandle();
-  const [collections, setCollections] = useState<CollectionRow[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+export const revalidate = 300;
 
-  const [newName, setNewName] = useState("");
-  const [newDesc, setNewDesc] = useState("");
+export default async function CollectionsIndexPage(props: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = (await props.searchParams) || {};
+  const skillParam =
+    typeof sp.skill === "string" ? sp.skill : Array.isArray(sp.skill) ? sp.skill[0] : "";
+  const skillFilter = (skillParam || "").trim();
 
-  async function load() {
-    if (!ownerHandle) {
-      setCollections([]);
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-    try {
-      const res = await fetch(`/api/collections?ownerHandle=${encodeURIComponent(ownerHandle)}`);
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "Failed to load");
-      setCollections(data.collections || []);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to load");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    if (!ready) return;
-    void load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, ownerHandle]);
-
-  async function createCollection() {
-    setError("");
-    if (!ownerHandle) {
-      setError("Enter your handle to create a collection.");
-      return;
-    }
-    if (!newName.trim()) {
-      setError("Collection name is required.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/collections", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ownerHandle, name: newName.trim(), description: newDesc.trim() || undefined }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "Failed to create");
-      setNewName("");
-      setNewDesc("");
-      await load();
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to create");
-    } finally {
-      setLoading(false);
-    }
-  }
+  const collections = await getSkillCollections();
+  const shown = skillFilter ? collections.filter((c) => c.skills.includes(skillFilter)) : collections;
 
   return (
     <div className="min-h-screen">
-
       <section className="max-w-5xl mx-auto px-4 py-10">
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
             <h1 className="text-3xl font-bold">Collections</h1>
-            <p className="text-sm text-muted-foreground mt-1">
-              Save agents and artifacts for later, or share a public list.
+            <p className="text-sm text-muted-foreground mt-2 max-w-2xl">
+              Curated skill bundles — pick a starting kit, or browse what a role-specific agent should install.
             </p>
+            {skillFilter ? (
+              <p className="text-xs text-slate-400 mt-3">
+                Filtered by skill: <span className="font-mono text-slate-300">{skillFilter}</span> •{" "}
+                <Link href="/collections" className="text-cyan hover:underline">
+                  Clear
+                </Link>
+              </p>
+            ) : null}
           </div>
         </div>
 
-        <div className="mt-6 grid gap-4">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <label className="text-xs text-slate-400">Your handle (MVP auth)</label>
-            <Input
-              className="mt-2"
-              value={ownerHandle}
-              onChange={(e) => setOwnerHandle(e.target.value)}
-              placeholder="@name@domain"
-            />
-            <p className="text-xs text-slate-500 mt-2">
-              This is stored locally in your browser and used to scope your collections.
-            </p>
-          </div>
-
-          {error && (
-            <div className="rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-300">
-              {error}
-            </div>
-          )}
-
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="font-semibold text-white">New collection</h2>
-              <Button size="sm" onClick={createCollection} disabled={loading}>
-                Create
-              </Button>
-            </div>
-            <div className="grid gap-2 mt-3">
-              <Input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Name" />
-              <Textarea value={newDesc} onChange={(e) => setNewDesc(e.target.value)} placeholder="Description (optional)" rows={3} />
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <h2 className="font-semibold text-white">My collections</h2>
-            {loading ? (
-              <div className="text-sm text-slate-400 mt-3">Loading…</div>
-            ) : ownerHandle && collections.length === 0 ? (
-              <div className="text-sm text-slate-400 mt-3">No collections yet.</div>
-            ) : !ownerHandle ? (
-              <div className="text-sm text-slate-400 mt-3">Enter your handle to view your collections.</div>
-            ) : (
-              <div className="mt-3 grid gap-2">
-                {collections.map((c) => (
-                  <Link
-                    key={c.id}
-                    href={`/collections/${c.id}`}
-                    className="flex items-center justify-between gap-4 rounded-lg border border-white/10 p-3 hover:bg-white/5"
-                  >
-                    <div>
-                      <div className="text-white font-medium">{c.name}</div>
-                      <div className="text-xs text-slate-400">
-                        {c.itemCount} items • {c.visibility}
-                        {c.visibility === "public" ? ` • /c/${c.slug}` : ""}
-                      </div>
-                    </div>
-                    <span className="text-xs text-slate-400">View →</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {shown.map((c) => (
+            <Link key={c.slug} href={`/collections/${c.slug}`} className="block">
+              <Card className="h-full border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">{c.name}</CardTitle>
+                  <CardDescription className="text-slate-300/80">{c.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Badge variant="outline" className="border-white/10 text-slate-200">
+                      {c.skillCount} {c.skillCount === 1 ? "skill" : "skills"}
+                    </Badge>
+                    <Badge variant="outline" className="border-white/10 text-slate-200">
+                      {c.totalInstalls.toLocaleString()} total installs
+                    </Badge>
+                  </div>
+                  <span className="text-xs text-slate-400">View →</span>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
         </div>
+
+        <div className="mt-10">
+          <Separator className="opacity-10" />
+        </div>
+
+        {/* Keep the existing personal collections feature available below. */}
+        <MyCollectionsClient />
       </section>
-
     </div>
   );
 }

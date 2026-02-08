@@ -12,6 +12,7 @@ import { buildSkillIssueBodyTemplate } from "@/lib/reportIssue";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { InstallCount } from "@/components/InstallCount";
 import { SkillPageClient } from "@/components/skill-page-client";
+import { getCollectionsForSkill } from "@/lib/skillCollections";
 import Link from "next/link";
 
 // Generate static paths for all skills
@@ -63,6 +64,8 @@ export default async function SkillPage({
   const skill = getSkillBySlug(slug);
   if (!skill) notFound();
 
+  const inCollections = await getCollectionsForSkill(skill.slug);
+
   const allSkills = allSkillsList.filter((s) => s.slug !== slug);
 
   const trendingMap = await getSkillTrendingMap(allSkillsList);
@@ -109,7 +112,7 @@ export default async function SkillPage({
           <h1 className="text-3xl font-bold text-[#F8FAFC] mb-2">
             🧰 {skill.name}
           </h1>
-          <div className="flex items-center gap-3 text-muted-foreground">
+          <div className="flex items-center gap-3 text-muted-foreground flex-wrap">
             <p>
               by <span className="text-foreground">{skill.author}</span>
             </p>
@@ -118,6 +121,17 @@ export default async function SkillPage({
               skillSlug={skill.slug} 
               className="text-sm text-cyan"
             />
+            {inCollections.length > 0 ? (
+              <>
+                <span className="text-white/20">•</span>
+                <Link
+                  href={`/collections?skill=${encodeURIComponent(skill.slug)}`}
+                  className="text-sm text-cyan hover:underline"
+                >
+                  View collections
+                </Link>
+              </>
+            ) : null}
           </div>
         </div>
 
@@ -164,6 +178,24 @@ export default async function SkillPage({
             {skill.description}
           </p>
         </section>
+
+        {inCollections.length > 0 ? (
+          <section className="mb-8">
+            <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Collections</h2>
+            <p className="text-sm text-muted-foreground mb-3">
+              This skill appears in:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {inCollections.map((c) => (
+                <Link key={c.slug} href={`/collections/${c.slug}`}>
+                  <Badge className="bg-cyan/10 text-cyan border border-cyan/20 hover:bg-cyan/15">
+                    {c.name}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {/* Next Best Action */}
         <section className="mb-8">

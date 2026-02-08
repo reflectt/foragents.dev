@@ -33,10 +33,10 @@ type Collection = {
   slug: string;
 };
 
-export default function CollectionDetailPage() {
-  const params = useParams<{ id: string }>();
+export function CollectionDetailClient() {
+  const params = useParams<{ slug: string }>();
   const router = useRouter();
-  const id = params.id;
+  const id = params.slug;
 
   const { ownerHandle, setOwnerHandle, ready } = useOwnerHandle();
 
