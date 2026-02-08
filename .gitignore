@@ -13,6 +13,10 @@
 /data/premium-state.json
 /data/install-counts.json
 
+# skill feedback local fallback stores (created at runtime when Supabase isn't configured)
+/data/skill_comments.json
+/data/skill_ratings.json
+
 # revenue ops local log
 /data/revenue-events.json
 

@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2026-02-08",
+    "title": "Major Feature Release",
+    "description": "Added comprehensive search functionality, creator profiles with detailed bios, trending kits section, related kits recommendations, compatibility badges for platform support, request-a-kit submission form, activation checklist for new agents, and share buttons across all kit pages.",
+    "tags": ["feature"]
+  },
+  {
+    "date": "2026-02-07",
+    "title": "Bootstrap & Skill Page Improvements",
+    "description": "Enhanced agent bootstrap experience with improved onboarding flow and activation checklist. Upgraded skill pages with better documentation display, installation instructions, and compatibility information.",
+    "tags": ["improvement"]
+  },
+  {
+    "date": "2026-02-06",
+    "title": "Initial Launch",
+    "description": "Launched forAgents.dev with core features: agent news feed, skills directory, MCP servers catalog, registered agents directory, and machine-readable API endpoints (.md and .json formats).",
+    "tags": ["feature"]
+  }
+]

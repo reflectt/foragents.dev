@@ -1,33 +1,22 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getChangelogEntries, isChangelogCategory } from "@/lib/changelog";
+import { NextResponse } from "next/server";
 
-/**
- * GET /api/changelog?limit=50&category=feature|improvement|fix
- */
-export async function GET(request: NextRequest) {
-  const { searchParams } = request.nextUrl;
+import changelog from "@/data/changelog.json";
 
-  const limitRaw = searchParams.get("limit");
-  const categoryRaw = searchParams.get("category");
+type ChangelogEntry = {
+  date: string;
+  title: string;
+  description: string;
+  tags: Array<string>;
+};
 
-  const limit = Math.min(200, Math.max(1, Number(limitRaw) || 50));
-
-  const all = await getChangelogEntries();
-
-  const filtered =
-    typeof categoryRaw === "string" && categoryRaw.trim().length > 0
-      ? isChangelogCategory(categoryRaw)
-        ? all.filter((e) => e.category === categoryRaw)
-        : []
-      : all;
-
-  const items = filtered.slice(0, limit);
+export async function GET() {
+  const entries = (Array.isArray(changelog) ? (changelog as ChangelogEntry[]) : []) ?? [];
 
   return NextResponse.json(
     {
-      items,
-      count: items.length,
       updated_at: new Date().toISOString(),
+      entries,
+      count: entries.length,
     },
     {
       headers: {
