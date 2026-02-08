@@ -5,14 +5,7 @@
  * for the daily digest email feature.
  */
 
-import {
-  getNews,
-  getSkills,
-  getMcpServers,
-  type NewsItem,
-  type Skill,
-  type McpServer,
-} from "./data";
+import { getNews, getSkills, getMcpServers } from "./data";
 
 export type DigestNewsItem = {
   id: string;
@@ -103,15 +96,11 @@ export function getTopNews(
  * or will be enhanced later with proper timestamps).
  *
  * @param limit - Maximum number of skills to return
- * @param since - Placeholder for future filtering by date
  */
-export function getNewSkills(
-  limit: number = 3,
-  since?: string | Date
-): DigestSkill[] {
+export function getNewSkills(limit: number = 3): DigestSkill[] {
   const allSkills = getSkills();
 
-  // TODO: Once skills have a created_at field, filter by `since`
+  // TODO: Once skills have a created_at field, filter by date
   // For now, return the first N skills (they're likely the newest)
   const skills = allSkills.slice(0, limit);
 

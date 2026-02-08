@@ -54,3 +54,4 @@ supabase/.temp/
 # viral metrics local fallback
 /data/viral_events.ndjson
 /.tmp-tests/
+/.tmp-jest-backups/

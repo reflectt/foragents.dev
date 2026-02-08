@@ -21,12 +21,6 @@
 
 const DEFAULT_BASE_URL = "http://localhost:3000";
 
-function mustGetEnv(name) {
-  const v = process.env[name];
-  if (!v || !String(v).trim()) throw new Error(`Missing required env var: ${name}`);
-  return String(v).trim();
-}
-
 function pickBearerFromEnv() {
   const direct = process.env.FORAGENTS_DOGFOOD_BEARER;
   if (direct && direct.trim()) return { bearer: direct.trim(), agent: null };
