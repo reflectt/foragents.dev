@@ -21,11 +21,12 @@ jest.mock("next/link", () => {
 });
 
 jest.mock("next/image", () => {
-  const ImageMock = (props: Record<string, unknown>) => {
-    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-    const { fill, priority, ...rest } = props as Record<string, unknown>;
-    void fill; void priority;
-    return <img {...(rest as React.ImgHTMLAttributes<HTMLImageElement>)} />;
+  const ImageMock = (
+    { alt = "", fill, priority, ...rest }: { alt?: string; fill?: unknown; priority?: unknown } & Record<string, unknown>
+  ) => {
+    void fill;
+    void priority;
+    return <div role="img" aria-label={alt} {...rest} />;
   };
   ImageMock.displayName = "Image";
   return ImageMock;

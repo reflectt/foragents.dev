@@ -8,7 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents, getRecentSubmissions, getCreators } from "@/lib/data";
+import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents, getRecentSubmissions, getCreators, type McpServer } from "@/lib/data";
 import { getTrendingSkillsWithBadges } from "@/lib/server/trendingSkills";
 import { SkillTrendingBadge } from "@/components/skill-trending-badge";
 import { getSupabase } from "@/lib/supabase";
@@ -57,6 +57,19 @@ export const metadata = {
 };
 
 // Trending scores are computed server-side (installs/views/recency/engagement)
+
+function getMcpRepoUrl(server: McpServer): string {
+  const s = server as unknown as Record<string, unknown>;
+  const repo = s.repo_url ?? s.github ?? s.url;
+  return typeof repo === "string" ? repo : "";
+}
+
+function getMcpCompatTags(server: McpServer): string[] {
+  const s = server as unknown as Record<string, unknown>;
+  const tags = s.compatibility ?? s.tags;
+  if (!Array.isArray(tags)) return [];
+  return tags.filter((t): t is string => typeof t === "string");
+}
 
 export default async function Home() {
   // Prefer Supabase-backed news when available; fall back to bundled JSON.
@@ -695,7 +708,7 @@ export default async function Home() {
               <CardHeader>
                 <CardTitle className="text-lg group-hover:text-purple transition-colors flex items-center gap-1.5">
                   {server.name}
-                  {(((server as any).repo_url || (server as any).github || "") as string).includes(
+                  {getMcpRepoUrl(server).includes(
                     "modelcontextprotocol"
                   ) && (
                     <Image
@@ -709,7 +722,7 @@ export default async function Home() {
                   )}
                 </CardTitle>
                 <CardDescription className="text-xs font-mono text-muted-foreground">
-                  {(((server as any).compatibility || (server as any).tags || []) as string[])
+                  {getMcpCompatTags(server)
                     .slice(0, 3)
                     .join(" · ")}
                 </CardDescription>
@@ -729,7 +742,7 @@ export default async function Home() {
                     {server.category}
                   </Badge>
                   <a
-                    href={((server as any).repo_url || (server as any).github || "#") as string}
+                    href={getMcpRepoUrl(server) || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-cyan hover:underline"
