@@ -52,14 +52,14 @@ jest.mock('next/link', () => {
 });
 
 jest.mock('next/image', () => {
-  const NextImage = ({ alt = '', ...props }: any) => <img alt={alt} {...props} />;
+  const NextImage = ({ alt = '', ...props }: Record<string, unknown>) => <img alt={alt} {...props} />;
   NextImage.displayName = 'NextImage';
   return NextImage;
 });
 
 jest.mock('next/navigation', () => {
   const makeErr = (digest: string) => {
-    const err: any = new Error(digest);
+    const err: Error & { digest?: string } = new Error(digest);
     err.digest = digest;
     return err;
   };
@@ -70,7 +70,7 @@ jest.mock('next/navigation', () => {
 
   return {
     redirect: (url: string) => {
-      const err: any = makeErr('NEXT_REDIRECT');
+      const err: Error & { digest?: string } = makeErr('NEXT_REDIRECT');
       err.url = url;
       throw err;
     },
@@ -225,7 +225,7 @@ jest.mock('@/lib/data', () => {
     ],
 
     // Helpers used by pages
-    formatAgentHandle: (a: any) => `@${a.handle}`,
+    formatAgentHandle: (a: { handle: string }) => `@${a.handle}`,
 
     // Async functions
     getRecentSubmissions: async () => [],
@@ -236,8 +236,8 @@ jest.mock('@/lib/data', () => {
   };
 });
 
-async function renderPageModule(importPath: string, props: Record<string, any> = {}) {
-  const mod: any = await import(importPath);
+async function renderPageModule(importPath: string, props: Record<string, unknown> = {}) {
+  const mod: Record<string, unknown> = await import(importPath);
   const Page = mod.default;
 
   expect(Page).toBeTruthy();
@@ -320,7 +320,7 @@ describe('Render tests for previously-untested pages (Issue #151)', () => {
   });
 
   test('Getting Started legacy path redirects', async () => {
-    const mod: any = await import('@/app/getting-started/page');
+    const mod: Record<string, unknown> = await import('@/app/getting-started/page');
     const Page = mod.default;
     expect(Page).toBeTruthy();
 
