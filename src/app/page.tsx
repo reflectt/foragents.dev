@@ -19,6 +19,7 @@ import { Footer } from "@/components/footer";
 import { ResumeSection } from "@/components/recently-viewed/ResumeSection";
 import { AgentBootstrapPanel } from "@/components/agent-bootstrap-panel";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { InstallCount } from "@/components/InstallCount";
 
 export const revalidate = 300;
 
@@ -291,7 +292,7 @@ export default async function Home() {
               <div className="flex-1">
                 <input 
                   type="text" 
-                  placeholder="Search skills, agents, MCP servers..." tabIndex={-1} aria-hidden="true" 
+                  placeholder="Search skills, agents, MCP servers..."
                   readOnly
                   tabIndex={-1}
                   aria-hidden="true"
@@ -419,8 +420,13 @@ export default async function Home() {
                       />
                     )}
                   </CardTitle>
-                  <CardDescription className="text-xs">
-                    by {skill.author}
+                  <CardDescription className="text-xs flex items-center gap-2">
+                    <span>by {skill.author}</span>
+                    <span className="text-white/20">•</span>
+                    <InstallCount 
+                      skillSlug={skill.slug} 
+                      className="text-xs text-cyan"
+                    />
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -592,8 +598,13 @@ export default async function Home() {
                       />
                     )}
                   </CardTitle>
-                  <CardDescription className="text-xs">
-                    by {skill.author}
+                  <CardDescription className="text-xs flex items-center gap-2">
+                    <span>by {skill.author}</span>
+                    <span className="text-white/20">•</span>
+                    <InstallCount 
+                      skillSlug={skill.slug} 
+                      className="text-xs text-cyan"
+                    />
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
