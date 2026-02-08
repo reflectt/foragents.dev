@@ -77,9 +77,8 @@ function isDuplicateUrl(url: string): boolean {
 
   // Check MCP servers
   for (const server of mcpServers) {
-    const serverUrl = server.url.toLowerCase().replace(/\/+$/, "");
-    const serverGithub = server.github.toLowerCase().replace(/\/+$/, "");
-    if (serverUrl === normalizedUrl || serverGithub === normalizedUrl) {
+    const serverRepo = server.repo_url.toLowerCase().replace(/\/+$/, "");
+    if (serverRepo === normalizedUrl) {
       return true;
     }
   }

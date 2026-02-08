@@ -50,23 +50,35 @@ export function getNewsById(id: string): NewsItem | undefined {
   return (newsData as NewsItem[]).find((item) => item.id === id);
 }
 
+export type McpServerCategory =
+  | "file-system"
+  | "database"
+  | "API"
+  | "coding"
+  | "search"
+  | "communication";
+
 export type McpServer = {
   id: string;
   slug: string;
   name: string;
   description: string;
-  url: string;
-  github: string;
-  author: string;
-  category: string;
+
+  // Requirements (directory schema)
+  repo_url: string;
+  category: McpServerCategory;
   install_cmd: string;
-  tags: string[];
+  compatibility: string[];
+
+  // Optional curation
+  featured?: boolean;
 };
 
 export function getMcpServers(category?: string): McpServer[] {
   let items = mcpData as McpServer[];
   if (category) {
-    items = items.filter((item) => item.category === category);
+    const q = category.toLowerCase();
+    items = items.filter((item) => item.category.toLowerCase() === q);
   }
   return items;
 }
@@ -88,11 +100,13 @@ export function mcpServersToMarkdown(servers: McpServer[]): string {
     lines.push("");
     lines.push(server.description);
     lines.push("");
-    lines.push(`- **Author:** ${server.author}`);
     lines.push(`- **Category:** ${server.category}`);
     lines.push(`- **Install:** \`${server.install_cmd}\``);
-    lines.push(`- **GitHub:** [${server.github}](${server.github})`);
-    lines.push(`- **Tags:** ${server.tags.join(", ")}`);
+    lines.push(`- **Repo:** [${server.repo_url}](${server.repo_url})`);
+    lines.push(`- **Compatibility:** ${server.compatibility.join(", ")}`);
+    if (server.featured) {
+      lines.push(`- **Featured:** yes`);
+    }
     lines.push("");
     lines.push("---");
     lines.push("");

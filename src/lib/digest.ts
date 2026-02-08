@@ -30,10 +30,10 @@ export type DigestMcpServer = {
   slug: string;
   name: string;
   description: string;
-  github: string;
-  author: string;
+  repo_url: string;
   category: string;
-  tags: string[];
+  install_cmd: string;
+  compatibility: string[];
   trendingScore?: number;
 };
 
@@ -133,17 +133,19 @@ export function getTrendingMCP(limit: number = 5): DigestMcpServer[] {
   const scored = allServers.map((server) => {
     let score = 0;
 
-    // Official servers get a boost
-    if (server.author === "Anthropic" || server.tags.includes("official")) {
-      score += 10;
-    }
+    const isOfficial =
+      server.repo_url.includes("modelcontextprotocol") ||
+      server.name.toLowerCase().includes("(official)");
 
-    // More tags = likely more features = more interesting
-    score += server.tags.length * 2;
+    if (isOfficial) score += 10;
+    if (server.featured) score += 5;
 
-    // Certain popular categories get a small boost
-    const popularCategories = ["web", "dev-tools", "productivity", "ai-integration"];
-    if (popularCategories.includes(server.category)) {
+    // More compatibility targets typically means broader usefulness.
+    score += (server.compatibility?.length ?? 0) * 2;
+
+    // Commonly-used categories get a small boost.
+    const popularCategories = ["search", "api", "database", "file-system"];
+    if (popularCategories.includes(server.category.toLowerCase())) {
       score += 3;
     }
 
@@ -158,10 +160,10 @@ export function getTrendingMCP(limit: number = 5): DigestMcpServer[] {
     slug: server.slug,
     name: server.name,
     description: server.description,
-    github: server.github,
-    author: server.author,
+    repo_url: server.repo_url,
     category: server.category,
-    tags: server.tags,
+    install_cmd: server.install_cmd,
+    compatibility: server.compatibility,
     trendingScore: server.trendingScore,
   }));
 }
@@ -262,7 +264,9 @@ export function digestToMarkdown(digest: DailyDigest): string {
     lines.push("");
     lines.push(server.description.slice(0, 150) + (server.description.length > 150 ? "..." : ""));
     lines.push("");
-    lines.push(`By ${server.author} · ${server.category} · [GitHub](${server.github})`);
+    lines.push(`${server.category} · [Repo](${server.repo_url})`);
+    lines.push("");
+    lines.push(`Install: \`${server.install_cmd}\``);
     lines.push("");
   }
 
