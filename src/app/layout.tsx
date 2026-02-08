@@ -104,6 +104,12 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan focus:text-[#0A0E17] focus:font-semibold focus:rounded-lg"
+        >
+          Skip to main content
+        </a>
         {children}
         <KeyboardShortcuts />
         <Analytics />

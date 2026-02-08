@@ -35,24 +35,30 @@ export function NewsletterSignup() {
         </p>
 
         {submitted ? (
-          <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+          <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20" role="alert">
             <p className="text-sm text-green-500 font-medium">
               ✓ Thanks for subscribing! We&apos;ll keep you updated.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+            <label htmlFor="newsletter-email" className="sr-only">
+              Email address
+            </label>
             <Input
+              id="newsletter-email"
               type="email"
               placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              aria-label="Email address for newsletter"
               className="flex-1"
             />
             <Button 
               type="submit" 
               className="bg-cyan text-[#0A0E17] hover:brightness-110 font-semibold"
+              aria-label="Subscribe to newsletter"
             >
               Subscribe
             </Button>

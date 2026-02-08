@@ -38,15 +38,15 @@ export default function SearchPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
+      <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80" role="banner">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" aria-label="forAgents.dev home">
             <span className="text-lg font-bold aurora-text">⚡ Agent Hub</span>
             <span className="text-xs text-muted-foreground font-mono">
               forAgents.dev
             </span>
           </Link>
-          <nav className="flex items-center gap-4 text-sm">
+          <nav className="flex items-center gap-4 text-sm" role="navigation" aria-label="Main navigation">
             <Link
               href="/"
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -76,7 +76,7 @@ export default function SearchPage() {
       </header>
 
       {/* Main Content */}
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <main id="main-content" className="max-w-3xl mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-2">
           <span className="aurora-text">Search Skills</span>
         </h1>
@@ -86,15 +86,21 @@ export default function SearchPage() {
 
         {/* Search Input */}
         <div className="relative mb-8">
+          <label htmlFor="search-input" className="sr-only">
+            Search for skills by name, description, or tags
+          </label>
           <input
-            type="text"
+            id="search-input"
+            type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for skills..."
             className="w-full h-12 px-4 pr-12 rounded-lg bg-card border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/20 font-mono text-sm transition-colors"
             autoFocus
+            aria-label="Search for skills"
+            role="searchbox"
           />
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground" aria-hidden="true">
             🔍
           </div>
         </div>
@@ -177,7 +183,7 @@ export default function SearchPage() {
             </p>
           </div>
         )}
-      </div>
+      </main>
 
       {/* Footer */}
       <Footer />
