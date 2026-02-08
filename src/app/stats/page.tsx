@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { getSkills, getCreators, getMcpServers, getAgents, getAcpAgents, getLlmsTxtEntries } from "@/lib/data";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
+import { UpgradeCTA } from "@/components/UpgradeCTA";
 
 export const revalidate = 300;
 
@@ -115,6 +116,14 @@ export default async function StatsPage() {
             Real-time statistics from the forAgents.dev ecosystem
           </p>
         </div>
+      </section>
+
+      <section className="max-w-5xl mx-auto px-4 py-2">
+        <UpgradeCTA
+          variant="inline"
+          message="Unlock detailed analytics"
+          ctaId="stats"
+        />
       </section>
 
       {/* Overview Stats */}

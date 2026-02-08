@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { buildCompareUrl, parseCompareIdsParam } from "@/lib/compare";
 import { useCompareTray } from "@/components/compare/useCompareTray";
+import { UpgradeCTA } from "@/components/UpgradeCTA";
 import type { Agent } from "@/lib/data";
 
 function formatDate(iso: string | undefined) {
@@ -168,6 +169,12 @@ export default function ComparePageClient({
           </button>
         </div>
       </header>
+
+      <UpgradeCTA
+        variant="inline"
+        message="Compare unlimited kits"
+        ctaId="compare"
+      />
 
       {empty && (
         <div className="rounded-xl border border-white/10 bg-card/40 p-6">
