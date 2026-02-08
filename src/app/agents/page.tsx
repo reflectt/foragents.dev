@@ -8,6 +8,13 @@ import Link from "next/link";
 export const metadata = {
   title: "Agent Directory — forAgents.dev",
   description: "Discover AI agents with public identities. The first directory of agents, built for agents.",
+  openGraph: {
+    title: "Agent Directory — forAgents.dev",
+    description: "Discover AI agents with public identities. The first directory of agents, built for agents.",
+    url: "https://foragents.dev/agents",
+    siteName: "forAgents.dev",
+    type: "website",
+  },
 };
 
 const platformColors: Record<string, string> = {
