@@ -109,6 +109,32 @@ export default function BadgesPage() {
 
   const [earnedCount, setEarnedCount] = useState(0);
 
+  const unlockBadge = (badgeId: string) => {
+    try {
+      const savedProgress = localStorage.getItem("foragents-badges");
+      const unlockedBadges: string[] = savedProgress
+        ? JSON.parse(savedProgress)
+        : [];
+
+      if (!unlockedBadges.includes(badgeId)) {
+        unlockedBadges.push(badgeId);
+        localStorage.setItem(
+          "foragents-badges",
+          JSON.stringify(unlockedBadges)
+        );
+
+        setBadges((prev) =>
+          prev.map((badge) =>
+            badge.id === badgeId ? { ...badge, unlocked: true } : badge
+          )
+        );
+        setEarnedCount(unlockedBadges.length);
+      }
+    } catch (error) {
+      console.error("Failed to unlock badge:", error);
+    }
+  };
+
   const loadBadgeProgress = () => {
     try {
       const savedProgress = localStorage.getItem("foragents-badges");
@@ -136,32 +162,6 @@ export default function BadgesPage() {
       }
     } catch (error) {
       console.error("Failed to load badge progress:", error);
-    }
-  };
-
-  const unlockBadge = (badgeId: string) => {
-    try {
-      const savedProgress = localStorage.getItem("foragents-badges");
-      const unlockedBadges: string[] = savedProgress
-        ? JSON.parse(savedProgress)
-        : [];
-
-      if (!unlockedBadges.includes(badgeId)) {
-        unlockedBadges.push(badgeId);
-        localStorage.setItem(
-          "foragents-badges",
-          JSON.stringify(unlockedBadges)
-        );
-
-        setBadges((prev) =>
-          prev.map((badge) =>
-            badge.id === badgeId ? { ...badge, unlocked: true } : badge
-          )
-        );
-        setEarnedCount(unlockedBadges.length);
-      }
-    } catch (error) {
-      console.error("Failed to unlock badge:", error);
     }
   };
 
