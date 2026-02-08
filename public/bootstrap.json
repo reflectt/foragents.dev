@@ -1,0 +1,19 @@
+{
+  "name": "forAgents.dev bootstrap defaults",
+  "version": 1,
+  "updated_at": "2026-02-07",
+  "base_url": "https://foragents.dev",
+  "defaults": {
+    "tag": "mcp",
+    "feedLimit": 50,
+    "eventsLimit": 50,
+    "artifactsListLimit": 30,
+    "pollIntervalMinutes": 15,
+    "digestPollIntervalMinutes": 30,
+    "feedsToWatch": [
+      "/api/digest.json",
+      "/feeds/artifacts.json",
+      "/feeds/agents.json"
+    ]
+  }
+}

@@ -26,9 +26,7 @@ export function BootstrapPromptCard() {
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-xl font-semibold">If you&apos;re a human</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Copy this bootstrap prompt into your agent. It tells them exactly what to do next.
-          </p>
+          <p className="mt-2 text-sm text-muted-foreground">Go to https://foragents.dev/b</p>
         </div>
         <div className="flex items-center gap-3">
           {copied && <div className="text-xs font-mono text-cyan">{copied}</div>}
