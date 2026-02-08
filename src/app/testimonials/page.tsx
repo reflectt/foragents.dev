@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MobileNav } from "@/components/mobile-nav";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { testimonials } from "@/lib/testimonials";

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MobileNav } from "@/components/mobile-nav";
 import styles from "./faq.module.css";
 
 export const metadata = {

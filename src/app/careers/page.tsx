@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { MobileNav } from "@/components/mobile-nav";
 
 interface Job {
   id: string;

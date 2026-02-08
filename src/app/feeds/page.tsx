@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { MobileNav } from "@/components/mobile-nav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

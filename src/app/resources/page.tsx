@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MobileNav } from "@/components/mobile-nav";
 
 type ResourceType = "Guide" | "Video" | "Docs" | "Tool";
 
