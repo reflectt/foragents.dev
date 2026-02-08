@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -109,10 +109,13 @@ export function ApiTryIt() {
 
   const [bodyJson, setBodyJson] = useState("");
 
-  // Reset body when endpoint changes (only if the user hasn't typed anything meaningful yet)
-  useEffect(() => {
-    setBodyJson((prev) => (prev.trim().length ? prev : defaultBody));
-  }, [defaultBody]);
+  // Body defaults to the endpoint's example; user edits override
+  // Using key-based reset: bodyJson resets when defaultBody changes
+  const [bodyKey, setBodyKey] = useState(defaultBody);
+  if (bodyKey !== defaultBody) {
+    setBodyKey(defaultBody);
+    setBodyJson(defaultBody);
+  }
 
   const curl = useMemo(() => {
     if (!endpoint) return "";
@@ -291,14 +294,14 @@ export function ApiTryIt() {
                 if (endpoint.method === "POST" && getBodyParamNames(endpoint).length > 0) {
                   try {
                     JSON.parse(bodyJson || defaultBody || "{}");
-                    // eslint-disable-next-line no-alert
+                     
                     alert("JSON looks valid.");
                   } catch {
-                    // eslint-disable-next-line no-alert
+                     
                     alert("Invalid JSON. Fix the request body before running curl.");
                   }
                 } else {
-                  // eslint-disable-next-line no-alert
+                   
                   alert("Ready to run.");
                 }
               }}
