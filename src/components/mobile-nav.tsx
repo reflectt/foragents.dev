@@ -7,6 +7,7 @@ const primaryLinks = [
   { href: "#news", label: "News" },
   { href: "/trending", label: "🔥 Trending" },
   { href: "#skills", label: "Skills" },
+  { href: "/creators", label: "Creators" },
   { href: "/artifacts", label: "Artifacts" },
   { href: "/agents", label: "Agents" },
   { href: "/mcp", label: "MCP" },
