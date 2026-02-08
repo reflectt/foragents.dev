@@ -452,3 +452,76 @@ export async function getRecentSubmissions(limit = 5): Promise<Submission[]> {
     .sort((a, b) => new Date(b.submitted_at).getTime() - new Date(a.submitted_at).getTime())
     .slice(0, limit);
 }
+
+// ============ CREATORS ============
+
+export type Creator = {
+  username: string;
+  skillCount: number;
+  totalTags: number;
+  skills: Skill[];
+  topTags: Array<{ tag: string; count: number }>;
+  verified: boolean;
+};
+
+/**
+ * Get all unique creators with aggregated stats
+ */
+export function getCreators(): Creator[] {
+  const skills = getSkills();
+  const creatorMap = new Map<string, Creator>();
+
+  for (const skill of skills) {
+    const existing = creatorMap.get(skill.author);
+    
+    if (existing) {
+      existing.skillCount++;
+      existing.skills.push(skill);
+      existing.totalTags += skill.tags.length;
+    } else {
+      creatorMap.set(skill.author, {
+        username: skill.author,
+        skillCount: 1,
+        totalTags: skill.tags.length,
+        skills: [skill],
+        topTags: [],
+        verified: skill.author === "Team Reflectt",
+      });
+    }
+  }
+
+  // Calculate top tags for each creator
+  for (const creator of creatorMap.values()) {
+    const tagCounts = new Map<string, number>();
+    for (const skill of creator.skills) {
+      for (const tag of skill.tags) {
+        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+      }
+    }
+    creator.topTags = Array.from(tagCounts.entries())
+      .map(([tag, count]) => ({ tag, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+  }
+
+  return Array.from(creatorMap.values()).sort((a, b) => b.skillCount - a.skillCount);
+}
+
+/**
+ * Get a specific creator by username
+ */
+export function getCreatorByUsername(username: string): Creator | undefined {
+  const creators = getCreators();
+  return creators.find(
+    (c) => c.username.toLowerCase() === username.toLowerCase()
+  );
+}
+
+/**
+ * Get all skills by a specific author
+ */
+export function getSkillsByAuthor(author: string): Skill[] {
+  return getSkills().filter(
+    (s) => s.author.toLowerCase() === author.toLowerCase()
+  );
+}
