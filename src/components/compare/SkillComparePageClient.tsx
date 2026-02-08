@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { buildCompareUrl, parseCompareIdsParam } from "@/lib/compare";
+import { parseCompareIdsParam } from "@/lib/compare";
 import type { Skill } from "@/lib/data";
 
 export default function SkillComparePageClient({
@@ -18,18 +18,20 @@ export default function SkillComparePageClient({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [ids, setIds] = useState<string[]>(initialIds);
-  const [selectedIds, setSelectedIds] = useState<string[]>(initialIds);
-
-  useEffect(() => {
+  // Derive ids from searchParams to avoid setState in effect
+  const ids = useMemo(() => {
     const a = searchParams.get("a");
-    const parsed = parseCompareIdsParam(a);
-    setIds(parsed);
-    setSelectedIds(parsed);
+    return parseCompareIdsParam(a);
   }, [searchParams]);
 
+  const [selectedIds, setSelectedIds] = useState<string[]>(initialIds);
+
+  // Sync selectedIds when ids change
+  useEffect(() => {
+    setSelectedIds(ids);
+  }, [ids]);
+
   function setIdsAndSync(next: string[]) {
-    setIds(next);
     setSelectedIds(next);
     const url = next.length > 0 
       ? `/skills/compare?a=${encodeURIComponent(next.join(","))}`
