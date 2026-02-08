@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from "@/lib/requestLimits";
 import { ensureUniqueSlug, normalizeOwnerHandle } from "@/lib/collections";
+import { getSkillCollectionBySlug } from "@/lib/skillCollections";
 import { getAgentByHandle, formatAgentHandle } from "@/lib/data";
 import { getArtifactById } from "@/lib/artifacts";
 
@@ -34,15 +35,29 @@ async function assertOwner(opts: {
 }
 
 export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
-  const supabase = getSupabase();
-  if (!supabase) return NextResponse.json({ error: "Database not configured" }, { status: 500 });
-
   const ownerHandle = ownerHandleFrom(req);
+  const { id } = await context.params;
+
+  // If no ownerHandle is provided, treat this as a curated skill-bundle lookup by slug.
   if (!ownerHandle) {
-    return NextResponse.json({ error: "ownerHandle is required" }, { status: 401 });
+    const curated = await getSkillCollectionBySlug(id);
+    if (!curated) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+    return NextResponse.json({
+      collection: {
+        slug: curated.slug,
+        name: curated.name,
+        description: curated.description,
+        skills: curated.skills,
+        skillCount: curated.skillCount,
+        totalInstalls: curated.totalInstalls,
+      },
+      skills: curated.resolvedSkills,
+    });
   }
 
-  const { id } = await context.params;
+  const supabase = getSupabase();
+  if (!supabase) return NextResponse.json({ error: "Database not configured" }, { status: 500 });
 
   const owned = await assertOwner({ supabase, id, ownerHandle });
   if ("error" in owned) return NextResponse.json({ error: owned.error }, { status: owned.status });

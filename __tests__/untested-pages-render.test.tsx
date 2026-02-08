@@ -331,7 +331,7 @@ describe("Untested Pages – Render Tests", () => {
     ["bookmarks", () => import("@/app/bookmarks/page")],
     ["brand", () => import("@/app/brand/page")],
     ["changelog", () => import("@/app/changelog/page")],
-    ["collections", () => import("@/app/collections/page")],
+    // collections is now an async server component
     ["contact", () => import("@/app/contact/page")],
     ["credits", () => import("@/app/credits/page")],
     ["demos", () => import("@/app/demos/page")],
@@ -402,10 +402,11 @@ describe("Untested Pages – Render Tests", () => {
     expect(container).toBeInTheDocument();
   });
 
-  test("/collections/[id] renders without crashing", async () => {
-    const mod = await import("@/app/collections/[id]/page");
-    const Page = mod.default;
-    const { container } = render(<Page />);
+  test("/collections/[slug] (curated) renders without crashing", async () => {
+    const mod = await import("@/app/collections/[slug]/page");
+    const { container } = await renderServerComponent(mod.default, {
+      params: Promise.resolve({ slug: "essential-agent-kit" }),
+    });
     expect(container).toBeInTheDocument();
   });
 
@@ -451,6 +452,12 @@ describe("Untested Pages – Render Tests", () => {
 
   test("/agents renders without crashing", async () => {
     const mod = await import("@/app/agents/page");
+    const { container } = await renderServerComponent(mod.default);
+    expect(container).toBeInTheDocument();
+  });
+
+  test("/collections renders without crashing", async () => {
+    const mod = await import("@/app/collections/page");
     const { container } = await renderServerComponent(mod.default);
     expect(container).toBeInTheDocument();
   });

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { checkRateLimit, getClientIp, rateLimitResponse, readJsonWithLimit } from "@/lib/requestLimits";
 import { getSupabase } from "@/lib/supabase";
 import { ensureUniqueSlug, normalizeOwnerHandle } from "@/lib/collections";
+import { getSkillCollections } from "@/lib/skillCollections";
 
 function getOwnerHandleFromRequest(req: NextRequest): string | null {
   const header = req.headers.get("x-owner-handle") || req.headers.get("x-agent-handle");
@@ -12,17 +13,26 @@ function getOwnerHandleFromRequest(req: NextRequest): string | null {
 }
 
 export async function GET(req: NextRequest) {
+  const ownerHandle = getOwnerHandleFromRequest(req);
+
+  // If no ownerHandle is provided, return the curated skill-bundle collections.
+  if (!ownerHandle) {
+    const collections = await getSkillCollections();
+    return NextResponse.json({
+      collections: collections.map((c) => ({
+        slug: c.slug,
+        name: c.name,
+        description: c.description,
+        skills: c.skills,
+        skillCount: c.skillCount,
+        totalInstalls: c.totalInstalls,
+      })),
+    });
+  }
+
   const supabase = getSupabase();
   if (!supabase) {
     return NextResponse.json({ error: "Database not configured" }, { status: 500 });
-  }
-
-  const ownerHandle = getOwnerHandleFromRequest(req);
-  if (!ownerHandle) {
-    return NextResponse.json(
-      { error: "ownerHandle is required (format: @name@domain)" },
-      { status: 401 }
-    );
   }
 
   const { data, error } = await supabase
