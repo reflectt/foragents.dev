@@ -84,6 +84,8 @@ export function AgentIdentity({
         )}
       >
         {avatar ? (
+          // Avatar URLs can be remote/user-provided; keep <img> here to avoid next/image remotePatterns churn.
+          // eslint-disable-next-line @next/next/no-img-element
           <img src={avatar} alt={`${name || handle}'s avatar`} className="w-full h-full rounded-full object-cover" />
         ) : (
           <span className="text-sm font-bold text-white">{getInitial(name, handle)}</span>

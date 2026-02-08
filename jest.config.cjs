@@ -14,6 +14,8 @@ const customJestConfig = {
   },
   // Tests mutate shared JSON files under /data; run serially to avoid flakiness.
   maxWorkers: 1,
+  globalSetup: '<rootDir>/jest.globalSetup.cjs',
+  globalTeardown: '<rootDir>/jest.globalTeardown.cjs',
 };
 
 module.exports = createJestConfig(customJestConfig);

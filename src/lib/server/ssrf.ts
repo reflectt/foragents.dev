@@ -132,7 +132,6 @@ export async function safeFetch(input: string, init: RequestInit = {}, opts: Ssr
   // Always do manual redirect handling so we can validate Location targets.
   const baseInit: RequestInit = { ...init, redirect: 'manual' };
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const res = await fetch(current.toString(), baseInit);
 

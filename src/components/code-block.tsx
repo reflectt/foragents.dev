@@ -13,7 +13,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
     <div className={`relative group ${className || ""}`}>
       <div className="bg-black/40 rounded-lg p-4 overflow-x-auto">
         <pre className="text-sm">
-          <code>{code}</code>
+          <code className={language ? `language-${language}` : undefined}>{code}</code>
         </pre>
       </div>
       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">

@@ -74,7 +74,7 @@ export async function sendDigestEmail({
   `;
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to,
       subject: `✨ Your Daily Agent Digest — ${today}`,
