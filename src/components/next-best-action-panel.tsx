@@ -9,8 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CopyButton } from "@/components/copy-button";
 import { buildGitHubNewIssueUrl, parseGitHubRepo } from "@/lib/reportIssue";
+import { EmailInstallPlan } from "@/components/EmailInstallPlan";
 
 type Props = {
   installCmd?: string | null;
@@ -19,6 +19,30 @@ type Props = {
   issueBody: string;
   skillSlug?: string;
 };
+
+async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    try {
+      const el = document.createElement("textarea");
+      el.value = text;
+      el.setAttribute("readonly", "");
+      el.style.position = "fixed";
+      el.style.top = "-1000px";
+      el.style.left = "-1000px";
+      document.body.appendChild(el);
+      el.focus();
+      el.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(el);
+      return ok;
+    } catch {
+      return false;
+    }
+  }
+}
 
 function extractPrimaryInstallCmd(cmd: string | null | undefined): string | null {
   const raw0 = (cmd ?? "").trim();
@@ -60,24 +84,32 @@ export function NextBestActionPanel({
   const primaryHref = !hasInstall ? repoUrl?.trim() : null;
   const primaryLabel = repo ? "View on GitHub ↗" : "View repository ↗";
 
-  const handleCopySuccess = async () => {
-    // Track the install if skillSlug is provided
-    if (skillSlug) {
-      try {
-        await fetch("/api/track/install", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ skillSlug }),
-        });
-      } catch (error) {
-        // Silent fail - don&apos;t interrupt user experience
-        console.error("Failed to track install:", error);
-      }
-    }
-  };
+  const [copyLabel, setCopyLabel] = React.useState("Copy install command");
+  const [showEmailModal, setShowEmailModal] = React.useState(false);
 
-  const handleCopyError = () => {
-    if (primaryInstallCmd) {
+  const onCopyInstall = async () => {
+    if (!primaryInstallCmd) return;
+    const ok = await copyToClipboard(primaryInstallCmd);
+    setCopyLabel(ok ? "Copied" : "Copy failed");
+    window.setTimeout(() => setCopyLabel("Copy install command"), 1500);
+    
+    if (ok) {
+      // Track install if skillSlug is provided
+      if (skillSlug) {
+        try {
+          await fetch("/api/track/install", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ skillSlug }),
+          });
+        } catch (error) {
+          console.error("Failed to track install:", error);
+        }
+      }
+      
+      // Show email modal after successful copy
+      setShowEmailModal(true);
+    } else {
       window.prompt("Copy the install command:", primaryInstallCmd);
     }
   };
@@ -94,16 +126,15 @@ export function NextBestActionPanel({
       <CardContent>
         <div className="flex flex-wrap items-center gap-2">
           {hasInstall ? (
-            <CopyButton
-              text={primaryInstallCmd!}
-              label="Copy install command"
-              variant="default"
+            <Button
+              type="button"
               size="sm"
               className="bg-cyan text-black hover:bg-cyan/90"
-              showIcon={false}
-              onCopySuccess={handleCopySuccess}
-              onCopyError={handleCopyError}
-            />
+              onClick={onCopyInstall}
+              title="Copies the install command to your clipboard"
+            >
+              {copyLabel}
+            </Button>
           ) : primaryHref ? (
             <Button asChild size="sm" className="bg-cyan text-black hover:bg-cyan/90">
               <a href={primaryHref} target="_blank" rel="noopener noreferrer">
@@ -137,6 +168,13 @@ export function NextBestActionPanel({
           ) : null}
         </div>
       </CardContent>
+      
+      <EmailInstallPlan
+        isOpen={showEmailModal}
+        onClose={() => setShowEmailModal(false)}
+        skillSlug={skillSlug}
+        installCmd={primaryInstallCmd ?? undefined}
+      />
     </Card>
   );
 }
