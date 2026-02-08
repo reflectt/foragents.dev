@@ -15,6 +15,8 @@ import { SkillPageClient } from "@/components/skill-page-client";
 import { getCollectionsForSkill } from "@/lib/skillCollections";
 import { RunInReflecttButton } from "@/components/RunInReflecttButton";
 import Link from "next/link";
+import { ReliabilityScorecard } from "@/components/reliability-scorecard";
+import { aggregateScorecards, readCanaryScorecards } from "@/lib/server/canaryScorecardStore";
 
 // Generate static paths for all skills
 export function generateStaticParams() {
@@ -66,6 +68,15 @@ export default async function SkillPage({
   if (!skill) notFound();
 
   const inCollections = await getCollectionsForSkill(skill.slug);
+
+  const allScorecards = await readCanaryScorecards();
+  const latestDateForSkill = allScorecards
+    .filter((s) => s.agentId === skill.slug)
+    .reduce<string | null>((max, s) => (max && max > s.date ? max : s.date), null);
+
+  const latestScorecard = latestDateForSkill
+    ? aggregateScorecards(skill.slug, allScorecards, latestDateForSkill, latestDateForSkill)
+    : null;
 
   const allSkills = allSkillsList.filter((s) => s.slug !== slug);
 
@@ -165,6 +176,12 @@ export default async function SkillPage({
             </Badge>
           ))}
         </div>
+
+        {latestScorecard ? (
+          <section id="reliability" className="mb-8">
+            <ReliabilityScorecard scorecard={latestScorecard} skillHref={`/skills/${skill.slug}`} />
+          </section>
+        ) : null}
 
         {/* Share / copy */}
         <section className="mb-8">
