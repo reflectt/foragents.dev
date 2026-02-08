@@ -30,7 +30,8 @@ function normalizeStep(raw: unknown): TraceStep | null {
 
   const durationMs = clampNumber(obj.durationMs, computeDurationMs(startedAt, endedAt));
 
-  const details = obj.details && typeof obj.details === "object" ? (obj.details as any) : undefined;
+  const details: TraceStep["details"] =
+    obj.details && typeof obj.details === "object" ? (obj.details as TraceStep["details"]) : undefined;
 
   return {
     id,

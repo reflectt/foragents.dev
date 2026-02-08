@@ -52,7 +52,9 @@ jest.mock('next/link', () => {
 });
 
 jest.mock('next/image', () => {
-  const NextImage = ({ alt = '', ...props }: Record<string, unknown>) => <img alt={alt} {...props} />;
+  const NextImage = ({ alt = '', ...props }: { alt?: string } & Record<string, unknown>) => (
+    <div role="img" aria-label={alt} {...props} />
+  );
   NextImage.displayName = 'NextImage';
   return NextImage;
 });
@@ -231,7 +233,6 @@ jest.mock('@/lib/data', () => {
     getRecentSubmissions: async () => [],
 
     // Types
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Skill: {},
   };
 });

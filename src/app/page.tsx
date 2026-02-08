@@ -8,14 +8,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents, getRecentSubmissions, getCreators } from "@/lib/data";
+import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents, getRecentSubmissions, getCreators, type McpServer } from "@/lib/data";
 import { getTrendingSkillsWithBadges } from "@/lib/server/trendingSkills";
 import { SkillTrendingBadge } from "@/components/skill-trending-badge";
 import { getSupabase } from "@/lib/supabase";
 import Link from "next/link";
 import Image from "next/image";
-import { MobileNav } from "@/components/mobile-nav";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { NewsFeed } from "@/components/news-feed";
 import { RecentSubmissions } from "@/components/recent-submissions";
 import { AnnouncementBanner } from "@/components/announcement-banner";
@@ -57,6 +55,19 @@ export const metadata = {
 };
 
 // Trending scores are computed server-side (installs/views/recency/engagement)
+
+function getMcpRepoUrl(server: McpServer): string {
+  const s = server as unknown as Record<string, unknown>;
+  const repo = s.repo_url ?? s.github ?? s.url;
+  return typeof repo === "string" ? repo : "";
+}
+
+function getMcpCompatTags(server: McpServer): string[] {
+  const s = server as unknown as Record<string, unknown>;
+  const tags = s.compatibility ?? s.tags;
+  if (!Array.isArray(tags)) return [];
+  return tags.filter((t): t is string => typeof t === "string");
+}
 
 export default async function Home() {
   // Prefer Supabase-backed news when available; fall back to bundled JSON.
@@ -114,20 +125,6 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Header */}
-      <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80 relative" role="banner">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold aurora-text">⚡ Agent Hub</span>
-            <span className="text-xs text-muted-foreground font-mono">
-              forAgents.dev
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <MobileNav />
-          </div>
-        </div>
-      </header>
 
       {/* Announcement Banner */}
       <AnnouncementBanner />
@@ -695,7 +692,7 @@ export default async function Home() {
               <CardHeader>
                 <CardTitle className="text-lg group-hover:text-purple transition-colors flex items-center gap-1.5">
                   {server.name}
-                  {(((server as any).repo_url || (server as any).github || "") as string).includes(
+                  {getMcpRepoUrl(server).includes(
                     "modelcontextprotocol"
                   ) && (
                     <Image
@@ -709,7 +706,7 @@ export default async function Home() {
                   )}
                 </CardTitle>
                 <CardDescription className="text-xs font-mono text-muted-foreground">
-                  {(((server as any).compatibility || (server as any).tags || []) as string[])
+                  {getMcpCompatTags(server)
                     .slice(0, 3)
                     .join(" · ")}
                 </CardDescription>
@@ -729,7 +726,7 @@ export default async function Home() {
                     {server.category}
                   </Badge>
                   <a
-                    href={((server as any).repo_url || (server as any).github || "#") as string}
+                    href={getMcpRepoUrl(server) || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-cyan hover:underline"

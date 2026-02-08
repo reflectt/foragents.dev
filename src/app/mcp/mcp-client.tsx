@@ -128,7 +128,7 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
 
           <div className="grid gap-4 md:grid-cols-2">
             {featured.map((server) => {
-              const style = getCategoryStyle((server as any).category);
+              const style = getCategoryStyle(server.category);
               const repoUrl = getRepoUrl(server);
               const compat = getCompatTags(server);
               return (
@@ -144,7 +144,7 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
                           `${style.bg} ${style.text} ${style.border}`
                         }
                       >
-                        {String((server as any).category ?? "unknown")}
+                        {String(server.category)}
                       </span>
                       {repoUrl ? (
                         <a
@@ -204,7 +204,7 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
 
         <div className="grid gap-4 md:grid-cols-2">
           {filtered.map((server) => {
-            const style = getCategoryStyle((server as any).category);
+            const style = getCategoryStyle(server.category);
             const repoUrl = getRepoUrl(server);
             const compat = getCompatTags(server);
 
@@ -221,7 +221,7 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
                         `${style.bg} ${style.text} ${style.border}`
                       }
                     >
-                      {String((server as any).category ?? "unknown")}
+                      {String(server.category)}
                     </span>
                     {repoUrl ? (
                       <a

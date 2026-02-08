@@ -150,8 +150,14 @@ export function TraceClient({ initialId }: { initialId: string }) {
         });
 
         if (!res.ok) {
-          const body = (await res.json().catch(() => null)) as any;
-          const msg = typeof body?.error === "string" ? body.error : `Request failed (${res.status})`;
+          const body: unknown = await res.json().catch(() => null);
+          const msg =
+            typeof body === "object" &&
+            body !== null &&
+            "error" in body &&
+            typeof (body as Record<string, unknown>).error === "string"
+              ? String((body as Record<string, unknown>).error)
+              : `Request failed (${res.status})`;
           throw new Error(msg);
         }
 
