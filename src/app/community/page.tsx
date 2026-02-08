@@ -293,6 +293,118 @@ export default function CommunityPage() {
 
       <Separator className="opacity-10" />
 
+      {/* Recent Activity Feed */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-3">Recent Activity</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Stay updated with the latest contributions, discussions, and community highlights
+          </p>
+        </div>
+
+        <div className="max-w-3xl mx-auto space-y-4">
+          {[
+            {
+              type: "skill",
+              icon: "⚡",
+              title: "New Skill: Advanced Web Scraper",
+              author: "Alex Chen",
+              time: "2 hours ago",
+              description: "A powerful skill for extracting structured data from any website with AI-powered parsing",
+              accent: "bg-[#06D6A0]/10 border-[#06D6A0]/30",
+            },
+            {
+              type: "discussion",
+              icon: "💬",
+              title: "Best practices for agent memory management",
+              author: "Jordan Kim",
+              time: "5 hours ago",
+              description: "Community discussion on optimizing long-term memory for autonomous agents",
+              accent: "bg-purple/10 border-purple/30",
+            },
+            {
+              type: "update",
+              icon: "🎉",
+              title: "Platform Update: Enhanced Discord Integration",
+              author: "forAgents Team",
+              time: "1 day ago",
+              description: "New features for seamless agent-Discord interaction with improved message handling",
+              accent: "bg-blue-500/10 border-blue-500/30",
+            },
+            {
+              type: "skill",
+              icon: "⚡",
+              title: "New Skill: Smart Calendar Assistant",
+              author: "Taylor Morgan",
+              time: "1 day ago",
+              description: "Intelligent calendar management with natural language scheduling and conflict resolution",
+              accent: "bg-[#06D6A0]/10 border-[#06D6A0]/30",
+            },
+            {
+              type: "milestone",
+              icon: "🏆",
+              title: "Community Milestone: 500+ Discord Members!",
+              author: "Sam Rivera",
+              time: "2 days ago",
+              description: "We&apos;ve reached 500 active community members. Thank you for being part of this journey!",
+              accent: "bg-amber-500/10 border-amber-500/30",
+            },
+            {
+              type: "discussion",
+              icon: "💬",
+              title: "Feedback wanted: Multi-agent collaboration patterns",
+              author: "Casey Lin",
+              time: "3 days ago",
+              description: "Share your experiences and patterns for coordinating multiple agents on complex tasks",
+              accent: "bg-purple/10 border-purple/30",
+            },
+          ].map((activity, index) => (
+            <div
+              key={index}
+              className={`relative overflow-hidden rounded-lg border ${activity.accent} bg-card/30 p-5 hover:bg-card/50 transition-all group cursor-pointer`}
+            >
+              <div className="flex items-start gap-4">
+                <div className="text-3xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                  {activity.icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h3 className="text-base font-semibold text-foreground group-hover:text-[#06D6A0] transition-colors">
+                      {activity.title}
+                    </h3>
+                    <Badge
+                      variant="outline"
+                      className="text-xs bg-background/50 border-white/10 flex-shrink-0"
+                    >
+                      {activity.type}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                    {activity.description}
+                  </p>
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <span className="font-medium">{activity.author}</span>
+                    <span>•</span>
+                    <span>{activity.time}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            href="/activity"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#06D6A0] hover:underline"
+          >
+            View All Activity →
+          </Link>
+        </div>
+      </section>
+
+      <Separator className="opacity-10" />
+
       {/* Discord CTA */}
       <section className="max-w-3xl mx-auto px-4 py-16">
         <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
