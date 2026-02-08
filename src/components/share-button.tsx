@@ -85,27 +85,44 @@ export function ShareButton({ collectionName, slug }: ShareButtonProps) {
 
   return (
     <div className="relative" ref={menuRef}>
-      <Button variant="outline" size="sm" onClick={() => setMenuOpen(!menuOpen)}>
+      <Button 
+        variant="outline" 
+        size="sm" 
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={`Share ${collectionName}`}
+        aria-expanded={menuOpen}
+        aria-haspopup="true"
+      >
         📤 Share
       </Button>
       
       {menuOpen && (
-        <div className="absolute right-0 top-full mt-2 w-48 bg-black/95 border border-white/10 rounded-lg shadow-lg overflow-hidden z-10">
+        <div 
+          className="absolute right-0 top-full mt-2 w-48 bg-black/95 border border-white/10 rounded-lg shadow-lg overflow-hidden z-10"
+          role="menu"
+          aria-label="Share options"
+        >
           <button
             onClick={copyLink}
             className="w-full px-4 py-2 text-left text-sm text-white hover:bg-white/10 flex items-center gap-2"
+            role="menuitem"
+            aria-label="Copy link to clipboard"
           >
             🔗 Copy link
           </button>
           <button
             onClick={shareTwitter}
             className="w-full px-4 py-2 text-left text-sm text-white hover:bg-white/10 flex items-center gap-2"
+            role="menuitem"
+            aria-label="Share on Twitter"
           >
             🐦 Share on Twitter
           </button>
           <button
             onClick={downloadCard}
             className="w-full px-4 py-2 text-left text-sm text-white hover:bg-white/10 flex items-center gap-2"
+            role="menuitem"
+            aria-label="Download share card image"
           >
             📥 Download card
           </button>

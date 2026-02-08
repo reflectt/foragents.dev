@@ -53,7 +53,7 @@ export function MobileNav() {
   return (
     <>
       {/* Desktop nav */}
-      <nav className="hidden md:flex items-center gap-1">
+      <nav className="hidden md:flex items-center gap-1" role="navigation" aria-label="Main navigation">
         {primaryLinks.map((link) => (
           <Link
             key={link.href}
@@ -69,6 +69,9 @@ export function MobileNav() {
           <button
             onClick={() => setMoreOpen(!moreOpen)}
             className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-white/5 flex items-center gap-1"
+            aria-label="More navigation options"
+            aria-expanded={moreOpen}
+            aria-haspopup="true"
           >
             More
             <svg
@@ -76,13 +79,18 @@ export function MobileNav() {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
           
           {moreOpen && (
-            <div className="absolute right-0 top-full mt-1 w-48 bg-slate-900/95 backdrop-blur-md border border-white/10 rounded-lg shadow-xl z-50 py-2">
+            <div 
+              className="absolute right-0 top-full mt-1 w-48 bg-slate-900/95 backdrop-blur-md border border-white/10 rounded-lg shadow-xl z-50 py-2"
+              role="menu"
+              aria-label="Additional navigation links"
+            >
               {moreLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -116,6 +124,7 @@ export function MobileNav() {
         className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Toggle menu"
+        aria-expanded={mobileOpen}
       >
         <span
           className={`block w-5 h-0.5 bg-foreground transition-all duration-200 ${
@@ -136,7 +145,7 @@ export function MobileNav() {
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-white/5 z-50">
+        <nav className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-white/5 z-50" role="navigation" aria-label="Mobile navigation">
           <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-1">
             {primaryLinks.map((link) => (
               <Link
@@ -174,7 +183,7 @@ export function MobileNav() {
               ))}
             </div>
           </div>
-        </div>
+        </nav>
       )}
     </>
   );
