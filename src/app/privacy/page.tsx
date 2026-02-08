@@ -3,6 +3,13 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy | forAgents.dev',
   description: 'Privacy policy for forAgents.dev - Learn how we collect, use, and protect your data.',
+  openGraph: {
+    title: 'Privacy Policy | forAgents.dev',
+    description: 'Privacy policy for forAgents.dev - Learn how we collect, use, and protect your data.',
+    url: 'https://foragents.dev/privacy',
+    siteName: 'forAgents.dev',
+    type: 'website',
+  },
 };
 
 export default function PrivacyPage() {

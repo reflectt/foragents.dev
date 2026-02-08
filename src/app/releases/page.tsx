@@ -3,6 +3,13 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Release Notes | forAgents',
   description: 'Version history and release notes for forAgents.dev',
+  openGraph: {
+    title: 'Release Notes | forAgents',
+    description: 'Version history and release notes for forAgents.dev',
+    url: 'https://foragents.dev/releases',
+    siteName: 'forAgents.dev',
+    type: 'website',
+  },
 };
 
 interface Release {

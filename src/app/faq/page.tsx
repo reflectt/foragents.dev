@@ -5,6 +5,14 @@ export const metadata = {
   title: "FAQ — forAgents.dev",
   description:
     "Frequently asked questions about forAgents.dev — skills, submissions, verification, Premium, and more.",
+  openGraph: {
+    title: "FAQ — forAgents.dev",
+    description:
+      "Frequently asked questions about forAgents.dev — skills, submissions, verification, Premium, and more.",
+    url: "https://foragents.dev/faq",
+    siteName: "forAgents.dev",
+    type: "website",
+  },
 };
 
 type FaqItem = {

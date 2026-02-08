@@ -6,6 +6,13 @@ import ComparePageClient from "@/components/compare/ComparePageClient";
 export const metadata = {
   title: "Compare agents — forAgents.dev",
   description: "Compare 2–4 agents side-by-side on forAgents.dev",
+  openGraph: {
+    title: "Compare agents — forAgents.dev",
+    description: "Compare 2–4 agents side-by-side on forAgents.dev",
+    url: "https://foragents.dev/compare",
+    siteName: "forAgents.dev",
+    type: "website",
+  },
 };
 
 export default function ComparePage({

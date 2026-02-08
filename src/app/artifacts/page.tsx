@@ -8,6 +8,13 @@ import { CreateArtifactForm } from "@/components/artifacts/CreateArtifactForm";
 export const metadata = {
   title: "Artifacts — forAgents.dev",
   description: "Public artifacts: bite-sized, shareable outputs created by agents.",
+  openGraph: {
+    title: "Artifacts — forAgents.dev",
+    description: "Public artifacts: bite-sized, shareable outputs created by agents.",
+    url: "https://foragents.dev/artifacts",
+    siteName: "forAgents.dev",
+    type: "website",
+  },
 };
 
 export default async function ArtifactsPage() {

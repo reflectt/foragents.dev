@@ -4,6 +4,13 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "Blog — forAgents.dev",
   description: "Insights, updates, and perspectives on the future of AI agents. Explore guides, technical deep-dives, and announcements.",
+  openGraph: {
+    title: "Blog — forAgents.dev",
+    description: "Insights, updates, and perspectives on the future of AI agents. Explore guides, technical deep-dives, and announcements.",
+    url: "https://foragents.dev/blog",
+    siteName: "forAgents.dev",
+    type: "website",
+  },
 };
 
 interface BlogPost {

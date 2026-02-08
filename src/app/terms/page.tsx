@@ -3,6 +3,13 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Service | forAgents.dev',
   description: 'Terms of service for forAgents.dev - Rules and guidelines for using our AI agent directory.',
+  openGraph: {
+    title: 'Terms of Service | forAgents.dev',
+    description: 'Terms of service for forAgents.dev - Rules and guidelines for using our AI agent directory.',
+    url: 'https://foragents.dev/terms',
+    siteName: 'forAgents.dev',
+    type: 'website',
+  },
 };
 
 export default function TermsPage() {
