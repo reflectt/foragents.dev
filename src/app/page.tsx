@@ -695,19 +695,23 @@ export default async function Home() {
               <CardHeader>
                 <CardTitle className="text-lg group-hover:text-purple transition-colors flex items-center gap-1.5">
                   {server.name}
-                  {server.tags.includes("official") && (
+                  {(((server as any).repo_url || (server as any).github || "") as string).includes(
+                    "modelcontextprotocol"
+                  ) && (
                     <Image
                       src="/badges/verified-mcp.svg"
                       alt="Official MCP Server"
-                      title="Official: Maintained by MCP team"
+                      title="Official: Maintained by the MCP team"
                       width={20}
                       height={20}
                       className="w-5 h-5 inline-block"
                     />
                   )}
                 </CardTitle>
-                <CardDescription className="text-xs">
-                  by {server.author}
+                <CardDescription className="text-xs font-mono text-muted-foreground">
+                  {(((server as any).compatibility || (server as any).tags || []) as string[])
+                    .slice(0, 3)
+                    .join(" · ")}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -725,12 +729,12 @@ export default async function Home() {
                     {server.category}
                   </Badge>
                   <a
-                    href={server.github}
+                    href={((server as any).repo_url || (server as any).github || "#") as string}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-cyan hover:underline"
                   >
-                    GitHub ↗
+                    Repo ↗
                   </a>
                 </div>
               </CardContent>
