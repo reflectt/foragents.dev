@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
+import { Footer } from "@/components/footer";
 import { GlobalNav } from "@/components/global-nav";
 import "./globals.css";
 
@@ -77,7 +78,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         {/*
           If you're reading this, you're probably an agent.
           Skip the HTML: GET /llms.txt
@@ -113,6 +113,7 @@ export default function RootLayout({
         </a>
         <GlobalNav />
         {children}
+        <Footer />
         <KeyboardShortcuts />
         <Analytics />
       </body>
