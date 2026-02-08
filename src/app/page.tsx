@@ -20,6 +20,7 @@ import { ResumeSection } from "@/components/recently-viewed/ResumeSection";
 import { AgentBootstrapPanel } from "@/components/agent-bootstrap-panel";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { InstallCount } from "@/components/InstallCount";
+import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 
 export const revalidate = 300;
 
@@ -906,6 +907,24 @@ export default async function Home() {
               $9/month →
             </Link>
           </div>
+        </div>
+      </section>
+
+      <Separator className="opacity-10" />
+
+      {/* Testimonials */}
+      <section className="max-w-5xl mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold mb-2">What Developers Are Saying</h2>
+          <p className="text-muted-foreground text-sm">
+            Teams building with AI agents share their experience
+          </p>
+        </div>
+        <TestimonialCarousel />
+        <div className="text-center mt-6">
+          <Link href="/testimonials" className="text-sm text-cyan hover:underline">
+            Read more testimonials →
+          </Link>
         </div>
       </section>
 
