@@ -231,19 +231,6 @@ export default function ResourcesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
       />
 
-      {/* Header */}
-      <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-[#0a0a0a]/80 relative">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-lg font-bold aurora-text">⚡ Agent Hub</span>
-            <span className="text-xs text-muted-foreground font-mono">
-              forAgents.dev
-            </span>
-          </Link>
-          <MobileNav />
-        </div>
-      </header>
-
       <main id="main-content" className="max-w-5xl mx-auto px-4 py-12">
         {/* Header Section */}
         <div className="mb-10">
