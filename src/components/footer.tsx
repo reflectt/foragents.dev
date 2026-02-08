@@ -63,6 +63,12 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-4 font-mono text-xs">
             <a
+              href="/stats"
+              className="hover:text-cyan transition-colors"
+            >
+              stats
+            </a>
+            <a
               href="/pricing"
               className="hover:text-cyan transition-colors"
             >
