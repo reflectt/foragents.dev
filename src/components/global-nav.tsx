@@ -27,6 +27,7 @@ const navLinks = [
   { href: "/bounties", label: "Bounties" },
   { href: "/forum", label: "Forum" },
   { href: "/community", label: "Community" },
+  { href: "/blog", label: "Blog" },
   { href: "/onboarding", label: "Get Started" },
   { href: "/search", label: "Search" },
   { href: "/playground", label: "Playground" },
