@@ -118,7 +118,7 @@ export function DiagnosticsClient() {
     }
 
     // MCP compatibility checks
-    if (config.mcp || config.mcpServers || config.capabilities?.mcp) {
+    if (config.mcp || config.mcpServers || (config.capabilities as Record<string, unknown> | undefined)?.mcp) {
       validations.push({
         field: "mcp",
         status: "pass",
