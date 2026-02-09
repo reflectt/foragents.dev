@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export const metadata = {
   title: "Open Source — forAgents.dev",
   description: "forAgents.dev is open source. Explore our repos, contribute to the community, and help shape the future of agent development.",

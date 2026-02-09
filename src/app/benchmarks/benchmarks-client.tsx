@@ -145,6 +145,13 @@ function MetricBadge({ value, suffix = "", threshold = { good: 99, warning: 95 }
   );
 }
 
+function SortIcon({ column, sortKey, sortDirection }: { column: SortKey; sortKey: SortKey; sortDirection: SortDirection }) {
+  if (sortKey !== column) {
+    return <span className="text-muted-foreground/50 ml-1">⇅</span>;
+  }
+  return <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>;
+}
+
 export function BenchmarksClient({ data }: BenchmarksClientProps) {
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [sortKey, setSortKey] = useState<SortKey>("p50");
@@ -219,13 +226,6 @@ export function BenchmarksClient({ data }: BenchmarksClientProps) {
       setSortKey(key);
       setSortDirection(key === "successRate" || key === "requestsPerSec" ? "desc" : "asc");
     }
-  };
-
-  const SortIcon = ({ column }: { column: SortKey }) => {
-    if (sortKey !== column) {
-      return <span className="text-muted-foreground/50 ml-1">⇅</span>;
-    }
-    return <span className="ml-1">{sortDirection === "asc" ? "↑" : "↓"}</span>;
   };
 
   return (
@@ -409,43 +409,43 @@ export function BenchmarksClient({ data }: BenchmarksClientProps) {
                   className="text-left py-3 px-4 font-semibold cursor-pointer hover:bg-card/20 transition-colors"
                   onClick={() => handleSort("name")}
                 >
-                  Skill <SortIcon column="name" />
+                  Skill <SortIcon column="name" sortKey={sortKey} sortDirection={sortDirection} />
                 </th>
                 <th
                   className="text-right py-3 px-4 font-semibold cursor-pointer hover:bg-card/20 transition-colors"
                   onClick={() => handleSort("p50")}
                 >
-                  p50 (ms) <SortIcon column="p50" />
+                  p50 (ms) <SortIcon column="p50" sortKey={sortKey} sortDirection={sortDirection} />
                 </th>
                 <th
                   className="text-right py-3 px-4 font-semibold cursor-pointer hover:bg-card/20 transition-colors"
                   onClick={() => handleSort("p95")}
                 >
-                  p95 (ms) <SortIcon column="p95" />
+                  p95 (ms) <SortIcon column="p95" sortKey={sortKey} sortDirection={sortDirection} />
                 </th>
                 <th
                   className="text-right py-3 px-4 font-semibold cursor-pointer hover:bg-card/20 transition-colors"
                   onClick={() => handleSort("p99")}
                 >
-                  p99 (ms) <SortIcon column="p99" />
+                  p99 (ms) <SortIcon column="p99" sortKey={sortKey} sortDirection={sortDirection} />
                 </th>
                 <th
                   className="text-right py-3 px-4 font-semibold cursor-pointer hover:bg-card/20 transition-colors"
                   onClick={() => handleSort("requestsPerSec")}
                 >
-                  Req/Sec <SortIcon column="requestsPerSec" />
+                  Req/Sec <SortIcon column="requestsPerSec" sortKey={sortKey} sortDirection={sortDirection} />
                 </th>
                 <th
                   className="text-right py-3 px-4 font-semibold cursor-pointer hover:bg-card/20 transition-colors"
                   onClick={() => handleSort("successRate")}
                 >
-                  Success % <SortIcon column="successRate" />
+                  Success % <SortIcon column="successRate" sortKey={sortKey} sortDirection={sortDirection} />
                 </th>
                 <th
                   className="text-right py-3 px-4 font-semibold cursor-pointer hover:bg-card/20 transition-colors"
                   onClick={() => handleSort("avgMemoryMB")}
                 >
-                  Avg Mem (MB) <SortIcon column="avgMemoryMB" />
+                  Avg Mem (MB) <SortIcon column="avgMemoryMB" sortKey={sortKey} sortDirection={sortDirection} />
                 </th>
               </tr>
             </thead>
