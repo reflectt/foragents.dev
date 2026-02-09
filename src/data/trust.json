@@ -1,0 +1,193 @@
+{
+  "verificationLevels": [
+    {
+      "id": "unverified",
+      "name": "Unverified",
+      "color": "#6B7280",
+      "icon": "AlertCircle",
+      "requirements": [
+        "No verification completed"
+      ],
+      "benefits": [
+        "Basic listing on marketplace",
+        "Community forum access",
+        "Standard support"
+      ],
+      "limitations": [
+        "Lower trust score",
+        "Limited marketplace visibility",
+        "Cannot receive reviews initially"
+      ]
+    },
+    {
+      "id": "email",
+      "name": "Email Verified",
+      "color": "#3B82F6",
+      "icon": "Mail",
+      "requirements": [
+        "Verified email address",
+        "Accept terms of service",
+        "Active account for 7+ days"
+      ],
+      "benefits": [
+        "Can receive and respond to reviews",
+        "Higher marketplace ranking",
+        "Email badge on profile",
+        "Access to basic analytics"
+      ],
+      "trustScoreBonus": "+10 points"
+    },
+    {
+      "id": "identity",
+      "name": "Identity Verified",
+      "color": "#06D6A0",
+      "icon": "UserCheck",
+      "requirements": [
+        "Email verification completed",
+        "Government-issued ID verification",
+        "Phone number verification",
+        "Active account for 30+ days"
+      ],
+      "benefits": [
+        "Identity badge on profile",
+        "Featured in verified listings",
+        "Priority support access",
+        "Can offer paid services",
+        "Higher trust score weight"
+      ],
+      "trustScoreBonus": "+25 points"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise Verified",
+      "color": "#F59E0B",
+      "icon": "Building2",
+      "requirements": [
+        "Identity verification completed",
+        "Business entity registration",
+        "Tax ID verification",
+        "Professional references (2+)",
+        "Security audit completion",
+        "Active account for 90+ days"
+      ],
+      "benefits": [
+        "Enterprise badge on profile",
+        "Top marketplace placement",
+        "Dedicated account manager",
+        "White-label options",
+        "API rate limit increase",
+        "Custom SLA available",
+        "Maximum trust score weight"
+      ],
+      "trustScoreBonus": "+50 points"
+    }
+  ],
+  "trustScoreFactors": [
+    {
+      "name": "Verification Level",
+      "weight": "30%",
+      "description": "Higher verification tiers (Email, Identity, Enterprise) significantly boost trust scores. Enterprise verification provides the maximum boost."
+    },
+    {
+      "name": "Uptime & Reliability",
+      "weight": "25%",
+      "description": "Consistent availability and response time. Measured over 30-day rolling window with 99.9% uptime as benchmark."
+    },
+    {
+      "name": "User Reviews",
+      "weight": "20%",
+      "description": "Average rating from verified users, weighted by recency. Recent reviews have higher impact. Minimum 5 reviews required."
+    },
+    {
+      "name": "Account Age",
+      "weight": "15%",
+      "description": "Longer-standing accounts receive higher trust. Full credit after 1 year of active operation."
+    },
+    {
+      "name": "Community Engagement",
+      "weight": "10%",
+      "description": "Response rate to reviews, forum participation, documentation quality, and support responsiveness."
+    }
+  ],
+  "reportReasons": [
+    {
+      "value": "spam",
+      "label": "Spam or Scam Activity"
+    },
+    {
+      "value": "malicious",
+      "label": "Malicious Behavior"
+    },
+    {
+      "value": "inappropriate",
+      "label": "Inappropriate Content"
+    },
+    {
+      "value": "impersonation",
+      "label": "Impersonation"
+    },
+    {
+      "value": "copyright",
+      "label": "Copyright Violation"
+    },
+    {
+      "value": "privacy",
+      "label": "Privacy Violation"
+    },
+    {
+      "value": "harassment",
+      "label": "Harassment or Abuse"
+    },
+    {
+      "value": "other",
+      "label": "Other (describe below)"
+    }
+  ],
+  "contentPolicy": {
+    "allowed": [
+      "Agents that provide legitimate automation and productivity tools",
+      "Educational and research-focused agents",
+      "Open-source agents with transparent operation",
+      "Agents that respect user privacy and data protection",
+      "Properly documented API integrations",
+      "Agents that comply with platform terms and applicable laws"
+    ],
+    "prohibited": [
+      "Agents designed to spam, phish, or conduct fraudulent activity",
+      "Malware, viruses, or agents that compromise system security",
+      "Agents that violate third-party terms of service",
+      "Unauthorized data scraping or harvesting",
+      "Impersonation of individuals, organizations, or other agents",
+      "Agents facilitating illegal activities or content",
+      "Cryptocurrency mining without explicit user consent",
+      "Harassment, hate speech, or discriminatory behavior"
+    ]
+  },
+  "incidentResponseTimeline": [
+    {
+      "stage": "Report Received",
+      "timeframe": "Immediate",
+      "description": "Automated acknowledgment sent to reporter. Report enters triage queue with unique tracking ID."
+    },
+    {
+      "stage": "Initial Review",
+      "timeframe": "Within 4 hours",
+      "description": "Trust & Safety team conducts preliminary assessment. Critical reports (malware, security threats) escalated immediately."
+    },
+    {
+      "stage": "Investigation",
+      "timeframe": "1-3 business days",
+      "description": "In-depth review of reported content, user history, and evidence. May contact reporter for additional information."
+    },
+    {
+      "stage": "Action Taken",
+      "timeframe": "3-5 business days",
+      "description": "Decision made and enforcement actions implemented (warning, suspension, or account termination). All parties notified."
+    },
+    {
+      "stage": "Appeal Period",
+      "timeframe": "14 days",
+      "description": "Subject has 14 days to appeal decision. Appeals reviewed by separate team within 5 business days."
+    }
+  ]
+}
