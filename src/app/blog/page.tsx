@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBlogPosts, getBlogCategories } from '@/lib/data';
 import { BlogGrid } from '@/components/blog/blog-grid';

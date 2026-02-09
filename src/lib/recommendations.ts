@@ -3,7 +3,7 @@ import "server-only";
 import { getSkills, type Skill } from "@/lib/data";
 import { readCanaryScorecards } from "@/lib/server/canaryScorecardStore";
 
-import { NEED_CATEGORIES, type NeedCategory, type UserType, isNeedCategory } from "@/lib/recommendationsShared";
+import { type NeedCategory, type UserType, isNeedCategory } from "@/lib/recommendationsShared";
 
 export type Recommendation = {
   skill: Skill;

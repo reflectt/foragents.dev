@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { getSkills } from "@/lib/data";
