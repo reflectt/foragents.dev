@@ -129,6 +129,14 @@ export function NetworkClient({ agents, connections }: NetworkClientProps) {
     );
   }, [filteredAgents, connections]);
 
+  // If the selected agent is filtered out, treat it as unselected.
+  const effectiveSelectedAgent = useMemo(() => {
+    if (!selectedAgent) return null;
+    return filteredAgents.some((a) => a.id === selectedAgent.id)
+      ? selectedAgent
+      : null;
+  }, [filteredAgents, selectedAgent]);
+
   // Calculate stats
   const stats = useMemo(() => {
     const totalAgents = filteredAgents.length;
@@ -367,7 +375,8 @@ export function NetworkClient({ agents, connections }: NetworkClientProps) {
                     const style = getConnectionStyle(conn.type);
                     const isHighlighted =
                       effectiveSelectedAgent &&
-                      (conn.source === effectiveSelectedAgent.id || conn.target === effectiveSelectedAgent.id);
+                      (conn.source === effectiveSelectedAgent.id ||
+                        conn.target === effectiveSelectedAgent.id);
 
                     return (
                       <line
