@@ -16,6 +16,7 @@ const navLinks = [
   { href: "/getting-started", label: "Get Started" },
   { href: "/search", label: "Search" },
   { href: "/guides", label: "Docs" },
+  { href: "/digest", label: "Digest" },
   { href: "/changelog", label: "Changelog" },
   { href: "/whats-new", label: "What's New" },
 ];
