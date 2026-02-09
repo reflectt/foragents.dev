@@ -1,0 +1,472 @@
+[
+  {
+    "id": "data-pipeline",
+    "name": "Data Pipeline Automation",
+    "description": "Extract data from multiple sources, transform it, and load into a database",
+    "category": "Data",
+    "steps": [
+      {
+        "id": "step-1",
+        "name": "API Trigger",
+        "type": "trigger",
+        "description": "Watch for new data via webhook or scheduled poll",
+        "config": {
+          "trigger_type": "webhook",
+          "endpoint": "/webhook/data-ingest",
+          "schedule": "*/15 * * * *"
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Extract Data",
+        "type": "action",
+        "description": "Fetch data from REST APIs or databases",
+        "config": {
+          "source_type": "rest_api",
+          "url": "https://api.example.com/data",
+          "auth_header": "Bearer ${API_TOKEN}",
+          "method": "GET"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Validate Schema",
+        "type": "condition",
+        "description": "Check if data matches expected schema",
+        "config": {
+          "schema": {
+            "type": "object",
+            "required": ["id", "timestamp", "value"]
+          },
+          "on_success": "step-4",
+          "on_failure": "step-error"
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Transform Data",
+        "type": "transform",
+        "description": "Clean, normalize, and enrich data",
+        "config": {
+          "operations": [
+            "remove_nulls",
+            "normalize_timestamps",
+            "enrich_from_lookup"
+          ],
+          "output_format": "json"
+        }
+      },
+      {
+        "id": "step-5",
+        "name": "Load to Database",
+        "type": "action",
+        "description": "Insert transformed data into target database",
+        "config": {
+          "db_type": "postgresql",
+          "connection_string": "${DATABASE_URL}",
+          "table": "processed_data",
+          "insert_mode": "upsert"
+        }
+      },
+      {
+        "id": "step-6",
+        "name": "Success Notification",
+        "type": "output",
+        "description": "Send notification on successful completion",
+        "config": {
+          "channel": "slack",
+          "message": "Data pipeline completed: ${record_count} records processed",
+          "webhook_url": "${SLACK_WEBHOOK}"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ci-cd-workflow",
+    "name": "CI/CD Pipeline",
+    "description": "Automated build, test, and deployment workflow",
+    "category": "DevOps",
+    "steps": [
+      {
+        "id": "step-1",
+        "name": "Git Push Trigger",
+        "type": "trigger",
+        "description": "Trigger on git push to main branch",
+        "config": {
+          "trigger_type": "git_webhook",
+          "branch": "main",
+          "event": "push"
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Run Tests",
+        "type": "action",
+        "description": "Execute test suite",
+        "config": {
+          "command": "npm test",
+          "timeout": 300,
+          "working_dir": "/app"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Check Test Results",
+        "type": "condition",
+        "description": "Proceed only if tests pass",
+        "config": {
+          "condition": "exit_code == 0",
+          "on_success": "step-4",
+          "on_failure": "step-error"
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Build Docker Image",
+        "type": "action",
+        "description": "Build and tag container image",
+        "config": {
+          "command": "docker build -t ${IMAGE_NAME}:${GIT_SHA} .",
+          "cache": true
+        }
+      },
+      {
+        "id": "step-5",
+        "name": "Push to Registry",
+        "type": "action",
+        "description": "Push image to container registry",
+        "config": {
+          "registry": "ghcr.io",
+          "image": "${IMAGE_NAME}:${GIT_SHA}",
+          "auth_token": "${REGISTRY_TOKEN}"
+        }
+      },
+      {
+        "id": "step-6",
+        "name": "Deploy to Production",
+        "type": "action",
+        "description": "Update production deployment",
+        "config": {
+          "provider": "kubernetes",
+          "namespace": "production",
+          "deployment": "api-server",
+          "image": "${IMAGE_NAME}:${GIT_SHA}"
+        }
+      },
+      {
+        "id": "step-7",
+        "name": "Deployment Status",
+        "type": "output",
+        "description": "Report deployment status",
+        "config": {
+          "channel": "discord",
+          "message": "✅ Deployed ${GIT_SHA} to production",
+          "webhook_url": "${DISCORD_WEBHOOK}"
+        }
+      }
+    ]
+  },
+  {
+    "id": "monitoring-alerts",
+    "name": "Monitoring & Alerts",
+    "description": "Monitor system metrics and trigger alerts on anomalies",
+    "category": "Operations",
+    "steps": [
+      {
+        "id": "step-1",
+        "name": "Scheduled Check",
+        "type": "trigger",
+        "description": "Run every 5 minutes",
+        "config": {
+          "trigger_type": "schedule",
+          "cron": "*/5 * * * *"
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Fetch Metrics",
+        "type": "action",
+        "description": "Query metrics from monitoring system",
+        "config": {
+          "source": "prometheus",
+          "queries": [
+            "up{job='api'}",
+            "http_requests_total",
+            "http_request_duration_seconds"
+          ],
+          "endpoint": "${PROMETHEUS_URL}"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Analyze Metrics",
+        "type": "transform",
+        "description": "Calculate anomaly scores and trends",
+        "config": {
+          "operations": [
+            "calculate_moving_average",
+            "detect_anomalies",
+            "calculate_error_rate"
+          ],
+          "threshold_stddev": 2
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Check Thresholds",
+        "type": "condition",
+        "description": "Determine if alert is needed",
+        "config": {
+          "conditions": [
+            "error_rate > 0.05",
+            "response_time_p95 > 500",
+            "uptime < 0.99"
+          ],
+          "on_success": "step-5",
+          "on_failure": "step-6"
+        }
+      },
+      {
+        "id": "step-5",
+        "name": "Create Incident",
+        "type": "action",
+        "description": "Create incident in incident management system",
+        "config": {
+          "system": "pagerduty",
+          "severity": "high",
+          "service_id": "${PAGERDUTY_SERVICE_ID}",
+          "api_key": "${PAGERDUTY_API_KEY}"
+        }
+      },
+      {
+        "id": "step-6",
+        "name": "Log Metrics",
+        "type": "output",
+        "description": "Log metrics to database",
+        "config": {
+          "destination": "timeseries_db",
+          "retention": "30d",
+          "connection": "${TIMESERIES_URL}"
+        }
+      },
+      {
+        "id": "step-7",
+        "name": "Status Report",
+        "type": "output",
+        "description": "Post status summary",
+        "config": {
+          "channel": "status_page",
+          "format": "json",
+          "include_graphs": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "content-generation",
+    "name": "AI Content Generation",
+    "description": "Generate, review, and publish content with AI assistance",
+    "category": "Marketing",
+    "steps": [
+      {
+        "id": "step-1",
+        "name": "Content Request",
+        "type": "trigger",
+        "description": "Receive content brief via form or API",
+        "config": {
+          "trigger_type": "webhook",
+          "endpoint": "/webhook/content-request",
+          "required_fields": ["topic", "target_audience", "tone"]
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Research Topic",
+        "type": "action",
+        "description": "Gather background information and sources",
+        "config": {
+          "search_engine": "brave",
+          "num_results": 10,
+          "api_key": "${SEARCH_API_KEY}"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Generate Draft",
+        "type": "action",
+        "description": "Use LLM to create content draft",
+        "config": {
+          "model": "gpt-4",
+          "max_tokens": 2000,
+          "temperature": 0.7,
+          "system_prompt": "You are a professional content writer creating ${tone} content for ${target_audience}"
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Quality Check",
+        "type": "condition",
+        "description": "Validate content meets quality standards",
+        "config": {
+          "checks": [
+            "word_count > 500",
+            "readability_score > 60",
+            "contains_keywords"
+          ],
+          "on_success": "step-5",
+          "on_failure": "step-3"
+        }
+      },
+      {
+        "id": "step-5",
+        "name": "Generate Images",
+        "type": "action",
+        "description": "Create featured image and graphics",
+        "config": {
+          "service": "dall-e-3",
+          "prompt": "Professional illustration for: ${topic}",
+          "size": "1024x1024",
+          "api_key": "${OPENAI_API_KEY}"
+        }
+      },
+      {
+        "id": "step-6",
+        "name": "Format for Platform",
+        "type": "transform",
+        "description": "Convert to target platform format",
+        "config": {
+          "target_platform": "markdown",
+          "add_metadata": true,
+          "optimize_images": true
+        }
+      },
+      {
+        "id": "step-7",
+        "name": "Publish Content",
+        "type": "output",
+        "description": "Post to CMS or publishing platform",
+        "config": {
+          "platform": "wordpress",
+          "status": "draft",
+          "api_url": "${WORDPRESS_API_URL}",
+          "api_key": "${WORDPRESS_API_KEY}"
+        }
+      }
+    ]
+  },
+  {
+    "id": "user-onboarding",
+    "name": "User Onboarding Flow",
+    "description": "Automated multi-step user onboarding with personalized communication",
+    "category": "Customer Success",
+    "steps": [
+      {
+        "id": "step-1",
+        "name": "New User Signup",
+        "type": "trigger",
+        "description": "Triggered when new user completes registration",
+        "config": {
+          "trigger_type": "database_event",
+          "table": "users",
+          "event": "INSERT"
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Create User Profile",
+        "type": "action",
+        "description": "Initialize user profile and preferences",
+        "config": {
+          "database": "postgresql",
+          "operations": [
+            "create_profile",
+            "set_default_preferences",
+            "generate_api_key"
+          ],
+          "connection": "${DATABASE_URL}"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Send Welcome Email",
+        "type": "action",
+        "description": "Send personalized welcome email",
+        "config": {
+          "email_service": "sendgrid",
+          "template_id": "welcome-email-v2",
+          "personalization": {
+            "first_name": "${user.first_name}",
+            "activation_link": "${activation_url}"
+          },
+          "api_key": "${SENDGRID_API_KEY}"
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Wait for Activation",
+        "type": "condition",
+        "description": "Check if user activated account within 24h",
+        "config": {
+          "wait_timeout": 86400,
+          "check_field": "user.activated",
+          "on_success": "step-5",
+          "on_failure": "step-reminder"
+        }
+      },
+      {
+        "id": "step-reminder",
+        "name": "Send Reminder",
+        "type": "action",
+        "description": "Send activation reminder",
+        "config": {
+          "email_service": "sendgrid",
+          "template_id": "activation-reminder",
+          "delay": 3600
+        }
+      },
+      {
+        "id": "step-5",
+        "name": "Assign Onboarding Tasks",
+        "type": "transform",
+        "description": "Generate personalized onboarding checklist",
+        "config": {
+          "tasks": [
+            "complete_profile",
+            "connect_integration",
+            "create_first_project",
+            "invite_team_member"
+          ],
+          "assign_to": "${user.id}"
+        }
+      },
+      {
+        "id": "step-6",
+        "name": "Schedule Check-in",
+        "type": "action",
+        "description": "Create task for success team to follow up",
+        "config": {
+          "crm": "hubspot",
+          "task_type": "follow_up_call",
+          "due_date": "+7d",
+          "owner": "success_team",
+          "api_key": "${HUBSPOT_API_KEY}"
+        }
+      },
+      {
+        "id": "step-7",
+        "name": "Update Analytics",
+        "type": "output",
+        "description": "Track onboarding completion",
+        "config": {
+          "analytics_service": "segment",
+          "event": "onboarding_completed",
+          "properties": {
+            "user_id": "${user.id}",
+            "completion_time_hours": "${elapsed_hours}"
+          },
+          "write_key": "${SEGMENT_WRITE_KEY}"
+        }
+      }
+    ]
+  }
+]
