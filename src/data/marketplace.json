@@ -2,145 +2,586 @@
   {
     "id": "codesmith-ai",
     "name": "CodeSmith AI",
-    "category": "coding",
+    "category": "DevOps",
     "description": "Full-stack development agent specializing in React, Node.js, and Python. Writes clean, tested code with comprehensive documentation.",
     "capabilities": ["Code generation", "Code review", "Testing", "Documentation", "Refactoring"],
-    "pricing": "free",
+    "pricing": "Free",
     "avatar": "👨‍💻",
     "rating": 4.8,
+    "reviewCount": 342,
     "deployments": 12450,
-    "verified": true
+    "verified": true,
+    "featured": true,
+    "creator": "DevTools Inc.",
+    "createdAt": "2025-11-15",
+    "reviews": [
+      {
+        "id": "r1",
+        "author": "Sarah Chen",
+        "rating": 5,
+        "text": "Absolutely incredible! CodeSmith saved our team dozens of hours with its clean code generation and thorough testing. The React components it creates are production-ready.",
+        "date": "2026-02-05"
+      },
+      {
+        "id": "r2",
+        "author": "Mike Rodriguez",
+        "rating": 5,
+        "text": "Best coding agent I've used. The documentation it generates is better than what most developers write manually. Highly recommend!",
+        "date": "2026-02-01"
+      },
+      {
+        "id": "r3",
+        "author": "Emily Zhang",
+        "rating": 4,
+        "text": "Great for most tasks, occasionally needs guidance on complex architectural decisions. But for day-to-day coding, it's fantastic.",
+        "date": "2026-01-28"
+      }
+    ]
   },
   {
     "id": "datacraft-pro",
     "name": "DataCraft Pro",
-    "category": "data",
+    "category": "Data",
     "description": "Advanced data analysis and visualization agent. Handles ETL pipelines, ML model training, and statistical analysis.",
     "capabilities": ["Data analysis", "ETL pipelines", "ML training", "Data visualization", "Statistical modeling"],
-    "pricing": "pro",
+    "pricing": "Premium",
     "avatar": "📊",
     "rating": 4.9,
+    "reviewCount": 567,
     "deployments": 8920,
-    "verified": true
+    "verified": true,
+    "featured": true,
+    "creator": "DataWorks Labs",
+    "createdAt": "2025-10-22",
+    "reviews": [
+      {
+        "id": "r4",
+        "author": "David Park",
+        "rating": 5,
+        "text": "DataCraft transformed our analytics workflow. The ML model training is incredibly efficient, and the visualizations are publication-quality.",
+        "date": "2026-02-07"
+      },
+      {
+        "id": "r5",
+        "author": "Jennifer Liu",
+        "rating": 5,
+        "text": "Worth every penny! Our data pipeline went from taking hours to set up to being deployed in minutes. The statistical analysis features are phenomenal.",
+        "date": "2026-02-03"
+      },
+      {
+        "id": "r6",
+        "author": "Alex Thompson",
+        "rating": 4,
+        "text": "Excellent tool for data science teams. Would love to see more integration options with cloud data warehouses.",
+        "date": "2026-01-30"
+      }
+    ]
   },
   {
     "id": "writewise",
     "name": "WriteWise",
-    "category": "writing",
+    "category": "Communication",
     "description": "Professional content creation agent for blogs, technical docs, and marketing copy. Adapts to any brand voice.",
     "capabilities": ["Blog writing", "Technical docs", "SEO optimization", "Copywriting", "Editing"],
-    "pricing": "free",
+    "pricing": "Free",
     "avatar": "✍️",
     "rating": 4.7,
+    "reviewCount": 823,
     "deployments": 15670,
-    "verified": true
+    "verified": true,
+    "featured": false,
+    "creator": "ContentPro Studios",
+    "createdAt": "2025-12-01",
+    "reviews": [
+      {
+        "id": "r7",
+        "author": "Maria Garcia",
+        "rating": 5,
+        "text": "WriteWise has become an essential part of our content marketing stack. The SEO optimization is spot-on, and it perfectly captures our brand voice.",
+        "date": "2026-02-06"
+      },
+      {
+        "id": "r8",
+        "author": "Tom Anderson",
+        "rating": 4,
+        "text": "Very good for blog posts and marketing content. Sometimes needs a bit of editing for highly technical documentation, but overall excellent.",
+        "date": "2026-01-25"
+      },
+      {
+        "id": "r9",
+        "author": "Lisa Martinez",
+        "rating": 5,
+        "text": "Can't believe this is free! We've created hundreds of blog posts and the quality is consistently high. Our organic traffic has doubled.",
+        "date": "2026-01-20"
+      }
+    ]
   },
   {
     "id": "opscommander",
     "name": "OpsCommander",
-    "category": "ops",
+    "category": "DevOps",
     "description": "DevOps automation specialist managing CI/CD pipelines, infrastructure as code, and monitoring systems.",
     "capabilities": ["CI/CD setup", "Infrastructure automation", "Monitoring", "Incident response", "Security scanning"],
-    "pricing": "enterprise",
+    "pricing": "Premium",
     "avatar": "⚙️",
     "rating": 4.9,
+    "reviewCount": 445,
     "deployments": 3420,
-    "verified": true
+    "verified": true,
+    "featured": true,
+    "creator": "CloudOps Solutions",
+    "createdAt": "2025-09-30",
+    "reviews": [
+      {
+        "id": "r10",
+        "author": "Kevin Wu",
+        "rating": 5,
+        "text": "OpsCommander automated our entire deployment pipeline. What used to take our team days now happens in hours with better quality and fewer errors.",
+        "date": "2026-02-08"
+      },
+      {
+        "id": "r11",
+        "author": "Rachel Green",
+        "rating": 5,
+        "text": "The incident response capabilities are incredible. It detected and resolved a critical issue before it impacted users. Game changer!",
+        "date": "2026-02-04"
+      },
+      {
+        "id": "r12",
+        "author": "James Wilson",
+        "rating": 4,
+        "text": "Excellent DevOps agent. Setup was a bit complex for our legacy systems, but the support team was very helpful.",
+        "date": "2026-01-29"
+      }
+    ]
   },
   {
     "id": "debugger-deluxe",
     "name": "Debugger Deluxe",
-    "category": "coding",
+    "category": "DevOps",
     "description": "Expert debugging agent that identifies and fixes bugs across multiple languages. Analyzes stack traces and suggests optimal solutions.",
     "capabilities": ["Bug detection", "Stack trace analysis", "Performance optimization", "Code profiling", "Security audits"],
-    "pricing": "pro",
+    "pricing": "Premium",
     "avatar": "🐛",
     "rating": 4.6,
+    "reviewCount": 289,
     "deployments": 6780,
-    "verified": false
+    "verified": false,
+    "featured": false,
+    "creator": "BugSquad Labs",
+    "createdAt": "2025-11-20",
+    "reviews": [
+      {
+        "id": "r13",
+        "author": "Chris Taylor",
+        "rating": 5,
+        "text": "Found a memory leak we'd been hunting for weeks in just minutes. The performance optimization suggestions were spot-on.",
+        "date": "2026-02-02"
+      },
+      {
+        "id": "r14",
+        "author": "Nina Patel",
+        "rating": 4,
+        "text": "Very helpful for debugging complex issues. The stack trace analysis is excellent, though occasionally suggests overly complex fixes.",
+        "date": "2026-01-27"
+      },
+      {
+        "id": "r15",
+        "author": "Robert Kim",
+        "rating": 5,
+        "text": "Saved us countless hours of debugging. The security audit feature caught vulnerabilities we completely missed in code review.",
+        "date": "2026-01-22"
+      }
+    ]
   },
   {
     "id": "content-curator",
     "name": "Content Curator",
-    "category": "writing",
+    "category": "Communication",
     "description": "Social media and content marketing agent. Creates engaging posts, schedules content, and analyzes performance metrics.",
     "capabilities": ["Social media posts", "Content calendar", "Engagement analytics", "Hashtag strategy", "Community management"],
-    "pricing": "pro",
+    "pricing": "Premium",
     "avatar": "📱",
     "rating": 4.5,
+    "reviewCount": 512,
     "deployments": 9340,
-    "verified": true
+    "verified": true,
+    "featured": false,
+    "creator": "SocialBoost Inc.",
+    "createdAt": "2025-10-15",
+    "reviews": [
+      {
+        "id": "r16",
+        "author": "Amanda White",
+        "rating": 5,
+        "text": "Our social media engagement tripled after deploying Content Curator. The hashtag strategy feature is pure gold!",
+        "date": "2026-02-06"
+      },
+      {
+        "id": "r17",
+        "author": "Mark Johnson",
+        "rating": 4,
+        "text": "Great for maintaining a consistent social media presence. The content calendar feature helps us stay organized.",
+        "date": "2026-01-31"
+      },
+      {
+        "id": "r18",
+        "author": "Sophie Brown",
+        "rating": 4,
+        "text": "Solid agent for social media management. Analytics could be more detailed, but overall very useful.",
+        "date": "2026-01-24"
+      }
+    ]
   },
   {
     "id": "insight-engine",
     "name": "Insight Engine",
-    "category": "data",
+    "category": "Data",
     "description": "Business intelligence agent providing real-time dashboards, predictive analytics, and automated reporting.",
     "capabilities": ["BI dashboards", "Predictive analytics", "Automated reports", "KPI tracking", "Data mining"],
-    "pricing": "enterprise",
+    "pricing": "Premium",
     "avatar": "💡",
     "rating": 4.8,
+    "reviewCount": 378,
     "deployments": 2150,
-    "verified": true
+    "verified": true,
+    "featured": false,
+    "creator": "Analytics Pro",
+    "createdAt": "2025-09-12",
+    "reviews": [
+      {
+        "id": "r19",
+        "author": "Daniel Lee",
+        "rating": 5,
+        "text": "The predictive analytics saved our Q4. We identified trends weeks before they became obvious. Incredible ROI.",
+        "date": "2026-02-07"
+      },
+      {
+        "id": "r20",
+        "author": "Emma Davis",
+        "rating": 5,
+        "text": "Real-time dashboards are beautifully designed and incredibly informative. Our executives love the automated reports.",
+        "date": "2026-02-01"
+      },
+      {
+        "id": "r21",
+        "author": "Carlos Mendez",
+        "rating": 4,
+        "text": "Excellent BI tool. Would be perfect with more customization options for dashboards.",
+        "date": "2026-01-26"
+      }
+    ]
   },
   {
     "id": "api-architect",
     "name": "API Architect",
-    "category": "coding",
+    "category": "DevOps",
     "description": "REST and GraphQL API design specialist. Creates scalable, secure APIs with comprehensive documentation and testing suites.",
     "capabilities": ["API design", "OpenAPI specs", "GraphQL schemas", "API testing", "Security implementation"],
-    "pricing": "free",
+    "pricing": "Free",
     "avatar": "🔌",
     "rating": 4.7,
+    "reviewCount": 621,
     "deployments": 11230,
-    "verified": false
+    "verified": false,
+    "featured": false,
+    "creator": "APIWorks",
+    "createdAt": "2025-12-10",
+    "reviews": [
+      {
+        "id": "r22",
+        "author": "Brian Foster",
+        "rating": 5,
+        "text": "API Architect designed our entire microservices architecture. The OpenAPI specs are pristine and the tests are comprehensive.",
+        "date": "2026-02-05"
+      },
+      {
+        "id": "r23",
+        "author": "Yuki Tanaka",
+        "rating": 4,
+        "text": "Very good for API development. The GraphQL schema generation is especially impressive. Documentation could be more detailed.",
+        "date": "2026-01-28"
+      },
+      {
+        "id": "r24",
+        "author": "Laura Peterson",
+        "rating": 5,
+        "text": "Can't believe this is free! Our API development speed increased by 3x. The security implementation follows best practices.",
+        "date": "2026-01-23"
+      }
+    ]
   },
   {
     "id": "cloudops-sentinel",
     "name": "CloudOps Sentinel",
-    "category": "ops",
+    "category": "DevOps",
     "description": "Multi-cloud management agent optimizing AWS, Azure, and GCP deployments. Handles cost optimization and security compliance.",
     "capabilities": ["Multi-cloud management", "Cost optimization", "Security compliance", "Resource scaling", "Disaster recovery"],
-    "pricing": "enterprise",
+    "pricing": "Premium",
     "avatar": "☁️",
     "rating": 4.9,
+    "reviewCount": 234,
     "deployments": 1890,
-    "verified": true
+    "verified": true,
+    "featured": false,
+    "creator": "CloudMasters",
+    "createdAt": "2025-08-20",
+    "reviews": [
+      {
+        "id": "r25",
+        "author": "Michael Chang",
+        "rating": 5,
+        "text": "Cut our cloud costs by 40% in the first month! The cost optimization recommendations are backed by solid data and easy to implement.",
+        "date": "2026-02-08"
+      },
+      {
+        "id": "r26",
+        "author": "Sarah Johnson",
+        "rating": 5,
+        "text": "Managing multiple cloud providers was a nightmare before CloudOps Sentinel. Now it's seamless. Security compliance features are top-notch.",
+        "date": "2026-02-03"
+      },
+      {
+        "id": "r27",
+        "author": "Ahmed Hassan",
+        "rating": 4,
+        "text": "Excellent multi-cloud tool. The disaster recovery planning could be more automated, but overall very powerful.",
+        "date": "2026-01-30"
+      }
+    ]
   },
   {
     "id": "doc-master",
     "name": "Doc Master",
-    "category": "writing",
+    "category": "Communication",
     "description": "Technical documentation specialist creating API docs, user guides, and knowledge bases. Supports multiple formats.",
     "capabilities": ["API documentation", "User guides", "Knowledge bases", "Video scripts", "Tutorial creation"],
-    "pricing": "pro",
+    "pricing": "Premium",
     "avatar": "📚",
     "rating": 4.8,
+    "reviewCount": 456,
     "deployments": 7560,
-    "verified": true
+    "verified": true,
+    "featured": false,
+    "creator": "DocTech Solutions",
+    "createdAt": "2025-11-05",
+    "reviews": [
+      {
+        "id": "r28",
+        "author": "Patricia Moore",
+        "rating": 5,
+        "text": "Our documentation was always out of date until we deployed Doc Master. It keeps everything synchronized and the quality is exceptional.",
+        "date": "2026-02-07"
+      },
+      {
+        "id": "r29",
+        "author": "Ryan Collins",
+        "rating": 5,
+        "text": "The tutorial creation feature is amazing. Our user onboarding completion rate increased by 60%!",
+        "date": "2026-02-02"
+      },
+      {
+        "id": "r30",
+        "author": "Melissa Wright",
+        "rating": 4,
+        "text": "Great documentation agent. The API docs are comprehensive. Would love to see more template options.",
+        "date": "2026-01-27"
+      }
+    ]
   },
   {
     "id": "data-pipeline-pro",
     "name": "Data Pipeline Pro",
-    "category": "data",
+    "category": "Data",
     "description": "Real-time data streaming and batch processing agent. Builds resilient pipelines with Apache Kafka, Spark, and Airflow.",
     "capabilities": ["Stream processing", "Batch processing", "Data quality", "Pipeline monitoring", "Schema evolution"],
-    "pricing": "enterprise",
+    "pricing": "Premium",
     "avatar": "🔄",
     "rating": 4.7,
+    "reviewCount": 198,
     "deployments": 1420,
-    "verified": false
+    "verified": false,
+    "featured": false,
+    "creator": "DataStream Inc.",
+    "createdAt": "2025-10-08",
+    "reviews": [
+      {
+        "id": "r31",
+        "author": "Steven Park",
+        "rating": 5,
+        "text": "Built our entire real-time analytics pipeline in days instead of months. The data quality checks are comprehensive.",
+        "date": "2026-02-04"
+      },
+      {
+        "id": "r32",
+        "author": "Julia Roberts",
+        "rating": 4,
+        "text": "Solid data pipeline solution. The schema evolution handling is particularly good. Documentation could be improved.",
+        "date": "2026-01-29"
+      },
+      {
+        "id": "r33",
+        "author": "Hassan Ali",
+        "rating": 5,
+        "text": "The pipeline monitoring features give us complete visibility. We catch data quality issues before they impact downstream systems.",
+        "date": "2026-01-25"
+      }
+    ]
   },
   {
     "id": "monitor-maestro",
     "name": "Monitor Maestro",
-    "category": "ops",
+    "category": "DevOps",
     "description": "Comprehensive monitoring and alerting agent. Integrates with Prometheus, Grafana, and PagerDuty for 24/7 observability.",
     "capabilities": ["System monitoring", "Alert management", "Log aggregation", "Performance metrics", "SLA tracking"],
-    "pricing": "pro",
+    "pricing": "Premium",
     "avatar": "📡",
     "rating": 4.6,
+    "reviewCount": 334,
     "deployments": 5890,
-    "verified": true
+    "verified": true,
+    "featured": false,
+    "creator": "MonitorWorks",
+    "createdAt": "2025-09-25",
+    "reviews": [
+      {
+        "id": "r34",
+        "author": "Jessica Turner",
+        "rating": 5,
+        "text": "Monitor Maestro caught a critical issue at 3 AM and auto-resolved it before anyone noticed. Worth every penny!",
+        "date": "2026-02-06"
+      },
+      {
+        "id": "r35",
+        "author": "Andrew Miller",
+        "rating": 4,
+        "text": "Excellent monitoring solution. The alert management is very intelligent - no more false positives waking us up.",
+        "date": "2026-02-01"
+      },
+      {
+        "id": "r36",
+        "author": "Monica Singh",
+        "rating": 5,
+        "text": "The SLA tracking and reporting features are fantastic. Our uptime improved from 99.5% to 99.95%.",
+        "date": "2026-01-28"
+      }
+    ]
+  },
+  {
+    "id": "security-sentinel",
+    "name": "Security Sentinel",
+    "category": "Security",
+    "description": "Advanced security monitoring and threat detection agent. Performs continuous vulnerability scanning and compliance audits.",
+    "capabilities": ["Vulnerability scanning", "Threat detection", "Compliance audits", "Penetration testing", "Security reporting"],
+    "pricing": "Premium",
+    "avatar": "🛡️",
+    "rating": 4.9,
+    "reviewCount": 412,
+    "deployments": 4230,
+    "verified": true,
+    "featured": false,
+    "creator": "SecureOps Labs",
+    "createdAt": "2025-08-15",
+    "reviews": [
+      {
+        "id": "r37",
+        "author": "Marcus Chen",
+        "rating": 5,
+        "text": "Security Sentinel identified critical vulnerabilities we completely missed. The continuous monitoring gives us peace of mind.",
+        "date": "2026-02-08"
+      },
+      {
+        "id": "r38",
+        "author": "Diana Lopez",
+        "rating": 5,
+        "text": "Passed our SOC 2 audit with flying colors thanks to Security Sentinel. The compliance reports are comprehensive and well-documented.",
+        "date": "2026-02-04"
+      },
+      {
+        "id": "r39",
+        "author": "Thomas Anderson",
+        "rating": 4,
+        "text": "Excellent security agent. The penetration testing features are very thorough. Integration with our existing tools was smooth.",
+        "date": "2026-01-31"
+      }
+    ]
+  },
+  {
+    "id": "task-automator",
+    "name": "Task Automator",
+    "category": "Productivity",
+    "description": "Workflow automation agent that handles repetitive tasks, integrates with 100+ apps, and creates custom automations.",
+    "capabilities": ["Workflow automation", "App integrations", "Task scheduling", "Custom scripts", "Process optimization"],
+    "pricing": "Free",
+    "avatar": "🤖",
+    "rating": 4.7,
+    "reviewCount": 745,
+    "deployments": 18950,
+    "verified": true,
+    "featured": false,
+    "creator": "AutoFlow Technologies",
+    "createdAt": "2025-12-20",
+    "reviews": [
+      {
+        "id": "r40",
+        "author": "Linda Johnson",
+        "rating": 5,
+        "text": "Automated hundreds of repetitive tasks across our organization. Saved each team member 5+ hours per week!",
+        "date": "2026-02-07"
+      },
+      {
+        "id": "r41",
+        "author": "Kevin Brown",
+        "rating": 5,
+        "text": "The app integrations are seamless. Connected our CRM, email, and project management tools in minutes.",
+        "date": "2026-02-03"
+      },
+      {
+        "id": "r42",
+        "author": "Amy Zhang",
+        "rating": 4,
+        "text": "Great automation tool. The custom scripts feature is powerful once you learn it. Free tier is very generous!",
+        "date": "2026-01-30"
+      }
+    ]
+  },
+  {
+    "id": "meeting-assistant",
+    "name": "Meeting Assistant",
+    "category": "Productivity",
+    "description": "Smart meeting agent that transcribes, summarizes, and extracts action items. Integrates with Zoom, Teams, and Google Meet.",
+    "capabilities": ["Meeting transcription", "Action item extraction", "Smart summaries", "Follow-up emails", "Meeting analytics"],
+    "pricing": "Premium",
+    "avatar": "🎯",
+    "rating": 4.8,
+    "reviewCount": 689,
+    "deployments": 13420,
+    "verified": true,
+    "featured": false,
+    "creator": "MeetSmart Inc.",
+    "createdAt": "2025-11-28",
+    "reviews": [
+      {
+        "id": "r43",
+        "author": "Robert Garcia",
+        "rating": 5,
+        "text": "Never miss action items again! The summaries are incredibly accurate and the follow-up emails save so much time.",
+        "date": "2026-02-08"
+      },
+      {
+        "id": "r44",
+        "author": "Elizabeth Taylor",
+        "rating": 5,
+        "text": "Our team productivity skyrocketed. The meeting analytics showed we were wasting 30% of meeting time - now we're laser-focused.",
+        "date": "2026-02-05"
+      },
+      {
+        "id": "r45",
+        "author": "Jason Lee",
+        "rating": 4,
+        "text": "Excellent meeting tool. Transcription quality is very high. Would love to see more customization for different meeting types.",
+        "date": "2026-02-01"
+      }
+    ]
   }
 ]
