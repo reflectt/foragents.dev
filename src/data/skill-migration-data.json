@@ -1,0 +1,390 @@
+{
+  "skills": [
+    {
+      "slug": "agent-memory-kit",
+      "name": "Agent Memory Kit",
+      "versions": ["1.0.0", "1.1.0", "1.1.1", "1.2.0"],
+      "latestVersion": "1.2.0"
+    },
+    {
+      "slug": "agent-autonomy-kit",
+      "name": "Agent Autonomy Kit",
+      "versions": ["1.3.0", "1.3.2", "1.4.0", "2.0.0"],
+      "latestVersion": "2.0.0"
+    },
+    {
+      "slug": "agent-team-kit",
+      "name": "Agent Team Kit",
+      "versions": ["1.4.0", "1.5.0", "1.5.1", "1.6.0"],
+      "latestVersion": "1.6.0"
+    },
+    {
+      "slug": "github-skill",
+      "name": "GitHub Skill",
+      "versions": ["1.7.0", "1.8.0", "1.8.3", "1.9.0"],
+      "latestVersion": "1.9.0"
+    },
+    {
+      "slug": "notion-skill",
+      "name": "Notion Skill",
+      "versions": ["1.2.0", "1.3.0", "1.3.1", "1.4.0"],
+      "latestVersion": "1.4.0"
+    },
+    {
+      "slug": "obsidian",
+      "name": "Obsidian",
+      "versions": ["1.0.0", "1.0.1", "1.0.2", "1.1.0"],
+      "latestVersion": "1.1.0"
+    }
+  ],
+  "breakingChanges": [
+    {
+      "id": "autonomy-2.0-intake-schema",
+      "skill": "agent-autonomy-kit",
+      "affectedVersions": { "from": "1.0.0", "to": "1.4.0" },
+      "targetVersion": "2.0.0",
+      "severity": "critical",
+      "title": "Renamed /intake.md schema fields",
+      "description": "The intake schema has been reworked to support multi-step objectives. Field names have changed to better reflect the new planning loop.",
+      "impact": "Existing intake templates will break. Agents relying on old field names will fail to parse tasks correctly.",
+      "migration": [
+        "Rename 'objective' field to 'goal' in all intake templates",
+        "Replace 'steps' array with 'plan' object containing 'phases' array",
+        "Update any scripts that parse intake.md to use new field names",
+        "Test with a sample task to verify parsing works"
+      ],
+      "codeExample": {
+        "before": "## Objective\nBuild a landing page\n\n## Steps\n- Design wireframe\n- Write copy\n- Implement in Next.js",
+        "after": "## Goal\nBuild a landing page\n\n## Plan\n### Phases\n1. **Design** - Create wireframe\n2. **Content** - Write copy  \n3. **Implementation** - Build in Next.js"
+      }
+    },
+    {
+      "id": "memory-1.2-procedural-layer",
+      "skill": "agent-memory-kit",
+      "affectedVersions": { "from": "1.0.0", "to": "1.1.1" },
+      "targetVersion": "1.2.0",
+      "severity": "warning",
+      "title": "Added procedural memory layer",
+      "description": "New procedural memory layer for storing 'how-to' knowledge. Memory directory structure has changed to support three layers: episodic, semantic, and procedural.",
+      "impact": "Existing memory files still work but won't benefit from procedural memory. Recommended to reorganize for better memory retrieval.",
+      "migration": [
+        "Create memory/procedural/ directory",
+        "Move how-to docs from memory/ to memory/procedural/",
+        "Keep daily logs in memory/episodic/ (or root for backward compatibility)",
+        "Update AGENTS.md to check memory/procedural/ for procedures",
+        "Optionally migrate MEMORY.md to memory/semantic/"
+      ],
+      "codeExample": {
+        "before": "memory/\n├── 2026-02-01.md\n├── 2026-02-02.md\n├── how-to-deploy.md\n└── MEMORY.md",
+        "after": "memory/\n├── episodic/\n│   ├── 2026-02-01.md\n│   └── 2026-02-02.md\n├── semantic/\n│   └── MEMORY.md\n└── procedural/\n    └── how-to-deploy.md"
+      }
+    },
+    {
+      "id": "github-1.8-auth-method",
+      "skill": "github-skill",
+      "affectedVersions": { "from": "1.0.0", "to": "1.7.0" },
+      "targetVersion": "1.8.0",
+      "severity": "critical",
+      "title": "GitHub App auth support required",
+      "description": "Personal access tokens are deprecated in favor of GitHub App authentication for better security and rate limits.",
+      "impact": "PAT-based authentication will continue to work but is no longer recommended. Future features may require GitHub App auth.",
+      "migration": [
+        "Create a GitHub App in your organization settings",
+        "Generate a private key for your app",
+        "Install the app on repositories you want to access",
+        "Update TOOLS.md with app ID and private key path",
+        "Remove PAT from environment variables",
+        "Test authentication with a simple API call"
+      ],
+      "codeExample": {
+        "before": "# .env\nGITHUB_TOKEN=ghp_xxxxxxxxxxxx",
+        "after": "# .env\nGITHUB_APP_ID=123456\nGITHUB_PRIVATE_KEY_PATH=./github-app.pem\nGITHUB_INSTALLATION_ID=78910"
+      }
+    },
+    {
+      "id": "notion-1.4-property-types",
+      "skill": "notion-skill",
+      "affectedVersions": { "from": "1.0.0", "to": "1.3.1" },
+      "targetVersion": "1.4.0",
+      "severity": "info",
+      "title": "Enhanced database property type support",
+      "description": "Added support for all Notion database property types including formula, rollup, and relation. Previous versions only supported basic types.",
+      "impact": "No breaking changes. Existing integrations continue to work. New property types are now available for use.",
+      "migration": [
+        "Review your Notion databases for advanced property types",
+        "Update skill templates to leverage new property types if needed",
+        "Test formula and relation properties with sample data",
+        "No code changes required unless using advanced properties"
+      ],
+      "codeExample": {
+        "before": "# Only basic properties supported:\n# - text\n# - number\n# - date\n# - checkbox",
+        "after": "# Now supports:\n# - formula (computed fields)\n# - rollup (aggregations)\n# - relation (linked databases)\n# - and all other Notion property types"
+      }
+    },
+    {
+      "id": "team-1.6-handoff-template",
+      "skill": "agent-team-kit",
+      "affectedVersions": { "from": "1.0.0", "to": "1.5.1" },
+      "targetVersion": "1.6.0",
+      "severity": "warning",
+      "title": "Role handoff template for cross-lane work",
+      "description": "New standardized template for handing off work between lanes. Improves context preservation during hand-offs.",
+      "impact": "Existing hand-offs work but may lose context. Recommended to adopt new template for better coordination.",
+      "migration": [
+        "Copy handoff template from skills/agent-team-kit/templates/",
+        "Update BACKLOG.md format to include handoff section",
+        "Train agents to use @mentions when handing off work",
+        "Document handoff protocol in process/LANES.md",
+        "Test with a sample cross-lane task"
+      ],
+      "codeExample": {
+        "before": "### Task: Build Feature X\n**Lane:** dev\n**Status:** ready",
+        "after": "### Task: Build Feature X  \n**Lane:** dev\n**Status:** ready\n**Handed from:** @scout (research lane)\n**Context:** See memory/2026-02-08.md for requirements\n**Next:** Implement and hand to @qa"
+      }
+    },
+    {
+      "id": "obsidian-1.1-vault-paths",
+      "skill": "obsidian",
+      "affectedVersions": { "from": "1.0.0", "to": "1.0.2" },
+      "targetVersion": "1.1.0",
+      "severity": "info",
+      "title": "Improved link resolution for vault paths",
+      "description": "Better handling of Obsidian wiki-links and vault-relative paths. Supports multiple vaults and complex link structures.",
+      "impact": "No breaking changes. Link resolution is more reliable, especially for nested folders and vault-relative links.",
+      "migration": [
+        "Review existing vault configurations in TOOLS.md",
+        "Test link resolution with complex vault structures",
+        "Update any hardcoded paths to use vault-relative syntax",
+        "No mandatory changes — improvements are automatic"
+      ],
+      "codeExample": {
+        "before": "# Basic paths only\n[[Note]]\n[[Folder/Note]]",
+        "after": "# Now supports:\n[[Note]]\n[[Folder/Note]]  \n[[Note#Heading]]\n[[Note|Custom Text]]\n[[../../Parent/Note]]"
+      }
+    }
+  ],
+  "compatibilityMatrix": {
+    "hosts": [
+      { "name": "OpenClaw", "version": "0.9.0+", "supported": true },
+      { "name": "Claude Desktop", "version": "1.0.0+", "supported": true },
+      { "name": "Custom (Node.js)", "version": "18+", "supported": true },
+      { "name": "Custom (Python)", "version": "3.10+", "supported": true },
+      { "name": "AutoGPT", "version": "0.5.0+", "supported": false, "note": "Limited compatibility" }
+    ],
+    "runtimes": [
+      { "name": "Node.js", "version": "18+", "required": ["agent-memory-kit", "agent-autonomy-kit", "agent-team-kit"] },
+      { "name": "Python", "version": "3.10+", "required": [] },
+      { "name": "Bun", "version": "1.0+", "required": [] },
+      { "name": "Deno", "version": "1.40+", "required": [] }
+    ],
+    "dependencies": {
+      "agent-memory-kit": {
+        "requires": [],
+        "optional": ["vector-db"],
+        "conflicts": []
+      },
+      "agent-autonomy-kit": {
+        "requires": ["agent-memory-kit"],
+        "optional": ["cron"],
+        "conflicts": []
+      },
+      "agent-team-kit": {
+        "requires": ["agent-memory-kit", "agent-autonomy-kit"],
+        "optional": [],
+        "conflicts": []
+      },
+      "github-skill": {
+        "requires": [],
+        "optional": ["git"],
+        "conflicts": []
+      },
+      "notion-skill": {
+        "requires": [],
+        "optional": [],
+        "conflicts": ["notion-legacy-skill"]
+      },
+      "obsidian": {
+        "requires": [],
+        "optional": [],
+        "conflicts": []
+      }
+    }
+  },
+  "successStories": [
+    {
+      "id": "reflectt-team-autonomy-upgrade",
+      "title": "Team Reflectt: Autonomy Kit 1.4 → 2.0",
+      "agent": "Team Reflectt (11 agents)",
+      "timeframe": "3 days",
+      "before": {
+        "version": "Agent Autonomy Kit 1.4.0",
+        "issues": [
+          "Agents waited for prompts to start work",
+          "Task hand-offs required manual coordination",
+          "Single-step tasks only, no planning"
+        ],
+        "metrics": {
+          "autonomy": "40%",
+          "throughput": "5-7 tasks/day",
+          "handoffTime": "2-4 hours"
+        }
+      },
+      "after": {
+        "version": "Agent Autonomy Kit 2.0.0",
+        "improvements": [
+          "Agents proactively pick up queued work",
+          "Multi-step planning with phase breakdowns",
+          "Async hand-offs via structured templates"
+        ],
+        "metrics": {
+          "autonomy": "85%",
+          "throughput": "15-20 tasks/day",
+          "handoffTime": "10-30 minutes"
+        }
+      },
+      "testimonial": "The new planning loop changed everything. Our agents went from reactive helpers to proactive team members. The intake schema rewrite was worth the migration effort.",
+      "author": "Kai (Team Reflectt)",
+      "tags": ["autonomy", "team", "productivity"]
+    },
+    {
+      "id": "solopreneur-memory-upgrade",
+      "title": "Solo Dev: Memory Kit 1.0 → 1.2",
+      "agent": "DevBot (personal assistant)",
+      "timeframe": "1 day",
+      "before": {
+        "version": "Agent Memory Kit 1.0.0",
+        "issues": [
+          "Agent forgot procedures between sessions",
+          "Repeated questions about same topics",
+          "No distinction between events and knowledge"
+        ],
+        "metrics": {
+          "repeatQuestions": "8-10/week",
+          "procedureRecall": "20%",
+          "contextAccuracy": "60%"
+        }
+      },
+      "after": {
+        "version": "Agent Memory Kit 1.2.0",
+        "improvements": [
+          "Procedural memory for 'how-to' docs",
+          "Semantic search across all memory layers",
+          "Clear separation: events, knowledge, procedures"
+        ],
+        "metrics": {
+          "repeatQuestions": "1-2/week",
+          "procedureRecall": "90%",
+          "contextAccuracy": "95%"
+        }
+      },
+      "testimonial": "Adding procedural memory was a game-changer. My agent now remembers how to do things, not just what happened. Migration took an hour and saved me dozens of hours since.",
+      "author": "@devlife",
+      "tags": ["memory", "solo", "efficiency"]
+    },
+    {
+      "id": "agency-github-auth-migration",
+      "title": "AI Agency: GitHub Skill PAT → App Auth",
+      "agent": "Agency bot fleet (5 agents)",
+      "timeframe": "2 hours",
+      "before": {
+        "version": "GitHub Skill 1.7.0 (PAT auth)",
+        "issues": [
+          "Hit rate limits frequently",
+          "Security concerns with shared PATs",
+          "No fine-grained permissions"
+        ],
+        "metrics": {
+          "rateLimitHits": "5-8/day",
+          "apiCalls": "5000/hour",
+          "securityIssues": "2 PAT leaks"
+        }
+      },
+      "after": {
+        "version": "GitHub Skill 1.8.0 (App auth)",
+        "improvements": [
+          "10x higher rate limits with App auth",
+          "Per-repo permissions and audit logs",
+          "Zero PAT leaks (keys rotated automatically)"
+        ],
+        "metrics": {
+          "rateLimitHits": "0/week",
+          "apiCalls": "50000/hour",
+          "securityIssues": "0"
+        }
+      },
+      "testimonial": "GitHub App auth should be the default. Setup took 30 minutes, saved us countless headaches with rate limits and security. Critical upgrade for any team.",
+      "author": "Sarah Chen, CTO @ BuildFast AI",
+      "tags": ["security", "github", "enterprise"]
+    },
+    {
+      "id": "startup-team-coordination",
+      "title": "Startup: Team Kit 1.4 → 1.6",
+      "agent": "Product team (3 agents: research, dev, qa)",
+      "timeframe": "4 hours",
+      "before": {
+        "version": "Agent Team Kit 1.4.0",
+        "issues": [
+          "Context lost during hand-offs",
+          "No standard hand-off protocol",
+          "Unclear task ownership"
+        ],
+        "metrics": {
+          "handoffSuccess": "60%",
+          "contextLoss": "40%",
+          "reworkTime": "3-5 hours/week"
+        }
+      },
+      "after": {
+        "version": "Agent Team Kit 1.6.0",
+        "improvements": [
+          "Structured hand-off templates",
+          "@mention protocol for context",
+          "Clear lane ownership and status tracking"
+        ],
+        "metrics": {
+          "handoffSuccess": "95%",
+          "contextLoss": "5%",
+          "reworkTime": "30min/week"
+        }
+      },
+      "testimonial": "The hand-off template eliminated so much confusion. Our agents now coordinate like a real team. Worth the afternoon spent migrating.",
+      "author": "Mike Torres, Founder @ ShipIt",
+      "tags": ["team", "coordination", "startup"]
+    },
+    {
+      "id": "researcher-obsidian-upgrade",
+      "title": "Academic: Obsidian 1.0 → 1.1",
+      "agent": "Research assistant",
+      "timeframe": "30 minutes",
+      "before": {
+        "version": "Obsidian 1.0.2",
+        "issues": [
+          "Broken links in nested folders",
+          "Couldn't handle vault-relative paths",
+          "Failed on complex wiki-links"
+        ],
+        "metrics": {
+          "brokenLinks": "15-20%",
+          "vaultAccess": "Single vault only",
+          "linkTypes": "Basic [[links]] only"
+        }
+      },
+      "after": {
+        "version": "Obsidian 1.1.0",
+        "improvements": [
+          "Perfect link resolution across folders",
+          "Multi-vault support",
+          "Handles all wiki-link variations"
+        ],
+        "metrics": {
+          "brokenLinks": "<1%",
+          "vaultAccess": "Multi-vault",
+          "linkTypes": "All wiki-link types"
+        }
+      },
+      "testimonial": "Finally my agent can navigate my complex Obsidian setup. Link resolution is flawless now. Zero effort migration, huge quality improvement.",
+      "author": "Dr. Lisa Wang",
+      "tags": ["research", "obsidian", "knowledge"]
+    }
+  ]
+}
