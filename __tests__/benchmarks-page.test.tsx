@@ -35,10 +35,10 @@ describe('Benchmarks Page', () => {
   test('renders skill cards with benchmark data', () => {
     render(<BenchmarksPage />);
     
-    // Should render multiple skill cards
-    expect(screen.getByText('Web Search')).toBeInTheDocument();
-    expect(screen.getByText('File Operations')).toBeInTheDocument();
-    expect(screen.getByText('Code Execution')).toBeInTheDocument();
+    // Should render multiple skill cards (using getAllByText since they appear in both cards and table)
+    expect(screen.getAllByText('Web Search')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('File Operations')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Code Execution')[0]).toBeInTheDocument();
   });
 
   test('displays latency metrics', () => {
@@ -79,7 +79,8 @@ describe('Benchmarks Page', () => {
     render(<BenchmarksPage />);
     
     expect(screen.getByText(/detailed comparison/i)).toBeInTheDocument();
-    expect(screen.getByText(/skill/i)).toBeInTheDocument();
+    // Use getByRole to target table header specifically
+    expect(screen.getByRole('columnheader', { name: /skill/i })).toBeInTheDocument();
     expect(screen.getByText(/req\/sec/i)).toBeInTheDocument();
     expect(screen.getByText(/success %/i)).toBeInTheDocument();
   });
@@ -120,23 +121,23 @@ describe('Benchmarks Page', () => {
   test('comparison table has sortable columns', () => {
     render(<BenchmarksPage />);
     
-    // Check for sort icons or indicators
-    const skillHeader = screen.getByText(/skill/i);
+    // Check for sort icons or indicators in table header
+    const skillHeader = screen.getByRole('columnheader', { name: /skill/i });
     expect(skillHeader).toBeInTheDocument();
   });
 
   test('displays multiple benchmark skills', () => {
     render(<BenchmarksPage />);
     
-    // Should render at least 8 skills as per requirement
-    expect(screen.getByText('Web Search')).toBeInTheDocument();
-    expect(screen.getByText('File Operations')).toBeInTheDocument();
-    expect(screen.getByText('Code Execution')).toBeInTheDocument();
-    expect(screen.getByText('API Integration')).toBeInTheDocument();
-    expect(screen.getByText('Database Queries')).toBeInTheDocument();
-    expect(screen.getByText('Image Processing')).toBeInTheDocument();
-    expect(screen.getByText('Text Generation')).toBeInTheDocument();
-    expect(screen.getByText('Notifications')).toBeInTheDocument();
+    // Should render at least 8 skills as per requirement (using getAllByText since they appear in both cards and table)
+    expect(screen.getAllByText('Web Search')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('File Operations')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Code Execution')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('API Integration')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Database Queries')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Image Processing')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Text Generation')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Notifications')[0]).toBeInTheDocument();
   });
 
   test('renders without errors', () => {
