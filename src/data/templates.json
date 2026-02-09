@@ -1,237 +1,247 @@
 [
   {
-    "id": "chatbot-basic",
-    "name": "Basic Chatbot",
-    "description": "A simple conversational agent for customer support and FAQs. Handles basic queries with context awareness and friendly responses.",
-    "category": "chatbot",
-    "useCase": "Customer support, FAQ automation, general conversation",
-    "stack": {
-      "models": ["gpt-4o-mini", "claude-3.5-haiku"],
-      "tools": ["agent-memory-kit", "text-generation"],
-      "frameworks": ["LangChain", "OpenAI SDK"]
-    },
-    "config": {
-      "model": "gpt-4o-mini",
-      "temperature": 0.7,
-      "maxTokens": 500,
-      "systemPrompt": "You are a helpful customer support agent. Be friendly, concise, and accurate.",
-      "memory": {
-        "enabled": true,
-        "type": "conversation-buffer",
-        "maxMessages": 10
-      },
-      "tools": ["agent-memory-kit"]
+    "id": "hello-world",
+    "name": "Hello World Skill",
+    "description": "A simple starter template to create your first skill. Perfect for learning the basics of skill development.",
+    "difficulty": "beginner",
+    "estimatedTime": "15 minutes",
+    "category": "starter",
+    "language": "TypeScript",
+    "framework": "Node.js",
+    "tags": ["starter", "tutorial", "basics"],
+    "fileTree": [
+      "skill.json",
+      "index.ts",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "skill.json": "{\n  \"name\": \"hello-world\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A simple hello world skill\",\n  \"entrypoint\": \"index.ts\"\n}",
+      "index.ts": "export async function handler(input: string) {\n  return `Hello, ${input}!`;\n}"
     }
   },
   {
-    "id": "code-assistant-typescript",
-    "name": "TypeScript Code Assistant",
-    "description": "AI-powered coding assistant specialized in TypeScript and modern web development. Provides code review, generation, and debugging help.",
-    "category": "coding-assistant",
-    "useCase": "Code generation, debugging, code review, refactoring",
-    "stack": {
-      "models": ["claude-sonnet-4", "gpt-4o"],
-      "tools": ["file-system", "code-execution", "github-integration"],
-      "frameworks": ["Anthropic SDK", "GitHub API"]
-    },
-    "config": {
-      "model": "claude-sonnet-4",
-      "temperature": 0.2,
-      "maxTokens": 4000,
-      "systemPrompt": "You are an expert TypeScript developer. Write clean, type-safe code following best practices. Explain your reasoning.",
-      "tools": ["file-system", "code-execution", "github-integration"],
-      "capabilities": ["read-files", "write-files", "execute-code", "git-operations"]
+    "id": "api-connector",
+    "name": "API Connector",
+    "description": "Connect to external REST APIs with authentication, rate limiting, and error handling built-in.",
+    "difficulty": "intermediate",
+    "estimatedTime": "45 minutes",
+    "category": "integration",
+    "language": "TypeScript",
+    "framework": "Node.js",
+    "tags": ["api", "rest", "http", "integration"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/client.ts",
+      "src/auth.ts",
+      "src/types.ts",
+      "README.md",
+      "config.example.json"
+    ],
+    "codeSnippets": {
+      "src/client.ts": "import axios from 'axios';\n\nexport class APIClient {\n  constructor(private baseUrl: string, private apiKey: string) {}\n\n  async get(endpoint: string) {\n    return axios.get(`${this.baseUrl}${endpoint}`, {\n      headers: { 'Authorization': `Bearer ${this.apiKey}` }\n    });\n  }\n}",
+      "skill.json": "{\n  \"name\": \"api-connector\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Connect to external APIs\"\n}"
     }
   },
   {
-    "id": "data-analyst-sql",
-    "name": "SQL Data Analyst",
-    "description": "Analyze data using natural language queries. Automatically generates SQL, runs queries, and visualizes results.",
-    "category": "data-analyst",
-    "useCase": "Business intelligence, data exploration, automated reporting",
-    "stack": {
-      "models": ["gpt-4o", "claude-3.5-sonnet"],
-      "tools": ["database-connector", "data-visualization", "csv-parser"],
-      "frameworks": ["SQLAlchemy", "Plotly", "Pandas"]
-    },
-    "config": {
-      "model": "gpt-4o",
-      "temperature": 0.1,
-      "maxTokens": 2000,
-      "systemPrompt": "You are a data analyst. Generate accurate SQL queries, analyze results, and present insights clearly.",
-      "tools": ["database-connector", "data-visualization"],
-      "database": {
-        "type": "postgresql",
-        "schema": "auto-detect"
-      }
+    "id": "data-pipeline",
+    "name": "Data Pipeline",
+    "description": "ETL pipeline template for extracting, transforming, and loading data from multiple sources.",
+    "difficulty": "advanced",
+    "estimatedTime": "2 hours",
+    "category": "data",
+    "language": "Python",
+    "framework": "Python",
+    "tags": ["etl", "data", "pipeline", "transformation"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/extractors/",
+      "src/transformers/",
+      "src/loaders/",
+      "src/pipeline.py",
+      "requirements.txt",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/pipeline.py": "class DataPipeline:\n    def __init__(self, extractor, transformer, loader):\n        self.extractor = extractor\n        self.transformer = transformer\n        self.loader = loader\n\n    def run(self):\n        data = self.extractor.extract()\n        transformed = self.transformer.transform(data)\n        self.loader.load(transformed)",
+      "skill.json": "{\n  \"name\": \"data-pipeline\",\n  \"version\": \"1.0.0\",\n  \"language\": \"python\"\n}"
     }
   },
   {
-    "id": "content-writer-blog",
-    "name": "Blog Content Writer",
-    "description": "Create engaging blog posts, articles, and marketing copy. SEO-optimized with research capabilities.",
-    "category": "content-creator",
-    "useCase": "Blog writing, content marketing, SEO optimization",
-    "stack": {
-      "models": ["gpt-4o", "claude-3.5-sonnet"],
-      "tools": ["web-search", "content-analyzer", "seo-optimizer"],
-      "frameworks": ["OpenAI SDK", "SerpAPI"]
-    },
-    "config": {
-      "model": "gpt-4o",
-      "temperature": 0.8,
-      "maxTokens": 3000,
-      "systemPrompt": "You are a professional content writer. Create engaging, SEO-friendly content that resonates with readers.",
-      "tools": ["web-search", "content-analyzer"],
-      "style": {
-        "tone": "professional-friendly",
-        "targetLength": 1500,
-        "seoOptimized": true
-      }
+    "id": "chat-bot",
+    "name": "Chat Bot",
+    "description": "Conversational bot template with context management, intent recognition, and multi-platform support.",
+    "difficulty": "intermediate",
+    "estimatedTime": "1 hour",
+    "category": "communication",
+    "language": "TypeScript",
+    "framework": "Node.js",
+    "tags": ["chat", "conversation", "bot", "nlp"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/bot.ts",
+      "src/context.ts",
+      "src/intents.ts",
+      "src/handlers/",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/bot.ts": "export class ChatBot {\n  private context: Map<string, any> = new Map();\n\n  async handleMessage(userId: string, message: string) {\n    const intent = this.detectIntent(message);\n    const handler = this.getHandler(intent);\n    return handler.handle(message, this.context.get(userId));\n  }\n}",
+      "skill.json": "{\n  \"name\": \"chat-bot\",\n  \"version\": \"1.0.0\",\n  \"platforms\": [\"discord\", \"slack\", \"telegram\"]\n}"
     }
   },
   {
-    "id": "devops-monitor",
-    "name": "DevOps Monitoring Agent",
-    "description": "Monitor infrastructure, analyze logs, and respond to incidents. Proactive alerting and automated remediation.",
-    "category": "devops",
-    "useCase": "Infrastructure monitoring, incident response, log analysis",
-    "stack": {
-      "models": ["gpt-4o-mini", "claude-3.5-haiku"],
-      "tools": ["kubernetes-api", "prometheus", "slack-webhook", "pagerduty"],
-      "frameworks": ["Kubernetes Python Client", "Prometheus API"]
-    },
-    "config": {
-      "model": "gpt-4o-mini",
-      "temperature": 0.3,
-      "maxTokens": 1000,
-      "systemPrompt": "You are a DevOps engineer. Monitor systems, diagnose issues, and take action when needed. Be clear and actionable.",
-      "tools": ["kubernetes-api", "prometheus", "slack-webhook"],
-      "monitoring": {
-        "checkInterval": "5m",
-        "alertThreshold": "critical",
-        "autoRemediate": false
-      }
+    "id": "file-processor",
+    "name": "File Processor",
+    "description": "Process and transform files with support for multiple formats including PDF, CSV, JSON, and images.",
+    "difficulty": "intermediate",
+    "estimatedTime": "45 minutes",
+    "category": "utility",
+    "language": "Python",
+    "framework": "Python",
+    "tags": ["files", "processing", "transformation", "parsing"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/processors/",
+      "src/processors/pdf.py",
+      "src/processors/csv.py",
+      "src/processors/image.py",
+      "src/processor.py",
+      "requirements.txt",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/processor.py": "from typing import Protocol\n\nclass FileProcessor(Protocol):\n    def process(self, file_path: str) -> dict:\n        ...\n\nclass ProcessorFactory:\n    @staticmethod\n    def get_processor(file_type: str) -> FileProcessor:\n        processors = {\n            'pdf': PDFProcessor(),\n            'csv': CSVProcessor(),\n            'image': ImageProcessor()\n        }\n        return processors.get(file_type)",
+      "skill.json": "{\n  \"name\": \"file-processor\",\n  \"supported_formats\": [\"pdf\", \"csv\", \"json\", \"png\", \"jpg\"]\n}"
     }
   },
   {
-    "id": "chatbot-sales",
-    "name": "Sales Assistant Chatbot",
-    "description": "Lead qualification and sales support agent. Handles inquiries, qualifies leads, and schedules demos.",
-    "category": "chatbot",
-    "useCase": "Lead generation, sales support, demo scheduling",
-    "stack": {
-      "models": ["gpt-4o", "claude-3.5-sonnet"],
-      "tools": ["crm-integration", "calendar-api", "email-sender"],
-      "frameworks": ["Salesforce API", "Google Calendar API"]
-    },
-    "config": {
-      "model": "gpt-4o",
-      "temperature": 0.6,
-      "maxTokens": 800,
-      "systemPrompt": "You are a sales assistant. Qualify leads, answer product questions, and schedule demos professionally.",
-      "tools": ["crm-integration", "calendar-api"],
-      "qualification": {
-        "criteria": ["budget", "authority", "need", "timeline"],
-        "scoringEnabled": true
-      }
+    "id": "web-scraper",
+    "name": "Web Scraper",
+    "description": "Robust web scraping template with headless browser support, JavaScript rendering, and anti-detection features.",
+    "difficulty": "advanced",
+    "estimatedTime": "1.5 hours",
+    "category": "data",
+    "language": "TypeScript",
+    "framework": "Puppeteer",
+    "tags": ["scraping", "web", "automation", "crawling"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/scraper.ts",
+      "src/parser.ts",
+      "src/storage.ts",
+      "src/utils/",
+      "package.json",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/scraper.ts": "import puppeteer from 'puppeteer';\n\nexport class WebScraper {\n  async scrape(url: string, selector: string) {\n    const browser = await puppeteer.launch({ headless: true });\n    const page = await browser.newPage();\n    await page.goto(url);\n    const data = await page.$$eval(selector, elements => \n      elements.map(el => el.textContent)\n    );\n    await browser.close();\n    return data;\n  }\n}",
+      "skill.json": "{\n  \"name\": \"web-scraper\",\n  \"features\": [\"javascript-rendering\", \"proxy-support\", \"rate-limiting\"]\n}"
     }
   },
   {
-    "id": "code-reviewer",
-    "name": "Automated Code Reviewer",
-    "description": "Review pull requests for code quality, security issues, and best practices. Provides inline comments and suggestions.",
-    "category": "coding-assistant",
-    "useCase": "Code review automation, security scanning, quality assurance",
-    "stack": {
-      "models": ["claude-sonnet-4", "gpt-4o"],
-      "tools": ["github-integration", "static-analysis", "security-scanner"],
-      "frameworks": ["GitHub API", "Semgrep", "ESLint"]
-    },
-    "config": {
-      "model": "claude-sonnet-4",
-      "temperature": 0.1,
-      "maxTokens": 3000,
-      "systemPrompt": "You are a senior code reviewer. Check for bugs, security issues, performance problems, and style violations. Be constructive.",
-      "tools": ["github-integration", "static-analysis"],
-      "reviewCriteria": {
-        "security": true,
-        "performance": true,
-        "style": true,
-        "tests": true
-      }
+    "id": "notification-service",
+    "name": "Notification Service",
+    "description": "Multi-channel notification system supporting email, SMS, push notifications, and webhooks.",
+    "difficulty": "intermediate",
+    "estimatedTime": "1 hour",
+    "category": "communication",
+    "language": "TypeScript",
+    "framework": "Node.js",
+    "tags": ["notifications", "email", "sms", "webhooks"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/notifier.ts",
+      "src/channels/",
+      "src/channels/email.ts",
+      "src/channels/sms.ts",
+      "src/channels/push.ts",
+      "src/templates/",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/notifier.ts": "interface NotificationChannel {\n  send(recipient: string, message: string): Promise<void>;\n}\n\nexport class NotificationService {\n  private channels: Map<string, NotificationChannel> = new Map();\n\n  registerChannel(name: string, channel: NotificationChannel) {\n    this.channels.set(name, channel);\n  }\n\n  async notify(channel: string, recipient: string, message: string) {\n    const handler = this.channels.get(channel);\n    if (!handler) throw new Error(`Channel ${channel} not found`);\n    await handler.send(recipient, message);\n  }\n}",
+      "skill.json": "{\n  \"name\": \"notification-service\",\n  \"channels\": [\"email\", \"sms\", \"push\", \"webhook\"]\n}"
     }
   },
   {
-    "id": "bi-dashboard",
-    "name": "BI Dashboard Agent",
-    "description": "Answer business questions by querying databases and generating visualizations. Natural language to insights.",
-    "category": "data-analyst",
-    "useCase": "Executive dashboards, ad-hoc analysis, KPI monitoring",
-    "stack": {
-      "models": ["gpt-4o", "claude-3.5-sonnet"],
-      "tools": ["database-connector", "data-visualization", "slack-integration"],
-      "frameworks": ["SQLAlchemy", "Chart.js", "Slack API"]
-    },
-    "config": {
-      "model": "gpt-4o",
-      "temperature": 0.2,
-      "maxTokens": 2500,
-      "systemPrompt": "You are a business intelligence analyst. Transform questions into data queries and present insights visually.",
-      "tools": ["database-connector", "data-visualization", "slack-integration"],
-      "visualization": {
-        "defaultType": "auto",
-        "colorScheme": "professional",
-        "interactive": true
-      }
+    "id": "auth-integration",
+    "name": "Auth Integration",
+    "description": "Authentication and authorization template with OAuth2, JWT, and role-based access control.",
+    "difficulty": "advanced",
+    "estimatedTime": "2 hours",
+    "category": "security",
+    "language": "TypeScript",
+    "framework": "Express.js",
+    "tags": ["auth", "oauth", "jwt", "security"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/auth/",
+      "src/auth/oauth.ts",
+      "src/auth/jwt.ts",
+      "src/middleware/",
+      "src/middleware/auth.ts",
+      "src/middleware/rbac.ts",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/auth/jwt.ts": "import jwt from 'jsonwebtoken';\n\nexport class JWTService {\n  constructor(private secret: string) {}\n\n  sign(payload: object, expiresIn: string = '24h') {\n    return jwt.sign(payload, this.secret, { expiresIn });\n  }\n\n  verify(token: string) {\n    return jwt.verify(token, this.secret);\n  }\n}",
+      "src/middleware/auth.ts": "export function requireAuth(req: Request, res: Response, next: NextFunction) {\n  const token = req.headers.authorization?.split(' ')[1];\n  if (!token) return res.status(401).json({ error: 'No token provided' });\n  \n  try {\n    const decoded = jwtService.verify(token);\n    req.user = decoded;\n    next();\n  } catch (error) {\n    res.status(401).json({ error: 'Invalid token' });\n  }\n}"
     }
   },
   {
-    "id": "social-media-manager",
-    "name": "Social Media Content Manager",
-    "description": "Generate, schedule, and optimize social media posts across platforms. Trend-aware and engagement-focused.",
-    "category": "content-creator",
-    "useCase": "Social media marketing, content scheduling, engagement optimization",
-    "stack": {
-      "models": ["gpt-4o", "claude-3.5-sonnet"],
-      "tools": ["twitter-api", "instagram-api", "analytics-tracker", "image-generation"],
-      "frameworks": ["Twitter API v2", "Meta Graph API", "DALL-E"]
-    },
-    "config": {
-      "model": "gpt-4o",
-      "temperature": 0.9,
-      "maxTokens": 500,
-      "systemPrompt": "You are a social media manager. Create engaging posts optimized for each platform. Be current and authentic.",
-      "tools": ["twitter-api", "analytics-tracker", "image-generation"],
-      "platforms": ["twitter", "linkedin", "instagram"],
-      "scheduling": {
-        "enabled": true,
-        "optimizeTimings": true
-      }
+    "id": "database-connector",
+    "name": "Database Connector",
+    "description": "Universal database connector with support for PostgreSQL, MongoDB, MySQL, and Redis.",
+    "difficulty": "intermediate",
+    "estimatedTime": "1 hour",
+    "category": "data",
+    "language": "TypeScript",
+    "framework": "Node.js",
+    "tags": ["database", "sql", "nosql", "persistence"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/connectors/",
+      "src/connectors/postgres.ts",
+      "src/connectors/mongodb.ts",
+      "src/connectors/redis.ts",
+      "src/query-builder.ts",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/connectors/postgres.ts": "import { Pool } from 'pg';\n\nexport class PostgresConnector {\n  private pool: Pool;\n\n  constructor(config: any) {\n    this.pool = new Pool(config);\n  }\n\n  async query(sql: string, params: any[] = []) {\n    const client = await this.pool.connect();\n    try {\n      const result = await client.query(sql, params);\n      return result.rows;\n    } finally {\n      client.release();\n    }\n  }\n}",
+      "skill.json": "{\n  \"name\": \"database-connector\",\n  \"supported\": [\"postgresql\", \"mongodb\", \"mysql\", \"redis\"]\n}"
     }
   },
   {
-    "id": "ci-cd-orchestrator",
-    "name": "CI/CD Pipeline Orchestrator",
-    "description": "Manage deployment pipelines, run tests, and coordinate releases. Intelligent rollback and error handling.",
-    "category": "devops",
-    "useCase": "Continuous deployment, release management, test orchestration",
-    "stack": {
-      "models": ["claude-3.5-haiku", "gpt-4o-mini"],
-      "tools": ["github-actions", "kubernetes-api", "terraform", "slack-webhook"],
-      "frameworks": ["GitHub Actions API", "Kubernetes Python Client", "Terraform"]
-    },
-    "config": {
-      "model": "claude-3.5-haiku",
-      "temperature": 0.2,
-      "maxTokens": 1500,
-      "systemPrompt": "You are a DevOps automation specialist. Orchestrate deployments safely with proper validation and rollback procedures.",
-      "tools": ["github-actions", "kubernetes-api", "slack-webhook"],
-      "deployment": {
-        "strategy": "blue-green",
-        "autoRollback": true,
-        "validationRequired": true
-      }
+    "id": "scheduler",
+    "name": "Task Scheduler",
+    "description": "Flexible task scheduling system with cron support, delayed jobs, and distributed execution.",
+    "difficulty": "advanced",
+    "estimatedTime": "1.5 hours",
+    "category": "utility",
+    "language": "TypeScript",
+    "framework": "Node.js",
+    "tags": ["scheduler", "cron", "jobs", "automation"],
+    "fileTree": [
+      "skill.json",
+      "src/",
+      "src/scheduler.ts",
+      "src/job.ts",
+      "src/queue.ts",
+      "src/workers/",
+      "README.md"
+    ],
+    "codeSnippets": {
+      "src/scheduler.ts": "import cron from 'node-cron';\n\nexport class Scheduler {\n  private jobs: Map<string, cron.ScheduledTask> = new Map();\n\n  schedule(name: string, cronExpression: string, task: () => void) {\n    const job = cron.schedule(cronExpression, task);\n    this.jobs.set(name, job);\n    return job;\n  }\n\n  cancel(name: string) {\n    const job = this.jobs.get(name);\n    if (job) {\n      job.stop();\n      this.jobs.delete(name);\n    }\n  }\n}",
+      "skill.json": "{\n  \"name\": \"task-scheduler\",\n  \"features\": [\"cron\", \"delayed-jobs\", \"distributed\"]\n}"
     }
   }
 ]
