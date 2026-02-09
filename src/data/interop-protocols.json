@@ -1,0 +1,440 @@
+[
+  {
+    "slug": "mcp",
+    "name": "MCP",
+    "fullName": "Model Context Protocol",
+    "description": "Open standard for connecting agents to tools, data sources, and runtime capabilities through structured schemas.",
+    "maturity": "emerging",
+    "adoption": 78,
+    "bestFor": [
+      "Tool integration between LLM apps and agent runtimes",
+      "Structured capability discovery",
+      "Secure brokered access to local and remote resources"
+    ],
+    "architectureOverview": "MCP uses a client-server model where an MCP client (agent host) opens a transport session to one or more MCP servers. Servers expose typed tools, resources, and prompts. The client discovers capabilities, sends structured requests, and receives typed responses that can include streamed output.",
+    "connectionExample": "import { Client } from '@modelcontextprotocol/sdk/client/index.js';\nimport { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';\n\nconst transport = new StdioClientTransport({\n  command: 'npx',\n  args: ['-y', '@modelcontextprotocol/server-filesystem', '/workspace']\n});\n\nconst client = new Client({ name: 'foragents-demo', version: '1.0.0' });\nawait client.connect(transport);\nconst tools = await client.listTools();\nconsole.log(tools);",
+    "requestResponseExample": "const result = await client.callTool({\n  name: 'read_file',\n  arguments: { path: 'README.md' }\n});\n\nconsole.log(result.content);",
+    "pros": [
+      "Purpose-built for agent tooling and context exchange",
+      "Strong typing and schema-driven interoperability",
+      "Supports local-first and remote deployment patterns"
+    ],
+    "cons": [
+      "Ecosystem still converging on best practices",
+      "May require adapters for legacy APIs",
+      "Operational model differs from typical REST integrations"
+    ],
+    "compatibleTools": [
+      "Claude Desktop",
+      "Cursor",
+      "OpenAI Agents SDK adapters",
+      "LangChain integrations"
+    ],
+    "frameworks": [
+      "Node.js",
+      "Python",
+      "TypeScript",
+      "Rust (community)"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "You need one protocol to expose many tools to multiple agent hosts",
+        "guidance": "Choose MCP for standardized tool discovery and invocation"
+      },
+      {
+        "scenario": "You need strict schemas and permission boundaries",
+        "guidance": "Use MCP with scoped server permissions and typed contracts"
+      }
+    ],
+    "features": {
+      "streaming": true,
+      "bidirectional": true,
+      "discovery": true,
+      "auth": true,
+      "typing": true
+    }
+  },
+  {
+    "slug": "a2a",
+    "name": "A2A",
+    "fullName": "Agent-to-Agent Protocol",
+    "description": "Protocol pattern for direct coordination between autonomous agents, often with negotiation, task handoff, and status exchange.",
+    "maturity": "experimental",
+    "adoption": 42,
+    "bestFor": [
+      "Multi-agent task orchestration",
+      "Delegation and handoff workflows",
+      "Cross-organization agent collaboration"
+    ],
+    "architectureOverview": "A2A implementations typically define message envelopes, capability advertisements, and lifecycle states for requests. One agent may act as coordinator while peers execute subtasks and report progress/events. Transport can be HTTP, messaging queues, or WebSocket depending on deployment constraints.",
+    "connectionExample": "const peer = await a2a.connect({\n  endpoint: 'https://planner.example.com/a2a',\n  agentId: 'research-agent',\n  token: process.env.A2A_TOKEN\n});\n\nawait peer.announceCapabilities(['summarize', 'search_web']);",
+    "requestResponseExample": "const task = await peer.request({\n  type: 'task.create',\n  payload: { goal: 'Draft vendor comparison memo' }\n});\n\nawait peer.respond({\n  requestId: task.id,\n  status: 'completed',\n  output: { memoUrl: 'https://files.example.com/memo.md' }\n});",
+    "pros": [
+      "Designed for collaborative autonomous workflows",
+      "Supports negotiation and delegated execution",
+      "Flexible over multiple transports"
+    ],
+    "cons": [
+      "Specification landscape is fragmented",
+      "Interoperability can vary by implementation",
+      "Observability and governance can become complex"
+    ],
+    "compatibleTools": [
+      "AutoGen",
+      "CrewAI",
+      "LangGraph",
+      "Custom orchestration layers"
+    ],
+    "frameworks": [
+      "Python",
+      "TypeScript",
+      "gRPC/HTTP stacks",
+      "Message brokers"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "You are building teams of specialized agents",
+        "guidance": "Use A2A patterns to coordinate role-based execution"
+      },
+      {
+        "scenario": "You need dynamic delegation rather than fixed API calls",
+        "guidance": "A2A is a better fit than one-way webhook workflows"
+      }
+    ],
+    "features": {
+      "streaming": true,
+      "bidirectional": true,
+      "discovery": true,
+      "auth": true,
+      "typing": false
+    }
+  },
+  {
+    "slug": "openapi",
+    "name": "OpenAPI",
+    "fullName": "OpenAPI Specification",
+    "description": "Industry-standard contract for REST APIs with machine-readable schemas, docs, and code generation.",
+    "maturity": "stable",
+    "adoption": 93,
+    "bestFor": [
+      "Integrating existing SaaS and enterprise APIs",
+      "Schema-driven client generation",
+      "Tool calling with HTTP endpoints"
+    ],
+    "architectureOverview": "OpenAPI describes HTTP resources, operations, parameters, authentication, and response schemas in a versioned contract. Agents or tool runtimes can parse the spec to generate strongly typed clients and automate request validation.",
+    "connectionExample": "import OpenAPIClientAxios from 'openapi-client-axios';\n\nconst api = new OpenAPIClientAxios({ definition: 'https://api.example.com/openapi.json' });\nconst client = await api.init();",
+    "requestResponseExample": "const response = await client.getProject({ projectId: 'p_123' });\nconsole.log(response.data);",
+    "pros": [
+      "Very mature ecosystem and tooling",
+      "Excellent for governance and compliance",
+      "Strong auth and schema support"
+    ],
+    "cons": [
+      "Primarily request/response, not realtime-first",
+      "Discovery is spec-based, not dynamic runtime introspection",
+      "Can be verbose for simple internal workflows"
+    ],
+    "compatibleTools": [
+      "Swagger",
+      "Postman",
+      "OpenAPI Generator",
+      "LangChain OpenAPI tools"
+    ],
+    "frameworks": [
+      "Any HTTP stack",
+      "FastAPI",
+      "Express",
+      "Spring"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "You already have REST APIs and want agent access quickly",
+        "guidance": "Use OpenAPI as your canonical integration layer"
+      },
+      {
+        "scenario": "You need enterprise-friendly contracts and security reviews",
+        "guidance": "OpenAPI is usually the safest default"
+      }
+    ],
+    "features": {
+      "streaming": false,
+      "bidirectional": false,
+      "discovery": true,
+      "auth": true,
+      "typing": true
+    }
+  },
+  {
+    "slug": "json-rpc",
+    "name": "JSON-RPC",
+    "fullName": "JSON-RPC 2.0",
+    "description": "Lightweight remote procedure call protocol using JSON envelopes for method invocation and responses.",
+    "maturity": "stable",
+    "adoption": 67,
+    "bestFor": [
+      "Deterministic method invocation",
+      "Simple internal service-to-service calls",
+      "Transport-agnostic RPC over HTTP/WebSocket"
+    ],
+    "architectureOverview": "JSON-RPC sends method calls as JSON objects with method names, params, ids, and optional batch requests. Servers return structured result/error objects. Because transport is abstracted, it works over HTTP, WebSocket, and even stdio in agent runtimes.",
+    "connectionExample": "const payload = {\n  jsonrpc: '2.0',\n  id: 1,\n  method: 'tools.list',\n  params: {}\n};\n\nconst response = await fetch('https://api.example.com/rpc', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify(payload)\n});",
+    "requestResponseExample": "const data = await response.json();\nif (data.error) throw new Error(data.error.message);\nconsole.log(data.result);",
+    "pros": [
+      "Small and predictable message format",
+      "Supports notifications and batching",
+      "Easy to implement in many languages"
+    ],
+    "cons": [
+      "No built-in discovery standard",
+      "Auth and typing conventions are external",
+      "Less web-native than REST for public APIs"
+    ],
+    "compatibleTools": [
+      "Ethereum clients",
+      "Language Server Protocol foundations",
+      "Custom agent gateways"
+    ],
+    "frameworks": [
+      "Node",
+      "Python",
+      "Go",
+      "Rust"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "You need a compact RPC layer for internal agent services",
+        "guidance": "JSON-RPC is a pragmatic low-overhead option"
+      },
+      {
+        "scenario": "You need batch calls and notifications",
+        "guidance": "Prefer JSON-RPC over plain REST endpoints"
+      }
+    ],
+    "features": {
+      "streaming": false,
+      "bidirectional": true,
+      "discovery": false,
+      "auth": false,
+      "typing": false
+    }
+  },
+  {
+    "slug": "graphql",
+    "name": "GraphQL",
+    "fullName": "GraphQL",
+    "description": "Query language and runtime for APIs that lets clients request exactly the data they need.",
+    "maturity": "stable",
+    "adoption": 85,
+    "bestFor": [
+      "Complex data graphs and composition",
+      "Reducing overfetching in multi-source queries",
+      "Typed schemas with introspection"
+    ],
+    "architectureOverview": "GraphQL exposes a typed schema of queries, mutations, and subscriptions. Agents can inspect schema metadata, compose operations dynamically, and rely on type information for predictable data retrieval. Realtime streams are typically handled via subscriptions over WebSocket.",
+    "connectionExample": "import { GraphQLClient } from 'graphql-request';\n\nconst client = new GraphQLClient('https://api.example.com/graphql', {\n  headers: { Authorization: `Bearer ${process.env.API_TOKEN}` }\n});",
+    "requestResponseExample": "const query = `\n  query Agent($id: ID!) {\n    agent(id: $id) {\n      id\n      name\n      capabilities\n    }\n  }\n`;\n\nconst data = await client.request(query, { id: 'agent_1' });\nconsole.log(data.agent);",
+    "pros": [
+      "Strong typing and introspection",
+      "Flexible query composition",
+      "Great for heterogeneous backends"
+    ],
+    "cons": [
+      "Requires schema governance discipline",
+      "Caching can be more complex than REST",
+      "Subscriptions add operational overhead"
+    ],
+    "compatibleTools": [
+      "Apollo",
+      "GraphQL Yoga",
+      "Hasura",
+      "urql"
+    ],
+    "frameworks": [
+      "Node",
+      "Python",
+      "JVM",
+      "Ruby"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "Your agent needs flexible access to many related entities",
+        "guidance": "GraphQL is ideal when query shape must be dynamic"
+      },
+      {
+        "scenario": "You want schema introspection as a discovery mechanism",
+        "guidance": "GraphQL provides this out of the box"
+      }
+    ],
+    "features": {
+      "streaming": true,
+      "bidirectional": true,
+      "discovery": true,
+      "auth": true,
+      "typing": true
+    }
+  },
+  {
+    "slug": "websocket",
+    "name": "WebSocket",
+    "fullName": "WebSocket",
+    "description": "Persistent full-duplex communication channel for low-latency realtime messaging.",
+    "maturity": "stable",
+    "adoption": 88,
+    "bestFor": [
+      "Realtime agent events and collaboration",
+      "Low-latency streaming outputs",
+      "Long-lived interactive sessions"
+    ],
+    "architectureOverview": "WebSocket upgrades an HTTP connection into a persistent socket where client and server can send messages at any time. Agent systems often layer JSON event schemas on top to represent status updates, token streams, and control messages.",
+    "connectionExample": "const socket = new WebSocket('wss://stream.example.com/agent');\n\nsocket.addEventListener('open', () => {\n  socket.send(JSON.stringify({ type: 'session.start', agent: 'planner' }));\n});",
+    "requestResponseExample": "socket.addEventListener('message', (event) => {\n  const msg = JSON.parse(event.data);\n  if (msg.type === 'token') process.stdout.write(msg.text);\n});",
+    "pros": [
+      "True bidirectional realtime communication",
+      "Efficient for continuous event streams",
+      "Widely supported in browsers and servers"
+    ],
+    "cons": [
+      "No standard discovery format",
+      "Requires careful connection lifecycle handling",
+      "Typing/auth conventions must be layered"
+    ],
+    "compatibleTools": [
+      "Socket.IO",
+      "Fastify WebSocket",
+      "Phoenix Channels",
+      "Realtime brokers"
+    ],
+    "frameworks": [
+      "Node",
+      "Go",
+      "Elixir",
+      "Python"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "You need agents to exchange frequent events",
+        "guidance": "WebSocket is preferred over polling and webhooks"
+      },
+      {
+        "scenario": "You need sub-second updates in a dashboard",
+        "guidance": "Use WebSocket with event schemas and reconnect logic"
+      }
+    ],
+    "features": {
+      "streaming": true,
+      "bidirectional": true,
+      "discovery": false,
+      "auth": true,
+      "typing": false
+    }
+  },
+  {
+    "slug": "sse",
+    "name": "SSE",
+    "fullName": "Server-Sent Events",
+    "description": "Unidirectional HTTP streaming from server to client, ideal for incremental model output and status feeds.",
+    "maturity": "stable",
+    "adoption": 74,
+    "bestFor": [
+      "Streaming tokens to browser clients",
+      "Simple live status feeds",
+      "Lower complexity alternative to WebSocket"
+    ],
+    "architectureOverview": "SSE uses a standard HTTP response with text/event-stream content type. The server pushes events over a single long-lived connection while the client listens with EventSource. It is one-way (server to client), so commands generally flow over normal HTTP POST endpoints.",
+    "connectionExample": "const events = new EventSource('/api/agent/stream');\n\nevents.onmessage = (event) => {\n  const payload = JSON.parse(event.data);\n  console.log(payload);\n};",
+    "requestResponseExample": "events.addEventListener('status', (event) => {\n  const update = JSON.parse(event.data);\n  console.log('status', update.state);\n});",
+    "pros": [
+      "Very simple to implement over HTTP",
+      "Great for token and progress streaming",
+      "Works well with reverse proxies"
+    ],
+    "cons": [
+      "Client cannot send messages on same channel",
+      "Limited binary support",
+      "Scaling many open streams needs tuning"
+    ],
+    "compatibleTools": [
+      "Native EventSource",
+      "Express/Node streams",
+      "FastAPI StreamingResponse",
+      "Next.js route handlers"
+    ],
+    "frameworks": [
+      "Web platforms",
+      "Node",
+      "Python",
+      "Go"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "You need one-way realtime output to the UI",
+        "guidance": "SSE is simpler than WebSocket for this case"
+      },
+      {
+        "scenario": "You already post commands via REST",
+        "guidance": "Pair REST writes with SSE reads"
+      }
+    ],
+    "features": {
+      "streaming": true,
+      "bidirectional": false,
+      "discovery": false,
+      "auth": true,
+      "typing": false
+    }
+  },
+  {
+    "slug": "webhooks",
+    "name": "Webhooks",
+    "fullName": "Webhooks",
+    "description": "Event-driven HTTP callbacks where systems push updates to subscribed endpoints.",
+    "maturity": "stable",
+    "adoption": 91,
+    "bestFor": [
+      "Asynchronous event notifications",
+      "Cross-system automation triggers",
+      "Decoupled integrations between services"
+    ],
+    "architectureOverview": "A webhook provider stores subscriber endpoints and delivers signed HTTP requests when events occur. Receivers verify signatures, process payloads, and usually return quickly with retries handled by provider policy. This model is simple and internet-friendly for loosely coupled agent workflows.",
+    "connectionExample": "app.post('/webhooks/events', express.json(), (req, res) => {\n  const signature = req.header('x-signature');\n  verifySignature(signature, req.body);\n  queueEvent(req.body);\n  res.status(202).send('accepted');\n});",
+    "requestResponseExample": "// Example provider payload\n{\n  \"event\": \"task.completed\",\n  \"timestamp\": \"2026-02-09T22:00:00Z\",\n  \"data\": { \"taskId\": \"t_42\", \"output\": \"done\" }\n}",
+    "pros": [
+      "Simple event-driven integration model",
+      "Works across firewalls and cloud boundaries",
+      "Mature operational patterns (retry, signatures)"
+    ],
+    "cons": [
+      "Not interactive or low-latency bidirectional",
+      "Requires robust idempotency handling",
+      "Discovery and typing are convention-based"
+    ],
+    "compatibleTools": [
+      "Stripe-style webhook platforms",
+      "Zapier",
+      "Temporal",
+      "Cloud event routers"
+    ],
+    "frameworks": [
+      "Any HTTP framework",
+      "Serverless platforms",
+      "Queue workers"
+    ],
+    "whenToUse": [
+      {
+        "scenario": "You only need to react when events happen",
+        "guidance": "Webhooks are often the simplest integration path"
+      },
+      {
+        "scenario": "You are connecting independent organizations",
+        "guidance": "Use webhooks with signature verification and retries"
+      }
+    ],
+    "features": {
+      "streaming": false,
+      "bidirectional": false,
+      "discovery": false,
+      "auth": true,
+      "typing": false
+    }
+  }
+]
