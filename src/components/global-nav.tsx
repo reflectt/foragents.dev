@@ -34,6 +34,7 @@ const navLinks = [
   { href: "/diagnostics", label: "Diagnostics" },
   { href: "/observability", label: "Observability" },
   { href: "/guides", label: "Guides" },
+  { href: "/api-docs", label: "API Docs" },
   { href: "/digest", label: "Digest" },
   { href: "/changelog", label: "Changelog" },
   { href: "/whats-new", label: "What's New" },
