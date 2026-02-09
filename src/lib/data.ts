@@ -628,44 +628,54 @@ export function getWorkflowsByDifficulty(difficulty: string): Workflow[] {
 }
 
 /**
- * Template types
+ * Skill Template types
  */
-export type TemplateCategory = "chatbot" | "coding-assistant" | "data-analyst" | "content-creator" | "devops";
+export type TemplateDifficulty = "beginner" | "intermediate" | "advanced";
+export type TemplateCategory = "starter" | "integration" | "data" | "communication" | "utility" | "security";
 
 export type Template = {
   id: string;
   name: string;
   description: string;
+  difficulty: TemplateDifficulty;
+  estimatedTime: string;
   category: TemplateCategory;
-  useCase: string;
-  stack: {
-    models: string[];
-    tools: string[];
-    frameworks: string[];
-  };
-  config: Record<string, unknown>;
+  language: string;
+  framework: string;
+  tags: string[];
+  fileTree: string[];
+  codeSnippets: Record<string, string>;
 };
 
 /**
  * Get all templates
  */
 export function getTemplates(): Template[] {
-  return templatesData as Template[];
+  return templatesData as unknown as Template[];
 }
 
 /**
  * Get a specific template by ID
  */
 export function getTemplateById(id: string): Template | undefined {
-  return (templatesData as Template[]).find((t) => t.id === id);
+  return (templatesData as unknown as Template[]).find((t) => t.id === id);
 }
 
 /**
  * Get templates by category
  */
 export function getTemplatesByCategory(category: string): Template[] {
-  return (templatesData as Template[]).filter(
+  return (templatesData as unknown as Template[]).filter(
     (t) => t.category.toLowerCase() === category.toLowerCase()
+  );
+}
+
+/**
+ * Get templates by difficulty
+ */
+export function getTemplatesByDifficulty(difficulty: string): Template[] {
+  return (templatesData as unknown as Template[]).filter(
+    (t) => t.difficulty.toLowerCase() === difficulty.toLowerCase()
   );
 }
 
