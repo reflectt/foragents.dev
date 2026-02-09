@@ -66,7 +66,7 @@ export function DiagnosticsClient() {
     // Version format check
     if (config.version) {
       const semverRegex = /^\d+\.\d+\.\d+/;
-      if (!semverRegex.test(config.version)) {
+      if (!semverRegex.test(String(config.version))) {
         validations.push({
           field: "version",
           status: "warn",
