@@ -2,7 +2,7 @@
 
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import SitemapClient from "@/app/sitemap/sitemap-client";
+import SitemapClient from "@/app/site-map/sitemap-client";
 
 jest.setTimeout(10_000);
 
@@ -59,7 +59,7 @@ jest.mock("next/navigation", () => ({
     refresh: jest.fn(),
   }),
   useSearchParams: () => new URLSearchParams(),
-  usePathname: () => "/sitemap",
+  usePathname: () => "/site-map",
   useParams: () => ({}),
 }));
 
@@ -83,13 +83,14 @@ describe("/sitemap page", () => {
 
   test("displays all main sections", () => {
     render(<SitemapClient />);
-    expect(screen.getByText("Home")).toBeInTheDocument();
-    expect(screen.getByText("Skills")).toBeInTheDocument();
-    expect(screen.getByText("Agents")).toBeInTheDocument();
-    expect(screen.getByText("Community")).toBeInTheDocument();
-    expect(screen.getByText("Resources")).toBeInTheDocument();
+    // Check for section headers using getAllByText since section names may appear as both headers and page links
+    expect(screen.getAllByText("Home").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Skills").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Agents").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Community").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Resources").length).toBeGreaterThan(0);
     expect(screen.getByText("Legal")).toBeInTheDocument();
-    expect(screen.getByText("API")).toBeInTheDocument();
+    expect(screen.getAllByText("API").length).toBeGreaterThan(0);
   });
 
   test("displays key page links", () => {

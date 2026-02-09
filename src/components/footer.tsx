@@ -124,7 +124,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/sitemap" className="text-muted-foreground hover:text-cyan transition-colors">
+                <Link href="/site-map" className="text-muted-foreground hover:text-cyan transition-colors">
                   Sitemap
                 </Link>
               </li>

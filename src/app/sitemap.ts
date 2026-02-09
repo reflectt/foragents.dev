@@ -90,7 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/roadmap`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/verify`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/sitemap-visual`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/sitemap`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/site-map`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/migrate`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   ];
 
