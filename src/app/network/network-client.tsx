@@ -188,6 +188,11 @@ export function NetworkClient({ agents, connections }: NetworkClientProps) {
     return positions;
   }, [filteredAgents]);
 
+  const effectiveSelectedAgent = useMemo(() => {
+    if (!selectedAgent) return null;
+    return filteredAgents.find((a) => a.id === selectedAgent.id) ?? null;
+  }, [selectedAgent, filteredAgents]);
+
   // Get connected agents for selected agent
   const connectedAgents = useMemo(() => {
     if (!effectiveSelectedAgent) return [];
@@ -200,8 +205,6 @@ export function NetworkClient({ agents, connections }: NetworkClientProps) {
 
     return filteredAgents.filter((a) => connectedIds.has(a.id));
   }, [effectiveSelectedAgent, filteredConnections, filteredAgents]);
-
-  // Selection is derived from filteredAgents (see effectiveSelectedAgent).
 
   return (
     <div className="space-y-6">
