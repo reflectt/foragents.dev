@@ -268,10 +268,10 @@ export default function UseCasesClient() {
                 Browse Skills →
               </Link>
               <Link
-                href="/getting-started"
+                href="/onboarding"
                 className="text-sm text-[#06D6A0] hover:underline"
               >
-                Getting Started Guide
+                Get Started
               </Link>
             </div>
           </div>

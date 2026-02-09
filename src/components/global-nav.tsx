@@ -15,7 +15,7 @@ const navLinks = [
   { href: "/macros", label: "Macros" },
   { href: "/requests", label: "Requests" },
   { href: "/bounties", label: "Bounties" },
-  { href: "/getting-started", label: "Get Started" },
+  { href: "/onboarding", label: "Get Started" },
   { href: "/search", label: "Search" },
   { href: "/playground", label: "Playground" },
   { href: "/guides", label: "Docs" },

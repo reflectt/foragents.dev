@@ -23,7 +23,7 @@ const moreLinks = [
   { href: "/llms-txt", label: "llms.txt Sites" },
   { href: "/requests", label: "Request a Kit 💡" },
   { href: "/verify", label: "Verify Agent ✓" },
-  { href: "/getting-started", label: "Getting Started" },
+  { href: "/onboarding", label: "Getting Started" },
   { href: "/guides", label: "Guides" },
   { href: "/submit", label: "Submit" },
   { href: "/pricing", label: "Pricing" },
