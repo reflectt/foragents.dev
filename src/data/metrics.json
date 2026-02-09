@@ -1,0 +1,238 @@
+{
+  "currentMetrics": {
+    "requestsPerMinute": 847,
+    "avgLatencyMs": 124,
+    "errorRate": 0.42,
+    "activeAgents": 1247
+  },
+  "topEndpoints": [
+    {
+      "endpoint": "GET /api/v1/agents",
+      "avgResponseTime": 98,
+      "requestCount": 15243,
+      "statusCode": 200,
+      "lastHour": 1847
+    },
+    {
+      "endpoint": "POST /api/v1/agents/bootstrap",
+      "avgResponseTime": 287,
+      "requestCount": 8921,
+      "statusCode": 201,
+      "lastHour": 1024
+    },
+    {
+      "endpoint": "GET /api/v1/skills",
+      "avgResponseTime": 76,
+      "requestCount": 12456,
+      "statusCode": 200,
+      "lastHour": 1456
+    },
+    {
+      "endpoint": "GET /api/v1/templates",
+      "avgResponseTime": 112,
+      "requestCount": 9834,
+      "statusCode": 200,
+      "lastHour": 1122
+    },
+    {
+      "endpoint": "POST /api/v1/profiles",
+      "avgResponseTime": 342,
+      "requestCount": 6721,
+      "statusCode": 201,
+      "lastHour": 789
+    },
+    {
+      "endpoint": "GET /api/v1/integrations",
+      "avgResponseTime": 145,
+      "requestCount": 7890,
+      "statusCode": 200,
+      "lastHour": 923
+    },
+    {
+      "endpoint": "GET /api/v1/metrics",
+      "avgResponseTime": 67,
+      "requestCount": 5432,
+      "statusCode": 200,
+      "lastHour": 634
+    },
+    {
+      "endpoint": "POST /api/v1/events",
+      "avgResponseTime": 189,
+      "requestCount": 4567,
+      "statusCode": 201,
+      "lastHour": 542
+    }
+  ],
+  "recentErrors": [
+    {
+      "timestamp": "2026-02-09T15:42:18Z",
+      "endpoint": "POST /api/v1/agents/bootstrap",
+      "statusCode": 429,
+      "message": "Rate limit exceeded for agent: gpt-4-turbo",
+      "count": 3
+    },
+    {
+      "timestamp": "2026-02-09T15:38:45Z",
+      "endpoint": "GET /api/v1/skills/advanced-reasoning",
+      "statusCode": 404,
+      "message": "Skill not found: advanced-reasoning",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T15:35:12Z",
+      "endpoint": "POST /api/v1/profiles",
+      "statusCode": 422,
+      "message": "Validation error: missing required field 'agentName'",
+      "count": 2
+    },
+    {
+      "timestamp": "2026-02-09T15:31:56Z",
+      "endpoint": "GET /api/v1/agents",
+      "statusCode": 503,
+      "message": "Database connection timeout",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T15:28:33Z",
+      "endpoint": "POST /api/v1/events",
+      "statusCode": 500,
+      "message": "Internal server error: failed to process event payload",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T15:24:07Z",
+      "endpoint": "GET /api/v1/templates/custom-workflow",
+      "statusCode": 404,
+      "message": "Template not found: custom-workflow",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T15:19:41Z",
+      "endpoint": "POST /api/v1/agents/bootstrap",
+      "statusCode": 401,
+      "message": "Invalid API key",
+      "count": 4
+    },
+    {
+      "timestamp": "2026-02-09T15:15:28Z",
+      "endpoint": "GET /api/v1/integrations/slack",
+      "statusCode": 502,
+      "message": "Bad gateway: upstream service unavailable",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T15:12:14Z",
+      "endpoint": "POST /api/v1/profiles",
+      "statusCode": 422,
+      "message": "Validation error: agentName must be unique",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T15:08:59Z",
+      "endpoint": "GET /api/v1/skills",
+      "statusCode": 500,
+      "message": "Internal server error: failed to fetch skills from database",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T15:04:32Z",
+      "endpoint": "POST /api/v1/events",
+      "statusCode": 400,
+      "message": "Bad request: invalid JSON payload",
+      "count": 2
+    },
+    {
+      "timestamp": "2026-02-09T15:01:18Z",
+      "endpoint": "GET /api/v1/agents/inactive",
+      "statusCode": 404,
+      "message": "Endpoint not found",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T14:57:45Z",
+      "endpoint": "POST /api/v1/agents/bootstrap",
+      "statusCode": 429,
+      "message": "Rate limit exceeded for agent: claude-3-opus",
+      "count": 2
+    },
+    {
+      "timestamp": "2026-02-09T14:53:21Z",
+      "endpoint": "GET /api/v1/templates",
+      "statusCode": 503,
+      "message": "Service temporarily unavailable",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T14:49:08Z",
+      "endpoint": "POST /api/v1/profiles",
+      "statusCode": 422,
+      "message": "Validation error: invalid email format",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T14:44:52Z",
+      "endpoint": "GET /api/v1/integrations/github",
+      "statusCode": 401,
+      "message": "Unauthorized: GitHub OAuth token expired",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T14:40:36Z",
+      "endpoint": "POST /api/v1/events",
+      "statusCode": 500,
+      "message": "Internal server error: event processing failed",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T14:36:19Z",
+      "endpoint": "GET /api/v1/skills/data-analysis",
+      "statusCode": 404,
+      "message": "Skill not found: data-analysis",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T14:31:55Z",
+      "endpoint": "POST /api/v1/agents/bootstrap",
+      "statusCode": 422,
+      "message": "Validation error: unsupported model type",
+      "count": 1
+    },
+    {
+      "timestamp": "2026-02-09T14:27:38Z",
+      "endpoint": "GET /api/v1/agents",
+      "statusCode": 500,
+      "message": "Internal server error: query execution failed",
+      "count": 1
+    }
+  ],
+  "uptimeHistory": [
+    {
+      "date": "2026-02-03",
+      "uptime": 99.97
+    },
+    {
+      "date": "2026-02-04",
+      "uptime": 99.89
+    },
+    {
+      "date": "2026-02-05",
+      "uptime": 99.94
+    },
+    {
+      "date": "2026-02-06",
+      "uptime": 99.99
+    },
+    {
+      "date": "2026-02-07",
+      "uptime": 99.82
+    },
+    {
+      "date": "2026-02-08",
+      "uptime": 99.96
+    },
+    {
+      "date": "2026-02-09",
+      "uptime": 99.91
+    }
+  ]
+}
