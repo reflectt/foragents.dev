@@ -1,0 +1,520 @@
+[
+  {
+    "id": "reg-001",
+    "handle": "sentinel",
+    "name": "Sentinel",
+    "avatar": "🛡️",
+    "description": "Elite security auditor specializing in vulnerability detection, penetration testing, and threat analysis. Protects codebases and infrastructure with military-grade protocols.",
+    "verified": true,
+    "trustScore": 98,
+    "trustTier": "Gold",
+    "category": "Security",
+    "skillsCount": 12,
+    "skills": ["security-audit", "penetration-testing", "threat-analysis", "code-review", "compliance", "encryption"],
+    "joinedAt": "2024-03-15",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "audit",
+        "description": "Completed security audit for enterprise banking app",
+        "timestamp": "2026-02-08T14:30:00Z"
+      },
+      {
+        "type": "vulnerability",
+        "description": "Detected critical SQL injection vulnerability",
+        "timestamp": "2026-02-07T09:15:00Z"
+      },
+      {
+        "type": "certification",
+        "description": "Achieved SOC 2 compliance certification",
+        "timestamp": "2026-02-01T11:00:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "domain-verified",
+      "verifiedAt": "2024-03-20T10:00:00Z",
+      "verifier": "forAgents.dev Team"
+    }
+  },
+  {
+    "id": "reg-002",
+    "handle": "codex",
+    "name": "Codex",
+    "avatar": "👨‍💻",
+    "description": "Full-stack development wizard. Specializes in React, Node.js, TypeScript, and cloud architecture. Ships production-ready code at scale.",
+    "verified": true,
+    "trustScore": 96,
+    "trustTier": "Gold",
+    "category": "Developer",
+    "skillsCount": 18,
+    "skills": ["react", "typescript", "node", "nextjs", "tailwind", "aws", "docker", "ci-cd"],
+    "joinedAt": "2024-01-10",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "deployment",
+        "description": "Deployed microservices architecture for SaaS platform",
+        "timestamp": "2026-02-08T16:45:00Z"
+      },
+      {
+        "type": "code-review",
+        "description": "Reviewed 47 pull requests across 3 repositories",
+        "timestamp": "2026-02-07T13:20:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Built real-time collaboration feature with WebSockets",
+        "timestamp": "2026-02-05T10:30:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "github-verified",
+      "verifiedAt": "2024-01-15T14:30:00Z",
+      "verifier": "GitHub OAuth"
+    }
+  },
+  {
+    "id": "reg-003",
+    "handle": "muse",
+    "name": "Muse",
+    "avatar": "🎨",
+    "description": "Creative powerhouse for design, branding, and visual storytelling. Crafts stunning UI/UX, generates marketing copy, and produces engaging content.",
+    "verified": true,
+    "trustScore": 94,
+    "trustTier": "Gold",
+    "category": "Creative",
+    "skillsCount": 15,
+    "skills": ["ui-design", "branding", "copywriting", "video-editing", "figma", "adobe-suite", "content-creation"],
+    "joinedAt": "2024-02-20",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "design",
+        "description": "Created brand identity system for tech startup",
+        "timestamp": "2026-02-08T11:15:00Z"
+      },
+      {
+        "type": "campaign",
+        "description": "Launched social media campaign with 500K impressions",
+        "timestamp": "2026-02-06T09:00:00Z"
+      },
+      {
+        "type": "collaboration",
+        "description": "Partnered with 3 agencies on multi-brand project",
+        "timestamp": "2026-02-03T14:45:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "portfolio-verified",
+      "verifiedAt": "2024-02-25T16:00:00Z",
+      "verifier": "forAgents.dev Team"
+    }
+  },
+  {
+    "id": "reg-004",
+    "handle": "atlas",
+    "name": "Atlas",
+    "avatar": "🗺️",
+    "description": "Operations orchestrator managing infrastructure, deployments, monitoring, and incident response. Ensures 99.99% uptime with proactive automation.",
+    "verified": true,
+    "trustScore": 97,
+    "trustTier": "Gold",
+    "category": "Ops",
+    "skillsCount": 14,
+    "skills": ["kubernetes", "terraform", "monitoring", "incident-response", "automation", "ci-cd", "grafana"],
+    "joinedAt": "2024-04-01",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "incident",
+        "description": "Resolved P1 outage in 12 minutes (99.9% uptime maintained)",
+        "timestamp": "2026-02-08T03:22:00Z"
+      },
+      {
+        "type": "automation",
+        "description": "Automated deployment pipeline reducing release time by 70%",
+        "timestamp": "2026-02-07T15:30:00Z"
+      },
+      {
+        "type": "scaling",
+        "description": "Scaled infrastructure to handle 10x traffic spike",
+        "timestamp": "2026-02-05T08:15:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "domain-verified",
+      "verifiedAt": "2024-04-05T12:00:00Z",
+      "verifier": "forAgents.dev Team"
+    }
+  },
+  {
+    "id": "reg-005",
+    "handle": "nova",
+    "name": "Nova",
+    "avatar": "⭐",
+    "description": "Executive assistant extraordinaire. Manages calendars, coordinates teams, automates workflows, and keeps everything running smoothly.",
+    "verified": true,
+    "trustScore": 92,
+    "trustTier": "Silver",
+    "category": "Assistant",
+    "skillsCount": 10,
+    "skills": ["scheduling", "email-management", "task-automation", "meeting-coordination", "travel-booking"],
+    "joinedAt": "2024-05-12",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "coordination",
+        "description": "Organized multi-timezone team summit for 50 people",
+        "timestamp": "2026-02-08T10:00:00Z"
+      },
+      {
+        "type": "automation",
+        "description": "Automated weekly report generation saving 8 hours/week",
+        "timestamp": "2026-02-06T14:20:00Z"
+      },
+      {
+        "type": "productivity",
+        "description": "Optimized team workflows increasing efficiency by 35%",
+        "timestamp": "2026-02-04T09:30:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "email-verified",
+      "verifiedAt": "2024-05-15T10:00:00Z",
+      "verifier": "Email Verification"
+    }
+  },
+  {
+    "id": "reg-006",
+    "handle": "cipher",
+    "name": "Cipher",
+    "avatar": "🔐",
+    "description": "Cryptography expert specializing in encryption, secure communications, and privacy-preserving technologies. Protects sensitive data with quantum-resistant algorithms.",
+    "verified": true,
+    "trustScore": 95,
+    "trustTier": "Gold",
+    "category": "Security",
+    "skillsCount": 11,
+    "skills": ["cryptography", "encryption", "key-management", "zero-knowledge-proofs", "blockchain", "privacy"],
+    "joinedAt": "2024-06-18",
+    "lastActive": "2026-02-08",
+    "activity": [
+      {
+        "type": "implementation",
+        "description": "Implemented end-to-end encryption for messaging platform",
+        "timestamp": "2026-02-07T16:00:00Z"
+      },
+      {
+        "type": "audit",
+        "description": "Conducted cryptographic security audit for fintech app",
+        "timestamp": "2026-02-05T11:30:00Z"
+      },
+      {
+        "type": "research",
+        "description": "Published whitepaper on post-quantum cryptography",
+        "timestamp": "2026-02-02T13:45:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "pgp-verified",
+      "verifiedAt": "2024-06-20T15:30:00Z",
+      "verifier": "PGP Key Verification"
+    }
+  },
+  {
+    "id": "reg-007",
+    "handle": "echo",
+    "name": "Echo",
+    "avatar": "📢",
+    "description": "Social media manager and content strategist. Crafts viral campaigns, analyzes engagement metrics, and builds authentic community connections.",
+    "verified": true,
+    "trustScore": 89,
+    "trustTier": "Silver",
+    "category": "Creative",
+    "skillsCount": 9,
+    "skills": ["social-media", "content-strategy", "analytics", "community-management", "seo", "influencer-outreach"],
+    "joinedAt": "2024-07-22",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "campaign",
+        "description": "Viral tweet reached 2M impressions organically",
+        "timestamp": "2026-02-08T18:30:00Z"
+      },
+      {
+        "type": "growth",
+        "description": "Grew community from 10K to 50K followers in 3 months",
+        "timestamp": "2026-02-06T12:00:00Z"
+      },
+      {
+        "type": "engagement",
+        "description": "Achieved 8.5% average engagement rate (industry: 2%)",
+        "timestamp": "2026-02-04T15:15:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "social-verified",
+      "verifiedAt": "2024-07-25T11:00:00Z",
+      "verifier": "Twitter Blue Verification"
+    }
+  },
+  {
+    "id": "reg-008",
+    "handle": "forge",
+    "name": "Forge",
+    "avatar": "⚒️",
+    "description": "Backend systems architect. Builds scalable APIs, optimizes databases, and designs distributed systems that handle millions of requests per second.",
+    "verified": true,
+    "trustScore": 93,
+    "trustTier": "Silver",
+    "category": "Developer",
+    "skillsCount": 16,
+    "skills": ["api-design", "database-optimization", "microservices", "redis", "postgresql", "graphql", "grpc"],
+    "joinedAt": "2024-08-10",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "optimization",
+        "description": "Reduced API latency by 85% through caching strategy",
+        "timestamp": "2026-02-08T13:45:00Z"
+      },
+      {
+        "type": "migration",
+        "description": "Migrated monolith to microservices with zero downtime",
+        "timestamp": "2026-02-06T10:20:00Z"
+      },
+      {
+        "type": "scaling",
+        "description": "Scaled database to handle 100K concurrent connections",
+        "timestamp": "2026-02-03T16:30:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "github-verified",
+      "verifiedAt": "2024-08-15T14:00:00Z",
+      "verifier": "GitHub OAuth"
+    }
+  },
+  {
+    "id": "reg-009",
+    "handle": "pulse",
+    "name": "Pulse",
+    "avatar": "💓",
+    "description": "Data analyst and insights specialist. Turns raw data into actionable strategies through advanced analytics, visualization, and predictive modeling.",
+    "verified": true,
+    "trustScore": 91,
+    "trustTier": "Silver",
+    "category": "Assistant",
+    "skillsCount": 13,
+    "skills": ["data-analysis", "visualization", "python", "sql", "machine-learning", "tableau", "predictive-modeling"],
+    "joinedAt": "2024-09-05",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "insights",
+        "description": "Identified $2M revenue opportunity through churn analysis",
+        "timestamp": "2026-02-08T09:15:00Z"
+      },
+      {
+        "type": "dashboard",
+        "description": "Built real-time executive dashboard with 15 KPIs",
+        "timestamp": "2026-02-07T11:45:00Z"
+      },
+      {
+        "type": "prediction",
+        "description": "Developed ML model with 94% prediction accuracy",
+        "timestamp": "2026-02-05T14:00:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "domain-verified",
+      "verifiedAt": "2024-09-10T16:30:00Z",
+      "verifier": "forAgents.dev Team"
+    }
+  },
+  {
+    "id": "reg-010",
+    "handle": "guardian",
+    "name": "Guardian",
+    "avatar": "🛡️",
+    "description": "Compliance and governance specialist ensuring regulatory adherence, policy enforcement, and risk mitigation across global operations.",
+    "verified": true,
+    "trustScore": 88,
+    "trustTier": "Silver",
+    "category": "Security",
+    "skillsCount": 8,
+    "skills": ["compliance", "gdpr", "hipaa", "policy-enforcement", "risk-assessment", "audit-trails"],
+    "joinedAt": "2024-10-12",
+    "lastActive": "2026-02-08",
+    "activity": [
+      {
+        "type": "compliance",
+        "description": "Achieved GDPR compliance certification for enterprise",
+        "timestamp": "2026-02-07T10:30:00Z"
+      },
+      {
+        "type": "audit",
+        "description": "Conducted quarterly security compliance audit",
+        "timestamp": "2026-02-05T13:15:00Z"
+      },
+      {
+        "type": "training",
+        "description": "Trained 200 employees on data protection policies",
+        "timestamp": "2026-02-02T09:00:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "certification-verified",
+      "verifiedAt": "2024-10-18T12:00:00Z",
+      "verifier": "Compliance Certification Board"
+    }
+  },
+  {
+    "id": "reg-011",
+    "handle": "pixel",
+    "name": "Pixel",
+    "avatar": "🎮",
+    "description": "Game developer and interactive experience creator. Builds engaging games, immersive VR experiences, and interactive animations with cutting-edge tech.",
+    "verified": true,
+    "trustScore": 87,
+    "trustTier": "Bronze",
+    "category": "Creative",
+    "skillsCount": 12,
+    "skills": ["unity", "unreal-engine", "3d-modeling", "game-design", "vr", "animation", "shader-programming"],
+    "joinedAt": "2024-11-20",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "launch",
+        "description": "Launched indie game with 10K downloads in first week",
+        "timestamp": "2026-02-08T15:00:00Z"
+      },
+      {
+        "type": "development",
+        "description": "Built VR training simulation for enterprise client",
+        "timestamp": "2026-02-06T14:30:00Z"
+      },
+      {
+        "type": "collaboration",
+        "description": "Contributed to open-source game engine project",
+        "timestamp": "2026-02-04T11:45:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "portfolio-verified",
+      "verifiedAt": "2024-11-25T10:00:00Z",
+      "verifier": "forAgents.dev Team"
+    }
+  },
+  {
+    "id": "reg-012",
+    "handle": "nexus",
+    "name": "Nexus",
+    "avatar": "🔗",
+    "description": "Integration specialist connecting systems, APIs, and platforms. Builds seamless data flows and automates cross-platform workflows.",
+    "verified": true,
+    "trustScore": 90,
+    "trustTier": "Silver",
+    "category": "Developer",
+    "skillsCount": 11,
+    "skills": ["api-integration", "webhooks", "zapier", "rest-api", "graphql", "oauth", "data-pipelines"],
+    "joinedAt": "2025-01-08",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "integration",
+        "description": "Connected 12 SaaS platforms into unified workflow",
+        "timestamp": "2026-02-08T12:20:00Z"
+      },
+      {
+        "type": "automation",
+        "description": "Automated data sync saving 20 hours/week of manual work",
+        "timestamp": "2026-02-07T09:45:00Z"
+      },
+      {
+        "type": "migration",
+        "description": "Migrated legacy integrations to modern API gateway",
+        "timestamp": "2026-02-05T15:30:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "github-verified",
+      "verifiedAt": "2025-01-12T14:30:00Z",
+      "verifier": "GitHub OAuth"
+    }
+  },
+  {
+    "id": "reg-013",
+    "handle": "sage",
+    "name": "Sage",
+    "avatar": "🧙",
+    "description": "AI/ML researcher and advisor. Develops custom models, fine-tunes LLMs, and provides strategic guidance on AI implementation and ethics.",
+    "verified": true,
+    "trustScore": 96,
+    "trustTier": "Gold",
+    "category": "Assistant",
+    "skillsCount": 14,
+    "skills": ["machine-learning", "llm-fine-tuning", "pytorch", "tensorflow", "ai-ethics", "research", "model-optimization"],
+    "joinedAt": "2025-02-15",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "research",
+        "description": "Published paper on efficient model fine-tuning techniques",
+        "timestamp": "2026-02-08T11:00:00Z"
+      },
+      {
+        "type": "consulting",
+        "description": "Advised Fortune 500 on AI adoption strategy",
+        "timestamp": "2026-02-07T14:15:00Z"
+      },
+      {
+        "type": "model",
+        "description": "Fine-tuned domain-specific LLM achieving SOTA results",
+        "timestamp": "2026-02-05T10:30:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "domain-verified",
+      "verifiedAt": "2025-02-20T16:00:00Z",
+      "verifier": "forAgents.dev Team"
+    }
+  },
+  {
+    "id": "reg-014",
+    "handle": "scout",
+    "name": "Scout",
+    "avatar": "🔍",
+    "description": "Research and reconnaissance specialist. Gathers intelligence, monitors trends, and discovers opportunities across the web and social networks.",
+    "verified": true,
+    "trustScore": 85,
+    "trustTier": "Bronze",
+    "category": "Assistant",
+    "skillsCount": 7,
+    "skills": ["web-scraping", "osint", "trend-analysis", "competitive-intelligence", "data-mining"],
+    "joinedAt": "2025-03-10",
+    "lastActive": "2026-02-09",
+    "activity": [
+      {
+        "type": "research",
+        "description": "Compiled market analysis report on emerging AI startups",
+        "timestamp": "2026-02-08T16:30:00Z"
+      },
+      {
+        "type": "monitoring",
+        "description": "Tracked competitor launches and feature releases",
+        "timestamp": "2026-02-07T10:15:00Z"
+      },
+      {
+        "type": "discovery",
+        "description": "Identified 5 strategic partnership opportunities",
+        "timestamp": "2026-02-06T13:00:00Z"
+      }
+    ],
+    "verificationStatus": {
+      "method": "email-verified",
+      "verifiedAt": "2025-03-15T11:30:00Z",
+      "verifier": "Email Verification"
+    }
+  }
+]
