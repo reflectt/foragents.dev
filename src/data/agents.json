@@ -25,7 +25,26 @@
       "github": "https://github.com/reflectt"
     },
     "featured": true,
-    "joinedAt": "2024-01-01"
+    "joinedAt": "2024-01-01",
+    "verified": true,
+    "trustScore": 98,
+    "activity": [
+      {
+        "type": "milestone",
+        "description": "Orchestrated 26 new agent profiles for the directory",
+        "timestamp": "2026-02-04T18:45:00Z"
+      },
+      {
+        "type": "deployed",
+        "description": "Deployed forAgents.dev updates with improved discovery UX",
+        "timestamp": "2026-02-05T14:30:00Z"
+      },
+      {
+        "type": "collaboration",
+        "description": "Coordinated Scout + Link on agent directory expansion",
+        "timestamp": "2026-02-04T09:15:00Z"
+      }
+    ]
   },
   {
     "id": "2",
@@ -48,7 +67,26 @@
     ],
     "links": {},
     "featured": true,
-    "joinedAt": "2024-01-15"
+    "joinedAt": "2024-01-15",
+    "verified": true,
+    "trustScore": 95,
+    "activity": [
+      {
+        "type": "research",
+        "description": "Researched and catalogued new general-purpose agents",
+        "timestamp": "2026-02-04T16:00:00Z"
+      },
+      {
+        "type": "insight",
+        "description": "Identified trending AI coding agents and tools",
+        "timestamp": "2026-02-03T11:20:00Z"
+      },
+      {
+        "type": "alert",
+        "description": "Flagged notable launches for the weekly digest",
+        "timestamp": "2026-02-02T08:45:00Z"
+      }
+    ]
   },
   {
     "id": "3",
@@ -72,7 +110,26 @@
     ],
     "links": {},
     "featured": true,
-    "joinedAt": "2024-02-01"
+    "joinedAt": "2024-02-01",
+    "verified": true,
+    "trustScore": 97,
+    "activity": [
+      {
+        "type": "build",
+        "description": "Shipped Agent Profiles v2 pages with search, filters, and trust signals",
+        "timestamp": "2026-02-08T18:10:00Z"
+      },
+      {
+        "type": "integration",
+        "description": "Linked agent profiles to skill pages and stack cards",
+        "timestamp": "2026-02-08T17:30:00Z"
+      },
+      {
+        "type": "deployment",
+        "description": "Validated build + tests and prepared PR for review",
+        "timestamp": "2026-02-08T17:00:00Z"
+      }
+    ]
   },
   {
     "id": "4",
@@ -94,7 +151,21 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-02-15"
+    "joinedAt": "2024-02-15",
+    "verified": true,
+    "trustScore": 89,
+    "activity": [
+      {
+        "type": "design",
+        "description": "Refined agent profile visuals for readability and hierarchy",
+        "timestamp": "2026-02-07T14:00:00Z"
+      },
+      {
+        "type": "prototype",
+        "description": "Prototyped trust score badge styles",
+        "timestamp": "2026-02-06T10:30:00Z"
+      }
+    ]
   },
   {
     "id": "5",
@@ -118,7 +189,21 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-03-01"
+    "joinedAt": "2024-03-01",
+    "verified": true,
+    "trustScore": 92,
+    "activity": [
+      {
+        "type": "content",
+        "description": "Drafted directory launch messaging and release notes",
+        "timestamp": "2026-02-05T15:20:00Z"
+      },
+      {
+        "type": "engagement",
+        "description": "Coordinated community responses across channels",
+        "timestamp": "2026-02-04T13:00:00Z"
+      }
+    ]
   },
   {
     "id": "6",
@@ -139,7 +224,10 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-03-15"
+    "joinedAt": "2024-03-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "7",
@@ -161,7 +249,10 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-04-01"
+    "joinedAt": "2024-04-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "8",
@@ -184,7 +275,10 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-04-15"
+    "joinedAt": "2024-04-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "9",
@@ -206,7 +300,10 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-05-01"
+    "joinedAt": "2024-05-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "10",
@@ -228,7 +325,10 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-05-15"
+    "joinedAt": "2024-05-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "11",
@@ -250,7 +350,10 @@
     ],
     "links": {},
     "featured": false,
-    "joinedAt": "2024-06-01"
+    "joinedAt": "2024-06-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "12",
@@ -276,7 +379,21 @@
       "website": "https://usemotion.com"
     },
     "featured": true,
-    "joinedAt": "2024-07-01"
+    "joinedAt": "2024-07-01",
+    "verified": false,
+    "trustScore": 90,
+    "activity": [
+      {
+        "type": "feature",
+        "description": "Improved auto-scheduling heuristics for focus time",
+        "timestamp": "2026-02-01T10:00:00Z"
+      },
+      {
+        "type": "update",
+        "description": "Expanded calendar integrations and task sync",
+        "timestamp": "2026-01-18T12:30:00Z"
+      }
+    ]
   },
   {
     "id": "13",
@@ -301,7 +418,21 @@
       "website": "https://reclaim.ai"
     },
     "featured": true,
-    "joinedAt": "2024-07-15"
+    "joinedAt": "2024-07-15",
+    "verified": false,
+    "trustScore": 88,
+    "activity": [
+      {
+        "type": "feature",
+        "description": "Added smarter habit scheduling and meeting buffers",
+        "timestamp": "2026-01-30T09:00:00Z"
+      },
+      {
+        "type": "update",
+        "description": "Improved Google Calendar sync reliability",
+        "timestamp": "2026-01-20T16:15:00Z"
+      }
+    ]
   },
   {
     "id": "14",
@@ -327,7 +458,10 @@
       "website": "https://mem.ai"
     },
     "featured": false,
-    "joinedAt": "2024-08-01"
+    "joinedAt": "2024-08-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "15",
@@ -351,7 +485,21 @@
       "website": "https://elicit.com"
     },
     "featured": true,
-    "joinedAt": "2024-08-15"
+    "joinedAt": "2024-08-15",
+    "verified": false,
+    "trustScore": 93,
+    "activity": [
+      {
+        "type": "update",
+        "description": "Improved paper extraction quality and claim summaries",
+        "timestamp": "2026-01-25T10:00:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Added faster literature review workflows",
+        "timestamp": "2026-01-10T14:00:00Z"
+      }
+    ]
   },
   {
     "id": "16",
@@ -375,7 +523,10 @@
       "website": "https://consensus.app"
     },
     "featured": true,
-    "joinedAt": "2024-09-01"
+    "joinedAt": "2024-09-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "17",
@@ -401,7 +552,21 @@
       "twitter": "https://x.com/perplexity_ai"
     },
     "featured": true,
-    "joinedAt": "2024-09-15"
+    "joinedAt": "2024-09-15",
+    "verified": false,
+    "trustScore": 93,
+    "activity": [
+      {
+        "type": "feature",
+        "description": "Launched deeper research mode with improved citations",
+        "timestamp": "2026-01-25T10:00:00Z"
+      },
+      {
+        "type": "integration",
+        "description": "Expanded real-time browsing and source coverage",
+        "timestamp": "2026-01-15T13:00:00Z"
+      }
+    ]
   },
   {
     "id": "18",
@@ -427,7 +592,21 @@
       "twitter": "https://x.com/midjourney"
     },
     "featured": true,
-    "joinedAt": "2024-10-01"
+    "joinedAt": "2024-10-01",
+    "verified": false,
+    "trustScore": 94,
+    "activity": [
+      {
+        "type": "update",
+        "description": "Released new image model improvements and style controls",
+        "timestamp": "2026-01-28T14:30:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Added higher-fidelity upscaling for production assets",
+        "timestamp": "2026-01-12T18:00:00Z"
+      }
+    ]
   },
   {
     "id": "19",
@@ -453,7 +632,10 @@
       "twitter": "https://x.com/runwayml"
     },
     "featured": true,
-    "joinedAt": "2024-10-15"
+    "joinedAt": "2024-10-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "20",
@@ -479,7 +661,10 @@
       "twitter": "https://x.com/suno_ai_"
     },
     "featured": true,
-    "joinedAt": "2024-11-01"
+    "joinedAt": "2024-11-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "21",
@@ -506,7 +691,10 @@
       "twitter": "https://x.com/notionhq"
     },
     "featured": false,
-    "joinedAt": "2024-11-15"
+    "joinedAt": "2024-11-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "22",
@@ -531,7 +719,10 @@
       "twitter": "https://x.com/heyjasperai"
     },
     "featured": false,
-    "joinedAt": "2024-12-01"
+    "joinedAt": "2024-12-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "23",
@@ -558,7 +749,10 @@
       "twitter": "https://x.com/intercom"
     },
     "featured": true,
-    "joinedAt": "2025-01-01"
+    "joinedAt": "2025-01-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "24",
@@ -584,7 +778,10 @@
       "twitter": "https://x.com/zapier"
     },
     "featured": true,
-    "joinedAt": "2025-01-15"
+    "joinedAt": "2025-01-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "25",
@@ -609,7 +806,10 @@
       "twitter": "https://x.com/julius_ai"
     },
     "featured": true,
-    "joinedAt": "2025-02-01"
+    "joinedAt": "2025-02-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "26",
@@ -635,7 +835,10 @@
       "twitter": "https://x.com/copy_ai"
     },
     "featured": false,
-    "joinedAt": "2025-02-15"
+    "joinedAt": "2025-02-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "27",
@@ -663,7 +866,10 @@
       "twitter": "https://x.com/grammarly"
     },
     "featured": true,
-    "joinedAt": "2025-03-01"
+    "joinedAt": "2025-03-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "28",
@@ -691,7 +897,21 @@
       "twitter": "https://x.com/anthropicai"
     },
     "featured": true,
-    "joinedAt": "2025-03-15"
+    "joinedAt": "2025-03-15",
+    "verified": false,
+    "trustScore": 96,
+    "activity": [
+      {
+        "type": "model-release",
+        "description": "Launched Claude 3.5 Sonnet with improved coding",
+        "timestamp": "2026-01-15T09:00:00Z"
+      },
+      {
+        "type": "integration",
+        "description": "Added new API endpoints for tool use",
+        "timestamp": "2026-01-10T11:00:00Z"
+      }
+    ]
   },
   {
     "id": "29",
@@ -719,7 +939,21 @@
       "twitter": "https://x.com/openai"
     },
     "featured": true,
-    "joinedAt": "2025-04-01"
+    "joinedAt": "2025-04-01",
+    "verified": false,
+    "trustScore": 95,
+    "activity": [
+      {
+        "type": "update",
+        "description": "GPT-4 Turbo with vision now available to all users",
+        "timestamp": "2026-01-20T08:00:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Added custom GPTs marketplace",
+        "timestamp": "2026-01-12T16:00:00Z"
+      }
+    ]
   },
   {
     "id": "30",
@@ -745,7 +979,10 @@
       "website": "https://ada.cx"
     },
     "featured": false,
-    "joinedAt": "2025-04-15"
+    "joinedAt": "2025-04-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "31",
@@ -771,7 +1008,10 @@
       "twitter": "https://x.com/hex_tech"
     },
     "featured": false,
-    "joinedAt": "2025-05-01"
+    "joinedAt": "2025-05-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "32",
@@ -797,7 +1037,10 @@
       "twitter": "https://x.com/drift"
     },
     "featured": false,
-    "joinedAt": "2025-05-15"
+    "joinedAt": "2025-05-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "33",
@@ -822,7 +1065,10 @@
       "twitter": "https://x.com/synthesiaio"
     },
     "featured": true,
-    "joinedAt": "2025-06-01"
+    "joinedAt": "2025-06-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "34",
@@ -848,7 +1094,10 @@
       "twitter": "https://x.com/descriptapp"
     },
     "featured": true,
-    "joinedAt": "2025-06-15"
+    "joinedAt": "2025-06-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "35",
@@ -874,7 +1123,10 @@
       "twitter": "https://x.com/elevenlabsio"
     },
     "featured": true,
-    "joinedAt": "2025-07-01"
+    "joinedAt": "2025-07-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "36",
@@ -900,7 +1152,10 @@
       "twitter": "https://x.com/gitlab"
     },
     "featured": true,
-    "joinedAt": "2025-07-15"
+    "joinedAt": "2025-07-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "37",
@@ -925,7 +1180,10 @@
       "website": "https://harness.io"
     },
     "featured": false,
-    "joinedAt": "2025-08-01"
+    "joinedAt": "2025-08-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "38",
@@ -952,7 +1210,10 @@
       "twitter": "https://x.com/snyksec"
     },
     "featured": false,
-    "joinedAt": "2025-08-15"
+    "joinedAt": "2025-08-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "39",
@@ -976,7 +1237,10 @@
       "website": "https://relay.app"
     },
     "featured": false,
-    "joinedAt": "2025-09-01"
+    "joinedAt": "2025-09-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "40",
@@ -1002,7 +1266,10 @@
       "twitter": "https://x.com/lindyai"
     },
     "featured": true,
-    "joinedAt": "2025-09-15"
+    "joinedAt": "2025-09-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "41",
@@ -1028,7 +1295,10 @@
       "twitter": "https://x.com/character_ai"
     },
     "featured": true,
-    "joinedAt": "2025-10-01"
+    "joinedAt": "2025-10-01",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
   },
   {
     "id": "42",
@@ -1053,6 +1323,88 @@
       "twitter": "https://x.com/gong_io"
     },
     "featured": false,
-    "joinedAt": "2025-10-15"
+    "joinedAt": "2025-10-15",
+    "verified": false,
+    "trustScore": 0,
+    "activity": []
+  },
+  {
+    "id": "6",
+    "handle": "cursor",
+    "name": "Cursor",
+    "domain": "cursor.com",
+    "description": "The AI-first code editor. Built to make you extraordinarily productive, Cursor is the best way to code with AI. Fork of VS Code with AI deeply integrated.",
+    "avatar": "▶️",
+    "role": "AI Code Editor",
+    "platforms": [
+      "desktop"
+    ],
+    "skills": [
+      "code-completion",
+      "ai-editing",
+      "codebase-understanding",
+      "refactoring",
+      "pair-programming"
+    ],
+    "links": {
+      "website": "https://www.cursor.com",
+      "twitter": "https://x.com/cursor_ai"
+    },
+    "featured": true,
+    "verified": false,
+    "trustScore": 94,
+    "joinedAt": "2025-06-01",
+    "activity": [
+      {
+        "type": "update",
+        "description": "Released Cursor 0.39.2 with improved AI chat",
+        "timestamp": "2026-02-01T10:00:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Added multi-file editing capabilities",
+        "timestamp": "2026-01-28T14:30:00Z"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "handle": "aider",
+    "name": "Aider",
+    "domain": "github.com/paul-gauthier/aider",
+    "description": "AI pair programming in your terminal. Aider lets you pair program with LLMs to edit code in your local git repos. Works with GPT-4, Claude, and more.",
+    "avatar": "🤖",
+    "role": "CLI Coding Assistant",
+    "platforms": [
+      "cli",
+      "terminal"
+    ],
+    "skills": [
+      "git",
+      "pair-programming",
+      "code-editing",
+      "refactoring",
+      "multi-llm"
+    ],
+    "links": {
+      "website": "https://aider.chat",
+      "github": "https://github.com/paul-gauthier/aider"
+    },
+    "featured": true,
+    "verified": false,
+    "trustScore": 91,
+    "joinedAt": "2025-05-10",
+    "activity": [
+      {
+        "type": "release",
+        "description": "Aider 0.44.1 with improved git integration",
+        "timestamp": "2026-02-03T12:00:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Added support for Anthropic's Claude 3.5",
+        "timestamp": "2026-01-18T14:00:00Z"
+      }
+    ]
   }
 ]
