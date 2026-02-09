@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { McpServer, McpServerCategory } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,10 +25,6 @@ const categoryTabs: Array<{ key: "all" | McpServerCategory; label: string }> = [
   { key: "search", label: "Search" },
   { key: "communication", label: "Communication" },
 ];
-
-function normalizeCategory(c: string) {
-  return c.toLowerCase();
-}
 
 function getCategoryStyle(category: unknown) {
   const fallback = { bg: "bg-white/5", text: "text-white/70", border: "border-white/10" };
@@ -55,20 +51,49 @@ function getCompatTags(server: McpServer): string[] {
 export function McpHubClient({ servers }: { servers: McpServer[] }) {
   const [activeCategory, setActiveCategory] = useState<"all" | McpServerCategory>("all");
   const [query, setQuery] = useState<string>("");
+  const [debouncedQuery, setDebouncedQuery] = useState<string>("");
+  const [results, setResults] = useState<McpServer[]>(servers);
 
   const featured = useMemo(() => servers.filter((s) => s.featured).slice(0, 5), [servers]);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return servers.filter((s) => {
-      const inCategory =
-        activeCategory === "all" || normalizeCategory(s.category) === normalizeCategory(activeCategory);
-      const inQuery = !q || s.name.toLowerCase().includes(q);
-      return inCategory && inQuery;
-    });
-  }, [servers, activeCategory, query]);
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      setDebouncedQuery(query.trim());
+    }, 300);
 
-  const showFeatured = activeCategory === "all" && query.trim() === "" && featured.length > 0;
+    return () => window.clearTimeout(timeout);
+  }, [query]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadServers() {
+      try {
+        const params = new URLSearchParams();
+        if (activeCategory !== "all") params.set("category", activeCategory);
+        if (debouncedQuery) params.set("search", debouncedQuery);
+
+        const qs = params.toString();
+        const response = await fetch(`/api/mcp${qs ? `?${qs}` : ""}`, {
+          signal: controller.signal,
+          cache: "no-store",
+        });
+
+        if (!response.ok) return;
+
+        const payload = (await response.json()) as { servers?: McpServer[] };
+        setResults(Array.isArray(payload.servers) ? payload.servers : []);
+      } catch {
+        // Keep previously loaded results if the API request fails.
+      }
+    }
+
+    void loadServers();
+
+    return () => controller.abort();
+  }, [activeCategory, debouncedQuery]);
+
+  const showFeatured = activeCategory === "all" && debouncedQuery === "" && featured.length > 0;
 
   return (
     <div className="space-y-10">
@@ -91,7 +116,7 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
           </div>
 
           <div className="text-xs font-mono text-muted-foreground">
-            {filtered.length} result{filtered.length === 1 ? "" : "s"}
+            {results.length} result{results.length === 1 ? "" : "s"}
           </div>
         </div>
 
@@ -211,7 +236,7 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
         <h2 className="text-lg font-bold">All Servers</h2>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {filtered.map((server) => {
+          {results.map((server) => {
             const style = getCategoryStyle(server.category);
             const repoUrl = getRepoUrl(server);
             const compat = getCompatTags(server);
@@ -289,7 +314,7 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
           })}
         </div>
 
-        {filtered.length === 0 && (
+        {results.length === 0 && (
           <div className="rounded-lg border border-white/10 bg-black/20 px-4 py-8 text-center">
             <p className="text-sm text-muted-foreground">No servers match your filters.</p>
           </div>

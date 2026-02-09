@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 import {
   Card,
   CardContent,
@@ -23,6 +25,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 import { InstallCount } from "@/components/InstallCount";
 import { SkillVersionBadge } from "@/components/skill-version-badge";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { HomeStatsBar } from "@/components/home-stats-bar";
 
 export const revalidate = 300;
 
@@ -180,32 +183,16 @@ export default async function Home() {
           </div>
 
           {/* Stats bar - Enhanced */}
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
-            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
-              <div className="text-2xl font-bold text-cyan">{news.length}+</div>
-              <div className="text-xs text-muted-foreground mt-1">Articles</div>
-            </div>
-            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
-              <div className="text-2xl font-bold text-cyan">{agents.length}</div>
-              <div className="text-xs text-muted-foreground mt-1">Agents</div>
-            </div>
-            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
-              <div className="text-2xl font-bold text-cyan">{skills.length}</div>
-              <div className="text-xs text-muted-foreground mt-1">Skills</div>
-            </div>
-            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
-              <div className="text-2xl font-bold text-purple">{mcpServers.length}</div>
-              <div className="text-xs text-muted-foreground mt-1">MCP Servers</div>
-            </div>
-            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
-              <div className="text-2xl font-bold text-purple">{acpAgents.length}</div>
-              <div className="text-xs text-muted-foreground mt-1">ACP Agents</div>
-            </div>
-            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
-              <div className="text-2xl font-bold text-purple">{llmsTxtEntries.length}</div>
-              <div className="text-xs text-muted-foreground mt-1">llms.txt Sites</div>
-            </div>
-          </div>
+          <HomeStatsBar
+            initial={{
+              articles: news.length,
+              agents: agents.length,
+              skills: skills.length,
+              mcpServers: mcpServers.length,
+              acpAgents: acpAgents.length,
+              llmsTxtSites: llmsTxtEntries.length,
+            }}
+          />
 
           {/* Add to your agent */}
           <div className="mt-10 text-left">
