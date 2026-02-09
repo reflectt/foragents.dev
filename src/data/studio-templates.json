@@ -1,0 +1,227 @@
+[
+  {
+    "id": "memory-kit",
+    "name": "Memory Kit",
+    "description": "3-layer memory system for persistent agent knowledge",
+    "category": "Core Systems",
+    "tags": ["memory", "persistence", "learning"],
+    "parameters": [
+      {
+        "name": "memory_dir",
+        "type": "string",
+        "description": "Directory for storing memory files",
+        "default": "./memory"
+      },
+      {
+        "name": "retention_days",
+        "type": "number",
+        "description": "How many days to keep episodic memory",
+        "default": 30
+      }
+    ],
+    "dependencies": [],
+    "envVars": [],
+    "sampleInput": "Remember that I prefer morning meetings",
+    "sampleOutput": "Stored preference: morning meetings → procedural memory",
+    "validation": "Memory files should be created in the specified directory",
+    "skillTemplate": "# {name}\n\n{description}\n\n## Installation\n\n```bash\n{install_cmd}\n```\n\n## Usage\n\nConfigure your memory directory:\n\n```bash\nmkdir -p {memory_dir}\n```\n\n## Parameters\n\n{parameters}\n\n## What It Does\n\nMaintains three types of memory:\n- **Episodic**: What happened (daily logs)\n- **Semantic**: What you know (facts, preferences)\n- **Procedural**: How to do things (skills, workflows)\n\n## Dependencies\n\n{dependencies}\n\n## Author\n\n{author}"
+  },
+  {
+    "id": "api-connector",
+    "name": "API Connector",
+    "description": "Generic REST API integration template with auth and error handling",
+    "category": "Integration",
+    "tags": ["api", "integration", "http"],
+    "parameters": [
+      {
+        "name": "api_base_url",
+        "type": "string",
+        "description": "Base URL for the API",
+        "default": "https://api.example.com"
+      },
+      {
+        "name": "timeout",
+        "type": "number",
+        "description": "Request timeout in seconds",
+        "default": 30
+      },
+      {
+        "name": "retry_attempts",
+        "type": "number",
+        "description": "Number of retry attempts on failure",
+        "default": 3
+      }
+    ],
+    "dependencies": ["curl or http client"],
+    "envVars": [
+      {
+        "name": "API_KEY",
+        "description": "API authentication key",
+        "required": true
+      },
+      {
+        "name": "API_SECRET",
+        "description": "API secret (if required)",
+        "required": false
+      }
+    ],
+    "sampleInput": "GET /users/123",
+    "sampleOutput": "{\"id\": 123, \"name\": \"Agent\", \"status\": \"active\"}",
+    "validation": "API should respond with 200 status and valid JSON",
+    "skillTemplate": "# {name}\n\n{description}\n\n## Installation\n\n```bash\n{install_cmd}\n```\n\n## Configuration\n\nSet your API credentials:\n\n```bash\nexport API_KEY=your_key_here\n```\n\n## Parameters\n\n{parameters}\n\n## Environment Variables\n\n{envVars}\n\n## Usage Example\n\n```bash\ncurl -H \"Authorization: Bearer $API_KEY\" \\\n  {api_base_url}/endpoint\n```\n\n## Error Handling\n\n- Automatic retries on network failures\n- Exponential backoff\n- Detailed error logging\n\n## Dependencies\n\n{dependencies}\n\n## Author\n\n{author}"
+  },
+  {
+    "id": "data-processor",
+    "name": "Data Processor",
+    "description": "Transform and validate data between formats (JSON, CSV, markdown)",
+    "category": "Utilities",
+    "tags": ["data", "transform", "validation"],
+    "parameters": [
+      {
+        "name": "input_format",
+        "type": "string",
+        "description": "Input data format",
+        "default": "json"
+      },
+      {
+        "name": "output_format",
+        "type": "string",
+        "description": "Output data format",
+        "default": "markdown"
+      },
+      {
+        "name": "validation_schema",
+        "type": "string",
+        "description": "Path to validation schema file",
+        "default": ""
+      }
+    ],
+    "dependencies": ["jq", "yq (optional)"],
+    "envVars": [],
+    "sampleInput": "[{\"name\": \"Task 1\", \"done\": false}]",
+    "sampleOutput": "- [ ] Task 1",
+    "validation": "Output should match the specified format and schema",
+    "skillTemplate": "# {name}\n\n{description}\n\n## Installation\n\n```bash\n{install_cmd}\n```\n\n## Parameters\n\n{parameters}\n\n## Supported Formats\n\n- JSON\n- CSV\n- Markdown\n- YAML\n- XML\n\n## Usage\n\n```bash\ncat input.json | processor --input json --output markdown\n```\n\n## Validation\n\nOptional schema validation using JSON Schema:\n\n```bash\nprocessor --validate schema.json input.json\n```\n\n## Dependencies\n\n{dependencies}\n\n## Author\n\n{author}"
+  },
+  {
+    "id": "notification-hub",
+    "name": "Notification Hub",
+    "description": "Multi-channel notification system (email, SMS, push, Discord)",
+    "category": "Communication",
+    "tags": ["notifications", "messaging", "alerts"],
+    "parameters": [
+      {
+        "name": "default_channel",
+        "type": "string",
+        "description": "Default notification channel",
+        "default": "email"
+      },
+      {
+        "name": "priority_threshold",
+        "type": "string",
+        "description": "Minimum priority for notifications",
+        "default": "medium"
+      },
+      {
+        "name": "rate_limit",
+        "type": "number",
+        "description": "Max notifications per hour",
+        "default": 10
+      }
+    ],
+    "dependencies": ["curl", "notification service APIs"],
+    "envVars": [
+      {
+        "name": "EMAIL_SERVICE_KEY",
+        "description": "Email service API key (e.g., SendGrid)",
+        "required": false
+      },
+      {
+        "name": "DISCORD_WEBHOOK",
+        "description": "Discord webhook URL",
+        "required": false
+      },
+      {
+        "name": "TWILIO_AUTH",
+        "description": "Twilio auth token for SMS",
+        "required": false
+      }
+    ],
+    "sampleInput": "notify --channel discord --message 'Task completed'",
+    "sampleOutput": "✓ Notification sent via discord",
+    "validation": "Notification should be delivered to at least one channel",
+    "skillTemplate": "# {name}\n\n{description}\n\n## Installation\n\n```bash\n{install_cmd}\n```\n\n## Configuration\n\nConfigure your notification channels:\n\n```bash\nexport DISCORD_WEBHOOK=https://discord.com/api/webhooks/...\n```\n\n## Parameters\n\n{parameters}\n\n## Supported Channels\n\n- Email (SendGrid, Resend)\n- Discord webhooks\n- SMS (Twilio)\n- Push notifications\n- Slack webhooks\n\n## Environment Variables\n\n{envVars}\n\n## Usage\n\n```bash\n./notify.sh --channel discord --message \"Alert: High CPU usage\"\n```\n\n## Rate Limiting\n\nBuilt-in rate limiting prevents notification spam.\n\n## Dependencies\n\n{dependencies}\n\n## Author\n\n{author}"
+  },
+  {
+    "id": "task-scheduler",
+    "name": "Task Scheduler",
+    "description": "Cron-like task scheduling system for agents",
+    "category": "Automation",
+    "tags": ["scheduling", "cron", "automation"],
+    "parameters": [
+      {
+        "name": "schedule_file",
+        "type": "string",
+        "description": "Path to schedule configuration",
+        "default": "./schedule.json"
+      },
+      {
+        "name": "log_dir",
+        "type": "string",
+        "description": "Directory for task execution logs",
+        "default": "./logs"
+      },
+      {
+        "name": "max_concurrent",
+        "type": "number",
+        "description": "Maximum concurrent tasks",
+        "default": 5
+      }
+    ],
+    "dependencies": ["cron or systemd"],
+    "envVars": [],
+    "sampleInput": "{\"task\": \"backup\", \"schedule\": \"0 2 * * *\"}",
+    "sampleOutput": "Task scheduled: backup runs daily at 2:00 AM",
+    "validation": "Tasks should execute according to their schedule",
+    "skillTemplate": "# {name}\n\n{description}\n\n## Installation\n\n```bash\n{install_cmd}\n```\n\n## Configuration\n\nCreate a schedule file:\n\n```json\n{\n  \"tasks\": [\n    {\n      \"name\": \"morning_check\",\n      \"command\": \"./check.sh\",\n      \"schedule\": \"0 9 * * *\",\n      \"enabled\": true\n    }\n  ]\n}\n```\n\n## Parameters\n\n{parameters}\n\n## Schedule Format\n\nUses standard cron syntax:\n\n```\n┌─ minute (0-59)\n│ ┌─ hour (0-23)\n│ │ ┌─ day of month (1-31)\n│ │ │ ┌─ month (1-12)\n│ │ │ │ ┌─ day of week (0-6)\n│ │ │ │ │\n* * * * *\n```\n\n## Usage\n\n```bash\n./scheduler.sh start\n./scheduler.sh status\n./scheduler.sh stop\n```\n\n## Dependencies\n\n{dependencies}\n\n## Author\n\n{author}"
+  },
+  {
+    "id": "monitoring-kit",
+    "name": "Monitoring Kit",
+    "description": "Health checks and performance monitoring for agent systems",
+    "category": "Observability",
+    "tags": ["monitoring", "metrics", "health"],
+    "parameters": [
+      {
+        "name": "check_interval",
+        "type": "number",
+        "description": "Health check interval in seconds",
+        "default": 60
+      },
+      {
+        "name": "metrics_port",
+        "type": "number",
+        "description": "Port for metrics endpoint",
+        "default": 9090
+      },
+      {
+        "name": "alert_threshold",
+        "type": "number",
+        "description": "Alert threshold (percentage)",
+        "default": 90
+      }
+    ],
+    "dependencies": ["curl", "optional: prometheus, grafana"],
+    "envVars": [
+      {
+        "name": "MONITORING_WEBHOOK",
+        "description": "Webhook URL for alerts",
+        "required": false
+      }
+    ],
+    "sampleInput": "GET /metrics",
+    "sampleOutput": "cpu_usage{agent=\"main\"} 45.2\\nmemory_usage{agent=\"main\"} 62.1",
+    "validation": "Metrics should be collected and exposed in Prometheus format",
+    "skillTemplate": "# {name}\n\n{description}\n\n## Installation\n\n```bash\n{install_cmd}\n```\n\n## Parameters\n\n{parameters}\n\n## Metrics Collected\n\n- CPU usage\n- Memory usage\n- Task completion rate\n- Error rate\n- Response time\n- Active connections\n\n## Environment Variables\n\n{envVars}\n\n## Usage\n\nStart the monitoring service:\n\n```bash\n./monitor.sh start\n```\n\nCheck metrics:\n\n```bash\ncurl http://localhost:{metrics_port}/metrics\n```\n\n## Health Checks\n\nAutomatic health checks run every {check_interval} seconds:\n\n- Service availability\n- Dependency status\n- Resource utilization\n\n## Alerting\n\nAlerts trigger when metrics exceed thresholds.\n\n## Dependencies\n\n{dependencies}\n\n## Author\n\n{author}"
+  }
+]
