@@ -1,405 +1,376 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
+import glossaryData from "@/data/glossary.json";
 
-type Term = {
+interface GlossaryEntry {
   id: string;
-  title: string;
+  term: string;
   definition: string;
-  related?: Array<{ label: string; href: string }>;
-};
-
-const glossaryTerms: Term[] = [
-  {
-    id: "agent",
-    title: "Agent",
-    definition:
-      "An autonomous AI system capable of perceiving its environment, making decisions, and taking actions to achieve specific goals. Agents can interact with tools, APIs, and other systems to complete complex tasks without constant human supervision.",
-    related: [
-      { label: "Autonomy", href: "#autonomy" },
-      { label: "Tool Use", href: "#tool-use" },
-    ],
-  },
-  {
-    id: "autonomy",
-    title: "Autonomy",
-    definition:
-      "The ability of an AI agent to operate independently and make decisions without direct human intervention. Autonomous systems can adapt to changing conditions, learn from experience, and execute multi-step workflows.",
-    related: [
-      { label: "Agent", href: "#agent" },
-      { label: "Orchestration", href: "#orchestration" },
-    ],
-  },
-  {
-    id: "chain-of-thought",
-    title: "Chain-of-Thought",
-    definition:
-      "A prompting technique that encourages language models to break down complex reasoning into intermediate steps. This approach improves accuracy on tasks requiring multi-step logic by making the model&apos;s reasoning process explicit and traceable.",
-    related: [
-      { label: "Prompt", href: "#prompt" },
-      { label: "Inference", href: "#inference" },
-    ],
-  },
-  {
-    id: "context-window",
-    title: "Context Window",
-    definition:
-      "The maximum amount of text (measured in tokens) that a language model can process in a single request. This includes both the input prompt and the generated response, determining how much information the model can reference at once.",
-    related: [
-      { label: "Token", href: "#token" },
-      { label: "LLM", href: "#llm" },
-    ],
-  },
-  {
-    id: "embedding",
-    title: "Embedding",
-    definition:
-      "A numerical vector representation of text, images, or other data that captures semantic meaning in a high-dimensional space. Embeddings enable similarity comparisons and are fundamental to retrieval systems and vector databases.",
-    related: [
-      { label: "Vector Database", href: "#vector-database" },
-      { label: "RAG", href: "#rag" },
-    ],
-  },
-  {
-    id: "fine-tuning",
-    title: "Fine-tuning",
-    definition:
-      "The process of taking a pre-trained language model and further training it on a specific dataset to specialize its behavior. Fine-tuning adapts the model&apos;s weights to perform better on particular tasks or domains while retaining general knowledge.",
-    related: [
-      { label: "LLM", href: "#llm" },
-      { label: "Grounding", href: "#grounding" },
-    ],
-  },
-  {
-    id: "grounding",
-    title: "Grounding",
-    definition:
-      "The practice of connecting AI model outputs to factual, verifiable sources or real-world data. Grounding helps reduce hallucinations by anchoring responses in retrieved documents, databases, or external knowledge sources.",
-    related: [
-      { label: "RAG", href: "#rag" },
-      { label: "Hallucination", href: "#hallucination" },
-    ],
-  },
-  {
-    id: "hallucination",
-    title: "Hallucination",
-    definition:
-      "When a language model generates plausible-sounding but factually incorrect or nonsensical information. Hallucinations occur because models predict likely text continuations rather than retrieving verified facts, making grounding and verification critical.",
-    related: [
-      { label: "Grounding", href: "#grounding" },
-      { label: "RAG", href: "#rag" },
-    ],
-  },
-  {
-    id: "inference",
-    title: "Inference",
-    definition:
-      "The process of using a trained AI model to generate predictions or responses based on new input. During inference, the model applies its learned patterns to produce outputs without updating its weights, unlike during training.",
-    related: [
-      { label: "LLM", href: "#llm" },
-      { label: "Chain-of-Thought", href: "#chain-of-thought" },
-    ],
-  },
-  {
-    id: "json-schema",
-    title: "JSON Schema",
-    definition:
-      "A vocabulary for annotating and validating JSON documents, often used to define structured outputs for AI agents. JSON Schema ensures that model responses conform to expected formats, enabling reliable integration with downstream systems.",
-    related: [
-      { label: "Tool Use", href: "#tool-use" },
-      { label: "Skill", href: "#skill" },
-    ],
-  },
-  {
-    id: "kit",
-    title: "Kit",
-    definition:
-      "A packaged collection of tools, prompts, and configurations designed to enable specific agent capabilities. Kits provide reusable components that agents can install and use to extend their functionality without building from scratch.",
-    related: [
-      { label: "Skill", href: "#skill" },
-      { label: "MCP", href: "#mcp" },
-    ],
-  },
-  {
-    id: "llm",
-    title: "LLM",
-    definition:
-      "Large Language Model — a neural network trained on vast amounts of text data to understand and generate human-like language. LLMs power modern AI agents and assistants by providing natural language understanding and generation capabilities.",
-    related: [
-      { label: "Neural Network", href: "#neural-network" },
-      { label: "Token", href: "#token" },
-    ],
-  },
-  {
-    id: "mcp",
-    title: "MCP",
-    definition:
-      "Model Context Protocol — a standardized interface for connecting AI models with external data sources and tools. MCP enables agents to access context beyond their training data through a consistent, interoperable protocol.",
-    related: [
-      { label: "Kit", href: "#kit" },
-      { label: "Tool Use", href: "#tool-use" },
-    ],
-  },
-  {
-    id: "neural-network",
-    title: "Neural Network",
-    definition:
-      "A computational model inspired by biological neurons, consisting of interconnected layers of nodes that process information. Neural networks learn patterns from data through training and form the foundation of modern deep learning systems.",
-    related: [
-      { label: "LLM", href: "#llm" },
-      { label: "Fine-tuning", href: "#fine-tuning" },
-    ],
-  },
-  {
-    id: "orchestration",
-    title: "Orchestration",
-    definition:
-      "The coordination of multiple agents, models, or tools to accomplish complex tasks. Orchestration involves managing workflows, routing requests, handling failures, and combining outputs from different components into cohesive results.",
-    related: [
-      { label: "Agent", href: "#agent" },
-      { label: "Autonomy", href: "#autonomy" },
-    ],
-  },
-  {
-    id: "prompt",
-    title: "Prompt",
-    definition:
-      "The input text or instructions provided to a language model to elicit a desired response. Effective prompting is crucial for agent performance, with techniques ranging from simple instructions to complex few-shot examples and chain-of-thought reasoning.",
-    related: [
-      { label: "Chain-of-Thought", href: "#chain-of-thought" },
-      { label: "LLM", href: "#llm" },
-    ],
-  },
-  {
-    id: "rag",
-    title: "RAG",
-    definition:
-      "Retrieval-Augmented Generation — a technique that combines information retrieval with language generation. RAG systems retrieve relevant documents from a knowledge base and use them to ground model outputs, reducing hallucinations and enabling access to current information.",
-    related: [
-      { label: "Embedding", href: "#embedding" },
-      { label: "Vector Database", href: "#vector-database" },
-      { label: "Grounding", href: "#grounding" },
-    ],
-  },
-  {
-    id: "skill",
-    title: "Skill",
-    definition:
-      "A discrete capability or function that an agent can perform, often implemented as a tool, API integration, or specialized module. Skills are composable building blocks that enable agents to handle diverse tasks from web search to code execution.",
-    related: [
-      { label: "Kit", href: "#kit" },
-      { label: "Tool Use", href: "#tool-use" },
-    ],
-  },
-  {
-    id: "token",
-    title: "Token",
-    definition:
-      "The basic unit of text processing in language models, roughly corresponding to a word or word fragment. Models process input and generate output as sequences of tokens, and token limits define the context window size.",
-    related: [
-      { label: "Context Window", href: "#context-window" },
-      { label: "LLM", href: "#llm" },
-    ],
-  },
-  {
-    id: "tool-use",
-    title: "Tool Use",
-    definition:
-      "The ability of AI agents to invoke external functions, APIs, or services to accomplish tasks beyond language generation. Tool use enables agents to take actions like searching databases, executing code, sending messages, or controlling software.",
-    related: [
-      { label: "Agent", href: "#agent" },
-      { label: "MCP", href: "#mcp" },
-      { label: "Skill", href: "#skill" },
-    ],
-  },
-  {
-    id: "vector-database",
-    title: "Vector Database",
-    definition:
-      "A specialized database optimized for storing and querying high-dimensional vector embeddings. Vector databases enable fast similarity search over embedded documents, images, or other data, powering retrieval systems and RAG implementations.",
-    related: [
-      { label: "Embedding", href: "#embedding" },
-      { label: "RAG", href: "#rag" },
-    ],
-  },
-];
+  relatedTerms: string[];
+  seeAlso: string[];
+}
 
 export default function GlossaryPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
+
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "AI Agent Glossary — forAgents.dev",
-    description: "Essential terminology for building and understanding AI agents.",
-    url: "https://foragents.dev/glossary"
+    name: "Agent Terminology Glossary — forAgents.dev",
+    description: "Comprehensive glossary of AI agent terms, protocols, and concepts. From Agent to Zero-Trust, learn the language of autonomous AI development.",
+    url: "https://foragents.dev/glossary",
   };
 
-  const [searchQuery, setSearchQuery] = useState("");
+  // Generate alphabet array
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-  // Group terms alphabetically
-  const groupedTerms = useMemo(() => {
-    const filtered = glossaryTerms.filter(
-      (term) =>
-        term.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        term.definition.toLowerCase().includes(searchQuery.toLowerCase())
+  // Get all unique first letters from the glossary
+  const availableLetters = useMemo(() => {
+    const letters = new Set(
+      glossaryData.map((entry) => entry.term.charAt(0).toUpperCase())
     );
+    return Array.from(letters).sort();
+  }, []);
 
-    const grouped: Record<string, Term[]> = {};
-    filtered.forEach((term) => {
-      const firstLetter = term.title[0].toUpperCase();
-      if (!grouped[firstLetter]) {
-        grouped[firstLetter] = [];
+  // Filter and sort glossary entries - compute directly to avoid memoization issues
+  const allEntries = glossaryData as GlossaryEntry[];
+  const filteredEntries = allEntries
+    .filter((entry) => {
+      // Filter by search query
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const matchesSearch =
+          entry.term.toLowerCase().includes(query) ||
+          entry.definition.toLowerCase().includes(query) ||
+          entry.relatedTerms.some((term) => term.toLowerCase().includes(query));
+        if (!matchesSearch) return false;
       }
-      grouped[firstLetter].push(term);
+
+      // Filter by selected letter
+      if (selectedLetter) {
+        return entry.term.charAt(0).toUpperCase() === selectedLetter;
+      }
+
+      return true;
+    })
+    .sort((a, b) => a.term.localeCompare(b.term));
+
+  // Group entries by first letter
+  const groupedEntries = useMemo(() => {
+    const groups: Record<string, GlossaryEntry[]> = {};
+    filteredEntries.forEach((entry) => {
+      const letter = entry.term.charAt(0).toUpperCase();
+      if (!groups[letter]) {
+        groups[letter] = [];
+      }
+      groups[letter].push(entry);
     });
+    return groups;
+  }, [filteredEntries]);
 
-    return grouped;
-  }, [searchQuery]);
+  // Find entry by term for related term links
+  const findEntryByTerm = (term: string) => {
+    return glossaryData.find(
+      (entry) => entry.term.toLowerCase() === term.toLowerCase()
+    );
+  };
 
-  const availableLetters = Object.keys(groupedTerms).sort();
-  const allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const handleLetterClick = (letter: string) => {
+    if (selectedLetter === letter) {
+      setSelectedLetter(null); // Deselect if clicking the same letter
+    } else {
+      setSelectedLetter(letter);
+      setSearchQuery(""); // Clear search when selecting a letter
+      
+      // Scroll to the letter section
+      setTimeout(() => {
+        const element = document.getElementById(`letter-${letter}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  };
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedLetter(null);
+  };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-[#0a0a0a]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
       />
 
       {/* Hero Section */}
-      <section className="max-w-4xl mx-auto px-6 py-12">
-        <h1
-          className="text-4xl md:text-5xl font-bold mb-4"
-          style={{ color: "#06D6A0" }}
-        >
-          📖 AI Agent Glossary
-        </h1>
-        <p className="text-gray-400 text-lg mb-8">
-          Essential terminology for building and understanding AI agents
-        </p>
-
-        {/* Search Input */}
-        <div className="mb-8">
-          <input
-            type="text"
-            placeholder="Search terms..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0] transition-colors"
-          />
-        </div>
-
-        {/* Alphabetical Navigation */}
-        <div className="mb-12 pb-6 border-b border-white/10">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {allLetters.map((letter) => {
-              const isAvailable = availableLetters.includes(letter);
-              return (
-                <a
-                  key={letter}
-                  href={isAvailable ? `#letter-${letter}` : undefined}
-                  className={`w-8 h-8 flex items-center justify-center rounded font-semibold text-sm transition-colors ${
-                    isAvailable
-                      ? "bg-[#06D6A0]/10 text-[#06D6A0] hover:bg-[#06D6A0]/20 border border-[#06D6A0]/30 cursor-pointer"
-                      : "bg-white/5 text-gray-600 cursor-not-allowed"
-                  }`}
-                  onClick={(e) => {
-                    if (!isAvailable) {
-                      e.preventDefault();
-                    }
-                  }}
-                >
-                  {letter}
-                </a>
-              );
-            })}
+      <section className="max-w-5xl mx-auto px-4 py-16">
+        <div className="relative">
+          {/* Subtle aurora background */}
+          <div className="absolute inset-0 -z-10 opacity-30">
+            <div className="absolute top-0 left-1/3 w-96 h-96 bg-[#06D6A0]/20 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-purple/20 rounded-full blur-[100px]" />
           </div>
-        </div>
 
-        {/* Terms */}
-        <div className="space-y-12">
-          {availableLetters.map((letter) => (
-            <div key={letter} id={`letter-${letter}`} className="scroll-mt-24">
-              <h2
-                className="text-3xl font-bold mb-6 pb-2 border-b border-white/10"
-                style={{ color: "#06D6A0" }}
-              >
-                {letter}
-              </h2>
-              <div className="space-y-6">
-                {groupedTerms[letter].map((term) => (
-                  <div
-                    key={term.id}
-                    id={term.id}
-                    className="scroll-mt-24 bg-white/5 border border-white/10 rounded-lg p-6 hover:border-[#06D6A0]/30 transition-colors"
-                  >
-                    <h3 className="text-xl font-bold mb-3 text-white">
-                      {term.title}
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed mb-4">
-                      {term.definition}
-                    </p>
-                    {term.related && term.related.length > 0 && (
-                      <div className="flex flex-wrap gap-2 items-center">
-                        <span className="text-sm text-gray-500">Related:</span>
-                        {term.related.map((rel, idx) => (
-                          <a
-                            key={idx}
-                            href={rel.href}
-                            className="text-sm px-3 py-1 rounded-full bg-[#06D6A0]/10 text-[#06D6A0] border border-[#06D6A0]/30 hover:bg-[#06D6A0]/20 transition-colors"
-                          >
-                            {rel.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* No Results */}
-        {availableLetters.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">
-              No terms found matching &quot;{searchQuery}&quot;
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              📖 Agent Terminology
+            </h1>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-2">
+              Your comprehensive guide to AI agent concepts and protocols
             </p>
-            <button
-              onClick={() => setSearchQuery("")}
-              className="mt-4 text-[#06D6A0] hover:underline"
-            >
-              Clear search
-            </button>
+            <p className="text-sm text-gray-500 max-w-xl mx-auto">
+              From Agent to Zero-Trust, master the vocabulary of autonomous AI development
+            </p>
           </div>
-        )}
 
-        {/* Back to Top */}
-        {availableLetters.length > 0 && (
-          <div className="mt-12 text-center">
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 text-[#06D6A0] hover:underline"
-            >
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search terms, definitions, or concepts..."
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setSelectedLetter(null); // Clear letter filter when searching
+                }}
+                className="w-full px-5 py-3 pl-12 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#06D6A0]/50 focus:ring-1 focus:ring-[#06D6A0]/50 transition-all"
+              />
               <svg
-                className="w-4 h-4"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"
                 fill="none"
-                stroke="currentColor"
                 viewBox="0 0 24 24"
+                stroke="currentColor"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
               </svg>
-              Back to top
-            </a>
+            </div>
+            {(searchQuery || selectedLetter) && (
+              <div className="mt-3 flex items-center justify-between text-sm">
+                <span className="text-gray-400">
+                  {filteredEntries.length} {filteredEntries.length === 1 ? "term" : "terms"} found
+                  {selectedLetter && ` starting with "${selectedLetter}"`}
+                </span>
+                <button
+                  onClick={clearFilters}
+                  className="text-[#06D6A0] hover:underline"
+                >
+                  Clear filters
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Alphabet Navigation */}
+          <div className="sticky top-0 z-10 bg-[#0a0a0a]/95 backdrop-blur-sm border-y border-white/10 py-4 -mx-4 px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {alphabet.map((letter) => {
+                  const isAvailable = availableLetters.includes(letter);
+                  const isSelected = selectedLetter === letter;
+
+                  return (
+                    <button
+                      key={letter}
+                      onClick={() => isAvailable && handleLetterClick(letter)}
+                      disabled={!isAvailable}
+                      className={`w-8 h-8 flex items-center justify-center rounded font-semibold text-sm transition-all ${
+                        isSelected
+                          ? "bg-[#06D6A0] text-black"
+                          : isAvailable
+                          ? "bg-white/5 text-white hover:bg-white/10 hover:text-[#06D6A0]"
+                          : "bg-transparent text-gray-700 cursor-not-allowed"
+                      }`}
+                      aria-label={`Filter by letter ${letter}`}
+                    >
+                      {letter}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Glossary Entries */}
+      <section className="max-w-5xl mx-auto px-4 pb-16">
+        {filteredEntries.length === 0 ? (
+          <div className="text-center py-16">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-xl font-semibold text-white mb-2">No terms found</h3>
+            <p className="text-gray-400 mb-6">
+              Try adjusting your search or browse all terms
+            </p>
+            <button
+              onClick={clearFilters}
+              className="px-6 py-2 bg-[#06D6A0] text-black font-semibold rounded-lg hover:brightness-110 transition-all"
+            >
+              Show all terms
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-12">
+            {Object.entries(groupedEntries).map(([letter, entries]) => (
+              <div key={letter} id={`letter-${letter}`}>
+                {/* Letter Header */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#06D6A0]/10 border border-[#06D6A0]/30">
+                    <span className="text-2xl font-bold text-[#06D6A0]">{letter}</span>
+                  </div>
+                  <div className="flex-1 h-px bg-white/10" />
+                </div>
+
+                {/* Terms for this letter */}
+                <div className="space-y-6">
+                  {entries.map((entry) => (
+                    <div
+                      key={entry.id}
+                      id={entry.id}
+                      className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-[#06D6A0]/30 transition-all scroll-mt-32"
+                    >
+                      {/* Term Header */}
+                      <h3 className="text-2xl font-bold text-white mb-3">
+                        {entry.term}
+                      </h3>
+
+                      {/* Definition */}
+                      <p className="text-gray-300 leading-relaxed mb-4">
+                        {entry.definition}
+                      </p>
+
+                      {/* Related Terms */}
+                      {entry.relatedTerms.length > 0 && (
+                        <div className="mb-3">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-sm text-gray-500 font-semibold">
+                              Related:
+                            </span>
+                            {entry.relatedTerms.map((term, index) => {
+                              const relatedEntry = findEntryByTerm(term);
+                              return relatedEntry ? (
+                                <a
+                                  key={index}
+                                  href={`#${relatedEntry.id}`}
+                                  className="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded text-gray-400 hover:text-[#06D6A0] hover:border-[#06D6A0]/30 transition-all"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    const element = document.getElementById(relatedEntry.id);
+                                    if (element) {
+                                      element.scrollIntoView({ behavior: "smooth", block: "center" });
+                                      // Flash the target
+                                      element.classList.add("ring-2", "ring-[#06D6A0]/50");
+                                      setTimeout(() => {
+                                        element.classList.remove("ring-2", "ring-[#06D6A0]/50");
+                                      }, 1500);
+                                    }
+                                  }}
+                                >
+                                  {term}
+                                </a>
+                              ) : (
+                                <span
+                                  key={index}
+                                  className="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded text-gray-400"
+                                >
+                                  {term}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* See Also */}
+                      {entry.seeAlso.length > 0 && (
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-sm text-gray-500 font-semibold">
+                              See also:
+                            </span>
+                            {entry.seeAlso.map((term, index) => {
+                              const relatedEntry = findEntryByTerm(term);
+                              return relatedEntry ? (
+                                <a
+                                  key={index}
+                                  href={`#${relatedEntry.id}`}
+                                  className="px-2 py-1 text-xs bg-[#06D6A0]/10 border border-[#06D6A0]/30 rounded text-[#06D6A0] hover:bg-[#06D6A0]/20 transition-all"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    const element = document.getElementById(relatedEntry.id);
+                                    if (element) {
+                                      element.scrollIntoView({ behavior: "smooth", block: "center" });
+                                      // Flash the target
+                                      element.classList.add("ring-2", "ring-[#06D6A0]/50");
+                                      setTimeout(() => {
+                                        element.classList.remove("ring-2", "ring-[#06D6A0]/50");
+                                      }, 1500);
+                                    }
+                                  }}
+                                >
+                                  {term}
+                                </a>
+                              ) : (
+                                <span
+                                  key={index}
+                                  className="px-2 py-1 text-xs bg-[#06D6A0]/10 border border-[#06D6A0]/30 rounded text-[#06D6A0]"
+                                >
+                                  {term}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </section>
 
+      {/* CTA Section */}
+      <section className="max-w-5xl mx-auto px-4 py-16">
+        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 p-8 text-center">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/20 rounded-full blur-[80px]" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/20 rounded-full blur-[60px]" />
+
+          <div className="relative">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Ready to Build?
+            </h2>
+            <p className="text-gray-400 mb-6 max-w-xl mx-auto">
+              Now that you know the terminology, explore skills and start building your own agents
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                href="/skills"
+                className="px-6 py-3 bg-[#06D6A0] text-black font-semibold rounded-lg hover:brightness-110 transition-all"
+              >
+                Browse Skills →
+              </Link>
+              <Link
+                href="/learn"
+                className="px-6 py-3 border border-[#06D6A0] text-[#06D6A0] font-semibold rounded-lg hover:bg-[#06D6A0]/10 transition-all"
+              >
+                Start Learning
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
