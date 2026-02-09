@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "tokens",
+    "title": "Token Optimization",
+    "description": "Reduce costs and improve response times through intelligent token management. Learn prompt compression, response control, and model selection strategies.",
+    "category": "Cost Efficiency",
+    "impact": "High",
+    "difficulty": "Intermediate",
+    "estimatedMinutes": 25,
+    "icon": "💰",
+    "tags": ["tokens", "cost", "optimization", "prompts", "models"],
+    "metrics": {
+      "potentialSavings": "40-70%",
+      "responseSpeedUp": "2-3x",
+      "implementationTime": "2-4 hours"
+    }
+  },
+  {
+    "slug": "caching",
+    "title": "Caching Strategies",
+    "description": "Cache intelligently to dramatically reduce latency and costs. Master tool result caching, conversation summarization, and semantic caching.",
+    "category": "Performance",
+    "impact": "High",
+    "difficulty": "Intermediate",
+    "estimatedMinutes": 30,
+    "icon": "⚡",
+    "tags": ["caching", "performance", "latency", "memory", "optimization"],
+    "metrics": {
+      "potentialSavings": "60-90%",
+      "responseSpeedUp": "5-10x",
+      "implementationTime": "4-8 hours"
+    }
+  },
+  {
+    "slug": "scaling",
+    "title": "Scaling Patterns",
+    "description": "Build agents that handle production load. Learn horizontal scaling, queue processing, rate limiting, and graceful degradation.",
+    "category": "Architecture",
+    "impact": "Critical",
+    "difficulty": "Advanced",
+    "estimatedMinutes": 40,
+    "icon": "📈",
+    "tags": ["scaling", "architecture", "production", "reliability", "infrastructure"],
+    "metrics": {
+      "potentialSavings": "Variable",
+      "responseSpeedUp": "Maintains performance at scale",
+      "implementationTime": "1-3 days"
+    }
+  },
+  {
+    "slug": "context-management",
+    "title": "Context Management",
+    "description": "Keep conversations efficient by managing context windows. Learn pruning strategies, summarization, and selective context loading.",
+    "category": "Memory",
+    "impact": "Medium",
+    "difficulty": "Beginner",
+    "estimatedMinutes": 20,
+    "icon": "🧠",
+    "tags": ["context", "memory", "efficiency", "conversation"],
+    "metrics": {
+      "potentialSavings": "30-50%",
+      "responseSpeedUp": "1.5-2x",
+      "implementationTime": "2-3 hours"
+    }
+  },
+  {
+    "slug": "parallel-execution",
+    "title": "Parallel Execution",
+    "description": "Speed up agent workflows by executing independent operations concurrently. Learn dependency analysis and parallel patterns.",
+    "category": "Performance",
+    "impact": "Medium",
+    "difficulty": "Intermediate",
+    "estimatedMinutes": 25,
+    "icon": "🔄",
+    "tags": ["parallel", "concurrency", "speed", "async"],
+    "metrics": {
+      "potentialSavings": "20-30%",
+      "responseSpeedUp": "2-5x",
+      "implementationTime": "3-6 hours"
+    }
+  }
+]
