@@ -1,161 +1,85 @@
-/** @jest-environment jsdom */
-
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import SandboxPage from '@/app/playground/sandbox/page';
 
-type LinkProps = {
-  href: string;
-  children?: React.ReactNode;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+// Mock the data imports
+jest.mock('@/data/skills.json', () => [
+  {
+    id: '1',
+    slug: 'test-skill',
+    name: 'Test Skill',
+    description: 'A test skill for testing',
+    author: 'Test Author',
+    install_cmd: 'test install command',
+    repo_url: 'https://test.com',
+    tags: ['test'],
+  },
+]);
 
-jest.mock('next/link', () => {
-  const LinkMock = ({ href, children, ...props }: LinkProps) => (
-    <a href={href} {...props}>
-      {children}
-    </a>
-  );
-  LinkMock.displayName = 'Link';
-  return LinkMock;
-});
+jest.mock('@/data/sandbox-runs.json', () => [
+  {
+    id: 'run-1',
+    skillId: '1',
+    skillName: 'Test Skill',
+    timestamp: '2026-02-09T01:30:15Z',
+    status: 'success',
+    model: 'claude-sonnet-4-5',
+    temperature: 0.7,
+    timeout: 30,
+    output: 'Test output',
+  },
+]);
 
-import SandboxClient from '@/app/sandbox/SandboxClient';
-
-describe('Sandbox page', () => {
-  test('renders sandbox page with heading', () => {
-    render(<SandboxClient />);
-
-    expect(screen.getByRole('heading', { name: /Agent Sandbox/i })).toBeInTheDocument();
-  });
-
-  test('renders configuration editor textarea', () => {
-    render(<SandboxClient />);
-
-    const textarea = screen.getByPlaceholderText(/name.*My Agent/i);
-    expect(textarea).toBeInTheDocument();
-    expect(textarea).toHaveClass('font-mono');
-  });
-
-  test('renders validate button', () => {
-    render(<SandboxClient />);
-
-    const validateButton = screen.getByRole('button', { name: /^Validate$/i });
-    expect(validateButton).toBeInTheDocument();
-  });
-
-  test('renders test endpoints button', () => {
-    render(<SandboxClient />);
-
-    const testButton = screen.getByRole('button', { name: /Test Endpoints/i });
-    expect(testButton).toBeInTheDocument();
-  });
-
-  test('renders sample templates dropdown', () => {
-    render(<SandboxClient />);
-
-    const select = screen.getByLabelText(/Template:/i);
-    expect(select).toBeInTheDocument();
+describe('SandboxPage', () => {
+  it('renders the sandbox page without crashing', () => {
+    render(<SandboxPage />);
     
-    // Check for template options
-    expect(screen.getByText(/Basic Agent/i)).toBeInTheDocument();
-    expect(screen.getByText(/MCP-Enabled Agent/i)).toBeInTheDocument();
-    expect(screen.getByText(/Multi-Tool Agent/i)).toBeInTheDocument();
+    // Check for main heading
+    expect(screen.getByText('Agent Skill Sandbox')).toBeInTheDocument();
   });
 
-  test('renders results panel', () => {
-    render(<SandboxClient />);
-
-    expect(screen.getByRole('heading', { name: /Results/i })).toBeInTheDocument();
-  });
-
-  test('validates JSON syntax', () => {
-    render(<SandboxClient />);
-
-    const textarea = screen.getByPlaceholderText(/name.*My Agent/i);
-    const validateButton = screen.getByRole('button', { name: /^Validate$/i });
-
-    // Enter invalid JSON
-    fireEvent.change(textarea, { target: { value: '{ invalid json }' } });
-    fireEvent.click(validateButton);
-
-    // Should show validation error
-    expect(screen.getByText(/Invalid Configuration/i)).toBeInTheDocument();
-    expect(screen.getByText(/Expected property name/i)).toBeInTheDocument();
-  });
-
-  test('validates required fields', () => {
-    render(<SandboxClient />);
-
-    const textarea = screen.getByPlaceholderText(/name.*My Agent/i);
-    const validateButton = screen.getByRole('button', { name: /^Validate$/i });
-
-    // Enter valid JSON but missing required fields
-    fireEvent.change(textarea, { target: { value: '{"name": "Test"}' } });
-    fireEvent.click(validateButton);
-
-    // Should show missing field errors
-    expect(screen.getByText(/Missing required field: version/i)).toBeInTheDocument();
-    expect(screen.getByText(/Missing required field: description/i)).toBeInTheDocument();
-    // Check that errors section exists
-    expect(screen.getByText(/Invalid Configuration/i)).toBeInTheDocument();
-  });
-
-  test('shows success for valid configuration', () => {
-    render(<SandboxClient />);
-
-    const textarea = screen.getByPlaceholderText(/name.*My Agent/i);
-    const validateButton = screen.getByRole('button', { name: /^Validate$/i });
-
-    // Enter valid configuration
-    const validConfig = JSON.stringify({
-      name: "Test Agent",
-      version: "1.0.0",
-      description: "A test agent"
-    });
+  it('renders the skill selector', () => {
+    render(<SandboxPage />);
     
-    fireEvent.change(textarea, { target: { value: validConfig } });
-    fireEvent.click(validateButton);
-
-    // Should show valid with warnings (since no capabilities/endpoints)
-    expect(screen.getByText(/Valid with Warnings/i)).toBeInTheDocument();
+    // Check for skill selector section
+    expect(screen.getByText('Select Skill')).toBeInTheDocument();
   });
 
-  test('loads template when selected', () => {
-    render(<SandboxClient />);
-
-    const select = screen.getByLabelText(/Template:/i) as HTMLSelectElement;
-    const textarea = screen.getByPlaceholderText(/name.*My Agent/i) as HTMLTextAreaElement;
-
-    // Initially empty
-    expect(textarea.value).toBe('');
-
-    // Select basic template
-    fireEvent.change(select, { target: { value: 'basic' } });
-
-    // Should populate textarea with template
-    expect(textarea.value).toContain('My Agent');
-    expect(textarea.value).toContain('1.0.0');
-    expect(JSON.parse(textarea.value)).toHaveProperty('name');
+  it('renders the execution output section', () => {
+    render(<SandboxPage />);
+    
+    // Check for execution output section
+    expect(screen.getByText('Execution Output')).toBeInTheDocument();
   });
 
-  test('clear button resets form', () => {
-    render(<SandboxClient />);
+  it('renders the configuration panel', () => {
+    render(<SandboxPage />);
+    
+    // Check for configuration section
+    expect(screen.getByText('Configuration')).toBeInTheDocument();
+  });
 
-    const textarea = screen.getByPlaceholderText(/name.*My Agent/i) as HTMLTextAreaElement;
-    const clearButton = screen.getByRole('button', { name: /Clear/i });
-    const validateButton = screen.getByRole('button', { name: /^Validate$/i });
+  it('renders the execution history section', () => {
+    render(<SandboxPage />);
+    
+    // Check for execution history section
+    expect(screen.getByText('Execution History')).toBeInTheDocument();
+  });
 
-    // Add some content and validate
-    fireEvent.change(textarea, { target: { value: '{"name": "Test"}' } });
-    fireEvent.click(validateButton);
+  it('renders the run button', () => {
+    render(<SandboxPage />);
+    
+    // Check for run button
+    const runButtons = screen.getAllByText('Run');
+    expect(runButtons.length).toBeGreaterThan(0);
+  });
 
-    // Should have validation results (check for at least one error)
-    expect(screen.getAllByText(/Missing required field/i).length).toBeGreaterThan(0);
-
-    // Click clear
-    fireEvent.click(clearButton);
-
-    // Should reset everything
-    expect(textarea.value).toBe('');
-    expect(screen.queryByText(/Missing required field/i)).not.toBeInTheDocument();
+  it('renders configuration options', () => {
+    render(<SandboxPage />);
+    
+    // Check for configuration labels
+    expect(screen.getByText('Model')).toBeInTheDocument();
+    expect(screen.getByText(/Temperature:/)).toBeInTheDocument();
+    expect(screen.getByText(/Timeout:/)).toBeInTheDocument();
   });
 });
