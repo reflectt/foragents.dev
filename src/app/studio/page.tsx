@@ -68,7 +68,7 @@ const CATEGORIES = [
 
 export default function StudioPage() {
   const [step, setStep] = useState(0); // 0 = template picker, 1-4 = wizard steps
-  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
+  const [, setSelectedTemplate] = useState<Template | null>(null);
   const [skillData, setSkillData] = useState<SkillData>({
     name: "",
     description: "",
@@ -366,7 +366,7 @@ export default function StudioPage() {
                 <CardHeader>
                   <CardTitle>Step 1: Basic Information</CardTitle>
                   <CardDescription>
-                    Define your skill's identity and purpose
+                    Define your skill&apos;s identity and purpose
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">

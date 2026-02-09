@@ -46,6 +46,13 @@ interface BreakingChange {
   }
 }
 
+interface MigrationMetrics {
+  time?: string
+  errors?: number
+  performance?: string
+  [key: string]: string | number | undefined
+}
+
 interface SuccessStory {
   id: string
   title: string
@@ -54,12 +61,12 @@ interface SuccessStory {
   before: {
     version: string
     issues: string[]
-    metrics: any
+    metrics: MigrationMetrics
   }
   after: {
     version: string
     improvements: string[]
-    metrics: any
+    metrics: MigrationMetrics
   }
   testimonial: string
   author: string
