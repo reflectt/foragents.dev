@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { href: "/agents", label: "Agents" },
   { href: "/skills", label: "Skills" },
+  { href: "/workflows", label: "Workflows" },
   { href: "/compare", label: "Compare" },
   { href: "/dependencies", label: "Dependencies" },
   { href: "/trending", label: "Trending" },

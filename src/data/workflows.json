@@ -1,0 +1,469 @@
+[
+  {
+    "id": "code-review-pipeline",
+    "name": "Code Review Pipeline",
+    "description": "Automated code review workflow with static analysis, security scanning, and AI-powered suggestions. Integrates with GitHub PRs and provides detailed feedback on code quality, patterns, and potential issues.",
+    "category": "development",
+    "difficulty": "intermediate",
+    "estimatedTime": "15-30 minutes",
+    "tags": ["code-review", "github", "security", "quality"],
+    "requiredSkills": ["github-integration", "static-analysis", "code-security-scanner"],
+    "steps": [
+      {
+        "id": "fetch-pr",
+        "name": "Fetch Pull Request",
+        "description": "Retrieve PR details, changed files, and diff from GitHub",
+        "skills": ["github-integration"],
+        "automated": true
+      },
+      {
+        "id": "static-analysis",
+        "name": "Run Static Analysis",
+        "description": "Execute linters and static analysis tools on changed files",
+        "skills": ["static-analysis"],
+        "automated": true
+      },
+      {
+        "id": "security-scan",
+        "name": "Security Scan",
+        "description": "Scan for vulnerabilities, secrets, and security anti-patterns",
+        "skills": ["code-security-scanner"],
+        "automated": true
+      },
+      {
+        "id": "ai-review",
+        "name": "AI Code Review",
+        "description": "Generate intelligent suggestions for code improvements and best practices",
+        "skills": ["code-review-ai"],
+        "automated": true
+      },
+      {
+        "id": "post-feedback",
+        "name": "Post Review Comments",
+        "description": "Post consolidated review feedback to the PR",
+        "skills": ["github-integration"],
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "content-publishing",
+    "name": "Content Publishing",
+    "description": "End-to-end content workflow from drafting to multi-platform publishing. Includes SEO optimization, image generation, social media scheduling, and analytics tracking.",
+    "category": "marketing",
+    "difficulty": "beginner",
+    "estimatedTime": "20-40 minutes",
+    "tags": ["content", "seo", "social-media", "marketing"],
+    "requiredSkills": ["content-editor", "seo-optimizer", "image-generator", "social-scheduler"],
+    "steps": [
+      {
+        "id": "draft-content",
+        "name": "Draft Content",
+        "description": "Create or refine content draft with AI assistance",
+        "skills": ["content-editor"],
+        "automated": false
+      },
+      {
+        "id": "seo-optimize",
+        "name": "SEO Optimization",
+        "description": "Optimize content for search engines with keyword analysis and meta tags",
+        "skills": ["seo-optimizer"],
+        "automated": true
+      },
+      {
+        "id": "generate-images",
+        "name": "Generate Visual Assets",
+        "description": "Create accompanying images, thumbnails, and social media graphics",
+        "skills": ["image-generator"],
+        "automated": true
+      },
+      {
+        "id": "publish",
+        "name": "Publish to Platform",
+        "description": "Deploy content to CMS or blog platform",
+        "skills": ["cms-publisher"],
+        "automated": true
+      },
+      {
+        "id": "schedule-social",
+        "name": "Schedule Social Posts",
+        "description": "Create and schedule social media posts across platforms",
+        "skills": ["social-scheduler"],
+        "automated": true
+      },
+      {
+        "id": "track-analytics",
+        "name": "Setup Analytics",
+        "description": "Configure tracking and prepare analytics dashboard",
+        "skills": ["analytics-tracker"],
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "data-analysis",
+    "name": "Data Analysis",
+    "description": "Comprehensive data analysis workflow from ingestion through visualization. Handles data cleaning, statistical analysis, pattern detection, and automated reporting.",
+    "category": "analytics",
+    "difficulty": "advanced",
+    "estimatedTime": "30-60 minutes",
+    "tags": ["data", "analytics", "visualization", "reporting"],
+    "requiredSkills": ["data-connector", "data-cleaner", "statistical-analyzer", "chart-generator"],
+    "steps": [
+      {
+        "id": "ingest-data",
+        "name": "Ingest Data Sources",
+        "description": "Connect to and import data from databases, APIs, or files",
+        "skills": ["data-connector"],
+        "automated": true
+      },
+      {
+        "id": "clean-data",
+        "name": "Clean & Transform",
+        "description": "Handle missing values, outliers, and data normalization",
+        "skills": ["data-cleaner"],
+        "automated": true
+      },
+      {
+        "id": "analyze",
+        "name": "Statistical Analysis",
+        "description": "Run statistical tests, correlation analysis, and trend detection",
+        "skills": ["statistical-analyzer"],
+        "automated": true
+      },
+      {
+        "id": "detect-patterns",
+        "name": "Pattern Detection",
+        "description": "Identify anomalies, clusters, and significant patterns",
+        "skills": ["pattern-detector"],
+        "automated": true
+      },
+      {
+        "id": "visualize",
+        "name": "Generate Visualizations",
+        "description": "Create charts, graphs, and interactive dashboards",
+        "skills": ["chart-generator"],
+        "automated": true
+      },
+      {
+        "id": "report",
+        "name": "Generate Report",
+        "description": "Compile findings into actionable report with recommendations",
+        "skills": ["report-builder"],
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "bug-triage",
+    "name": "Bug Triage",
+    "description": "Intelligent bug triage system that categorizes, prioritizes, and routes issues. Includes duplicate detection, severity assessment, and automated assignment based on team expertise.",
+    "category": "development",
+    "difficulty": "intermediate",
+    "estimatedTime": "10-20 minutes",
+    "tags": ["bugs", "triage", "issue-tracking", "automation"],
+    "requiredSkills": ["issue-tracker", "duplicate-detector", "severity-classifier"],
+    "steps": [
+      {
+        "id": "fetch-issues",
+        "name": "Fetch New Issues",
+        "description": "Retrieve newly reported bugs from issue tracker",
+        "skills": ["issue-tracker"],
+        "automated": true
+      },
+      {
+        "id": "check-duplicates",
+        "name": "Detect Duplicates",
+        "description": "Compare against existing issues to identify duplicates",
+        "skills": ["duplicate-detector"],
+        "automated": true
+      },
+      {
+        "id": "classify-severity",
+        "name": "Classify Severity",
+        "description": "Analyze and assign severity level (critical, high, medium, low)",
+        "skills": ["severity-classifier"],
+        "automated": true
+      },
+      {
+        "id": "categorize",
+        "name": "Categorize Issue",
+        "description": "Tag with appropriate categories and affected components",
+        "skills": ["issue-categorizer"],
+        "automated": true
+      },
+      {
+        "id": "assign",
+        "name": "Auto-assign",
+        "description": "Route to appropriate team member based on expertise and workload",
+        "skills": ["team-router"],
+        "automated": true
+      },
+      {
+        "id": "notify",
+        "name": "Send Notifications",
+        "description": "Alert assignee and stakeholders via preferred channels",
+        "skills": ["notification-service"],
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "deployment",
+    "name": "Deployment",
+    "description": "Safe, automated deployment workflow with comprehensive checks. Includes pre-deployment validation, staged rollout, health monitoring, and automatic rollback capabilities.",
+    "category": "devops",
+    "difficulty": "advanced",
+    "estimatedTime": "20-45 minutes",
+    "tags": ["deployment", "ci-cd", "devops", "infrastructure"],
+    "requiredSkills": ["ci-cd-runner", "deployment-manager", "health-monitor", "rollback-handler"],
+    "steps": [
+      {
+        "id": "pre-checks",
+        "name": "Pre-deployment Checks",
+        "description": "Verify tests pass, dependencies are ready, and environment is stable",
+        "skills": ["ci-cd-runner"],
+        "automated": true
+      },
+      {
+        "id": "build",
+        "name": "Build & Package",
+        "description": "Compile, build artifacts, and create deployment package",
+        "skills": ["build-system"],
+        "automated": true
+      },
+      {
+        "id": "staging",
+        "name": "Deploy to Staging",
+        "description": "Deploy to staging environment for validation",
+        "skills": ["deployment-manager"],
+        "automated": true
+      },
+      {
+        "id": "smoke-tests",
+        "name": "Run Smoke Tests",
+        "description": "Execute critical path tests in staging",
+        "skills": ["test-runner"],
+        "automated": true
+      },
+      {
+        "id": "production",
+        "name": "Deploy to Production",
+        "description": "Gradual rollout to production with canary deployment",
+        "skills": ["deployment-manager"],
+        "automated": true
+      },
+      {
+        "id": "monitor",
+        "name": "Monitor Health",
+        "description": "Track metrics, errors, and performance post-deployment",
+        "skills": ["health-monitor"],
+        "automated": true
+      },
+      {
+        "id": "validate",
+        "name": "Validate & Stabilize",
+        "description": "Confirm successful deployment or trigger rollback if issues detected",
+        "skills": ["rollback-handler"],
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "security-audit",
+    "name": "Security Audit",
+    "description": "Comprehensive security audit workflow covering code, dependencies, infrastructure, and compliance. Generates detailed findings with remediation recommendations and tracks resolution.",
+    "category": "security",
+    "difficulty": "advanced",
+    "estimatedTime": "45-90 minutes",
+    "tags": ["security", "compliance", "vulnerability", "audit"],
+    "requiredSkills": ["vulnerability-scanner", "dependency-checker", "compliance-auditor"],
+    "steps": [
+      {
+        "id": "code-scan",
+        "name": "Code Security Scan",
+        "description": "Scan codebase for security vulnerabilities and anti-patterns",
+        "skills": ["vulnerability-scanner"],
+        "automated": true
+      },
+      {
+        "id": "dependency-audit",
+        "name": "Dependency Audit",
+        "description": "Check all dependencies for known vulnerabilities and outdated versions",
+        "skills": ["dependency-checker"],
+        "automated": true
+      },
+      {
+        "id": "secrets-scan",
+        "name": "Secrets Detection",
+        "description": "Search for exposed secrets, API keys, and credentials",
+        "skills": ["secrets-detector"],
+        "automated": true
+      },
+      {
+        "id": "infra-scan",
+        "name": "Infrastructure Scan",
+        "description": "Audit cloud resources, permissions, and network configurations",
+        "skills": ["infrastructure-scanner"],
+        "automated": true
+      },
+      {
+        "id": "compliance-check",
+        "name": "Compliance Check",
+        "description": "Verify adherence to security standards (SOC2, GDPR, etc.)",
+        "skills": ["compliance-auditor"],
+        "automated": true
+      },
+      {
+        "id": "prioritize",
+        "name": "Prioritize Findings",
+        "description": "Rank vulnerabilities by severity and exploitability",
+        "skills": ["risk-assessor"],
+        "automated": true
+      },
+      {
+        "id": "report",
+        "name": "Generate Audit Report",
+        "description": "Create comprehensive report with remediation roadmap",
+        "skills": ["security-reporter"],
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "onboarding",
+    "name": "Onboarding",
+    "description": "Automated employee onboarding workflow that provisions access, sets up tools, delivers training materials, and tracks completion. Ensures consistent, comprehensive onboarding experience.",
+    "category": "hr",
+    "difficulty": "intermediate",
+    "estimatedTime": "30-60 minutes setup, 1-2 weeks runtime",
+    "tags": ["hr", "onboarding", "automation", "training"],
+    "requiredSkills": ["identity-manager", "access-provisioner", "training-scheduler"],
+    "steps": [
+      {
+        "id": "create-accounts",
+        "name": "Create Accounts",
+        "description": "Set up email, directory, and core system accounts",
+        "skills": ["identity-manager"],
+        "automated": true
+      },
+      {
+        "id": "provision-access",
+        "name": "Provision Access",
+        "description": "Grant access to tools, repositories, and resources based on role",
+        "skills": ["access-provisioner"],
+        "automated": true
+      },
+      {
+        "id": "setup-hardware",
+        "name": "Hardware Setup",
+        "description": "Coordinate device assignment and configuration",
+        "skills": ["device-manager"],
+        "automated": false
+      },
+      {
+        "id": "schedule-training",
+        "name": "Schedule Training",
+        "description": "Enroll in required courses and schedule onboarding sessions",
+        "skills": ["training-scheduler"],
+        "automated": true
+      },
+      {
+        "id": "assign-buddy",
+        "name": "Assign Onboarding Buddy",
+        "description": "Match with team member and schedule introduction",
+        "skills": ["team-matcher"],
+        "automated": true
+      },
+      {
+        "id": "send-materials",
+        "name": "Deliver Materials",
+        "description": "Send welcome packet, policies, and getting-started guides",
+        "skills": ["content-delivery"],
+        "automated": true
+      },
+      {
+        "id": "track-progress",
+        "name": "Track Completion",
+        "description": "Monitor task completion and send reminders",
+        "skills": ["progress-tracker"],
+        "automated": true
+      },
+      {
+        "id": "collect-feedback",
+        "name": "Collect Feedback",
+        "description": "Gather feedback at 30/60/90 day milestones",
+        "skills": ["feedback-collector"],
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "monitoring",
+    "name": "Monitoring",
+    "description": "Proactive monitoring and alerting workflow that watches systems, detects anomalies, correlates events, and escalates issues intelligently. Reduces alert fatigue while catching real problems early.",
+    "category": "devops",
+    "difficulty": "advanced",
+    "estimatedTime": "Continuous operation",
+    "tags": ["monitoring", "alerting", "observability", "incident"],
+    "requiredSkills": ["metrics-collector", "anomaly-detector", "alert-router"],
+    "steps": [
+      {
+        "id": "collect-metrics",
+        "name": "Collect Metrics",
+        "description": "Gather metrics from infrastructure, applications, and services",
+        "skills": ["metrics-collector"],
+        "automated": true
+      },
+      {
+        "id": "detect-anomalies",
+        "name": "Detect Anomalies",
+        "description": "Use ML to identify unusual patterns and potential issues",
+        "skills": ["anomaly-detector"],
+        "automated": true
+      },
+      {
+        "id": "correlate-events",
+        "name": "Correlate Events",
+        "description": "Group related events and identify root cause signals",
+        "skills": ["event-correlator"],
+        "automated": true
+      },
+      {
+        "id": "assess-severity",
+        "name": "Assess Severity",
+        "description": "Determine impact and urgency of detected issues",
+        "skills": ["severity-assessor"],
+        "automated": true
+      },
+      {
+        "id": "route-alerts",
+        "name": "Route Alerts",
+        "description": "Send notifications to appropriate team via right channel",
+        "skills": ["alert-router"],
+        "automated": true
+      },
+      {
+        "id": "create-incident",
+        "name": "Create Incident",
+        "description": "Open incident ticket for critical issues with context",
+        "skills": ["incident-manager"],
+        "automated": true
+      },
+      {
+        "id": "track-resolution",
+        "name": "Track Resolution",
+        "description": "Monitor incident progress and update stakeholders",
+        "skills": ["status-tracker"],
+        "automated": true
+      },
+      {
+        "id": "post-mortem",
+        "name": "Generate Post-mortem",
+        "description": "Create incident summary with timeline and learnings",
+        "skills": ["postmortem-generator"],
+        "automated": true
+      }
+    ]
+  }
+]
