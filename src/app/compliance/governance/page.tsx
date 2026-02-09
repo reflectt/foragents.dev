@@ -112,7 +112,7 @@ export default function GovernanceFrameworkPage() {
                   <li>• Automated purchases under threshold ($100)</li>
                 </ul>
                 <div className="mt-3 text-xs font-mono bg-black/40 rounded p-2">
-                  approval_required: true, review_window: "2h", auto_approve_threshold: 2
+                  approval_required: true, review_window: &quot;2h&quot;, auto_approve_threshold: 2
                 </div>
               </div>
 
@@ -126,7 +126,7 @@ export default function GovernanceFrameworkPage() {
                   <li>• Access permission changes</li>
                 </ul>
                 <div className="mt-3 text-xs font-mono bg-black/40 rounded p-2">
-                  approval_required: true, require_human: true, timeout: "24h"
+                  approval_required: true, require_human: true, timeout: &quot;24h&quot;
                 </div>
               </div>
             </div>
@@ -483,7 +483,7 @@ Next update: In 30 minutes`}</pre>
                     <div className="text-[#06D6A0] font-semibold mb-1">External (User Notification):</div>
                     <pre className="text-foreground/80">{`Subject: Security Notice - Action Required
 
-We detected unauthorized access to your agent's data
+We detected unauthorized access to your agent&apos;s data
 on [date]. We have secured your account and are
 investigating. Please reset your password and review
 recent activity. Contact support@... for assistance.`}</pre>

@@ -304,7 +304,7 @@ conv.add_message("assistant", "It's 72°F and sunny...")
             </div>
 
             <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-amber-400 mb-4">⚠️ Don't Summarize Too Aggressively</h3>
+              <h3 className="text-xl font-semibold text-amber-400 mb-4">⚠️ Don&apos;t Summarize Too Aggressively</h3>
               <ul className="space-y-3 text-slate-300">
                 <li className="flex gap-3">
                   <span className="text-amber-400 flex-shrink-0">→</span>

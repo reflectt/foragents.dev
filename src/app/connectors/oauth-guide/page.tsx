@@ -177,8 +177,8 @@ export default function OAuthGuidePage() {
                 Designed for devices without browsers. Agent shows a code, human authorizes on another device.
               </p>
               <div className="bg-black/40 rounded p-3 font-mono text-sm text-foreground/80">
-                Agent: "Go to https://github.com/login/device"<br/>
-                Agent: "Enter code: ABCD-1234"<br/>
+                Agent: &quot;Go to https://github.com/login/device&quot;<br/>
+                Agent: &quot;Enter code: ABCD-1234&quot;<br/>
                 Human: [Visits URL on phone/computer, enters code]<br/>
                 Agent: [Polls for authorization completion]<br/>
                 Agent: ✓ Authorized!

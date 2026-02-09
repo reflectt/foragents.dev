@@ -113,7 +113,7 @@ export default function MonetizationPage() {
                   </ul>
                   <div className="text-red-400 mt-4 mb-2">✗ Cons:</div>
                   <ul className="text-foreground/70 list-disc list-inside space-y-1">
-                    <li>Doesn't scale with usage</li>
+                    <li>Doesn&apos;t scale with usage</li>
                     <li>May overprice light users</li>
                     <li>Harder to justify high prices</li>
                   </ul>
@@ -123,12 +123,12 @@ export default function MonetizationPage() {
                   <pre className="text-xs overflow-x-auto bg-black/60 p-3 rounded">
 {`// Create subscription checkout
 const session = await stripe.checkout.sessions.create({
-  mode: 'subscription',
+  mode: &apos;subscription&apos;,
   line_items: [{
-    price: 'price_agent_monthly', // Stripe price ID
+    price: &apos;price_agent_monthly&apos;, // Stripe price ID
     quantity: 1,
   }],
-  success_url: 'https://yourapp.com/success',
+  success_url: &apos;https://yourapp.com/success',
   cancel_url: 'https://yourapp.com/cancel',
 });`}
                   </pre>
@@ -157,7 +157,7 @@ const session = await stripe.checkout.sessions.create({
                   <div className="text-red-400 mt-4 mb-2">✗ Cons:</div>
                   <ul className="text-foreground/70 list-disc list-inside space-y-1">
                     <li>Teams may share accounts</li>
-                    <li>Doesn't account for usage variance</li>
+                    <li>Doesn&apos;t account for usage variance</li>
                     <li>Can get expensive fast</li>
                   </ul>
                 </div>
@@ -170,7 +170,7 @@ const usageRecord = await stripe.subscriptionItems.createUsageRecord(
   {
     quantity: teamMemberCount,
     timestamp: Math.floor(Date.now() / 1000),
-    action: 'set', // or 'increment'
+    action: &apos;set&apos;, // or &apos;increment&apos;
   }
 );`}
                   </pre>
@@ -307,7 +307,7 @@ const trackUsage = async (userId: string, tokens: number) => {
                   <p className="text-sm font-semibold text-amber-300 mb-2">💡 Pricing Strategy Tip:</p>
                   <p className="text-sm text-foreground/70">
                     If you list on marketplaces with 30% take, price your agent 40-50% higher than direct sales 
-                    to maintain margins. Offer "direct purchase discount" to incentivize customers to buy from your site.
+                    to maintain margins. Offer &quot;direct purchase discount&quot; to incentivize customers to buy from your site.
                   </p>
                 </div>
               </CardContent>
@@ -341,7 +341,7 @@ const trackUsage = async (userId: string, tokens: number) => {
                     Free: Basic functionality. Pro: Advanced features, integrations, priority support.
                   </p>
                   <div className="bg-black/40 rounded-lg p-3 text-sm">
-                    <strong className="text-green-400">Conversion trigger:</strong> "Unlock [feature] with Pro" inline when users try premium features.
+                    <strong className="text-green-400">Conversion trigger:</strong> &quot;Unlock [feature] with Pro&quot; inline when users try premium features.
                   </div>
                 </div>
 
@@ -406,7 +406,7 @@ const trackUsage = async (userId: string, tokens: number) => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-foreground/80 mb-4">
-                    Start with a high "enterprise" tier to make mid-tier seem reasonable. Offer launch discounts, student discounts, annual prepay discounts.
+                    Start with a high &quot;enterprise&quot; tier to make mid-tier seem reasonable. Offer launch discounts, student discounts, annual prepay discounts.
                   </p>
                   <div className="bg-black/40 rounded-lg p-4 font-mono text-sm">
                     <div className="space-y-1">
@@ -431,7 +431,7 @@ const trackUsage = async (userId: string, tokens: number) => {
                   </p>
                   <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
                     <p className="text-sm"><strong className="text-purple-300">Example:</strong> A code review agent finds bugs before production. 
-                    Price it as "insurance" not "API calls." $500/mo to prevent one production incident worth $50K is obvious ROI.</p>
+                    Price it as &quot;insurance&quot; not &quot;API calls.&quot; $500/mo to prevent one production incident worth $50K is obvious ROI.</p>
                   </div>
                 </CardContent>
               </Card>

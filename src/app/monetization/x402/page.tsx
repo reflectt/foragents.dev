@@ -98,18 +98,18 @@ export default function X402Page() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-foreground/80">
-                When a request arrives, check the user's balance. If insufficient, return 402 with payment details.
+                When a request arrives, check the user&apos;s balance. If insufficient, return 402 with payment details.
               </p>
 
               <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
                 <p className="text-sm font-semibold text-purple-300 mb-3">Node.js + Express Example:</p>
                 <pre className="text-xs overflow-x-auto bg-black/60 p-4 rounded text-foreground/90">
-{`import express from 'express';
-import { checkBalance, deductBalance, getPaymentAddress } from './payment';
+{`import express from &apos;express&apos;;
+import { checkBalance, deductBalance, getPaymentAddress } from &apos;./payment&apos;;
 
 const app = express();
 
-app.post('/api/agent/task', async (req, res) => {
+app.post(&apos;/api/agent/task', async (req, res) => {
   const userId = req.headers['x-user-id'];
   const taskCost = 0.05; // $0.05 per task
 
@@ -183,9 +183,9 @@ async function callAgentService(
 ): Promise<any> {
   try {
     const response = await fetch(endpoint, {
-      method: 'POST',
+      method: &apos;POST&apos;,
       headers: {
-        'Content-Type': 'application/json',
+        &apos;Content-Type&apos;: &apos;application/json',
         'X-User-Id': process.env.AGENT_USER_ID,
       },
       body: JSON.stringify(payload),
@@ -298,7 +298,7 @@ const result = await callAgentService(
               <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
                 <p className="text-sm font-semibold text-purple-300 mb-3">Stripe Balance Example:</p>
                 <pre className="text-xs overflow-x-auto bg-black/60 p-4 rounded text-foreground/90">
-{`import Stripe from 'stripe';
+{`import Stripe from &apos;stripe&apos;;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 // Check balance
@@ -311,8 +311,8 @@ async function checkBalance(userId: string): Promise<number> {
 async function deductBalance(userId: string, amount: number) {
   await stripe.customers.createBalanceTransaction(userId, {
     amount: -Math.round(amount * 100), // Convert to cents, negative for deduction
-    currency: 'usd',
-    description: 'Agent service usage',
+    currency: &apos;usd&apos;,
+    description: &apos;Agent service usage&apos;,
   });
 }
 
@@ -321,7 +321,7 @@ async function topUpBalance(userId: string, amount: number) {
   const charge = await stripe.charges.create({
     customer: userId,
     amount: Math.round(amount * 100),
-    currency: 'usd',
+    currency: &apos;usd',
     description: 'Balance top-up',
   });
 
