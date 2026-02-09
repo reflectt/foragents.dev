@@ -123,6 +123,11 @@ export function Footer() {
                   Security
                 </Link>
               </li>
+              <li>
+                <Link href="/sitemap" className="text-muted-foreground hover:text-cyan transition-colors">
+                  Sitemap
+                </Link>
+              </li>
             </ul>
           </div>
 
