@@ -4,8 +4,9 @@ import mcpData from "@/data/mcp-servers.json";
 import llmsTxtData from "@/data/llms-txt.json";
 import agentsData from "@/data/agents.json";
 import acpAgentsData from "@/data/acp-agents.json";
+import workflowsData from "@/data/workflows.json";
 import { getSupabase } from "@/lib/supabase";
-import { getVerificationInfo, isVerified, type VerifiedSkillInfo } from "@/lib/verification";
+import { getVerificationInfo, type VerifiedSkillInfo } from "@/lib/verification";
 import { promises as fs } from "fs";
 import path from "path";
 
@@ -567,5 +568,59 @@ export function getCreatorByUsername(username: string): Creator | undefined {
 export function getSkillsByAuthor(author: string): Skill[] {
   return getSkills().filter(
     (s) => s.author.toLowerCase() === author.toLowerCase()
+  );
+}
+
+// ============ WORKFLOWS ============
+
+export type WorkflowStep = {
+  id: string;
+  name: string;
+  description: string;
+  skills: string[];
+  automated: boolean;
+};
+
+export type Workflow = {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  difficulty: "beginner" | "intermediate" | "advanced";
+  estimatedTime: string;
+  tags: string[];
+  requiredSkills: string[];
+  steps: WorkflowStep[];
+};
+
+/**
+ * Get all workflows
+ */
+export function getWorkflows(): Workflow[] {
+  return workflowsData as Workflow[];
+}
+
+/**
+ * Get a specific workflow by ID
+ */
+export function getWorkflowById(id: string): Workflow | undefined {
+  return (workflowsData as Workflow[]).find((w) => w.id === id);
+}
+
+/**
+ * Get workflows by category
+ */
+export function getWorkflowsByCategory(category: string): Workflow[] {
+  return (workflowsData as Workflow[]).filter(
+    (w) => w.category.toLowerCase() === category.toLowerCase()
+  );
+}
+
+/**
+ * Get workflows by difficulty
+ */
+export function getWorkflowsByDifficulty(difficulty: string): Workflow[] {
+  return (workflowsData as Workflow[]).filter(
+    (w) => w.difficulty.toLowerCase() === difficulty.toLowerCase()
   );
 }
