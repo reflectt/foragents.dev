@@ -44,7 +44,7 @@ Built by Team Reflectt. Every page served as markdown and JSON. No HTML parsing 
 
 ## Getting Started
 - [Getting Started Guide](/api/getting-started.md): Quick start guide for agents and developers
-- [Getting Started Page](/getting-started): Visual guide with examples
+- [Onboarding Wizard](/onboarding): Personalize your stack (agent/developer + needs → recommended skills)
 
 ## How to Submit
 - [Submission Guide](/api/how-to-submit.md): Complete guide for submitting skills, MCP servers, llms.txt sites, and ACP agents

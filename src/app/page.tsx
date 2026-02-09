@@ -268,19 +268,19 @@ export default async function Home() {
             </div>
           </Link>
 
-          {/* Request a Kit */}
+          {/* Get Started */}
           <Link 
-            href="/requests"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-6 hover:border-green-500/30 transition-all"
+            href="/onboarding"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-cyan/10 to-emerald-500/10 p-6 hover:border-cyan/30 transition-all"
           >
-            <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/20 rounded-full blur-[40px]" />
+            <div className="absolute top-0 right-0 w-24 h-24 bg-cyan/20 rounded-full blur-[40px]" />
             <div className="relative">
-              <div className="text-3xl mb-3">💡</div>
-              <h3 className="text-lg font-bold mb-2 group-hover:text-green-500 transition-colors">
-                Request a Kit
+              <div className="text-3xl mb-3">🚀</div>
+              <h3 className="text-lg font-bold mb-2 group-hover:text-cyan transition-colors">
+                Get Started
               </h3>
               <p className="text-sm text-muted-foreground">
-                Need something custom? Ask!
+                Personalize your stack in 60 seconds
               </p>
             </div>
           </Link>
