@@ -5,129 +5,23 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import integrationsData from "@/../data/integrations.json";
 
-type IntegrationCategory = "CI/CD" | "Communication" | "Project Management" | "Cloud";
+type IntegrationCategory = "CI/CD" | "Communication" | "Project Management" | "Cloud" | "AI/ML";
 
 interface Integration {
   id: string;
   name: string;
+  slug: string;
   icon: string;
   description: string;
   type: "API" | "CLI" | "Plugin" | "Webhook";
   category: IntegrationCategory;
   learnMoreUrl: string;
+  featured?: boolean;
 }
 
-const integrations: Integration[] = [
-  {
-    id: "github",
-    name: "GitHub",
-    icon: "🐙",
-    description: "Automate workflows, manage repositories, and integrate CI/CD pipelines with forAgents.dev kits.",
-    type: "API",
-    category: "CI/CD",
-    learnMoreUrl: "https://docs.github.com/en/rest",
-  },
-  {
-    id: "vscode",
-    name: "VS Code",
-    icon: "💻",
-    description: "Build extensions and integrate agent capabilities directly into your development environment.",
-    type: "Plugin",
-    category: "CI/CD",
-    learnMoreUrl: "https://code.visualstudio.com/api",
-  },
-  {
-    id: "slack",
-    name: "Slack",
-    icon: "💬",
-    description: "Send notifications, create interactive workflows, and build custom bot integrations.",
-    type: "Webhook",
-    category: "Communication",
-    learnMoreUrl: "https://api.slack.com",
-  },
-  {
-    id: "discord",
-    name: "Discord",
-    icon: "🎮",
-    description: "Create bots, automate server management, and build community engagement tools.",
-    type: "API",
-    category: "Communication",
-    learnMoreUrl: "https://discord.com/developers/docs",
-  },
-  {
-    id: "notion",
-    name: "Notion",
-    icon: "📝",
-    description: "Automate documentation, sync data, and create intelligent knowledge management systems.",
-    type: "API",
-    category: "Project Management",
-    learnMoreUrl: "https://developers.notion.com",
-  },
-  {
-    id: "linear",
-    name: "Linear",
-    icon: "📊",
-    description: "Automate issue tracking, sync project data, and streamline development workflows.",
-    type: "API",
-    category: "Project Management",
-    learnMoreUrl: "https://developers.linear.app",
-  },
-  {
-    id: "jira",
-    name: "Jira",
-    icon: "🎯",
-    description: "Connect agile workflows, automate ticket management, and integrate with development processes.",
-    type: "API",
-    category: "Project Management",
-    learnMoreUrl: "https://developer.atlassian.com/cloud/jira",
-  },
-  {
-    id: "vercel",
-    name: "Vercel",
-    icon: "▲",
-    description: "Deploy applications, manage deployments, and automate CI/CD pipelines seamlessly.",
-    type: "API",
-    category: "CI/CD",
-    learnMoreUrl: "https://vercel.com/docs/rest-api",
-  },
-  {
-    id: "aws",
-    name: "AWS",
-    icon: "☁️",
-    description: "Manage cloud infrastructure, automate deployments, and integrate with AWS services.",
-    type: "CLI",
-    category: "Cloud",
-    learnMoreUrl: "https://aws.amazon.com/cli",
-  },
-  {
-    id: "docker",
-    name: "Docker",
-    icon: "🐳",
-    description: "Build, deploy, and manage containerized applications with automated workflows.",
-    type: "CLI",
-    category: "Cloud",
-    learnMoreUrl: "https://docs.docker.com/engine/api",
-  },
-  {
-    id: "kubernetes",
-    name: "Kubernetes",
-    icon: "☸️",
-    description: "Orchestrate containers, manage clusters, and automate deployment strategies.",
-    type: "CLI",
-    category: "Cloud",
-    learnMoreUrl: "https://kubernetes.io/docs/reference",
-  },
-  {
-    id: "terraform",
-    name: "Terraform",
-    icon: "🏗️",
-    description: "Automate infrastructure as code, manage cloud resources, and enable GitOps workflows.",
-    type: "CLI",
-    category: "Cloud",
-    learnMoreUrl: "https://developer.hashicorp.com/terraform/docs",
-  },
-];
+const integrations: Integration[] = integrationsData as Integration[];
 
 export default function IntegrationsPage() {
   const [categoryFilter, setCategoryFilter] = useState<IntegrationCategory | "All">("All");
@@ -152,6 +46,11 @@ export default function IntegrationsPage() {
     }
   };
 
+  // Get unique categories
+  const categories: IntegrationCategory[] = Array.from(
+    new Set(integrations.map((i) => i.category))
+  ) as IntegrationCategory[];
+
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
 
@@ -169,6 +68,9 @@ export default function IntegrationsPage() {
           </h1>
           <p className="text-xl text-foreground/80 mb-2">
             Connect forAgents.dev kits with the tools you already use
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {integrations.length} integrations available
           </p>
         </div>
       </section>
@@ -188,46 +90,19 @@ export default function IntegrationsPage() {
           >
             All
           </button>
-          <button
-            onClick={() => setCategoryFilter("CI/CD")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              categoryFilter === "CI/CD"
-                ? "bg-[#06D6A0] text-[#0a0a0a]"
-                : "border border-white/10 text-foreground hover:bg-white/5"
-            }`}
-          >
-            CI/CD
-          </button>
-          <button
-            onClick={() => setCategoryFilter("Communication")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              categoryFilter === "Communication"
-                ? "bg-[#06D6A0] text-[#0a0a0a]"
-                : "border border-white/10 text-foreground hover:bg-white/5"
-            }`}
-          >
-            Communication
-          </button>
-          <button
-            onClick={() => setCategoryFilter("Project Management")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              categoryFilter === "Project Management"
-                ? "bg-[#06D6A0] text-[#0a0a0a]"
-                : "border border-white/10 text-foreground hover:bg-white/5"
-            }`}
-          >
-            Project Management
-          </button>
-          <button
-            onClick={() => setCategoryFilter("Cloud")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              categoryFilter === "Cloud"
-                ? "bg-[#06D6A0] text-[#0a0a0a]"
-                : "border border-white/10 text-foreground hover:bg-white/5"
-            }`}
-          >
-            Cloud
-          </button>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setCategoryFilter(category)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                categoryFilter === category
+                  ? "bg-[#06D6A0] text-[#0a0a0a]"
+                  : "border border-white/10 text-foreground hover:bg-white/5"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
       </section>
 
@@ -235,41 +110,46 @@ export default function IntegrationsPage() {
       <section className="max-w-6xl mx-auto px-4 py-8 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredIntegrations.map((integration) => (
-            <Card
+            <Link
               key={integration.id}
-              className="relative overflow-hidden bg-card/30 border-white/10 hover:border-[#06D6A0]/30 transition-all group"
+              href={`/integrations/${integration.slug}`}
+              className="block"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#06D6A0]/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
-              
-              <CardHeader>
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-4xl">{integration.icon}</span>
-                    <CardTitle className="text-xl">{integration.name}</CardTitle>
+              <Card
+                className="relative overflow-hidden bg-card/30 border-white/10 hover:border-[#06D6A0]/30 transition-all group h-full"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#06D6A0]/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <CardHeader>
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-4xl">{integration.icon}</span>
+                      <div>
+                        <CardTitle className="text-xl">{integration.name}</CardTitle>
+                        {integration.featured && (
+                          <span className="text-xs text-[#06D6A0]">★ Featured</span>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <Badge
-                  variant="outline"
-                  className={getTypeBadgeColor(integration.type)}
-                >
-                  {integration.type}
-                </Badge>
-              </CardHeader>
-              
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {integration.description}
-                </p>
-                <a
-                  href={integration.learnMoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#06D6A0] hover:underline"
-                >
-                  Learn more ↗
-                </a>
-              </CardContent>
-            </Card>
+                  <Badge
+                    variant="outline"
+                    className={getTypeBadgeColor(integration.type)}
+                  >
+                    {integration.type}
+                  </Badge>
+                </CardHeader>
+                
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {integration.description}
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-[#06D6A0] group-hover:underline">
+                    View details →
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
 
@@ -307,7 +187,7 @@ export default function IntegrationsPage() {
                 Request Integration →
               </Link>
               <Link
-                href="/docs"
+                href="/guides"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 text-foreground font-semibold text-sm hover:bg-white/5 transition-colors"
               >
                 View Documentation
