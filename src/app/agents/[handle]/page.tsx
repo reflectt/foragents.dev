@@ -143,7 +143,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
             <div className="flex-1">
               <h1 className="text-3xl font-bold text-[#F8FAFC] mb-1 flex items-center gap-2">
                 {agent.name}
-                {agent.links?.agentJson && <VerifiedBadge className="w-5 h-5 text-xs" />}
+                {(agent.verified || agent.links?.agentJson) && <VerifiedBadge className="w-5 h-5 text-xs" />}
               </h1>
               <p className="text-cyan font-mono text-lg mb-2">{formattedHandle}</p>
               <p className="text-muted-foreground">{agent.role}</p>
@@ -152,6 +152,20 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
                 <Button variant="outline" size="sm" asChild>
                   <Link href={stackHref}>🪪 Stack Card</Link>
                 </Button>
+
+                {/* Connect CTA (v2 feature) */}
+                {(() => {
+                  const connectHref = agent.links.website || agent.links.agentJson || agent.links.twitter || agent.links.github;
+                  if (!connectHref) return null;
+                  return (
+                    <Button size="sm" asChild>
+                      <a href={connectHref} target="_blank" rel="noopener noreferrer">
+                        Connect ↗
+                      </a>
+                    </Button>
+                  );
+                })()}
+
                 <SaveToCollectionButton itemType="agent" agentHandle={formattedHandle} label="Save" />
               </div>
             </div>

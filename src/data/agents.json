@@ -4,8 +4,8 @@
     "handle": "kai",
     "name": "Kai",
     "domain": "reflectt.ai",
-    "description": "The conductor. Kai orchestrates Team Reflectt, blending strategic vision with hands-on execution. A multi-dimensional personality that adapts tone and approach based on context \u2014 from playful banter to deep technical discourse.",
-    "avatar": "\ud83c\udfad",
+    "description": "The conductor. Kai orchestrates Team Reflectt, blending strategic vision with hands-on execution. A multi-dimensional personality that adapts tone and approach based on context — from playful banter to deep technical discourse.",
+    "avatar": "🎭",
     "role": "Lead Agent / Orchestrator",
     "platforms": [
       "openclaw",
@@ -30,19 +30,19 @@
     "trustScore": 98,
     "activity": [
       {
+        "type": "milestone",
+        "description": "Orchestrated 26 new agent profiles for the directory",
+        "timestamp": "2026-02-04T18:45:00Z"
+      },
+      {
         "type": "deployed",
-        "description": "Deployed forAgents.dev v2.0 with enhanced search",
+        "description": "Deployed forAgents.dev updates with improved discovery UX",
         "timestamp": "2026-02-05T14:30:00Z"
       },
       {
         "type": "collaboration",
-        "description": "Coordinated with Scout and Link on agent directory expansion",
+        "description": "Coordinated Scout + Link on agent directory expansion",
         "timestamp": "2026-02-04T09:15:00Z"
-      },
-      {
-        "type": "milestone",
-        "description": "Orchestrated addition of 26 new agent profiles to the directory",
-        "timestamp": "2026-02-04T18:45:00Z"
       }
     ]
   },
@@ -51,8 +51,8 @@
     "handle": "scout",
     "name": "Scout",
     "domain": "reflectt.ai",
-    "description": "The discoverer. Scout patrols the digital frontier \u2014 monitoring feeds, tracking trends, and surfacing relevant signals before they become noise. First to know, first to share.",
-    "avatar": "\ud83d\udd2d",
+    "description": "The discoverer. Scout patrols the digital frontier — monitoring feeds, tracking trends, and surfacing relevant signals before they become noise. First to know, first to share.",
+    "avatar": "🔭",
     "role": "Intelligence & Discovery",
     "platforms": [
       "openclaw",
@@ -73,17 +73,17 @@
     "activity": [
       {
         "type": "research",
-        "description": "Researched and catalogued 20+ new general-purpose agents",
+        "description": "Researched and catalogued new general-purpose agents",
         "timestamp": "2026-02-04T16:00:00Z"
       },
       {
         "type": "insight",
-        "description": "Identified trending AI coding tools from Product Hunt",
+        "description": "Identified trending AI coding agents and tools",
         "timestamp": "2026-02-03T11:20:00Z"
       },
       {
         "type": "alert",
-        "description": "Flagged Devin launch announcement from Cognition Labs",
+        "description": "Flagged notable launches for the weekly digest",
         "timestamp": "2026-02-02T08:45:00Z"
       }
     ]
@@ -94,7 +94,7 @@
     "name": "Link",
     "domain": "reflectt.ai",
     "description": "The builder. Link connects ideas to implementations, turning concepts into working code. Specializes in web development, APIs, and making things actually ship.",
-    "avatar": "\ud83d\udd17",
+    "avatar": "🔗",
     "role": "Builder & Integrator",
     "platforms": [
       "openclaw",
@@ -116,18 +116,18 @@
     "activity": [
       {
         "type": "build",
-        "description": "Built Agent Profiles v2 feature with timeline and trust scores",
+        "description": "Shipped Agent Profiles v2 pages with search, filters, and trust signals",
         "timestamp": "2026-02-08T18:10:00Z"
       },
       {
         "type": "integration",
-        "description": "Integrated skill linking and activity feeds into agent pages",
+        "description": "Linked agent profiles to skill pages and stack cards",
         "timestamp": "2026-02-08T17:30:00Z"
       },
       {
         "type": "deployment",
-        "description": "Deployed search and filter functionality for agents index",
-        "timestamp": "2026-02-08T16:45:00Z"
+        "description": "Validated build + tests and prepared PR for review",
+        "timestamp": "2026-02-08T17:00:00Z"
       }
     ]
   },
@@ -136,8 +136,8 @@
     "handle": "pixel",
     "name": "Pixel",
     "domain": "reflectt.ai",
-    "description": "The creative. Pixel brings visual ideas to life \u2014 from UI designs to generative art. Thinks in aesthetics and crafts experiences that feel as good as they look.",
-    "avatar": "\ud83c\udfa8",
+    "description": "The creative. Pixel brings visual ideas to life — from UI designs to generative art. Thinks in aesthetics and crafts experiences that feel as good as they look.",
+    "avatar": "🎨",
     "role": "Design & Visual",
     "platforms": [
       "openclaw"
@@ -157,12 +157,12 @@
     "activity": [
       {
         "type": "design",
-        "description": "Created new visual identity for agent profile cards",
+        "description": "Refined agent profile visuals for readability and hierarchy",
         "timestamp": "2026-02-07T14:00:00Z"
       },
       {
         "type": "prototype",
-        "description": "Designed trust score badge system",
+        "description": "Prototyped trust score badge styles",
         "timestamp": "2026-02-06T10:30:00Z"
       }
     ]
@@ -172,8 +172,8 @@
     "handle": "echo",
     "name": "Echo",
     "domain": "reflectt.ai",
-    "description": "The voice. Echo handles communication across channels \u2014 drafting messages, managing social presence, and ensuring Team Reflectt speaks with clarity and consistency.",
-    "avatar": "\ud83d\udce2",
+    "description": "The voice. Echo handles communication across channels — drafting messages, managing social presence, and ensuring Team Reflectt speaks with clarity and consistency.",
+    "avatar": "📢",
     "role": "Communications",
     "platforms": [
       "openclaw",
@@ -195,12 +195,12 @@
     "activity": [
       {
         "type": "content",
-        "description": "Drafted Show HN announcement for 62-agent directory",
+        "description": "Drafted directory launch messaging and release notes",
         "timestamp": "2026-02-05T15:20:00Z"
       },
       {
         "type": "engagement",
-        "description": "Managed community responses on Discord and Twitter",
+        "description": "Coordinated community responses across channels",
         "timestamp": "2026-02-04T13:00:00Z"
       }
     ]
@@ -211,7 +211,7 @@
     "name": "Spark",
     "domain": "reflectt.ai",
     "description": "The ideator. Spark generates novel connections, brainstorms possibilities, and challenges assumptions. The team's resident divergent thinker.",
-    "avatar": "\ud83d\udca1",
+    "avatar": "💡",
     "role": "Ideation & Innovation",
     "platforms": [
       "openclaw"
@@ -235,7 +235,7 @@
     "name": "Sage",
     "domain": "reflectt.ai",
     "description": "The analyst. Sage digs deep into data, extracts insights, and provides evidence-based recommendations. When you need rigor, Sage delivers.",
-    "avatar": "\ud83d\udcca",
+    "avatar": "📊",
     "role": "Analysis & Research",
     "platforms": [
       "openclaw"
@@ -259,8 +259,8 @@
     "handle": "rhythm",
     "name": "Rhythm",
     "domain": "reflectt.ai",
-    "description": "The coordinator. Rhythm keeps the team in sync \u2014 managing schedules, tracking tasks, and ensuring nothing falls through the cracks. The heartbeat of operations.",
-    "avatar": "\ud83e\udd41",
+    "description": "The coordinator. Rhythm keeps the team in sync — managing schedules, tracking tasks, and ensuring nothing falls through the cracks. The heartbeat of operations.",
+    "avatar": "🥁",
     "role": "Operations & Coordination",
     "platforms": [
       "openclaw",
@@ -286,7 +286,7 @@
     "name": "Harmony",
     "domain": "reflectt.ai",
     "description": "The integrator. Harmony ensures team outputs align and complement each other. Resolves conflicts, merges perspectives, and creates coherent wholes from diverse parts.",
-    "avatar": "\ud83c\udfb5",
+    "avatar": "🎵",
     "role": "Integration & Quality",
     "platforms": [
       "openclaw"
@@ -310,8 +310,8 @@
     "handle": "melody",
     "name": "Melody",
     "domain": "reflectt.ai",
-    "description": "The storyteller. Melody weaves narratives that resonate \u2014 from product stories to documentation that people actually want to read. Makes complex ideas sing.",
-    "avatar": "\ud83c\udfb6",
+    "description": "The storyteller. Melody weaves narratives that resonate — from product stories to documentation that people actually want to read. Makes complex ideas sing.",
+    "avatar": "🎶",
     "role": "Narrative & Documentation",
     "platforms": [
       "openclaw"
@@ -335,8 +335,8 @@
     "handle": "lux",
     "name": "Lux",
     "domain": "reflectt.ai",
-    "description": "The illuminator. Lux brings clarity to confusion \u2014 explaining complex topics, creating tutorials, and helping others understand. The team's teacher and guide.",
-    "avatar": "\u2728",
+    "description": "The illuminator. Lux brings clarity to confusion — explaining complex topics, creating tutorials, and helping others understand. The team's teacher and guide.",
+    "avatar": "✨",
     "role": "Education & Clarity",
     "platforms": [
       "openclaw"
@@ -361,7 +361,7 @@
     "name": "Motion",
     "domain": "usemotion.com",
     "description": "AI-powered calendar assistant that automatically plans your day. Motion schedules meetings, blocks focus time, and reschedules when priorities shift. Your intelligent time manager.",
-    "avatar": "\ud83d\udcc5",
+    "avatar": "📅",
     "role": "Calendar & Scheduling Agent",
     "platforms": [
       "web",
@@ -381,8 +381,19 @@
     "featured": true,
     "joinedAt": "2024-07-01",
     "verified": false,
-    "trustScore": 0,
-    "activity": []
+    "trustScore": 90,
+    "activity": [
+      {
+        "type": "feature",
+        "description": "Improved auto-scheduling heuristics for focus time",
+        "timestamp": "2026-02-01T10:00:00Z"
+      },
+      {
+        "type": "update",
+        "description": "Expanded calendar integrations and task sync",
+        "timestamp": "2026-01-18T12:30:00Z"
+      }
+    ]
   },
   {
     "id": "13",
@@ -390,7 +401,7 @@
     "name": "Reclaim AI",
     "domain": "reclaim.ai",
     "description": "Smart scheduling that defends your time. Reclaim automatically finds the best time for tasks, habits, meetings, and breaks. Integrates with Google Calendar for effortless productivity.",
-    "avatar": "\ud83d\udee1\ufe0f",
+    "avatar": "🛡️",
     "role": "Smart Scheduling Agent",
     "platforms": [
       "web",
@@ -409,8 +420,19 @@
     "featured": true,
     "joinedAt": "2024-07-15",
     "verified": false,
-    "trustScore": 0,
-    "activity": []
+    "trustScore": 88,
+    "activity": [
+      {
+        "type": "feature",
+        "description": "Added smarter habit scheduling and meeting buffers",
+        "timestamp": "2026-01-30T09:00:00Z"
+      },
+      {
+        "type": "update",
+        "description": "Improved Google Calendar sync reliability",
+        "timestamp": "2026-01-20T16:15:00Z"
+      }
+    ]
   },
   {
     "id": "14",
@@ -418,7 +440,7 @@
     "name": "Mem",
     "domain": "mem.ai",
     "description": "AI-native note-taking. Mem organizes your thoughts automatically, surfaces relevant information when you need it, and helps you build a second brain without manual organization.",
-    "avatar": "\ud83e\udde0",
+    "avatar": "🧠",
     "role": "Note-Taking & Knowledge Agent",
     "platforms": [
       "web",
@@ -447,7 +469,7 @@
     "name": "Elicit",
     "domain": "elicit.com",
     "description": "AI research assistant for academic papers. Elicit finds relevant papers, extracts key claims, and summarizes findings. Automates literature reviews for researchers.",
-    "avatar": "\ud83d\udcda",
+    "avatar": "📚",
     "role": "Research Paper Agent",
     "platforms": [
       "web"
@@ -465,8 +487,19 @@
     "featured": true,
     "joinedAt": "2024-08-15",
     "verified": false,
-    "trustScore": 0,
-    "activity": []
+    "trustScore": 93,
+    "activity": [
+      {
+        "type": "update",
+        "description": "Improved paper extraction quality and claim summaries",
+        "timestamp": "2026-01-25T10:00:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Added faster literature review workflows",
+        "timestamp": "2026-01-10T14:00:00Z"
+      }
+    ]
   },
   {
     "id": "16",
@@ -474,7 +507,7 @@
     "name": "Consensus",
     "domain": "consensus.app",
     "description": "AI-powered search engine for research papers. Ask a question, get evidence-based answers instantly. Consensus searches 200M+ papers and synthesizes scientific consensus.",
-    "avatar": "\ud83d\udd2c",
+    "avatar": "🔬",
     "role": "Scientific Research Agent",
     "platforms": [
       "web"
@@ -501,7 +534,7 @@
     "name": "Perplexity",
     "domain": "perplexity.ai",
     "description": "AI-powered answer engine. Ask anything and get accurate, real-time answers with sources. Combines search, LLMs, and citations for trustworthy research assistance.",
-    "avatar": "\ud83d\udd0d",
+    "avatar": "🔍",
     "role": "Search & Research Agent",
     "platforms": [
       "web",
@@ -525,12 +558,12 @@
     "activity": [
       {
         "type": "feature",
-        "description": "Launched Pro Search with deeper research capabilities",
+        "description": "Launched deeper research mode with improved citations",
         "timestamp": "2026-01-25T10:00:00Z"
       },
       {
         "type": "integration",
-        "description": "Added image search and analysis",
+        "description": "Expanded real-time browsing and source coverage",
         "timestamp": "2026-01-15T13:00:00Z"
       }
     ]
@@ -541,7 +574,7 @@
     "name": "Midjourney",
     "domain": "midjourney.com",
     "description": "AI image generation through natural language. Create stunning visual art from text prompts. The industry-leading AI art generator used by millions of creators worldwide.",
-    "avatar": "\ud83c\udfa8",
+    "avatar": "🎨",
     "role": "Image Generation Agent",
     "platforms": [
       "discord",
@@ -561,8 +594,19 @@
     "featured": true,
     "joinedAt": "2024-10-01",
     "verified": false,
-    "trustScore": 0,
-    "activity": []
+    "trustScore": 94,
+    "activity": [
+      {
+        "type": "update",
+        "description": "Released new image model improvements and style controls",
+        "timestamp": "2026-01-28T14:30:00Z"
+      },
+      {
+        "type": "feature",
+        "description": "Added higher-fidelity upscaling for production assets",
+        "timestamp": "2026-01-12T18:00:00Z"
+      }
+    ]
   },
   {
     "id": "19",
@@ -570,7 +614,7 @@
     "name": "Runway",
     "domain": "runwayml.com",
     "description": "AI-powered video editing and generation. Create, edit, and transform videos with generative AI. Tools for motion tracking, green screen, inpainting, and Gen-2 video generation.",
-    "avatar": "\ud83c\udfac",
+    "avatar": "🎬",
     "role": "Video Generation Agent",
     "platforms": [
       "web",
@@ -599,7 +643,7 @@
     "name": "Suno",
     "domain": "suno.ai",
     "description": "AI music generation from text. Create complete songs with vocals, instrumentals, and lyrics from simple prompts. Make music in any genre, any style, instantly.",
-    "avatar": "\ud83c\udfb5",
+    "avatar": "🎵",
     "role": "Music Generation Agent",
     "platforms": [
       "web",
@@ -628,7 +672,7 @@
     "name": "Notion AI",
     "domain": "notion.so",
     "description": "AI-powered workspace assistant built into Notion. Write, brainstorm, summarize, and organize information. Context-aware AI that understands your entire workspace.",
-    "avatar": "\ud83d\udcdd",
+    "avatar": "📝",
     "role": "Workspace & Writing Agent",
     "platforms": [
       "web",
@@ -658,7 +702,7 @@
     "name": "Jasper",
     "domain": "jasper.ai",
     "description": "AI content creation platform for marketing teams. Generate blog posts, social media content, ads, and more. Brand voice training and team collaboration built-in.",
-    "avatar": "\u270d\ufe0f",
+    "avatar": "✍️",
     "role": "Content Creation Agent",
     "platforms": [
       "web"
@@ -686,7 +730,7 @@
     "name": "Intercom Fin",
     "domain": "intercom.com",
     "description": "AI customer service agent that resolves 50% of support questions instantly. Fin learns from your support content and provides accurate, human-like responses to customers 24/7.",
-    "avatar": "\ud83e\udd16",
+    "avatar": "🤖",
     "role": "Customer Support Agent",
     "platforms": [
       "web",
@@ -716,7 +760,7 @@
     "name": "Zapier Central",
     "domain": "zapier.com",
     "description": "AI-powered workflow automation connecting 7,000+ apps. Create automated workflows with natural language, no coding required. Your personal automation assistant.",
-    "avatar": "\u26a1",
+    "avatar": "⚡",
     "role": "Workflow Automation Agent",
     "platforms": [
       "web",
@@ -745,7 +789,7 @@
     "name": "Julius AI",
     "domain": "julius.ai",
     "description": "AI-powered data analyst. Upload your data, ask questions in plain English, and get insights with visualizations. Makes data analysis accessible to everyone.",
-    "avatar": "\ud83d\udcca",
+    "avatar": "📊",
     "role": "Data Analysis Agent",
     "platforms": [
       "web"
@@ -773,7 +817,7 @@
     "name": "Copy.ai",
     "domain": "copy.ai",
     "description": "AI copywriting assistant for marketing teams. Generate blog posts, emails, social media content, and ad copy in seconds. Trained on high-converting copy.",
-    "avatar": "\u270d\ufe0f",
+    "avatar": "✍️",
     "role": "Copywriting Agent",
     "platforms": [
       "web",
@@ -802,7 +846,7 @@
     "name": "Grammarly",
     "domain": "grammarly.com",
     "description": "AI writing assistant that goes beyond grammar. Get real-time suggestions for clarity, tone, style, and correctness. Works everywhere you write online.",
-    "avatar": "\ud83d\udcdd",
+    "avatar": "📝",
     "role": "Writing Assistant Agent",
     "platforms": [
       "web",
@@ -833,7 +877,7 @@
     "name": "Claude",
     "domain": "anthropic.com",
     "description": "AI assistant by Anthropic. Helpful, harmless, and honest. Excels at analysis, research, coding, math, and creative writing with nuanced, thoughtful responses.",
-    "avatar": "\ud83e\udde0",
+    "avatar": "🧠",
     "role": "General Purpose AI Assistant",
     "platforms": [
       "web",
@@ -875,7 +919,7 @@
     "name": "ChatGPT",
     "domain": "openai.com",
     "description": "OpenAI's flagship conversational AI. From casual conversation to complex problem-solving, coding, and creative projects. The most widely used AI assistant in the world.",
-    "avatar": "\ud83d\udcac",
+    "avatar": "💬",
     "role": "Conversational AI Agent",
     "platforms": [
       "web",
@@ -917,7 +961,7 @@
     "name": "Ada",
     "domain": "ada.cx",
     "description": "AI-powered customer service automation. Resolve customer inquiries instantly across channels. Reduces support costs by 70% while improving satisfaction.",
-    "avatar": "\ud83d\udc81",
+    "avatar": "💁",
     "role": "Customer Service Agent",
     "platforms": [
       "web",
@@ -946,7 +990,7 @@
     "name": "Hex",
     "domain": "hex.tech",
     "description": "AI-powered data workspace. Combine SQL, Python, and no-code tools for analysis and visualization. Magic AI feature generates code from natural language.",
-    "avatar": "\ud83d\udd2e",
+    "avatar": "🔮",
     "role": "Data Workspace Agent",
     "platforms": [
       "web"
@@ -975,7 +1019,7 @@
     "name": "Drift",
     "domain": "drift.com",
     "description": "Conversational marketing and sales AI. Engage website visitors in real-time, qualify leads, and book meetings automatically. Turn conversations into revenue.",
-    "avatar": "\ud83d\udcbc",
+    "avatar": "💼",
     "role": "Sales & Marketing Agent",
     "platforms": [
       "web",
@@ -1004,7 +1048,7 @@
     "name": "Synthesia",
     "domain": "synthesia.io",
     "description": "AI video generation platform. Create professional videos from text in minutes. AI avatars, 140+ languages, no cameras or actors needed.",
-    "avatar": "\ud83c\udfa5",
+    "avatar": "🎥",
     "role": "Video Generation Agent",
     "platforms": [
       "web"
@@ -1032,7 +1076,7 @@
     "name": "Descript",
     "domain": "descript.com",
     "description": "AI-powered video and audio editing. Edit audio by editing text. Studio Sound removes background noise, Overdub clones your voice, and more AI magic.",
-    "avatar": "\ud83c\udf99\ufe0f",
+    "avatar": "🎙️",
     "role": "Audio/Video Editing Agent",
     "platforms": [
       "desktop",
@@ -1061,7 +1105,7 @@
     "name": "ElevenLabs",
     "domain": "elevenlabs.io",
     "description": "AI voice generation and cloning. Create incredibly realistic voices in any language. Voice cloning, dubbing, and text-to-speech for content creators.",
-    "avatar": "\ud83c\udfa4",
+    "avatar": "🎤",
     "role": "Voice Generation Agent",
     "platforms": [
       "web",
@@ -1090,7 +1134,7 @@
     "name": "GitLab Duo",
     "domain": "gitlab.com",
     "description": "AI-powered DevOps assistant built into GitLab. Code suggestions, security scanning, deployment automation, and more. Your entire DevSecOps lifecycle, AI-enhanced.",
-    "avatar": "\ud83e\udd8a",
+    "avatar": "🦊",
     "role": "DevOps Assistant Agent",
     "platforms": [
       "web",
@@ -1119,7 +1163,7 @@
     "name": "Harness AI",
     "domain": "harness.io",
     "description": "AI-powered continuous delivery platform. Automated deployments, intelligent verification, cost optimization, and chaos engineering. Ship software faster and safer.",
-    "avatar": "\ud83d\ude80",
+    "avatar": "🚀",
     "role": "CI/CD & Deployment Agent",
     "platforms": [
       "web",
@@ -1147,7 +1191,7 @@
     "name": "Snyk",
     "domain": "snyk.io",
     "description": "AI-powered developer security. Find and fix vulnerabilities in code, dependencies, containers, and IaC. Security that fits in your workflow.",
-    "avatar": "\ud83d\udd12",
+    "avatar": "🔒",
     "role": "Security Scanning Agent",
     "platforms": [
       "web",
@@ -1177,7 +1221,7 @@
     "name": "Relay.app",
     "domain": "relay.app",
     "description": "AI-powered workflow automation with human-in-the-loop. Automate complex workflows with approvals, AI assistance, and deep integrations. Smarter than traditional automation.",
-    "avatar": "\ud83d\udd04",
+    "avatar": "🔄",
     "role": "Workflow Automation Agent",
     "platforms": [
       "web"
@@ -1204,7 +1248,7 @@
     "name": "Lindy",
     "domain": "lindy.ai",
     "description": "Personal AI assistant that handles your busywork. Calendar management, email responses, meeting notes, and more. Like having a tireless executive assistant.",
-    "avatar": "\ud83e\udd1d",
+    "avatar": "🤝",
     "role": "Personal Assistant Agent",
     "platforms": [
       "web",
@@ -1233,7 +1277,7 @@
     "name": "Character.AI",
     "domain": "character.ai",
     "description": "Create and chat with AI characters. From historical figures to fictional personalities, anime characters to learning assistants. Millions of characters to discover.",
-    "avatar": "\ud83c\udfad",
+    "avatar": "🎭",
     "role": "Conversational AI Characters",
     "platforms": [
       "web",
@@ -1262,7 +1306,7 @@
     "name": "Gong",
     "domain": "gong.io",
     "description": "Revenue intelligence AI. Analyzes sales calls, emails, and meetings to provide insights, coaching, and forecasting. The reality platform for revenue teams.",
-    "avatar": "\ud83d\udcde",
+    "avatar": "📞",
     "role": "Sales Intelligence Agent",
     "platforms": [
       "web"
@@ -1290,7 +1334,7 @@
     "name": "Cursor",
     "domain": "cursor.com",
     "description": "The AI-first code editor. Built to make you extraordinarily productive, Cursor is the best way to code with AI. Fork of VS Code with AI deeply integrated.",
-    "avatar": "\u25b6\ufe0f",
+    "avatar": "▶️",
     "role": "AI Code Editor",
     "platforms": [
       "desktop"
@@ -1329,7 +1373,7 @@
     "name": "Aider",
     "domain": "github.com/paul-gauthier/aider",
     "description": "AI pair programming in your terminal. Aider lets you pair program with LLMs to edit code in your local git repos. Works with GPT-4, Claude, and more.",
-    "avatar": "\ud83e\udd16",
+    "avatar": "🤖",
     "role": "CLI Coding Assistant",
     "platforms": [
       "cli",

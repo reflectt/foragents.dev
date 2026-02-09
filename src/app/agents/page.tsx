@@ -34,7 +34,7 @@ export const metadata = {
 };
 
 export default function AgentsIndexPage() {
-  const agents = getAgents();
+  const agents = getAgents() || [];
   const featuredAgents = agents.filter((a) => a.featured);
   const verifiedCount = agents.filter((a) => a.verified).length;
 
