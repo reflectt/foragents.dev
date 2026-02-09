@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { getSkills } from "@/lib/data";
 import { VerifiedSkillBadge } from "@/components/verified-badge";
+import { SkillVersionBadge } from "@/components/skill-version-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -79,8 +80,9 @@ export default function SkillsPage() {
               <Card className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all group h-full">
                 <CardHeader>
                   <CardTitle className="text-lg group-hover:text-cyan transition-colors flex items-center gap-2">
-                    <span className="truncate">{skill.name}</span>
+                    <span className="truncate flex-1">{skill.name}</span>
                     <VerifiedSkillBadge info={skill.verification ?? null} mode="icon" />
+                    <SkillVersionBadge slug={skill.slug} />
                   </CardTitle>
                   <CardDescription className="text-xs flex items-center gap-2">
                     <span>by {skill.author}</span>
