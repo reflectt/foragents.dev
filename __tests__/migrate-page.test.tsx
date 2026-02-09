@@ -104,8 +104,8 @@ describe("/migrate page", () => {
     render(<MigratePage />);
     const langchainTabs = screen.getAllByText("From LangChain");
     const crewaiTabs = screen.getAllByText("From CrewAI");
-    const customTabs = screen.getAllByText("From Custom Framework");
-    const v2Tabs = screen.getAllByText("Upgrading v1 to v2");
+    const customTabs = screen.getAllByText("From Custom Solution");
+    const v2Tabs = screen.getAllByText("v1 → v2 Upgrade");
     
     expect(langchainTabs.length).toBeGreaterThan(0);
     expect(crewaiTabs.length).toBeGreaterThan(0);
@@ -161,7 +161,7 @@ describe("/migrate page", () => {
     fireEvent.click(crewAITab);
     
     // Should show CrewAI estimated time
-    expect(screen.getByText("3-5 hours")).toBeInTheDocument();
+    expect(screen.getByText("1-3 hours")).toBeInTheDocument();
   });
 
   test("displays progress bar for active guide", () => {
