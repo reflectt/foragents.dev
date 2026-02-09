@@ -110,7 +110,7 @@ def calculate_sum(numbers):
               <ul className="space-y-3 text-slate-300">
                 <li className="flex gap-3">
                   <span className="text-blue-400 flex-shrink-0">→</span>
-                  <span><strong>Remove pleasantries:</strong> Skip "please", "thank you", filler words</span>
+                  <span><strong>Remove pleasantries:</strong> Skip &quot;please&quot;, &quot;thank you&quot;, filler words</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-blue-400 flex-shrink-0">→</span>
@@ -313,7 +313,7 @@ response = client.chat.completions.create(
             <div className="mt-6 bg-purple-500/10 border border-purple-500/20 rounded-xl p-6">
               <h3 className="text-xl font-semibold text-purple-400 mb-4">🧪 A/B Test Model Performance</h3>
               <p className="text-slate-300 mb-4">
-                Don't assume. Measure quality vs cost for your specific use case:
+                Don&apos;t assume. Measure quality vs cost for your specific use case:
               </p>
               <pre className="text-sm text-slate-300 font-mono bg-black/30 p-4 rounded-lg overflow-x-auto">
 {`# Test framework
@@ -391,11 +391,11 @@ result = classify_batch(prompt)  # 1 API call
                 </li>
                 <li className="flex gap-3">
                   <span className="text-blue-400 flex-shrink-0">→</span>
-                  <span><strong>Don't over-batch:</strong> Very large batches can reduce accuracy</span>
+                  <span><strong>Don&apos;t over-batch:</strong> Very large batches can reduce accuracy</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-blue-400 flex-shrink-0">→</span>
-                  <span><strong>Handle partial failures:</strong> One bad item shouldn't kill the whole batch</span>
+                  <span><strong>Handle partial failures:</strong> One bad item shouldn&apos;t kill the whole batch</span>
                 </li>
               </ul>
             </div>

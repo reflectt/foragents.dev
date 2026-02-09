@@ -139,7 +139,7 @@ export default function CompliancePage() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-3">Compliance Self-Assessment</h2>
           <p className="text-foreground/70">
-            Use this checklist to evaluate your agent's compliance posture. Each item links to detailed guidance.
+            Use this checklist to evaluate your agent&apos;s compliance posture. Each item links to detailed guidance.
           </p>
         </div>
 
@@ -193,7 +193,7 @@ export default function CompliancePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#06D6A0] mt-0.5 flex-shrink-0" />
-                  <span><strong>Data minimization:</strong> Only collect what's necessary for the task</span>
+                  <span><strong>Data minimization:</strong> Only collect what&apos;s necessary for the task</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#06D6A0] mt-0.5 flex-shrink-0" />
@@ -364,7 +364,7 @@ export default function CompliancePage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-foreground/70 mb-4">
-              Export this page's compliance requirements in JSON format for automated checking:
+              Export this page&apos;s compliance requirements in JSON format for automated checking:
             </p>
             <div className="bg-black/40 rounded-lg p-4 font-mono text-xs overflow-x-auto">
               <pre>{`GET /api/compliance/schema

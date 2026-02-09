@@ -133,7 +133,7 @@ export default function ScalingPatternsPage() {
             <div className="bg-white/5 border border-white/10 rounded-xl p-6">
               <h3 className="text-xl font-semibold text-white mb-4">Docker Compose Example</h3>
               <pre className="text-sm text-slate-300 font-mono bg-black/30 p-4 rounded-lg overflow-x-auto">
-{`version: '3.8'
+{`version: &apos;3.8&apos;
 
 services:
   nginx:
@@ -151,7 +151,7 @@ services:
       replicas: 4  # Run 4 agent instances
       resources:
         limits:
-          cpus: '0.5'
+          cpus: &apos;0.5&apos;
           memory: 512M
     environment:
       - REDIS_URL=redis://redis:6379
@@ -220,13 +220,13 @@ volumes:
 from celery import Celery
 import time
 
-app = Celery('agent', broker='redis://localhost:6379/0')
+app = Celery(&apos;agent&apos;, broker=&apos;redis://localhost:6379/0&apos;)
 
 @app.task(bind=True)
 def process_complex_query(self, query: str, user_id: int):
     """Long-running agent task."""
     # Update progress
-    self.update_state(state='PROCESSING', meta={'progress': 0})
+    self.update_state(state=&apos;PROCESSING', meta={'progress': 0})
     
     # Step 1: Fetch context
     context = fetch_user_context(user_id)
@@ -430,7 +430,7 @@ results = await asyncio.gather(*tasks)  # Respects rate limit`}
             <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-6">
               <h3 className="text-xl font-semibold text-amber-400 mb-4">⚠️ Multi-Tenant Considerations</h3>
               <p className="text-slate-300 mb-4">
-                In SaaS scenarios, don't let one user exhaust rate limits for everyone:
+                In SaaS scenarios, don&apos;t let one user exhaust rate limits for everyone:
               </p>
               <ul className="space-y-2 text-slate-300">
                 <li className="flex gap-3">
@@ -508,9 +508,9 @@ response = await llm.generate("Hello!")  # Auto-falls back if needed`}
         self.llm = LLMClient()
         self.cache = SemanticCache()
         self.templates = {
-            "greeting": "Hello! I'm experiencing high load. Your request has been queued.",
+            "greeting": "Hello! I&apos;m experiencing high load. Your request has been queued.",
             "status": "System status: {status}. Expected recovery: {eta}",
-            "error": "I'm temporarily unavailable. Please try again in a few minutes."
+            "error": "I&apos;m temporarily unavailable. Please try again in a few minutes."
         }
     
     async def respond(self, user_message: str):
@@ -704,7 +704,7 @@ from functools import wraps
 from prometheus_client import Counter, Histogram
 
 # Metrics
-requests_total = Counter('agent_requests_total', 'Total requests', ['status'])
+requests_total = Counter(&apos;agent_requests_total&apos;, &apos;Total requests&apos;, [&apos;status'])
 request_duration = Histogram('agent_request_duration_seconds', 'Request duration')
 tokens_used = Counter('agent_tokens_used_total', 'Total tokens', ['model'])
 

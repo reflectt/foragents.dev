@@ -485,19 +485,19 @@ export default function CaseStudiesPage() {
                 <ul className="space-y-1.5 text-sm text-foreground/80">
                   <li>• Free tiers with clear usage limits drive conversion</li>
                   <li>• Value-based pricing beats cost-plus pricing</li>
-                  <li>• Three-tier structure with "most popular" badge</li>
+                  <li>• Three-tier structure with &quot;most popular&quot; badge</li>
                   <li>• Annual discounts improve cash flow & retention</li>
                   <li>• Usage metrics visible to users (transparency builds trust)</li>
                 </ul>
               </div>
 
               <div className="bg-black/40 rounded-lg p-4">
-                <div className="font-semibold text-red-400 mb-2">✗ What Didn't</div>
+                <div className="font-semibold text-red-400 mb-2">✗ What Didn&apos;t</div>
                 <ul className="space-y-1.5 text-sm text-foreground/80">
                   <li>• Complex pricing with too many variables confused buyers</li>
-                  <li>• "Unlimited" plans without soft limits led to abuse</li>
+                  <li>• &quot;Unlimited&quot; plans without soft limits led to abuse</li>
                   <li>• Pricing too low left money on table</li>
-                  <li>• Feature gating alone didn't drive urgency</li>
+                  <li>• Feature gating alone didn&apos;t drive urgency</li>
                   <li>• Hidden fees or surprise charges killed trust</li>
                 </ul>
               </div>

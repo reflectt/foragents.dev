@@ -274,7 +274,7 @@ export default function PricingCalculatorPage() {
 
                 {monthlyUsers >= calculations.breakEvenUsers ? (
                   <div className="mt-4 bg-green-500/10 border border-green-500/30 rounded-lg p-3">
-                    <p className="text-sm text-green-400 font-semibold">✓ Profitable! You're above break-even.</p>
+                    <p className="text-sm text-green-400 font-semibold">✓ Profitable! You&apos;re above break-even.</p>
                   </div>
                 ) : (
                   <div className="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-3">
