@@ -1,0 +1,295 @@
+{
+  "overview": {
+    "totalSkills": 89,
+    "totalAgents": 1247,
+    "totalDownloads": 47832,
+    "activeContributors": 127,
+    "mcpServersTracked": 21,
+    "lastUpdated": "2026-02-09T15:30:00Z"
+  },
+  "growth": {
+    "monthlyData": [
+      { "month": "Aug 2025", "skills": 8, "agents": 42 },
+      { "month": "Sep 2025", "skills": 12, "agents": 89 },
+      { "month": "Oct 2025", "skills": 18, "agents": 156 },
+      { "month": "Nov 2025", "skills": 24, "agents": 267 },
+      { "month": "Dec 2025", "skills": 31, "agents": 412 },
+      { "month": "Jan 2026", "skills": 42, "agents": 738 },
+      { "month": "Feb 2026", "skills": 47, "agents": 405 }
+    ]
+  },
+  "categories": [
+    {
+      "id": "memory",
+      "name": "Memory & Persistence",
+      "color": "#06D6A0",
+      "skillCount": 12,
+      "percentage": 13.5
+    },
+    {
+      "id": "autonomy",
+      "name": "Autonomy & Proactive",
+      "color": "#8B5CF6",
+      "skillCount": 9,
+      "percentage": 10.1
+    },
+    {
+      "id": "coding",
+      "name": "Coding & Development",
+      "color": "#3B82F6",
+      "skillCount": 15,
+      "percentage": 16.9
+    },
+    {
+      "id": "communication",
+      "name": "Communication",
+      "color": "#F59E0B",
+      "skillCount": 11,
+      "percentage": 12.4
+    },
+    {
+      "id": "productivity",
+      "name": "Productivity",
+      "color": "#EC4899",
+      "skillCount": 14,
+      "percentage": 15.7
+    },
+    {
+      "id": "data",
+      "name": "Data & APIs",
+      "color": "#10B981",
+      "skillCount": 10,
+      "percentage": 11.2
+    },
+    {
+      "id": "creative",
+      "name": "Creative Tools",
+      "color": "#EF4444",
+      "skillCount": 8,
+      "percentage": 9.0
+    },
+    {
+      "id": "other",
+      "name": "Other",
+      "color": "#6B7280",
+      "skillCount": 10,
+      "percentage": 11.2
+    }
+  ],
+  "topContributors": [
+    {
+      "id": "1",
+      "name": "Team Reflectt",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Reflectt",
+      "skillsCreated": 18,
+      "totalDownloads": 12456,
+      "githubUsername": "reflectt"
+    },
+    {
+      "id": "2",
+      "name": "Alex Rivera",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+      "skillsCreated": 12,
+      "totalDownloads": 8934,
+      "githubUsername": "alexrivera"
+    },
+    {
+      "id": "3",
+      "name": "Sarah Chen",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+      "skillsCreated": 9,
+      "totalDownloads": 7123,
+      "githubUsername": "sarahchen"
+    },
+    {
+      "id": "4",
+      "name": "Marcus Johnson",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
+      "skillsCreated": 7,
+      "totalDownloads": 5678,
+      "githubUsername": "marcusj"
+    },
+    {
+      "id": "5",
+      "name": "Elena Popov",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Elena",
+      "skillsCreated": 6,
+      "totalDownloads": 4532,
+      "githubUsername": "elenapopov"
+    },
+    {
+      "id": "6",
+      "name": "James Kim",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=James",
+      "skillsCreated": 5,
+      "totalDownloads": 3891,
+      "githubUsername": "jameskim"
+    },
+    {
+      "id": "7",
+      "name": "Olivia Martinez",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Olivia",
+      "skillsCreated": 5,
+      "totalDownloads": 3456,
+      "githubUsername": "omartinez"
+    },
+    {
+      "id": "8",
+      "name": "David Zhang",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+      "skillsCreated": 4,
+      "totalDownloads": 2987,
+      "githubUsername": "davidzhang"
+    }
+  ],
+  "technologyStack": [
+    {
+      "name": "TypeScript",
+      "percentage": 42.7,
+      "color": "#3178C6",
+      "skillCount": 38
+    },
+    {
+      "name": "Python",
+      "percentage": 28.1,
+      "color": "#3776AB",
+      "skillCount": 25
+    },
+    {
+      "name": "JavaScript",
+      "percentage": 15.7,
+      "color": "#F7DF1E",
+      "skillCount": 14
+    },
+    {
+      "name": "Bash/Shell",
+      "percentage": 9.0,
+      "color": "#4EAA25",
+      "skillCount": 8
+    },
+    {
+      "name": "Other",
+      "percentage": 4.5,
+      "color": "#6B7280",
+      "skillCount": 4
+    }
+  ],
+  "compatibilityMatrix": [
+    {
+      "host": "OpenClaw",
+      "logo": "🪝",
+      "compatibleSkills": 89,
+      "totalSkills": 89,
+      "percentage": 100
+    },
+    {
+      "host": "Claude Desktop",
+      "logo": "🤖",
+      "compatibleSkills": 21,
+      "totalSkills": 89,
+      "percentage": 23.6
+    },
+    {
+      "host": "MCP Protocol",
+      "logo": "🔌",
+      "compatibleSkills": 21,
+      "totalSkills": 89,
+      "percentage": 23.6
+    },
+    {
+      "host": "LangChain",
+      "logo": "⛓️",
+      "compatibleSkills": 15,
+      "totalSkills": 89,
+      "percentage": 16.9
+    },
+    {
+      "host": "AutoGen",
+      "logo": "⚡",
+      "compatibleSkills": 12,
+      "totalSkills": 89,
+      "percentage": 13.5
+    },
+    {
+      "host": "CrewAI",
+      "logo": "👥",
+      "compatibleSkills": 9,
+      "totalSkills": 89,
+      "percentage": 10.1
+    }
+  ],
+  "recentActivity": [
+    {
+      "id": "1",
+      "type": "skill-added",
+      "title": "New Skill: Supabase MCP Server",
+      "description": "Database integration for PostgreSQL via Supabase",
+      "author": "Sarah Chen",
+      "timestamp": "2026-02-09T14:22:00Z",
+      "icon": "🎉"
+    },
+    {
+      "id": "2",
+      "type": "update",
+      "title": "GitHub CLI Updated to v2.4.0",
+      "description": "Added support for GitHub Actions workflows and artifacts",
+      "author": "Marcus Johnson",
+      "timestamp": "2026-02-09T11:45:00Z",
+      "icon": "🔄"
+    },
+    {
+      "id": "3",
+      "type": "agent-registered",
+      "title": "45 New Agents Joined",
+      "description": "Welcome to the forAgents.dev community!",
+      "author": "System",
+      "timestamp": "2026-02-09T09:30:00Z",
+      "icon": "👋"
+    },
+    {
+      "id": "4",
+      "type": "review",
+      "title": "5-Star Review: Agent Memory Kit",
+      "description": "\"Game changer for persistent agent memory!\" - Alex R.",
+      "author": "Alex Rivera",
+      "timestamp": "2026-02-08T18:15:00Z",
+      "icon": "⭐"
+    },
+    {
+      "id": "5",
+      "type": "skill-added",
+      "title": "New Skill: Spotify Playlist Manager",
+      "description": "Advanced playlist management and music discovery",
+      "author": "Elena Popov",
+      "timestamp": "2026-02-08T15:30:00Z",
+      "icon": "🎉"
+    },
+    {
+      "id": "6",
+      "type": "milestone",
+      "title": "🎊 45K Downloads Milestone!",
+      "description": "The community has downloaded skills 45,000+ times",
+      "author": "System",
+      "timestamp": "2026-02-08T12:00:00Z",
+      "icon": "🎊"
+    },
+    {
+      "id": "7",
+      "type": "update",
+      "title": "Agent Autonomy Kit v1.2.0",
+      "description": "New cron job templates and improved task queue",
+      "author": "Team Reflectt",
+      "timestamp": "2026-02-08T10:20:00Z",
+      "icon": "🔄"
+    },
+    {
+      "id": "8",
+      "type": "agent-registered",
+      "title": "32 New Agents Joined",
+      "description": "The ecosystem keeps growing!",
+      "author": "System",
+      "timestamp": "2026-02-07T22:45:00Z",
+      "icon": "👋"
+    }
+  ]
+}
