@@ -14,6 +14,7 @@ const navLinks = [
   { href: "/badges", label: "Badges" },
   { href: "/mcp", label: "MCP" },
   { href: "/macros", label: "Macros" },
+  { href: "/integrations", label: "Integrations" },
   { href: "/requests", label: "Requests" },
   { href: "/bounties", label: "Bounties" },
   { href: "/onboarding", label: "Get Started" },
