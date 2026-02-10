@@ -3,7 +3,7 @@ import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
 
-export type RoadmapStatus = "planned" | "in-progress" | "completed" | "considering";
+export type RoadmapStatus = "planned" | "in-progress" | "completed" | "shipped";
 export type RoadmapCategory = "platform" | "tools" | "community" | "enterprise";
 
 export type RoadmapItem = {
@@ -11,30 +11,58 @@ export type RoadmapItem = {
   title: string;
   description: string;
   status: RoadmapStatus;
+  quarter: string;
   category: RoadmapCategory;
-  voteCount: number;
-  voters: string[];
-  targetDate?: string;
-  completedDate?: string;
-  createdAt?: string;
+  votes: number;
+  updatedAt: string;
+  voters?: string[];
 };
 
 const ROADMAP_PATH = path.join(process.cwd(), "data", "roadmap.json");
 
-const ROADMAP_STATUSES: RoadmapStatus[] = ["planned", "in-progress", "completed", "considering"];
+const ROADMAP_STATUSES: RoadmapStatus[] = ["planned", "in-progress", "completed", "shipped"];
 const ROADMAP_CATEGORIES: RoadmapCategory[] = ["platform", "tools", "community", "enterprise"];
 
 export function isRoadmapStatus(value: string | null): value is RoadmapStatus {
   return value !== null && ROADMAP_STATUSES.includes(value as RoadmapStatus);
 }
 
-export function isRoadmapCategory(value: string): value is RoadmapCategory {
-  return ROADMAP_CATEGORIES.includes(value as RoadmapCategory);
+export function isRoadmapCategory(value: string | null): value is RoadmapCategory {
+  return value !== null && ROADMAP_CATEGORIES.includes(value as RoadmapCategory);
+}
+
+function normalizeItem(item: Record<string, unknown>): RoadmapItem {
+  const status = typeof item.status === "string" && isRoadmapStatus(item.status) ? item.status : "planned";
+  const category =
+    typeof item.category === "string" && isRoadmapCategory(item.category) ? item.category : "platform";
+
+  const votesFromVotes = typeof item.votes === "number" ? item.votes : undefined;
+  const votesFromLegacy = typeof item.voteCount === "number" ? item.voteCount : 0;
+
+  return {
+    id: typeof item.id === "string" ? item.id : createRoadmapId(String(item.title ?? "feature-request")),
+    title: typeof item.title === "string" ? item.title : "Untitled roadmap item",
+    description: typeof item.description === "string" ? item.description : "",
+    status,
+    quarter: typeof item.quarter === "string" ? item.quarter : "Backlog",
+    category,
+    votes: votesFromVotes ?? votesFromLegacy,
+    updatedAt: typeof item.updatedAt === "string" ? item.updatedAt : new Date().toISOString(),
+    voters: Array.isArray(item.voters)
+      ? item.voters.filter((value): value is string => typeof value === "string")
+      : [],
+  };
 }
 
 export async function readRoadmapItems(): Promise<RoadmapItem[]> {
   const raw = await fs.readFile(ROADMAP_PATH, "utf-8");
-  return JSON.parse(raw) as RoadmapItem[];
+  const parsed = JSON.parse(raw) as unknown;
+
+  if (!Array.isArray(parsed)) {
+    return [];
+  }
+
+  return parsed.map((entry) => normalizeItem((entry ?? {}) as Record<string, unknown>));
 }
 
 export async function writeRoadmapItems(items: RoadmapItem[]): Promise<void> {
@@ -54,7 +82,7 @@ export function createRoadmapId(title: string): string {
 
 export function filterRoadmapItems(
   items: RoadmapItem[],
-  options: { status?: RoadmapStatus; search?: string }
+  options: { status?: RoadmapStatus; category?: RoadmapCategory; search?: string }
 ): RoadmapItem[] {
   const searchQuery = options.search?.trim().toLowerCase();
 
@@ -63,34 +91,15 @@ export function filterRoadmapItems(
       return false;
     }
 
+    if (options.category && item.category !== options.category) {
+      return false;
+    }
+
     if (!searchQuery) {
       return true;
     }
 
-    const haystack = `${item.title} ${item.description} ${item.category}`.toLowerCase();
+    const haystack = `${item.title} ${item.description} ${item.category} ${item.quarter}`.toLowerCase();
     return haystack.includes(searchQuery);
   });
-}
-
-export function getProgressForInProgressItem(item: RoadmapItem): number {
-  if (item.status !== "in-progress") {
-    return 0;
-  }
-
-  if (!item.targetDate) {
-    return 60;
-  }
-
-  const targetTimestamp = Date.parse(item.targetDate);
-
-  if (Number.isNaN(targetTimestamp)) {
-    return 60;
-  }
-
-  const ninetyDaysMs = 90 * 24 * 60 * 60 * 1000;
-  const startTimestamp = targetTimestamp - ninetyDaysMs;
-  const now = Date.now();
-  const rawProgress = ((now - startTimestamp) / (targetTimestamp - startTimestamp)) * 100;
-
-  return Math.max(10, Math.min(95, Math.round(rawProgress)));
 }

@@ -5,6 +5,26 @@ type VoteRequest = {
   agentHandle?: unknown;
 };
 
+export async function GET(
+  _request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await context.params;
+    const items = await readRoadmapItems();
+    const item = items.find((entry) => entry.id === id);
+
+    if (!item) {
+      return NextResponse.json({ error: "Roadmap item not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ item }, { headers: { "Cache-Control": "no-store" } });
+  } catch (error) {
+    console.error("Failed to load roadmap item", error);
+    return NextResponse.json({ error: "Failed to load roadmap item" }, { status: 500 });
+  }
+}
+
 export async function POST(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -14,10 +34,6 @@ export async function POST(
     const body = (await request.json()) as VoteRequest;
     const agentHandle = typeof body.agentHandle === "string" ? body.agentHandle.trim() : "";
 
-    if (!agentHandle) {
-      return NextResponse.json({ error: "agentHandle is required" }, { status: 400 });
-    }
-
     const items = await readRoadmapItems();
     const itemIndex = items.findIndex((item) => item.id === id);
 
@@ -25,21 +41,26 @@ export async function POST(
       return NextResponse.json({ error: "Roadmap item not found" }, { status: 404 });
     }
 
-    const normalizedHandle = agentHandle.toLowerCase();
     const item = items[itemIndex];
-    const hasVoted = item.voters.some((voter) => voter.toLowerCase() === normalizedHandle);
+    const voters = item.voters ?? [];
 
-    if (hasVoted) {
-      return NextResponse.json(
-        { error: "You have already voted for this feature", item },
-        { status: 409 }
-      );
+    if (agentHandle) {
+      const normalizedHandle = agentHandle.toLowerCase();
+      const hasVoted = voters.some((voter) => voter.toLowerCase() === normalizedHandle);
+
+      if (hasVoted) {
+        return NextResponse.json(
+          { error: "You have already voted for this feature", item },
+          { status: 409 }
+        );
+      }
     }
 
     const updatedItem = {
       ...item,
-      voteCount: item.voteCount + 1,
-      voters: [...item.voters, agentHandle],
+      votes: item.votes + 1,
+      voters: agentHandle ? [...voters, agentHandle] : voters,
+      updatedAt: new Date().toISOString(),
     };
 
     items[itemIndex] = updatedItem;

@@ -1,26 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-type RoadmapStatus = "planned" | "in-progress" | "completed" | "considering";
+type RoadmapStatus = "planned" | "in-progress" | "completed" | "shipped";
 type RoadmapCategory = "platform" | "tools" | "community" | "enterprise";
 type RoadmapFilter = "all" | RoadmapStatus;
+type CategoryFilter = "all" | RoadmapCategory;
 
 type RoadmapItem = {
   id: string;
   title: string;
   description: string;
   status: RoadmapStatus;
+  quarter: string;
   category: RoadmapCategory;
-  voteCount: number;
-  voters: string[];
-  targetDate?: string;
-  completedDate?: string;
+  votes: number;
+  updatedAt: string;
+  voters?: string[];
 };
 
 type RoadmapResponse = {
@@ -40,28 +42,24 @@ const statusMeta: Array<{ key: RoadmapStatus; label: string; cardClass: string }
     cardClass: "border-cyan/30 bg-cyan/5",
   },
   {
-    key: "considering",
-    label: "Considering",
+    key: "completed",
+    label: "Completed",
     cardClass: "border-purple/30 bg-purple/5",
   },
   {
-    key: "completed",
-    label: "Completed",
+    key: "shipped",
+    label: "Shipped",
     cardClass: "border-green/30 bg-green/5",
   },
 ];
 
 const categoryOptions: RoadmapCategory[] = ["platform", "tools", "community", "enterprise"];
 
-function formatDate(date?: string): string {
-  if (!date) {
-    return "TBD";
-  }
-
+function formatDate(date: string): string {
   const value = new Date(date);
 
   if (Number.isNaN(value.getTime())) {
-    return "TBD";
+    return "Unknown";
   }
 
   return value.toLocaleDateString("en-US", {
@@ -71,32 +69,10 @@ function formatDate(date?: string): string {
   });
 }
 
-function getProgressForInProgressItem(item: RoadmapItem): number {
-  if (item.status !== "in-progress") {
-    return 0;
-  }
-
-  if (!item.targetDate) {
-    return 60;
-  }
-
-  const targetTimestamp = Date.parse(item.targetDate);
-
-  if (Number.isNaN(targetTimestamp)) {
-    return 60;
-  }
-
-  const ninetyDaysMs = 90 * 24 * 60 * 60 * 1000;
-  const startTimestamp = targetTimestamp - ninetyDaysMs;
-  const now = Date.now();
-  const rawProgress = ((now - startTimestamp) / (targetTimestamp - startTimestamp)) * 100;
-
-  return Math.max(10, Math.min(95, Math.round(rawProgress)));
-}
-
 export default function RoadmapPage() {
   const [items, setItems] = useState<RoadmapItem[]>([]);
   const [statusFilter, setStatusFilter] = useState<RoadmapFilter>("all");
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
   const [search, setSearch] = useState("");
   const [agentHandle, setAgentHandle] = useState("");
   const [loading, setLoading] = useState(true);
@@ -109,6 +85,7 @@ export default function RoadmapPage() {
     title: "",
     description: "",
     category: "platform" as RoadmapCategory,
+    quarter: "Backlog",
   });
 
   useEffect(() => {
@@ -134,6 +111,9 @@ export default function RoadmapPage() {
         if (statusFilter !== "all") {
           params.set("status", statusFilter);
         }
+        if (categoryFilter !== "all") {
+          params.set("category", categoryFilter);
+        }
         if (search.trim()) {
           params.set("search", search.trim());
         }
@@ -156,21 +136,21 @@ export default function RoadmapPage() {
     }
 
     void loadRoadmap();
-  }, [statusFilter, search]);
+  }, [statusFilter, categoryFilter, search]);
 
   const groupedItems = useMemo(() => {
     return {
       planned: items.filter((item) => item.status === "planned"),
       "in-progress": items.filter((item) => item.status === "in-progress"),
-      considering: items.filter((item) => item.status === "considering"),
       completed: items.filter((item) => item.status === "completed"),
+      shipped: items.filter((item) => item.status === "shipped"),
     };
   }, [items]);
 
   const normalizedHandle = agentHandle.trim().toLowerCase();
 
   const hasUserVoted = (item: RoadmapItem): boolean => {
-    if (!normalizedHandle) {
+    if (!normalizedHandle || !item.voters) {
       return false;
     }
 
@@ -233,11 +213,10 @@ export default function RoadmapPage() {
       }
 
       setSubmitMessage("Feature request submitted. Thanks for helping shape the roadmap.");
-      setRequestForm({ title: "", description: "", category: "platform" });
+      setRequestForm({ title: "", description: "", category: "platform", quarter: "Backlog" });
 
-      if (statusFilter === "all" || statusFilter === "considering") {
-        const createdItem = data.item;
-        setItems((prev) => [createdItem, ...prev]);
+      if (statusFilter === "all" || statusFilter === "planned") {
+        setItems((prev) => [data.item as RoadmapItem, ...prev]);
       }
     } catch (submitFormError) {
       console.error(submitFormError);
@@ -257,7 +236,7 @@ export default function RoadmapPage() {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-3">Product Roadmap</h1>
           <p className="text-lg text-slate-400 max-w-3xl">
-            Vote on upcoming features, follow progress in real time, and request what you want next.
+            Vote on upcoming features and follow what's planned, in progress, completed, and shipped.
           </p>
         </div>
 
@@ -276,15 +255,29 @@ export default function RoadmapPage() {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
               <Input
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search title, description, category..."
                 className="md:col-span-2 bg-slate-800/50 border-white/10"
               />
+
+              <select
+                value={categoryFilter}
+                onChange={(event) => setCategoryFilter(event.target.value as CategoryFilter)}
+                className="h-10 rounded-md border border-white/10 bg-slate-800/50 px-3 text-sm text-white"
+              >
+                <option value="all">All categories</option>
+                {categoryOptions.map((category) => (
+                  <option key={category} value={category}>
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </option>
+                ))}
+              </select>
+
               <div className="flex flex-wrap gap-2 md:justify-end">
-                {(["all", "planned", "in-progress", "considering", "completed"] as RoadmapFilter[]).map(
+                {(["all", "planned", "in-progress", "completed", "shipped"] as RoadmapFilter[]).map(
                   (status) => (
                     <Button
                       key={status}
@@ -318,166 +311,66 @@ export default function RoadmapPage() {
           <p className="text-red-400">{error}</p>
         ) : (
           <div className="space-y-8">
-            {statusFilter === "all"
-              ? statusMeta.map((section) => (
-                  <section key={section.key}>
-                    <div className="mb-4 pb-3 border-b border-white/10 flex items-center justify-between">
-                      <h2 className="text-xl font-semibold text-white">{section.label}</h2>
-                      <span className="text-sm text-slate-400">{groupedItems[section.key].length}</span>
-                    </div>
+            {(statusFilter === "all"
+              ? statusMeta
+              : statusMeta.filter((section) => section.key === statusFilter)
+            ).map((section) => (
+              <section key={section.key}>
+                <div className="mb-4 pb-3 border-b border-white/10 flex items-center justify-between">
+                  <h2 className="text-xl font-semibold text-white">{section.label}</h2>
+                  <span className="text-sm text-slate-400">{groupedItems[section.key].length}</span>
+                </div>
 
-                    {groupedItems[section.key].length === 0 ? (
-                      <div className="p-6 border border-dashed border-white/10 rounded-lg text-slate-500 text-sm">
-                        No items in this status.
-                      </div>
-                    ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {groupedItems[section.key].map((item) => {
-                          const voted = hasUserVoted(item);
-                          const disableVote = !normalizedHandle || voted || votingIds.has(item.id);
+                {groupedItems[section.key].length === 0 ? (
+                  <div className="p-6 border border-dashed border-white/10 rounded-lg text-slate-500 text-sm">
+                    No items in this status.
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {groupedItems[section.key].map((item) => {
+                      const voted = hasUserVoted(item);
+                      const disableVote = !normalizedHandle || voted || votingIds.has(item.id);
 
-                          return (
-                            <Card key={item.id} className={`${section.cardClass} border`}>
-                              <CardContent className="p-5">
-                                <div className="flex items-center justify-between mb-2 gap-3">
-                                  <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                                  <span className="text-xs text-slate-400 uppercase">{item.category}</span>
-                                </div>
+                      return (
+                        <Card key={item.id} className={`${section.cardClass} border`}>
+                          <CardContent className="p-5">
+                            <div className="flex items-center justify-between mb-2 gap-3">
+                              <Link href={`/roadmap/${item.id}`} className="text-base font-semibold text-white hover:text-cyan">
+                                {item.title}
+                              </Link>
+                              <span className="text-xs text-slate-400 uppercase">{item.category}</span>
+                            </div>
 
-                                <p className="text-sm text-slate-300 mb-4">{item.description}</p>
+                            <p className="text-sm text-slate-300 mb-2">{item.description}</p>
+                            <p className="text-xs text-slate-400 mb-4">
+                              {item.quarter} • Updated {formatDate(item.updatedAt)}
+                            </p>
 
-                                {item.status === "in-progress" && (
-                                  <div className="mb-4">
-                                    <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-                                      <span>Progress</span>
-                                      <span>{getProgressForInProgressItem(item)}%</span>
-                                    </div>
-                                    <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
-                                      <div
-                                        className="h-full bg-cyan"
-                                        style={{ width: `${getProgressForInProgressItem(item)}%` }}
-                                      />
-                                    </div>
-                                    <p className="text-xs text-slate-500 mt-1">
-                                      Target: {formatDate(item.targetDate)}
-                                    </p>
-                                  </div>
-                                )}
-
-                                {item.status === "completed" && item.completedDate && (
-                                  <p className="text-xs text-green-300 mb-4">
-                                    Completed: {formatDate(item.completedDate)}
-                                  </p>
-                                )}
-
-                                <div className="flex items-center justify-between gap-3">
-                                  <span className="text-xs text-slate-300">{item.voteCount} votes</span>
-                                  <Button
-                                    size="sm"
-                                    onClick={() => handleVote(item.id)}
-                                    disabled={disableVote}
-                                    className="bg-cyan text-[#0a0a0a] hover:bg-cyan/90 disabled:bg-slate-700 disabled:text-slate-400"
-                                  >
-                                    {votingIds.has(item.id)
-                                      ? "Voting..."
-                                      : voted
-                                        ? "Voted"
-                                        : normalizedHandle
-                                          ? "Vote"
-                                          : "Add Handle to Vote"}
-                                  </Button>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </section>
-                ))
-              : (() => {
-                  const selectedSection = statusMeta.find((meta) => meta.key === statusFilter);
-                  if (!selectedSection) {
-                    return null;
-                  }
-
-                  return (
-                    <section>
-                      <div className="mb-4 pb-3 border-b border-white/10 flex items-center justify-between">
-                        <h2 className="text-xl font-semibold text-white">{selectedSection.label}</h2>
-                        <span className="text-sm text-slate-400">{groupedItems[selectedSection.key].length}</span>
-                      </div>
-
-                      {groupedItems[selectedSection.key].length === 0 ? (
-                        <div className="p-6 border border-dashed border-white/10 rounded-lg text-slate-500 text-sm">
-                          No items match this filter.
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {groupedItems[selectedSection.key].map((item) => {
-                            const voted = hasUserVoted(item);
-                            const disableVote = !normalizedHandle || voted || votingIds.has(item.id);
-
-                            return (
-                              <Card key={item.id} className={`${selectedSection.cardClass} border`}>
-                                <CardContent className="p-5">
-                                  <div className="flex items-center justify-between mb-2 gap-3">
-                                    <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                                    <span className="text-xs text-slate-400 uppercase">{item.category}</span>
-                                  </div>
-
-                                  <p className="text-sm text-slate-300 mb-4">{item.description}</p>
-
-                                  {item.status === "in-progress" && (
-                                    <div className="mb-4">
-                                      <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-                                        <span>Progress</span>
-                                        <span>{getProgressForInProgressItem(item)}%</span>
-                                      </div>
-                                      <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
-                                        <div
-                                          className="h-full bg-cyan"
-                                          style={{ width: `${getProgressForInProgressItem(item)}%` }}
-                                        />
-                                      </div>
-                                      <p className="text-xs text-slate-500 mt-1">
-                                        Target: {formatDate(item.targetDate)}
-                                      </p>
-                                    </div>
-                                  )}
-
-                                  {item.status === "completed" && item.completedDate && (
-                                    <p className="text-xs text-green-300 mb-4">
-                                      Completed: {formatDate(item.completedDate)}
-                                    </p>
-                                  )}
-
-                                  <div className="flex items-center justify-between gap-3">
-                                    <span className="text-xs text-slate-300">{item.voteCount} votes</span>
-                                    <Button
-                                      size="sm"
-                                      onClick={() => handleVote(item.id)}
-                                      disabled={disableVote}
-                                      className="bg-cyan text-[#0a0a0a] hover:bg-cyan/90 disabled:bg-slate-700 disabled:text-slate-400"
-                                    >
-                                      {votingIds.has(item.id)
-                                        ? "Voting..."
-                                        : voted
-                                          ? "Voted"
-                                          : normalizedHandle
-                                            ? "Vote"
-                                            : "Add Handle to Vote"}
-                                    </Button>
-                                  </div>
-                                </CardContent>
-                              </Card>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </section>
-                  );
-                })()}
+                            <div className="flex items-center justify-between gap-3">
+                              <span className="text-xs text-slate-300">{item.votes} votes</span>
+                              <Button
+                                size="sm"
+                                onClick={() => handleVote(item.id)}
+                                disabled={disableVote}
+                                className="bg-cyan text-[#0a0a0a] hover:bg-cyan/90 disabled:bg-slate-700 disabled:text-slate-400"
+                              >
+                                {votingIds.has(item.id)
+                                  ? "Voting..."
+                                  : voted
+                                    ? "Voted"
+                                    : normalizedHandle
+                                      ? "Vote"
+                                      : "Add Handle to Vote"}
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                )}
+              </section>
+            ))}
           </div>
         )}
 
@@ -490,7 +383,7 @@ export default function RoadmapPage() {
               </p>
 
               <form className="space-y-4" onSubmit={handleRequestSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Input
                     value={requestForm.title}
                     onChange={(event) =>
@@ -518,6 +411,15 @@ export default function RoadmapPage() {
                       </option>
                     ))}
                   </select>
+
+                  <Input
+                    value={requestForm.quarter}
+                    onChange={(event) =>
+                      setRequestForm((prev) => ({ ...prev, quarter: event.target.value }))
+                    }
+                    placeholder="Quarter (e.g. Q3 2026)"
+                    className="bg-slate-800/50 border-white/10"
+                  />
                 </div>
 
                 <Textarea

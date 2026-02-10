@@ -44,7 +44,8 @@ export async function POST(request: NextRequest) {
 
     const normalizedHandle = agentHandle.toLowerCase();
     const item = items[itemIndex];
-    const hasVoted = item.voters.some((voter) => voter.toLowerCase() === normalizedHandle);
+    const voters = item.voters ?? [];
+    const hasVoted = voters.some((voter) => voter.toLowerCase() === normalizedHandle);
 
     if (hasVoted) {
       return NextResponse.json(
@@ -55,8 +56,9 @@ export async function POST(request: NextRequest) {
 
     const updatedItem = {
       ...item,
-      voteCount: item.voteCount + 1,
-      voters: [...item.voters, agentHandle],
+      votes: item.votes + 1,
+      voters: [...voters, agentHandle],
+      updatedAt: new Date().toISOString(),
     };
 
     items[itemIndex] = updatedItem;
