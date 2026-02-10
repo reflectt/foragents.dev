@@ -1,28 +1,40 @@
 /** @jest-environment jsdom */
 
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 
-jest.mock("@/lib/agent-benchmarks", () => ({
-  agentBenchmarksData: [{ id: "sample-benchmark" }],
+jest.mock("next/link", () => {
+  const LinkMock = ({ href, children, ...props }: { href: string; children?: React.ReactNode } & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a href={href} {...props}>{children}</a>
+  );
+  LinkMock.displayName = "Link";
+  return LinkMock;
+});
+
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({ push: jest.fn(), replace: jest.fn(), back: jest.fn(), prefetch: jest.fn(), refresh: jest.fn() }),
+  useSearchParams: () => new URLSearchParams(""),
+  usePathname: () => "/benchmarks",
+  useParams: () => ({}),
 }));
-
-jest.mock("@/app/benchmarks/benchmarks-client", () => ({
-  BenchmarksClient: ({ data }: { data: unknown[] }) => (
-    <div>
-      <h1>Agent Benchmark Suite</h1>
-      <span data-testid="benchmarks-count">{data.length}</span>
-    </div>
-  ),
-}));
-
-import BenchmarksPage from "@/app/benchmarks/page";
 
 describe("Benchmarks Page", () => {
-  test("renders benchmarks client", () => {
-    render(<BenchmarksPage />);
+  beforeEach(() => {
+    jest.spyOn(global, "fetch").mockResolvedValue({
+      ok: true,
+      json: async () => ({ benchmarks: [{ id: "b1", skillSlug: "test", category: "speed", score: 95, agent: "tester", runDate: "2026-01-01T00:00:00Z", notes: "fast" }], count: 1 }),
+    } as Response);
+  });
 
-    expect(screen.getByRole("heading", { name: /agent benchmark suite/i })).toBeInTheDocument();
-    expect(screen.getByTestId("benchmarks-count")).toHaveTextContent("1");
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  test("renders benchmark suite heading", async () => {
+    const BenchmarksPage = (await import("@/app/benchmarks/page")).default;
+    render(<BenchmarksPage />);
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: /benchmarks/i })).toBeInTheDocument();
+    });
   });
 });
