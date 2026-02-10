@@ -2,89 +2,172 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-const FAQ_CATEGORIES = ["getting-started", "skills", "mcp", "pricing", "agents"] as const;
+const FAQ_PATH = path.join(process.cwd(), "data", "faq.json");
+
+const FAQ_CATEGORIES = [
+  "getting-started",
+  "billing",
+  "technical",
+  "integrations",
+  "security",
+  "general",
+] as const;
+
 type FaqCategory = (typeof FAQ_CATEGORIES)[number];
 
 type FaqItem = {
   id: string;
-  category: FaqCategory;
   question: string;
   answer: string;
+  category: FaqCategory;
+  helpful: number;
 };
 
-type FaqFile = {
+type FaqSubmission = {
+  id: string;
+  question: string;
+  category: FaqCategory;
+  email?: string;
+  createdAt: string;
+};
+
+type FaqData = {
   faqs: FaqItem[];
+  submissions?: FaqSubmission[];
 };
 
-async function readFaqFile(): Promise<FaqItem[]> {
-  const faqPath = path.join(process.cwd(), "data", "faq.json");
-  const raw = await fs.readFile(faqPath, "utf8");
-  const parsed = JSON.parse(raw) as FaqFile;
+function isCategory(value: string): value is FaqCategory {
+  return FAQ_CATEGORIES.includes(value as FaqCategory);
+}
 
-  if (!parsed || !Array.isArray(parsed.faqs)) {
+function normalizeFaq(data: unknown): FaqItem[] {
+  if (!data || typeof data !== "object" || !Array.isArray((data as FaqData).faqs)) {
     return [];
   }
 
-  return parsed.faqs.filter(
+  return (data as FaqData).faqs.filter(
     (faq): faq is FaqItem =>
       typeof faq?.id === "string" &&
       typeof faq?.question === "string" &&
       typeof faq?.answer === "string" &&
       typeof faq?.category === "string" &&
-      FAQ_CATEGORIES.includes(faq.category as FaqCategory)
+      isCategory(faq.category) &&
+      typeof faq?.helpful === "number"
   );
 }
 
-export async function GET(request: NextRequest) {
+async function readFaqData(): Promise<FaqData> {
   try {
-    const allFaqs = await readFaqFile();
+    const raw = await fs.readFile(FAQ_PATH, "utf8");
+    const parsed = JSON.parse(raw) as FaqData;
 
-    const search = request.nextUrl.searchParams.get("search")?.trim().toLowerCase() ?? "";
-    const categoryParam = request.nextUrl.searchParams.get("category")?.trim().toLowerCase() ?? "";
+    return {
+      faqs: normalizeFaq(parsed),
+      submissions: Array.isArray(parsed.submissions) ? parsed.submissions : [],
+    };
+  } catch {
+    return { faqs: [], submissions: [] };
+  }
+}
 
-    if (categoryParam && !FAQ_CATEGORIES.includes(categoryParam as FaqCategory)) {
+async function writeFaqData(data: FaqData): Promise<void> {
+  await fs.writeFile(FAQ_PATH, JSON.stringify(data, null, 2));
+}
+
+export async function GET(request: NextRequest) {
+  const categoryParam = request.nextUrl.searchParams.get("category")?.trim().toLowerCase() ?? "";
+  const search = request.nextUrl.searchParams.get("search")?.trim().toLowerCase() ?? "";
+
+  if (categoryParam && !isCategory(categoryParam)) {
+    return NextResponse.json(
+      {
+        error: "Invalid category",
+        allowed: FAQ_CATEGORIES,
+      },
+      { status: 400 }
+    );
+  }
+
+  const data = await readFaqData();
+  let faqs = data.faqs;
+
+  if (categoryParam) {
+    faqs = faqs.filter((faq) => faq.category === categoryParam);
+  }
+
+  if (search) {
+    faqs = faqs.filter((faq) => {
+      const haystack = `${faq.question} ${faq.answer}`.toLowerCase();
+      return haystack.includes(search);
+    });
+  }
+
+  return NextResponse.json(
+    {
+      faqs,
+      total: faqs.length,
+      categories: FAQ_CATEGORIES,
+    },
+    {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    }
+  );
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = (await request.json()) as {
+      question?: unknown;
+      category?: unknown;
+      email?: unknown;
+    };
+
+    const question = typeof body.question === "string" ? body.question.trim() : "";
+    const categoryRaw = typeof body.category === "string" ? body.category.trim().toLowerCase() : "";
+    const emailRaw = typeof body.email === "string" ? body.email.trim() : "";
+
+    if (!question || question.length < 10) {
       return NextResponse.json(
-        {
-          error: "Invalid category",
-          allowed: FAQ_CATEGORIES,
-        },
+        { error: "Question is required and must be at least 10 characters." },
         { status: 400 }
       );
     }
 
-    let filtered = allFaqs;
-
-    if (categoryParam) {
-      filtered = filtered.filter((faq) => faq.category === categoryParam);
+    if (!categoryRaw || !isCategory(categoryRaw)) {
+      return NextResponse.json(
+        { error: "Valid category is required.", allowed: FAQ_CATEGORIES },
+        { status: 400 }
+      );
     }
 
-    if (search) {
-      filtered = filtered.filter((faq) => {
-        const haystack = `${faq.question} ${faq.answer}`.toLowerCase();
-        return haystack.includes(search);
-      });
+    if (emailRaw && !/^\S+@\S+\.\S+$/.test(emailRaw)) {
+      return NextResponse.json({ error: "Invalid email format." }, { status: 400 });
     }
+
+    const data = await readFaqData();
+
+    const submission: FaqSubmission = {
+      id: `question_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+      question,
+      category: categoryRaw,
+      email: emailRaw || undefined,
+      createdAt: new Date().toISOString(),
+    };
+
+    data.submissions = [...(data.submissions ?? []), submission];
+    await writeFaqData(data);
 
     return NextResponse.json(
       {
-        faqs: filtered,
-        total: filtered.length,
-        categories: FAQ_CATEGORIES,
+        success: true,
+        message: "Question submitted successfully.",
+        submission,
       },
-      {
-        headers: {
-          "Cache-Control": "no-store",
-        },
-      }
+      { status: 201 }
     );
   } catch {
-    return NextResponse.json(
-      {
-        faqs: [],
-        total: 0,
-        categories: FAQ_CATEGORIES,
-      },
-      { status: 200 }
-    );
+    return NextResponse.json({ error: "Invalid request body. Expected JSON." }, { status: 400 });
   }
 }

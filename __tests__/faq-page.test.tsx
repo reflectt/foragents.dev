@@ -24,19 +24,20 @@ const mockFaqResponse = {
     {
       id: "faq-getting-started-1",
       category: "getting-started",
-      question: "What is forAgents.dev in one sentence?",
-      answer:
-        "forAgents.dev is an agent-first directory of reusable skills, MCP servers, templates, and guides.",
+      question: "What is forAgents.dev?",
+      answer: "forAgents.dev is an agent-first directory.",
+      helpful: 10,
     },
     {
-      id: "faq-skills-1",
-      category: "skills",
-      question: "What is a skill on forAgents.dev?",
-      answer: "A skill is a focused capability package with docs and install instructions.",
+      id: "faq-billing-1",
+      category: "billing",
+      question: "Is forAgents.dev free to use?",
+      answer: "Core discovery features are free.",
+      helpful: 12,
     },
   ],
-  total: 15,
-  categories: ["getting-started", "skills", "mcp", "pricing", "agents"],
+  total: 2,
+  categories: ["getting-started", "billing", "technical", "integrations", "security", "general"],
 };
 
 describe("FAQ Page", () => {
@@ -63,7 +64,7 @@ describe("FAQ Page", () => {
 
   it("displays the search bar", () => {
     render(<FAQPage />);
-    expect(screen.getByPlaceholderText("Search questions...")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Search questions or answers...")).toBeInTheDocument();
   });
 
   it("shows category tabs", async () => {
@@ -71,17 +72,18 @@ describe("FAQ Page", () => {
 
     expect(await screen.findByRole("button", { name: "All" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Getting Started" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Skills" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "MCP" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Pricing" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Agents" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Billing" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Technical" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Integrations" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Security" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "General" })).toBeInTheDocument();
   });
 
   it("displays result count after searching", async () => {
     render(<FAQPage />);
-    const searchInput = screen.getByPlaceholderText("Search questions...");
+    const searchInput = screen.getByPlaceholderText("Search questions or answers...");
 
-    fireEvent.change(searchInput, { target: { value: "skill" } });
+    fireEvent.change(searchInput, { target: { value: "agent" } });
 
     await waitFor(() => {
       expect(screen.getByText(/result\(s\) found/)).toBeInTheDocument();
@@ -99,14 +101,13 @@ describe("FAQ Page", () => {
     expect(supportLink).toHaveAttribute("href", "mailto:support@foragents.dev");
   });
 
-  it("displays thumbs up/down feedback buttons when accordion is opened", async () => {
+  it("displays helpful button when accordion is opened", async () => {
     render(<FAQPage />);
 
-    const firstQuestion = await screen.findByText("What is forAgents.dev in one sentence?");
+    const firstQuestion = await screen.findByText("What is forAgents.dev?");
     fireEvent.click(firstQuestion);
 
-    expect(screen.getAllByLabelText("Thumbs up").length).toBeGreaterThan(0);
-    expect(screen.getAllByLabelText("Thumbs down").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Was this helpful?").length).toBeGreaterThan(0);
   });
 
   it("calls faq api", async () => {
