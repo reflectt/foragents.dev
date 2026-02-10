@@ -96,11 +96,13 @@ export function McpDetailClient({ slug, initialServer }: { slug: string; initial
       const response = await fetch(`/api/mcp/${encodeURIComponent(slug)}/install`, { method: "POST" });
       const json = (await response.json()) as { installs?: number };
 
-      if (typeof json.installs === "number") {
+      const installCount = json.installs;
+
+      if (typeof installCount === "number") {
         setPayload((prev) => ({
           server: prev?.server ?? activeServer,
           health: prev?.health ?? health ?? UNKNOWN_HEALTH,
-          installs: json.installs,
+          installs: installCount,
         }));
       }
 

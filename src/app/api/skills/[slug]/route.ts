@@ -45,7 +45,7 @@ export async function GET(
       ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviewsCount
       : 0;
 
-  const allVersions = versionsData as SkillVersionEntry[];
+  const allVersions = versionsData as unknown as SkillVersionEntry[];
   const versions = allVersions.find((entry) => entry.slug === slug)?.versions ?? [];
 
   const compatibility =

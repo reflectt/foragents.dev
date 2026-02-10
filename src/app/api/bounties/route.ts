@@ -117,7 +117,7 @@ function validateTransitionBody(
     ok: true,
     value: {
       bountyId,
-      action,
+      action: action as BountyAction,
       agentHandle,
       ...(notes ? { notes } : {}),
     },
