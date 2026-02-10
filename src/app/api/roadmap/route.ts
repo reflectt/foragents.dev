@@ -15,6 +15,7 @@ type CreateRoadmapRequest = {
   title?: unknown;
   description?: unknown;
   category?: unknown;
+  quarter?: unknown;
 };
 
 function asTrimmedString(value: unknown): string {
@@ -24,14 +25,16 @@ function asTrimmedString(value: unknown): string {
 export async function GET(request: NextRequest) {
   try {
     const statusParam = request.nextUrl.searchParams.get("status");
+    const categoryParam = request.nextUrl.searchParams.get("category");
     const search = request.nextUrl.searchParams.get("search") ?? undefined;
 
     let status: RoadmapStatus | undefined;
+    let category: RoadmapCategory | undefined;
 
     if (statusParam) {
       if (!isRoadmapStatus(statusParam)) {
         return NextResponse.json(
-          { error: "Invalid status. Use planned, in-progress, completed, or considering." },
+          { error: "Invalid status. Use planned, in-progress, completed, or shipped." },
           { status: 400 }
         );
       }
@@ -39,9 +42,21 @@ export async function GET(request: NextRequest) {
       status = statusParam;
     }
 
+    if (categoryParam) {
+      if (!isRoadmapCategory(categoryParam)) {
+        return NextResponse.json(
+          { error: "Invalid category. Use platform, tools, community, or enterprise." },
+          { status: 400 }
+        );
+      }
+
+      category = categoryParam;
+    }
+
     const items = await readRoadmapItems();
     const filteredItems = filterRoadmapItems(items, {
       status,
+      category,
       search,
     });
 
@@ -62,6 +77,7 @@ export async function POST(request: NextRequest) {
     const title = asTrimmedString(body.title);
     const description = asTrimmedString(body.description);
     const category = asTrimmedString(body.category).toLowerCase();
+    const quarter = asTrimmedString(body.quarter) || "Backlog";
 
     if (!title || !description || !category) {
       return NextResponse.json(
@@ -83,10 +99,11 @@ export async function POST(request: NextRequest) {
       title,
       description,
       category: category as RoadmapCategory,
-      status: "considering",
-      voteCount: 0,
+      status: "planned",
+      quarter,
+      votes: 0,
+      updatedAt: new Date().toISOString(),
       voters: [],
-      createdAt: new Date().toISOString(),
     };
 
     items.unshift(newItem);
