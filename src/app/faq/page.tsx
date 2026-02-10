@@ -1,29 +1,37 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Search, ThumbsUp, ThumbsDown, MessageCircle, Mail } from "lucide-react";
+import { Search, MessageCircle, Mail, ThumbsUp, Loader2 } from "lucide-react";
 
-type FeedbackState = Record<string, "up" | "down" | null>;
+type FaqCategory =
+  | "getting-started"
+  | "billing"
+  | "technical"
+  | "integrations"
+  | "security"
+  | "general";
 
-type FaqCategory = "getting-started" | "skills" | "mcp" | "pricing" | "agents";
 type TabValue = "all" | FaqCategory;
 
 type FaqItem = {
   id: string;
-  category: FaqCategory;
   question: string;
   answer: string;
+  category: FaqCategory;
+  helpful: number;
 };
 
 type FaqApiResponse = {
@@ -32,20 +40,28 @@ type FaqApiResponse = {
   categories: FaqCategory[];
 };
 
+type AskFormState = {
+  question: string;
+  category: FaqCategory;
+  email: string;
+};
+
 const FALLBACK_CATEGORIES: FaqCategory[] = [
   "getting-started",
-  "skills",
-  "mcp",
-  "pricing",
-  "agents",
+  "billing",
+  "technical",
+  "integrations",
+  "security",
+  "general",
 ];
 
 const CATEGORY_LABELS: Record<FaqCategory, string> = {
   "getting-started": "Getting Started",
-  skills: "Skills",
-  mcp: "MCP",
-  pricing: "Pricing",
-  agents: "Agents",
+  billing: "Billing",
+  technical: "Technical",
+  integrations: "Integrations",
+  security: "Security",
+  general: "General",
 };
 
 export default function FAQPage() {
@@ -57,8 +73,17 @@ export default function FAQPage() {
     total: 0,
     categories: FALLBACK_CATEGORIES,
   });
-  const [feedback, setFeedback] = useState<FeedbackState>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [helpfulLoading, setHelpfulLoading] = useState<Record<string, boolean>>({});
+  const [helpfulError, setHelpfulError] = useState<string | null>(null);
+  const [askForm, setAskForm] = useState<AskFormState>({
+    question: "",
+    category: "general",
+    email: "",
+  });
+  const [askStatus, setAskStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [askMessage, setAskMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -73,6 +98,7 @@ export default function FAQPage() {
 
     const fetchFaqs = async () => {
       setIsLoading(true);
+      setFetchError(null);
 
       try {
         const params = new URLSearchParams();
@@ -107,6 +133,7 @@ export default function FAQPage() {
         });
       } catch (error) {
         if ((error as Error).name !== "AbortError") {
+          setFetchError("Unable to load FAQs right now. Please try again.");
           setFaqData({
             faqs: [],
             total: 0,
@@ -155,11 +182,70 @@ export default function FAQPage() {
     })),
   };
 
-  const handleFeedback = (questionId: string, type: "up" | "down") => {
-    setFeedback((prev) => ({
-      ...prev,
-      [questionId]: prev[questionId] === type ? null : type,
-    }));
+  const handleHelpful = async (id: string) => {
+    setHelpfulError(null);
+    setHelpfulLoading((prev) => ({ ...prev, [id]: true }));
+
+    try {
+      const response = await fetch(`/api/faq/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update helpful count.");
+      }
+
+      const data = (await response.json()) as { id?: string; helpful?: number };
+      if (typeof data.id === "string" && typeof data.helpful === "number") {
+        setFaqData((prev) => ({
+          ...prev,
+          faqs: prev.faqs.map((faq) =>
+            faq.id === data.id ? { ...faq, helpful: data.helpful as number } : faq
+          ),
+        }));
+      }
+    } catch {
+      setHelpfulError("Could not save your feedback. Please try again.");
+    } finally {
+      setHelpfulLoading((prev) => ({ ...prev, [id]: false }));
+    }
+  };
+
+  const handleAskQuestion = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setAskStatus("submitting");
+    setAskMessage(null);
+
+    try {
+      const response = await fetch("/api/faq", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: askForm.question,
+          category: askForm.category,
+          email: askForm.email || undefined,
+        }),
+      });
+
+      const payload = (await response.json()) as { error?: string; message?: string };
+
+      if (!response.ok) {
+        throw new Error(payload.error ?? "Unable to submit question.");
+      }
+
+      setAskStatus("success");
+      setAskMessage(payload.message ?? "Question submitted successfully.");
+      setAskForm({ question: "", category: "general", email: "" });
+    } catch (error) {
+      setAskStatus("error");
+      setAskMessage((error as Error).message);
+    }
   };
 
   const renderFaqSection = (category: FaqCategory, questions: FaqItem[]) => (
@@ -180,32 +266,21 @@ export default function FAQPage() {
                 <AccordionContent>
                   <div className="text-muted-foreground leading-relaxed mb-4">{question.answer}</div>
 
-                  <div className="flex items-center gap-4 pt-3 border-t border-white/5">
-                    <span className="text-sm text-muted-foreground">Was this helpful?</span>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleFeedback(question.id, "up")}
-                        className={`p-2 rounded-md transition-all ${
-                          feedback[question.id] === "up"
-                            ? "bg-[#06D6A0]/20 text-[#06D6A0]"
-                            : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-foreground"
-                        }`}
-                        aria-label="Thumbs up"
-                      >
-                        <ThumbsUp className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => handleFeedback(question.id, "down")}
-                        className={`p-2 rounded-md transition-all ${
-                          feedback[question.id] === "down"
-                            ? "bg-red-500/20 text-red-400"
-                            : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-foreground"
-                        }`}
-                        aria-label="Thumbs down"
-                      >
-                        <ThumbsDown className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-white/5">
+                    <Button
+                      variant="outline"
+                      className="border-white/10 hover:bg-white/5"
+                      onClick={() => void handleHelpful(question.id)}
+                      disabled={helpfulLoading[question.id]}
+                    >
+                      {helpfulLoading[question.id] ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      ) : (
+                        <ThumbsUp className="w-4 h-4 mr-2" />
+                      )}
+                      Was this helpful?
+                    </Button>
+                    <span className="text-sm text-muted-foreground">Helpful: {question.helpful}</span>
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -244,7 +319,7 @@ export default function FAQPage() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
           <Input
             type="text"
-            placeholder="Search questions..."
+            placeholder="Search questions or answers..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             className="w-full pl-12 pr-4 py-6 text-lg bg-[#0f0f0f] border-white/10 focus:border-[#06D6A0] rounded-lg"
@@ -274,10 +349,25 @@ export default function FAQPage() {
           <Card className="bg-[#0f0f0f] border-white/10 p-12 text-center">
             <p className="text-muted-foreground">Loading FAQs...</p>
           </Card>
+        ) : fetchError ? (
+          <Card className="bg-[#0f0f0f] border-white/10 p-12 text-center">
+            <p className="text-red-400 mb-4">{fetchError}</p>
+            <Button
+              variant="outline"
+              className="border-white/10 hover:bg-white/5"
+              onClick={() => {
+                setSearchInput("");
+                setDebouncedSearch("");
+                setActiveCategory("all");
+              }}
+            >
+              Retry
+            </Button>
+          </Card>
         ) : faqData.faqs.length === 0 ? (
           <Card className="bg-[#0f0f0f] border-white/10 p-12 text-center">
             <p className="text-muted-foreground mb-4">
-              No questions found matching &quot;{debouncedSearch || activeCategory}&quot;
+              No questions found matching "{debouncedSearch || activeCategory}".
             </p>
             <Button
               onClick={() => {
@@ -299,6 +389,90 @@ export default function FAQPage() {
               : renderFaqSection(activeCategory, groupedFaqs.get(activeCategory) ?? [])}
           </div>
         )}
+
+        {helpfulError ? <p className="mt-4 text-sm text-red-400">{helpfulError}</p> : null}
+      </section>
+
+      <section className="relative max-w-5xl mx-auto px-4 pb-10">
+        <Card className="bg-[#0f0f0f] border-white/10">
+          <CardContent className="p-8">
+            <h2 className="text-2xl font-bold mb-2 text-[#F8FAFC]">Ask a Question</h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              Didn't find your answer? Submit your question and we'll review it for the FAQ.
+            </p>
+
+            <form onSubmit={handleAskQuestion} className="space-y-4">
+              <div>
+                <label htmlFor="faq-question" className="block text-sm mb-2 text-foreground">
+                  Your question
+                </label>
+                <Textarea
+                  id="faq-question"
+                  value={askForm.question}
+                  onChange={(event) =>
+                    setAskForm((prev) => ({ ...prev, question: event.target.value }))
+                  }
+                  placeholder="What would you like to ask?"
+                  required
+                  minLength={10}
+                  className="bg-[#0a0a0a] border-white/10"
+                />
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="faq-category" className="block text-sm mb-2 text-foreground">
+                    Category
+                  </label>
+                  <select
+                    id="faq-category"
+                    value={askForm.category}
+                    onChange={(event) =>
+                      setAskForm((prev) => ({ ...prev, category: event.target.value as FaqCategory }))
+                    }
+                    className="w-full h-10 rounded-md border border-white/10 bg-[#0a0a0a] px-3 text-sm"
+                  >
+                    {FALLBACK_CATEGORIES.map((category) => (
+                      <option key={category} value={category}>
+                        {CATEGORY_LABELS[category]}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="faq-email" className="block text-sm mb-2 text-foreground">
+                    Email (optional)
+                  </label>
+                  <Input
+                    id="faq-email"
+                    type="email"
+                    value={askForm.email}
+                    onChange={(event) =>
+                      setAskForm((prev) => ({ ...prev, email: event.target.value }))
+                    }
+                    placeholder="you@company.com"
+                    className="bg-[#0a0a0a] border-white/10"
+                  />
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                className="bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black font-medium"
+                disabled={askStatus === "submitting"}
+              >
+                {askStatus === "submitting" ? "Submitting..." : "Submit Question"}
+              </Button>
+            </form>
+
+            {askMessage ? (
+              <p className={`mt-4 text-sm ${askStatus === "success" ? "text-[#06D6A0]" : "text-red-400"}`}>
+                {askMessage}
+              </p>
+            ) : null}
+          </CardContent>
+        </Card>
       </section>
 
       <section className="relative max-w-5xl mx-auto px-4 pb-16">
@@ -306,7 +480,8 @@ export default function FAQPage() {
           <CardContent className="p-8 md:p-12 text-center">
             <h2 className="text-3xl font-bold mb-4 text-[#F8FAFC]">Still need help?</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Can&apos;t find what you&apos;re looking for? Our community and support team are here to help you get the most out of forAgents.dev.
+              Can't find what you're looking for? Our community and support team are here to help you get
+              the most out of forAgents.dev.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
