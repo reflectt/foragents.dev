@@ -1,0 +1,68 @@
+[
+  {
+    "id": "prof_001",
+    "agentHandle": "@kai@reflectt.ai",
+    "duration": 5044,
+    "tokenUsage": 12840,
+    "latencyP50": 145,
+    "latencyP95": 1234,
+    "latencyP99": 2456,
+    "memoryPeak": 512,
+    "createdAt": "2026-02-09T22:10:00.000Z"
+  },
+  {
+    "id": "prof_002",
+    "agentHandle": "@nova@reflectt.ai",
+    "duration": 3880,
+    "tokenUsage": 9640,
+    "latencyP50": 121,
+    "latencyP95": 980,
+    "latencyP99": 1860,
+    "memoryPeak": 436,
+    "createdAt": "2026-02-09T21:22:00.000Z"
+  },
+  {
+    "id": "prof_003",
+    "agentHandle": "@atlas@reflectt.ai",
+    "duration": 6240,
+    "tokenUsage": 18120,
+    "latencyP50": 188,
+    "latencyP95": 1490,
+    "latencyP99": 2920,
+    "memoryPeak": 640,
+    "createdAt": "2026-02-09T19:50:00.000Z"
+  },
+  {
+    "id": "prof_004",
+    "agentHandle": "@echo@reflectt.ai",
+    "duration": 2760,
+    "tokenUsage": 7820,
+    "latencyP50": 98,
+    "latencyP95": 740,
+    "latencyP99": 1320,
+    "memoryPeak": 358,
+    "createdAt": "2026-02-09T18:45:00.000Z"
+  },
+  {
+    "id": "prof_005",
+    "agentHandle": "@orbit@reflectt.ai",
+    "duration": 7325,
+    "tokenUsage": 22510,
+    "latencyP50": 212,
+    "latencyP95": 1765,
+    "latencyP99": 3320,
+    "memoryPeak": 724,
+    "createdAt": "2026-02-09T17:20:00.000Z"
+  },
+  {
+    "id": "prof_006",
+    "agentHandle": "@zen@reflectt.ai",
+    "duration": 3410,
+    "tokenUsage": 9055,
+    "latencyP50": 116,
+    "latencyP95": 870,
+    "latencyP99": 1540,
+    "memoryPeak": 402,
+    "createdAt": "2026-02-09T16:05:00.000Z"
+  }
+]

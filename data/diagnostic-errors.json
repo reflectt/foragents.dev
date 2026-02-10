@@ -1,0 +1,90 @@
+[
+  {
+    "id": "err_001",
+    "message": "Tool execution exceeded timeout threshold",
+    "severity": "high",
+    "source": "web_search",
+    "stackTrace": "TimeoutError: Tool 'web_search' exceeded 30s timeout\n    at executeTool (src/lib/tools/runner.ts:118:17)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "count": 47,
+    "firstSeen": "2026-02-01T03:14:22.000Z",
+    "lastSeen": "2026-02-09T21:18:05.000Z",
+    "status": "open"
+  },
+  {
+    "id": "err_002",
+    "message": "Context window exceeded model token limit",
+    "severity": "critical",
+    "source": "runtime",
+    "stackTrace": "ContextLengthExceededError: Request tokens (129442) exceed model limit (128000)\n    at buildCompletionRequest (src/lib/llm/request.ts:67:11)",
+    "count": 23,
+    "firstSeen": "2026-02-03T10:00:12.000Z",
+    "lastSeen": "2026-02-09T19:42:31.000Z",
+    "status": "investigating"
+  },
+  {
+    "id": "err_003",
+    "message": "Provider API rate limit exceeded",
+    "severity": "medium",
+    "source": "provider-gateway",
+    "stackTrace": "RateLimitError: Anthropic API rate limit exceeded (429). Retry after 15s\n    at requestCompletion (src/lib/providers/anthropic.ts:204:9)",
+    "count": 156,
+    "firstSeen": "2026-01-29T22:41:54.000Z",
+    "lastSeen": "2026-02-09T23:31:16.000Z",
+    "status": "open"
+  },
+  {
+    "id": "err_004",
+    "message": "Invalid API key format supplied to connector",
+    "severity": "low",
+    "source": "connector-auth",
+    "stackTrace": "AuthenticationError: Invalid API key for tool 'browser'\n    at validateCredential (src/lib/auth/credentials.ts:41:13)",
+    "count": 8,
+    "firstSeen": "2026-02-04T16:12:11.000Z",
+    "lastSeen": "2026-02-07T06:57:09.000Z",
+    "status": "resolved"
+  },
+  {
+    "id": "err_005",
+    "message": "Agent attempted unknown tool invocation",
+    "severity": "medium",
+    "source": "tool-router",
+    "stackTrace": "ToolNotFoundError: Agent attempted to call 'browse_webpage'\n    at resolveTool (src/lib/tools/registry.ts:29:15)",
+    "count": 34,
+    "firstSeen": "2026-02-02T13:27:44.000Z",
+    "lastSeen": "2026-02-09T17:03:33.000Z",
+    "status": "open"
+  },
+  {
+    "id": "err_006",
+    "message": "Network connection refused during upstream fetch",
+    "severity": "high",
+    "source": "http-client",
+    "stackTrace": "NetworkError: ECONNREFUSED connecting to https://api.example.com\n    at fetchWithRetry (src/lib/net/client.ts:88:7)",
+    "count": 19,
+    "firstSeen": "2026-02-06T08:05:17.000Z",
+    "lastSeen": "2026-02-09T22:22:51.000Z",
+    "status": "investigating"
+  },
+  {
+    "id": "err_007",
+    "message": "Filesystem write failed for cached artifact",
+    "severity": "medium",
+    "source": "storage",
+    "stackTrace": "Error: EACCES: permission denied, open '/tmp/cache/artifact.json'\n    at writeFile (node:fs/promises:1038:20)",
+    "count": 12,
+    "firstSeen": "2026-02-05T12:43:30.000Z",
+    "lastSeen": "2026-02-09T09:55:14.000Z",
+    "status": "open"
+  },
+  {
+    "id": "err_008",
+    "message": "Schema validation failed for MCP response payload",
+    "severity": "low",
+    "source": "mcp-bridge",
+    "stackTrace": "ValidationError: response.tools[2].params is required\n    at parseMcpResponse (src/lib/mcp/parser.ts:112:19)",
+    "count": 6,
+    "firstSeen": "2026-02-08T04:11:08.000Z",
+    "lastSeen": "2026-02-09T18:41:02.000Z",
+    "status": "resolved"
+  }
+]

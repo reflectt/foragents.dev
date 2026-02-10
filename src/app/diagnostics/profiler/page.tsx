@@ -1,313 +1,300 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useMemo, useState } from "react";
+import { Clock, Cpu, Search, Zap } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
-import { Clock, Zap, Database, Cpu, HardDrive } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-interface ProfileEntry {
-  name: string;
-  type: "thinking" | "tool" | "waiting" | "context" | "other";
-  startMs: number;
-  durationMs: number;
-  details?: string;
+interface DiagnosticProfile {
+  id: string;
+  agentHandle: string;
+  duration: number;
+  tokenUsage: number;
+  latencyP50: number;
+  latencyP95: number;
+  latencyP99: number;
+  memoryPeak: number;
+  createdAt: string;
 }
-
-interface TimeBreakdown {
-  category: string;
-  time: number;
-  percentage: number;
-  color: string;
-}
-
-// Sample profiling data - in production, this would come from actual agent execution traces
-const profileEntries: ProfileEntry[] = [
-  { name: "Context Loading", type: "context", startMs: 0, durationMs: 120, details: "Load system prompts, memory, tools" },
-  { name: "Thinking (Turn 1)", type: "thinking", startMs: 120, durationMs: 450, details: "Initial problem analysis" },
-  { name: "web_search", type: "tool", startMs: 570, durationMs: 340, details: "Search for 'Next.js performance tips'" },
-  { name: "Thinking (Turn 2)", type: "thinking", startMs: 910, durationMs: 380, details: "Process search results" },
-  { name: "read", type: "tool", startMs: 1290, durationMs: 12, details: "Read package.json" },
-  { name: "exec", type: "tool", startMs: 1302, durationMs: 156, details: "npm run build" },
-  { name: "Waiting (Rate Limit)", type: "waiting", startMs: 1458, durationMs: 500, details: "429 rate limit, backoff" },
-  { name: "Thinking (Turn 3)", type: "thinking", startMs: 1958, durationMs: 520, details: "Analyze build output" },
-  { name: "write", type: "tool", startMs: 2478, durationMs: 28, details: "Write next.config.ts" },
-  { name: "browser", type: "tool", startMs: 2506, durationMs: 1823, details: "Open https://localhost:3000" },
-  { name: "Context Refresh", type: "context", startMs: 4329, durationMs: 95, details: "Update conversation history" },
-  { name: "Thinking (Turn 4)", type: "thinking", startMs: 4424, durationMs: 620, details: "Final response generation" },
-];
-
-const getTypeColor = (type: string): string => {
-  switch (type) {
-    case "thinking":
-      return "bg-blue-500";
-    case "tool":
-      return "bg-green-500";
-    case "waiting":
-      return "bg-yellow-500";
-    case "context":
-      return "bg-purple-500";
-    default:
-      return "bg-gray-500";
-  }
-};
-
-const getTypeIcon = (type: string) => {
-  switch (type) {
-    case "thinking":
-      return <Cpu className="w-4 h-4" />;
-    case "tool":
-      return <Zap className="w-4 h-4" />;
-    case "waiting":
-      return <Clock className="w-4 h-4" />;
-    case "context":
-      return <Database className="w-4 h-4" />;
-    default:
-      return <HardDrive className="w-4 h-4" />;
-  }
-};
 
 export default function ProfilerPage() {
-  // Calculate total time and breakdown
-  const totalTimeMs = Math.max(...profileEntries.map(e => e.startMs + e.durationMs));
-  
-  const timeBreakdown: TimeBreakdown[] = [
-    {
-      category: "Thinking",
-      time: profileEntries.filter(e => e.type === "thinking").reduce((sum, e) => sum + e.durationMs, 0),
-      percentage: 0,
-      color: "bg-blue-500",
-    },
-    {
-      category: "Tool Calls",
-      time: profileEntries.filter(e => e.type === "tool").reduce((sum, e) => sum + e.durationMs, 0),
-      percentage: 0,
-      color: "bg-green-500",
-    },
-    {
-      category: "Waiting",
-      time: profileEntries.filter(e => e.type === "waiting").reduce((sum, e) => sum + e.durationMs, 0),
-      percentage: 0,
-      color: "bg-yellow-500",
-    },
-    {
-      category: "Context Loading",
-      time: profileEntries.filter(e => e.type === "context").reduce((sum, e) => sum + e.durationMs, 0),
-      percentage: 0,
-      color: "bg-purple-500",
-    },
-  ];
-  
-  // Calculate percentages
-  timeBreakdown.forEach(item => {
-    item.percentage = (item.time / totalTimeMs) * 100;
-  });
+  const [profiles, setProfiles] = useState<DiagnosticProfile[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  const [search, setSearch] = useState("");
+  const [agentHandle, setAgentHandle] = useState("all");
+  const [minDuration, setMinDuration] = useState("0");
+  const [maxDuration, setMaxDuration] = useState("10000");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadProfiles = async () => {
+      try {
+        setLoading(true);
+        setFetchError(null);
+
+        const params = new URLSearchParams();
+        if (search.trim()) params.set("search", search.trim());
+        if (agentHandle !== "all") params.set("agentHandle", agentHandle);
+        params.set("minDuration", minDuration || "0");
+        params.set("maxDuration", maxDuration || "10000");
+
+        const response = await fetch(`/api/diagnostics/profiler?${params.toString()}`, {
+          signal: controller.signal,
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch profiler data");
+        }
+
+        const payload = (await response.json()) as { profiles: DiagnosticProfile[] };
+        setProfiles(payload.profiles ?? []);
+      } catch (error) {
+        if ((error as Error).name === "AbortError") return;
+        setFetchError("Unable to load profiler snapshots.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProfiles();
+
+    return () => controller.abort();
+  }, [search, agentHandle, minDuration, maxDuration]);
+
+  useEffect(() => {
+    if (!profiles.length) {
+      setSelectedId(null);
+      return;
+    }
+
+    const stillExists = selectedId && profiles.some((item) => item.id === selectedId);
+    if (!stillExists) setSelectedId(profiles[0].id);
+  }, [profiles, selectedId]);
+
+  const selectedProfile = useMemo(
+    () => profiles.find((item) => item.id === selectedId) ?? null,
+    [profiles, selectedId]
+  );
+
+  const summary = useMemo(() => {
+    if (!profiles.length) {
+      return {
+        avgDuration: 0,
+        avgTokenUsage: 0,
+        avgP95: 0,
+      };
+    }
+
+    const avgDuration = profiles.reduce((sum, item) => sum + item.duration, 0) / profiles.length;
+    const avgTokenUsage = profiles.reduce((sum, item) => sum + item.tokenUsage, 0) / profiles.length;
+    const avgP95 = profiles.reduce((sum, item) => sum + item.latencyP95, 0) / profiles.length;
+
+    return { avgDuration, avgTokenUsage, avgP95 };
+  }, [profiles]);
+
+  const agentHandles = useMemo(
+    () => Array.from(new Set(profiles.map((item) => item.agentHandle))).sort((a, b) => a.localeCompare(b)),
+    [profiles]
+  );
+
+  const maxDurationValue = useMemo(
+    () => (profiles.length ? Math.max(...profiles.map((item) => item.duration)) : 1),
+    [profiles]
+  );
 
   return (
     <main id="main-content" className="min-h-screen bg-[#0a0a0a]">
       <div className="mx-auto max-w-7xl px-4 py-10 md:py-14">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
             Performance <span className="aurora-text">Profiler</span>
           </h1>
           <p className="mt-2 text-muted-foreground">
-            Breakdown of where agent time goes: thinking, tool calls, waiting, and context loading.
+            Persistent profiling snapshots with filters, search, and detailed latency breakdown.
           </p>
         </div>
 
-        {/* Summary Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <Card className="bg-[#0f0f0f] border-white/10">
-            <CardContent className="pt-6">
-              <div className="flex flex-col">
-                <p className="text-sm text-muted-foreground">Total Time</p>
-                <p className="text-2xl font-bold mt-1">{(totalTimeMs / 1000).toFixed(2)}s</p>
+            <CardContent className="pt-6 flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Avg duration</p>
+                <p className="text-3xl font-bold mt-1">{summary.avgDuration.toFixed(0)}ms</p>
               </div>
+              <Clock className="w-6 h-6 text-[#06D6A0]" />
+            </CardContent>
+          </Card>
+          <Card className="bg-[#0f0f0f] border-white/10">
+            <CardContent className="pt-6 flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Avg token usage</p>
+                <p className="text-3xl font-bold mt-1">{summary.avgTokenUsage.toFixed(0)}</p>
+              </div>
+              <Zap className="w-6 h-6 text-yellow-400" />
+            </CardContent>
+          </Card>
+          <Card className="bg-[#0f0f0f] border-white/10">
+            <CardContent className="pt-6 flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Avg p95 latency</p>
+                <p className="text-3xl font-bold mt-1">{summary.avgP95.toFixed(0)}ms</p>
+              </div>
+              <Cpu className="w-6 h-6 text-purple-400" />
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className="bg-[#0f0f0f] border-white/10 mb-6">
+          <CardContent className="pt-6 grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div className="md:col-span-2 relative">
+              <Search className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
+              <Input
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                className="pl-9"
+                placeholder="Search by profile id or agent handle"
+              />
+            </div>
+            <Select value={agentHandle} onValueChange={setAgentHandle}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Agent" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All agents</SelectItem>
+                {agentHandles.map((handle) => (
+                  <SelectItem key={handle} value={handle}>
+                    {handle}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <div className="flex gap-2">
+              <Input
+                value={minDuration}
+                onChange={(event) => setMinDuration(event.target.value)}
+                placeholder="Min ms"
+                type="number"
+                min={0}
+              />
+              <Input
+                value={maxDuration}
+                onChange={(event) => setMaxDuration(event.target.value)}
+                placeholder="Max ms"
+                type="number"
+                min={0}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card className="bg-[#0f0f0f] border-white/10">
+            <CardHeader>
+              <CardTitle>Profiles</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
+              {loading && <p className="text-sm text-muted-foreground">Loading profiler data...</p>}
+              {fetchError && <p className="text-sm text-red-400">{fetchError}</p>}
+              {!loading && !fetchError && profiles.length === 0 && (
+                <p className="text-sm text-muted-foreground">No profiling snapshots match current filters.</p>
+              )}
+
+              {profiles.map((profile) => {
+                const width = (profile.duration / maxDurationValue) * 100;
+
+                return (
+                  <button
+                    key={profile.id}
+                    type="button"
+                    onClick={() => setSelectedId(profile.id)}
+                    className={`w-full rounded-lg border p-3 text-left transition-colors ${
+                      selectedId === profile.id
+                        ? "border-[#06D6A0]/50 bg-[#06D6A0]/5"
+                        : "border-white/10 hover:border-white/25"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <p className="font-medium text-sm">{profile.agentHandle}</p>
+                      <Badge variant="outline" className="text-xs">
+                        {profile.duration}ms
+                      </Badge>
+                    </div>
+                    <div className="h-2 rounded bg-white/5 overflow-hidden">
+                      <div className="h-full bg-[#06D6A0]/80" style={{ width: `${width}%` }} />
+                    </div>
+                    <p className="mt-2 text-xs text-muted-foreground">{new Date(profile.createdAt).toLocaleString()}</p>
+                  </button>
+                );
+              })}
             </CardContent>
           </Card>
 
-          {timeBreakdown.map((item, idx) => (
-            <Card key={idx} className="bg-[#0f0f0f] border-white/10">
-              <CardContent className="pt-6">
-                <div className="flex flex-col">
-                  <p className="text-sm text-muted-foreground">{item.category}</p>
-                  <p className="text-2xl font-bold mt-1">{(item.time / 1000).toFixed(2)}s</p>
-                  <p className="text-xs text-muted-foreground mt-1">{item.percentage.toFixed(1)}%</p>
+          <Card className="bg-[#0f0f0f] border-white/10">
+            <CardHeader>
+              <CardTitle>Profile detail</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {!selectedProfile && (
+                <p className="text-sm text-muted-foreground">Select a profile to inspect execution metrics.</p>
+              )}
+
+              {selectedProfile && (
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-xs text-muted-foreground">Profile ID</p>
+                    <p className="font-mono text-sm">{selectedProfile.id}</p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="rounded-lg border border-white/10 p-3">
+                      <p className="text-muted-foreground text-xs">Duration</p>
+                      <p className="text-lg font-semibold">{selectedProfile.duration}ms</p>
+                    </div>
+                    <div className="rounded-lg border border-white/10 p-3">
+                      <p className="text-muted-foreground text-xs">Token usage</p>
+                      <p className="text-lg font-semibold">{selectedProfile.tokenUsage}</p>
+                    </div>
+                    <div className="rounded-lg border border-white/10 p-3">
+                      <p className="text-muted-foreground text-xs">Memory peak</p>
+                      <p className="text-lg font-semibold">{selectedProfile.memoryPeak}MB</p>
+                    </div>
+                    <div className="rounded-lg border border-white/10 p-3">
+                      <p className="text-muted-foreground text-xs">Created at</p>
+                      <p className="text-sm font-semibold">{new Date(selectedProfile.createdAt).toLocaleString()}</p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-lg border border-white/10 p-4">
+                    <p className="text-xs text-muted-foreground mb-3">Latency distribution</p>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span>p50</span>
+                        <span className="font-mono">{selectedProfile.latencyP50}ms</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span>p95</span>
+                        <span className="font-mono">{selectedProfile.latencyP95}ms</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span>p99</span>
+                        <span className="font-mono">{selectedProfile.latencyP99}ms</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              )}
+            </CardContent>
+          </Card>
         </div>
-
-        {/* Time Breakdown Chart */}
-        <Card className="bg-[#0f0f0f] border-white/10 mb-8">
-          <CardHeader>
-            <CardTitle className="text-xl">Time Distribution</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {/* Stacked Bar Chart */}
-              <div className="relative w-full h-16 bg-white/5 rounded-lg overflow-hidden flex">
-                {timeBreakdown.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className={`h-full ${item.color} flex items-center justify-center text-sm font-semibold transition-all hover:brightness-110 cursor-pointer`}
-                    style={{ width: `${item.percentage}%` }}
-                    title={`${item.category}: ${(item.time / 1000).toFixed(2)}s (${item.percentage.toFixed(1)}%)`}
-                  >
-                    {item.percentage > 10 && (
-                      <span className="text-white drop-shadow">
-                        {item.percentage.toFixed(0)}%
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Legend */}
-              <div className="flex flex-wrap gap-4 text-sm">
-                {timeBreakdown.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <div className={`w-4 h-4 ${item.color} rounded`} />
-                    <span className="text-muted-foreground">
-                      {item.category} ({(item.time / 1000).toFixed(2)}s)
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Waterfall Visualization */}
-        <Card className="bg-[#0f0f0f] border-white/10">
-          <CardHeader>
-            <CardTitle className="text-xl">Execution Waterfall</CardTitle>
-            <p className="text-sm text-muted-foreground mt-2">
-              Timeline visualization similar to browser dev tools. Each bar shows timing and duration.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {/* Timeline ruler */}
-              <div className="relative w-full h-8 border-b border-white/10">
-                <div className="absolute top-0 left-0 text-xs text-muted-foreground">0ms</div>
-                <div className="absolute top-0 left-1/4 text-xs text-muted-foreground">
-                  {(totalTimeMs / 4).toFixed(0)}ms
-                </div>
-                <div className="absolute top-0 left-1/2 text-xs text-muted-foreground">
-                  {(totalTimeMs / 2).toFixed(0)}ms
-                </div>
-                <div className="absolute top-0 left-3/4 text-xs text-muted-foreground">
-                  {(totalTimeMs * 3 / 4).toFixed(0)}ms
-                </div>
-                <div className="absolute top-0 right-0 text-xs text-muted-foreground">
-                  {totalTimeMs.toFixed(0)}ms
-                </div>
-              </div>
-
-              {/* Waterfall entries */}
-              {profileEntries.map((entry, idx) => {
-                const leftPercent = (entry.startMs / totalTimeMs) * 100;
-                const widthPercent = (entry.durationMs / totalTimeMs) * 100;
-                
-                return (
-                  <div key={idx} className="relative">
-                    {/* Entry info */}
-                    <div className="flex items-center gap-3 mb-1">
-                      <div className={`p-1.5 rounded ${getTypeColor(entry.type)}/10`}>
-                        {getTypeIcon(entry.type)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium truncate">{entry.name}</span>
-                          <Badge variant="outline" className="text-xs capitalize">
-                            {entry.type}
-                          </Badge>
-                        </div>
-                        {entry.details && (
-                          <p className="text-xs text-muted-foreground truncate">
-                            {entry.details}
-                          </p>
-                        )}
-                      </div>
-                      <span className="text-xs text-muted-foreground font-mono">
-                        {entry.durationMs}ms
-                      </span>
-                    </div>
-
-                    {/* Waterfall bar */}
-                    <div className="relative w-full h-8 bg-white/5 rounded overflow-hidden">
-                      <div
-                        className={`absolute top-0 h-full ${getTypeColor(entry.type)} transition-all hover:brightness-110 cursor-pointer flex items-center px-2`}
-                        style={{
-                          left: `${leftPercent}%`,
-                          width: `${widthPercent}%`,
-                        }}
-                        title={`${entry.name}: ${entry.durationMs}ms (${entry.startMs}ms - ${entry.startMs + entry.durationMs}ms)`}
-                      >
-                        {widthPercent > 5 && (
-                          <span className="text-xs font-semibold text-white truncate">
-                            {entry.name}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-6 p-4 bg-white/5 rounded-lg">
-              <p className="text-sm text-muted-foreground">
-                💡 <strong>Reading the waterfall:</strong> Each bar&apos;s position shows when it started, 
-                and its length shows how long it took. Gaps between bars indicate idle time or waiting.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Performance Insights */}
-        <Card className="bg-[#0f0f0f] border-white/10 mt-8">
-          <CardHeader>
-            <CardTitle className="text-xl">Performance Insights</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start gap-3 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded">
-                <Clock className="w-5 h-5 text-yellow-500 mt-0.5" />
-                <div>
-                  <p className="font-semibold text-yellow-500">High waiting time detected</p>
-                  <p className="text-muted-foreground mt-1">
-                    500ms spent waiting for rate limit recovery. Consider implementing request queuing 
-                    or upgrading API tier.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3 bg-blue-500/10 border border-blue-500/20 rounded">
-                <Cpu className="w-5 h-5 text-blue-500 mt-0.5" />
-                <div>
-                  <p className="font-semibold text-blue-500">Thinking time: {(timeBreakdown[0].time / 1000).toFixed(2)}s ({timeBreakdown[0].percentage.toFixed(1)}%)</p>
-                  <p className="text-muted-foreground mt-1">
-                    This is model inference time. To reduce: use a faster model, shorten prompts, 
-                    or reduce output length.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3 bg-green-500/10 border border-green-500/20 rounded">
-                <Zap className="w-5 h-5 text-green-500 mt-0.5" />
-                <div>
-                  <p className="font-semibold text-green-500">Browser tool is slowest</p>
-                  <p className="text-muted-foreground mt-1">
-                    1.82s for browser automation. Consider headless mode, reduce wait times, 
-                    or cache frequent page loads.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </main>
   );
