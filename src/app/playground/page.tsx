@@ -46,6 +46,25 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default function PlaygroundPage() {
-  return <PlaygroundClient endpoints={endpoints as ApiEndpoint[]} />;
+type PlaygroundPageProps = {
+  searchParams?: Promise<{
+    endpoint?: string;
+    path?: string;
+    method?: string;
+  }>;
+};
+
+export default async function PlaygroundPage({ searchParams }: PlaygroundPageProps) {
+  const params = await searchParams;
+
+  return (
+    <PlaygroundClient
+      endpoints={endpoints as ApiEndpoint[]}
+      initialSelection={{
+        endpoint: params?.endpoint,
+        path: params?.path,
+        method: params?.method,
+      }}
+    />
+  );
 }

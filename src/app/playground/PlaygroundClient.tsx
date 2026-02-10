@@ -3,6 +3,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
+type PlaygroundClientProps = {
+  endpoints: ApiEndpoint[];
+  initialSelection?: {
+    endpoint?: string;
+    path?: string;
+    method?: string;
+  };
+};
+
 type ParamType = "string" | "number" | "boolean" | "json";
 
 type EndpointParam = {
@@ -80,6 +89,10 @@ function inferParamLocation(endpoint: ApiEndpoint, p: EndpointParam): "path" | "
   return "body";
 }
 
+function normalizeEndpointPath(pathname: string): string {
+  return pathname.replace(/\[([^\]]+)\]/g, "{$1}");
+}
+
 function buildRequest(endpoint: ApiEndpoint, values: Record<string, string>): {
   url: string;
   init: RequestInit;
@@ -151,7 +164,7 @@ function formatTs(ts: number): string {
   }
 }
 
-export default function PlaygroundClient({ endpoints }: { endpoints: ApiEndpoint[] }) {
+export default function PlaygroundClient({ endpoints, initialSelection }: PlaygroundClientProps) {
   const defaultEndpointId = endpoints[0]?.id;
 
   const [selectedId, setSelectedId] = useState<string>(defaultEndpointId ?? "");
@@ -185,6 +198,34 @@ export default function PlaygroundClient({ endpoints }: { endpoints: ApiEndpoint
     }
   }, []);
 
+  useEffect(() => {
+    const queryEndpointId = initialSelection?.endpoint;
+    const queryPath = initialSelection?.path;
+    const queryMethod = initialSelection?.method?.toUpperCase();
+
+    if (queryEndpointId) {
+      const matchedById = endpoints.find((endpoint) => endpoint.id === queryEndpointId);
+      if (matchedById) {
+        setSelectedId((current) => (current === matchedById.id ? current : matchedById.id));
+        return;
+      }
+    }
+
+    if (queryPath) {
+      const normalizedQueryPath = normalizeEndpointPath(queryPath);
+      const matchedByPath = endpoints.find((endpoint) => {
+        const samePath = normalizeEndpointPath(endpoint.path) === normalizedQueryPath;
+        if (!samePath) return false;
+        if (!queryMethod) return true;
+        return endpoint.method.toUpperCase() === queryMethod;
+      });
+
+      if (matchedByPath) {
+        setSelectedId((current) => (current === matchedByPath.id ? current : matchedByPath.id));
+      }
+    }
+  }, [endpoints, initialSelection]);
+
   // Initialize param fields when endpoint changes
   useEffect(() => {
     const next: Record<string, string> = {};
@@ -194,7 +235,7 @@ export default function PlaygroundClient({ endpoints }: { endpoints: ApiEndpoint
     setValues(next);
     setError(null);
     setResponse(null);
-  }, [selectedEndpoint?.id]);
+  }, [selectedEndpoint]);
 
   function persistHistory(next: RequestHistoryItem[]) {
     setHistory(next);

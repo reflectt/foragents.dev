@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export default function GovernancePage() {
-  const data = governanceFramework as FrameworkData;
+  const data = governanceFramework as unknown as FrameworkData;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
