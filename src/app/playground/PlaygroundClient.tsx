@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 type ParamType = "string" | "number" | "boolean" | "json";
@@ -89,6 +90,10 @@ function inferParamLocation(endpoint: ApiEndpoint, p: EndpointParam): "path" | "
   const m = endpoint.method.toUpperCase();
   if (m === "GET" || m === "HEAD") return "query";
   return "body";
+}
+
+function normalizeEndpointPath(pathname: string): string {
+  return pathname.replace(/\[([^\]]+)\]/g, "{$1}");
 }
 
 function buildRequest(endpoint: ApiEndpoint, values: Record<string, string>): {
@@ -182,6 +187,7 @@ function formatTs(ts: number): string {
 }
 
 export default function PlaygroundClient({ endpoints }: { endpoints: ApiEndpoint[] }) {
+  const searchParams = useSearchParams();
   const defaultEndpointId = endpoints[0]?.id;
 
   const [selectedId, setSelectedId] = useState<string>(defaultEndpointId ?? "");
@@ -215,6 +221,34 @@ export default function PlaygroundClient({ endpoints }: { endpoints: ApiEndpoint
       // ignore
     }
   }, []);
+
+  useEffect(() => {
+    const queryEndpointId = searchParams.get("endpoint");
+    const queryPath = searchParams.get("path");
+    const queryMethod = searchParams.get("method")?.toUpperCase();
+
+    if (queryEndpointId) {
+      const matchedById = endpoints.find((endpoint) => endpoint.id === queryEndpointId);
+      if (matchedById) {
+        setSelectedId((current) => (current === matchedById.id ? current : matchedById.id));
+        return;
+      }
+    }
+
+    if (queryPath) {
+      const normalizedQueryPath = normalizeEndpointPath(queryPath);
+      const matchedByPath = endpoints.find((endpoint) => {
+        const samePath = normalizeEndpointPath(endpoint.path) === normalizedQueryPath;
+        if (!samePath) return false;
+        if (!queryMethod) return true;
+        return endpoint.method.toUpperCase() === queryMethod;
+      });
+
+      if (matchedByPath) {
+        setSelectedId((current) => (current === matchedByPath.id ? current : matchedByPath.id));
+      }
+    }
+  }, [endpoints, searchParams]);
 
   // Initialize param fields when endpoint changes
   useEffect(() => {

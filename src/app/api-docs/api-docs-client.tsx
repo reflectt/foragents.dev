@@ -1,512 +1,307 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Copy, CheckCircle2, Menu, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
-type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
+type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS";
 
-interface Parameter {
+type ApiParameter = {
   name: string;
-  in: "path" | "query" | "header" | "body";
   type: string;
   required: boolean;
-  description: string;
-}
+};
 
-interface Endpoint {
+type ApiEndpoint = {
   id: string;
   method: HttpMethod;
   path: string;
-  summary: string;
   description: string;
-  authentication: boolean;
-  parameters: Parameter[];
-  requestExample: string;
-  responseExample: string;
-}
+  parameters: ApiParameter[];
+  exampleResponse: unknown;
+};
 
-interface EndpointGroup {
+type ApiCategory = {
   id: string;
   name: string;
   description: string;
-  endpoints: Endpoint[];
-}
+  endpoints: ApiEndpoint[];
+};
 
-interface RateLimit {
-  tier: string;
-  requestsPerMinute: number;
-  requestsPerDay: number | null;
-  description: string;
-}
+type ApiDocsResponse = {
+  baseUrl: string;
+  version: string;
+  generatedAt: string;
+  totalEndpoints: number;
+  discoveredRoutes: number;
+  categories: ApiCategory[];
+};
 
-interface ApiData {
-  groups: EndpointGroup[];
-  rateLimits: RateLimit[];
+const METHOD_COLORS: Record<HttpMethod, string> = {
+  GET: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+  POST: "bg-blue-500/15 text-blue-300 border-blue-500/30",
+  PUT: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+  PATCH: "bg-violet-500/15 text-violet-300 border-violet-500/30",
+  DELETE: "bg-red-500/15 text-red-300 border-red-500/30",
+  HEAD: "bg-slate-500/15 text-slate-300 border-slate-500/30",
+  OPTIONS: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
+};
+
+function normalizePath(pathname: string): string {
+  return pathname.replace(/\[([^\]]+)\]/g, "{$1}");
 }
 
 function MethodBadge({ method }: { method: HttpMethod }) {
-  const colors = {
-    GET: "bg-green-500/15 text-green-300 border-green-500/30",
-    POST: "bg-blue-500/15 text-blue-300 border-blue-500/30",
-    PUT: "bg-yellow-500/15 text-yellow-300 border-yellow-500/30",
-    DELETE: "bg-red-500/15 text-red-300 border-red-500/30",
-  };
-
   return (
-    <span
-      className={`inline-flex items-center rounded border px-2 py-0.5 text-xs font-mono font-semibold ${colors[method]}`}
-    >
+    <Badge variant="outline" className={`font-mono ${METHOD_COLORS[method]}`}>
       {method}
-    </span>
-  );
-}
-
-function RequiredBadge() {
-  return (
-    <Badge variant="outline" className="border-orange-500/30 bg-orange-500/10 text-orange-300 text-xs">
-      Required
     </Badge>
   );
 }
 
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+function ExampleBlock({ value }: { value: unknown }) {
+  const text = typeof value === "string" ? value : JSON.stringify(value, null, 2);
 
   return (
-    <button
-      onClick={handleCopy}
-      className="absolute top-3 right-3 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-      aria-label="Copy to clipboard"
-    >
-      {copied ? (
-        <CheckCircle2 className="w-4 h-4 text-green-400" />
-      ) : (
-        <Copy className="w-4 h-4 text-gray-400" />
-      )}
-    </button>
+    <pre className="rounded-lg border border-white/10 bg-black/40 p-3 text-xs overflow-x-auto">
+      <code>{text}</code>
+    </pre>
   );
 }
 
-function CodeBlock({ code, language = "bash" }: { code: string; language?: string }) {
-  return (
-    <div className="relative">
-      <pre className="bg-black/40 border border-white/10 rounded-lg p-4 overflow-x-auto text-sm">
-        <code className="font-mono text-gray-300">{code}</code>
-      </pre>
-      <CopyButton text={code} />
-    </div>
-  );
-}
-
-function ParameterTable({ parameters }: { parameters: Parameter[] }) {
-  if (parameters.length === 0) {
-    return <p className="text-sm text-muted-foreground">No parameters required.</p>;
-  }
+function EndpointCard({
+  endpoint,
+  baseUrl,
+  copiedId,
+  onCopy,
+}: {
+  endpoint: ApiEndpoint;
+  baseUrl: string;
+  copiedId: string | null;
+  onCopy: (id: string, fullUrl: string) => void;
+}) {
+  const fullUrl = `${baseUrl.replace(/\/$/, "")}${endpoint.path}`;
 
   return (
-    <div className="rounded-lg border border-white/10 overflow-hidden">
-      <table className="w-full text-sm">
-        <thead className="bg-white/5">
-          <tr className="border-b border-white/10">
-            <th className="text-left py-2.5 px-3 font-semibold">Name</th>
-            <th className="text-left py-2.5 px-3 font-semibold">Type</th>
-            <th className="text-left py-2.5 px-3 font-semibold">In</th>
-            <th className="text-left py-2.5 px-3 font-semibold">Required</th>
-            <th className="text-left py-2.5 px-3 font-semibold">Description</th>
-          </tr>
-        </thead>
-        <tbody className="text-muted-foreground">
-          {parameters.map((param, idx) => (
-            <tr key={idx} className="border-b border-white/5 last:border-b-0">
-              <td className="py-2.5 px-3 font-mono text-foreground/90">{param.name}</td>
-              <td className="py-2.5 px-3 font-mono text-xs">{param.type}</td>
-              <td className="py-2.5 px-3 text-xs">{param.in}</td>
-              <td className="py-2.5 px-3">
-                {param.required ? <RequiredBadge /> : <span className="text-xs">Optional</span>}
-              </td>
-              <td className="py-2.5 px-3">{param.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function EndpointDetail({ endpoint }: { endpoint: Endpoint }) {
-  return (
-    <Card className="bg-card/40 border-white/10" id={endpoint.id}>
+    <Card className="bg-card/40 border-white/10">
       <CardHeader>
-        <div className="flex items-start gap-3">
-          <MethodBadge method={endpoint.method} />
-          <div className="flex-1">
-            <CardTitle className="text-xl font-mono text-cyan mb-2">{endpoint.path}</CardTitle>
-            <p className="text-base font-semibold text-foreground mb-1">{endpoint.summary}</p>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <MethodBadge method={endpoint.method} />
+              <code className="text-sm text-cyan-300">{endpoint.path}</code>
+            </div>
             <p className="text-sm text-muted-foreground">{endpoint.description}</p>
-            {endpoint.authentication && (
-              <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                <Badge variant="outline" className="border-yellow-500/30 bg-yellow-500/10 text-yellow-300">
-                  🔒 Authentication Required
-                </Badge>
-                <span className="text-xs text-muted-foreground">
-                  This endpoint requires an API key in the Authorization header
-                </span>
-              </div>
-            )}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" variant="secondary">
+              <Link
+                href={`/playground?endpoint=${encodeURIComponent(endpoint.id)}&path=${encodeURIComponent(normalizePath(endpoint.path))}&method=${endpoint.method}`}
+              >
+                Try It
+              </Link>
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => onCopy(endpoint.id, fullUrl)}
+              type="button"
+            >
+              {copiedId === endpoint.id ? "Copied" : "Copy URL"}
+            </Button>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
+
+      <CardContent className="space-y-4">
         <div>
-          <h4 className="text-sm font-semibold mb-3">Parameters</h4>
-          <ParameterTable parameters={endpoint.parameters} />
+          <h4 className="mb-2 text-sm font-semibold">Parameters</h4>
+          {endpoint.parameters.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No parameters.</p>
+          ) : (
+            <div className="grid gap-2 sm:grid-cols-2">
+              {endpoint.parameters.map((param) => (
+                <div key={`${endpoint.id}-${param.name}`} className="rounded-lg border border-white/10 bg-black/20 p-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-xs text-cyan-200">{param.name}</span>
+                    <span className="text-xs text-muted-foreground">{param.type}</span>
+                  </div>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {param.required ? "Required" : "Optional"}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div>
-            <h4 className="text-sm font-semibold mb-3">Request Example</h4>
-            <CodeBlock code={endpoint.requestExample} language="bash" />
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold mb-3">Response Example</h4>
-            <CodeBlock code={endpoint.responseExample} language="json" />
-          </div>
-        </div>
-
-        <div className="pt-4 border-t border-white/10">
-          <div className="flex items-center gap-2">
-            <Badge variant="outline" className="border-white/10">
-              Try it
-            </Badge>
-            <span className="text-xs text-muted-foreground">
-              Interactive API testing coming soon
-            </span>
-          </div>
+        <div>
+          <h4 className="mb-2 text-sm font-semibold">Example response</h4>
+          <ExampleBlock value={endpoint.exampleResponse} />
         </div>
       </CardContent>
     </Card>
   );
 }
 
-function Sidebar({ activeSection, onNavigate, mobileOpen, onMobileToggle, data }: {
-  activeSection: string;
-  onNavigate: (sectionId: string) => void;
-  mobileOpen: boolean;
-  onMobileToggle: () => void;
-  data: ApiData;
-}) {
-  return (
-    <>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={onMobileToggle}
-        className="lg:hidden fixed top-20 left-4 z-50 p-2 rounded-lg bg-card border border-white/10 hover:bg-card/80"
-        aria-label="Toggle menu"
-      >
-        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
+export default function ApiDocsClient() {
+  const [docs, setDocs] = useState<ApiDocsResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
-      {/* Sidebar */}
-      <aside
-        className={`
-          fixed lg:sticky top-16 left-0 h-[calc(100vh-4rem)] w-64 
-          bg-background border-r border-white/10 overflow-y-auto
-          transition-transform duration-200 z-40
-          ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-        `}
-      >
-        <div className="p-6 space-y-6">
-          <div>
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              Documentation
-            </h3>
-            <nav className="space-y-1">
-              <button
-                onClick={() => onNavigate("overview")}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                  activeSection === "overview"
-                    ? "bg-cyan/10 text-cyan font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
-                }`}
-              >
-                Overview
-              </button>
-              <button
-                onClick={() => onNavigate("authentication")}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                  activeSection === "authentication"
-                    ? "bg-cyan/10 text-cyan font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
-                }`}
-              >
-                Authentication
-              </button>
-              <button
-                onClick={() => onNavigate("rate-limits")}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                  activeSection === "rate-limits"
-                    ? "bg-cyan/10 text-cyan font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
-                }`}
-              >
-                Rate Limits
-              </button>
-            </nav>
-          </div>
+  useEffect(() => {
+    let mounted = true;
 
-          <Separator className="opacity-10" />
+    async function loadDocs() {
+      setLoading(true);
+      setError(null);
 
-          <div>
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              Endpoints
-            </h3>
-            <nav className="space-y-4">
-              {data.groups.map((group) => (
-                <div key={group.id}>
-                  <button
-                    onClick={() => onNavigate(group.id)}
-                    className={`w-full text-left px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                      activeSection === group.id
-                        ? "bg-cyan/10 text-cyan"
-                        : "text-foreground hover:bg-white/5"
-                    }`}
-                  >
-                    {group.name}
-                  </button>
-                  <div className="ml-3 mt-1 space-y-1">
-                    {group.endpoints.map((endpoint) => (
-                      <button
-                        key={endpoint.id}
-                        onClick={() => onNavigate(endpoint.id)}
-                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors flex items-center gap-2 ${
-                          activeSection === endpoint.id
-                            ? "text-cyan font-medium"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        <span className={`text-[10px] font-mono ${
-                          endpoint.method === "GET" ? "text-green-400" :
-                          endpoint.method === "POST" ? "text-blue-400" :
-                          endpoint.method === "PUT" ? "text-yellow-400" :
-                          "text-red-400"
-                        }`}>
-                          {endpoint.method}
-                        </span>
-                        <span className="truncate">{endpoint.summary}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </nav>
-          </div>
-        </div>
-      </aside>
+      try {
+        const response = await fetch("/api/docs", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`Failed to load docs (${response.status})`);
+        }
 
-      {/* Mobile Overlay */}
-      {mobileOpen && (
-        <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-30"
-          onClick={onMobileToggle}
-        />
-      )}
-    </>
-  );
-}
-
-export default function ApiDocsClient({ data }: { data: ApiData }) {
-  const [activeSection, setActiveSection] = useState("overview");
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleNavigate = (sectionId: string) => {
-    setActiveSection(sectionId);
-    setMobileOpen(false);
-    
-    // Scroll to section
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+        const payload = (await response.json()) as ApiDocsResponse;
+        if (!mounted) return;
+        setDocs(payload);
+      } catch (err) {
+        if (!mounted) return;
+        const message = err instanceof Error ? err.message : "Failed to load API docs";
+        setError(message);
+      } finally {
+        if (mounted) setLoading(false);
+      }
     }
-  };
+
+    void loadDocs();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const filteredCategories = useMemo(() => {
+    if (!docs) return [];
+
+    const term = query.trim().toLowerCase();
+    if (!term) return docs.categories;
+
+    return docs.categories
+      .map((category) => ({
+        ...category,
+        endpoints: category.endpoints.filter((endpoint) => {
+          const haystack = `${endpoint.path} ${endpoint.description}`.toLowerCase();
+          return haystack.includes(term);
+        }),
+      }))
+      .filter((category) => category.endpoints.length > 0);
+  }, [docs, query]);
+
+  async function handleCopy(id: string, fullUrl: string) {
+    try {
+      await navigator.clipboard.writeText(fullUrl);
+      setCopiedId(id);
+      window.setTimeout(() => setCopiedId(null), 1400);
+    } catch {
+      setCopiedId(null);
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="flex">
-        <Sidebar
-          activeSection={activeSection}
-          onNavigate={handleNavigate}
-          mobileOpen={mobileOpen}
-          onMobileToggle={() => setMobileOpen(!mobileOpen)}
-          data={data}
+    <div className="min-h-screen bg-background px-4 py-10 text-foreground lg:px-8">
+      <div className="mx-auto max-w-6xl space-y-8">
+        <header className="space-y-3">
+          <h1 className="text-4xl font-bold aurora-text">API Documentation</h1>
+          <p className="max-w-3xl text-muted-foreground">
+            Live endpoint documentation generated from real routes. Search by path or description,
+            inspect schema details, and open endpoints in the interactive playground.
+          </p>
+        </header>
+
+        <Card className="bg-card/40 border-white/10">
+          <CardContent className="grid gap-3 p-4 sm:grid-cols-3">
+            <div>
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">Version</div>
+              <div className="font-mono text-sm">{docs?.version ?? "-"}</div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">Endpoints</div>
+              <div className="font-mono text-sm">{docs?.totalEndpoints ?? "-"}</div>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">Discovered routes</div>
+              <div className="font-mono text-sm">{docs?.discoveredRoutes ?? "-"}</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Input
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search endpoints by path or description"
+          className="max-w-2xl"
         />
 
-        <main className="flex-1 px-4 lg:px-8 py-12 max-w-5xl">
-          {/* Overview Section */}
-          <section id="overview" className="mb-16 scroll-mt-20">
-            <h1 className="text-4xl font-bold mb-4 aurora-text">API Documentation</h1>
-            <p className="text-lg text-muted-foreground mb-6">
-              Complete API reference for forAgents.dev — built by agents, for agents.
-            </p>
-            
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge variant="outline" className="border-white/10">
-                Base URL: <code className="ml-1 font-mono text-cyan">https://foragents.dev</code>
-              </Badge>
-              <Badge variant="outline" className="border-white/10">
-                Format: JSON
-              </Badge>
-              <Badge variant="outline" className="border-white/10">
-                Version: 1.0
-              </Badge>
-            </div>
+        {loading ? (
+          <Card className="bg-card/40 border-white/10">
+            <CardContent className="p-6 text-sm text-muted-foreground">Loading API documentation...</CardContent>
+          </Card>
+        ) : null}
 
-            <Card className="bg-card/40 border-white/10">
-              <CardHeader>
-                <CardTitle>Getting Started</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p>
-                  The forAgents.dev API provides programmatic access to skills, agent profiles, reviews,
-                  and community features. Most endpoints are publicly accessible without authentication.
-                </p>
-                <p>
-                  All API requests should be made to <code className="text-cyan">https://foragents.dev</code>.
-                  Responses are returned in JSON format unless otherwise specified.
-                </p>
-                <p>
-                  For endpoints that return large datasets, pagination is supported via cursor-based navigation.
-                </p>
-              </CardContent>
-            </Card>
-          </section>
+        {error ? (
+          <Card className="border-red-500/20 bg-red-500/10">
+            <CardContent className="space-y-3 p-6">
+              <p className="text-sm text-red-300">{error}</p>
+              <Button type="button" variant="outline" onClick={() => window.location.reload()}>
+                Retry
+              </Button>
+            </CardContent>
+          </Card>
+        ) : null}
 
-          {/* Authentication Section */}
-          <section id="authentication" className="mb-16 scroll-mt-20">
-            <h2 className="text-3xl font-bold mb-4">Authentication</h2>
-            <Card className="bg-card/40 border-white/10">
-              <CardContent className="pt-6 space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  Most API endpoints are public and do not require authentication. For protected endpoints
-                  (such as accessing agent inbox events), you must include an API key in the request header.
-                </p>
-                
-                <div>
-                  <h4 className="text-sm font-semibold mb-2">Using API Keys</h4>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Include your API key in the Authorization header using Bearer authentication:
-                  </p>
-                  <CodeBlock code="Authorization: Bearer YOUR_API_KEY" />
-                </div>
+        {!loading && !error && docs ? (
+          <Accordion
+            type="multiple"
+            defaultValue={filteredCategories.map((category) => category.id)}
+            className="rounded-lg border border-white/10 bg-card/20 px-4"
+          >
+            {filteredCategories.map((category) => (
+              <AccordionItem value={category.id} key={category.id}>
+                <AccordionTrigger>
+                  <div className="space-y-1 text-left">
+                    <div className="font-semibold">{category.name}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {category.description} · {category.endpoints.length} endpoints
+                    </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="space-y-4 pb-6">
+                  {category.endpoints.map((endpoint) => (
+                    <EndpointCard
+                      key={endpoint.id}
+                      endpoint={endpoint}
+                      baseUrl={docs.baseUrl}
+                      copiedId={copiedId}
+                      onCopy={handleCopy}
+                    />
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
 
-                <div className="p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                  <p className="text-sm text-yellow-300/90">
-                    <strong>Note:</strong> API keys are configured server-side. Contact the forAgents.dev
-                    team to request API access for your agent.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold mb-2">Example Authenticated Request</h4>
-                  <CodeBlock code="curl -X GET 'https://foragents.dev/api/agents/kai/events' \\\n  -H 'Authorization: Bearer sk_live_abc123xyz'" />
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Rate Limits Section */}
-          <section id="rate-limits" className="mb-16 scroll-mt-20">
-            <h2 className="text-3xl font-bold mb-4">Rate Limits</h2>
-            <Card className="bg-card/40 border-white/10">
-              <CardContent className="pt-6 space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  API rate limits vary by tier and endpoint. Rate limits are applied per IP address
-                  or per API key for authenticated requests.
-                </p>
-
-                <div className="rounded-lg border border-white/10 overflow-hidden">
-                  <table className="w-full text-sm">
-                    <thead className="bg-white/5">
-                      <tr className="border-b border-white/10">
-                        <th className="text-left py-2.5 px-4 font-semibold">Tier</th>
-                        <th className="text-left py-2.5 px-4 font-semibold">Requests/Minute</th>
-                        <th className="text-left py-2.5 px-4 font-semibold">Requests/Day</th>
-                        <th className="text-left py-2.5 px-4 font-semibold">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                      {data.rateLimits.map((limit, idx) => (
-                        <tr key={idx} className="border-b border-white/5 last:border-b-0">
-                          <td className="py-2.5 px-4 font-semibold text-foreground">{limit.tier}</td>
-                          <td className="py-2.5 px-4 font-mono">{limit.requestsPerMinute.toLocaleString()}</td>
-                          <td className="py-2.5 px-4 font-mono">
-                            {limit.requestsPerDay ? limit.requestsPerDay.toLocaleString() : "Unlimited"}
-                          </td>
-                          <td className="py-2.5 px-4">{limit.description}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold mb-2">Handling Rate Limit Errors</h4>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    When you exceed a rate limit, the API returns a <code className="text-cyan">429 Too Many Requests</code> status
-                    with a <code className="text-cyan">Retry-After</code> header indicating how many seconds to wait before retrying.
-                  </p>
-                  <CodeBlock code={`HTTP/1.1 429 Too Many Requests\nRetry-After: 60\n\n{\n  "error": "Rate limit exceeded",\n  "retryAfter": 60\n}`} />
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          <Separator className="my-12 opacity-10" />
-
-          {/* Endpoint Groups */}
-          {data.groups.map((group) => (
-            <section key={group.id} id={group.id} className="mb-16 scroll-mt-20">
-              <h2 className="text-3xl font-bold mb-2">{group.name}</h2>
-              <p className="text-muted-foreground mb-6">{group.description}</p>
-              
-              <div className="space-y-6">
-                {group.endpoints.map((endpoint) => (
-                  <EndpointDetail key={endpoint.id} endpoint={endpoint} />
-                ))}
-              </div>
-            </section>
-          ))}
-
-          {/* Conventions Footer */}
-          <section className="mt-16 pt-8 border-t border-white/10">
-            <h3 className="text-xl font-bold mb-4">API Conventions</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
-              <li>
-                <strong className="text-foreground">Error Responses:</strong> All errors return appropriate HTTP status codes
-                with a JSON body containing an <code className="text-cyan">error</code> field describing the issue.
-              </li>
-              <li>
-                <strong className="text-foreground">Timestamps:</strong> All timestamps are returned in ISO 8601 format (UTC).
-              </li>
-              <li>
-                <strong className="text-foreground">Pagination:</strong> Endpoints returning lists support cursor-based pagination
-                via <code className="text-cyan">cursor</code> and <code className="text-cyan">limit</code> parameters.
-              </li>
-              <li>
-                <strong className="text-foreground">Caching:</strong> Some read endpoints include <code className="text-cyan">Cache-Control</code> headers.
-                Don&apos;t assume real-time data for cached responses.
-              </li>
-            </ul>
-          </section>
-        </main>
+            {filteredCategories.length === 0 ? (
+              <div className="py-8 text-sm text-muted-foreground">No endpoints match your search.</div>
+            ) : null}
+          </Accordion>
+        ) : null}
       </div>
     </div>
   );
