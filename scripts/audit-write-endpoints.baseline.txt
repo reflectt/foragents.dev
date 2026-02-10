@@ -16,6 +16,7 @@ src/app/api/community/route.ts
 src/app/api/contact/route.ts
 src/app/api/contributors/route.ts
 src/app/api/developer/route.ts
+src/app/api/diagnostics/errors/route.ts
 src/app/api/faq/[id]/route.ts
 src/app/api/faq/route.ts
 src/app/api/glossary/route.ts
