@@ -1,0 +1,82 @@
+[
+  {
+    "id": "evt_20260212_workshop_memory",
+    "title": "Agent Memory Patterns in Practice",
+    "description": "A hands-on workshop on building resilient short-term and long-term memory layers for agents.",
+    "type": "workshop",
+    "date": "2026-02-12T18:00:00.000Z",
+    "url": "https://foragents.dev/events/memory-patterns",
+    "location": "Online",
+    "createdAt": "2026-02-01T18:00:00.000Z"
+  },
+  {
+    "id": "evt_20260214_meetup_vancouver",
+    "title": "Vancouver Agent Builders Meetup",
+    "description": "Community meetup for local builders sharing active agent projects and deployment lessons.",
+    "type": "meetup",
+    "date": "2026-02-14T02:00:00.000Z",
+    "url": "https://foragents.dev/events/vancouver-meetup",
+    "location": "Vancouver, BC",
+    "createdAt": "2026-02-01T18:05:00.000Z"
+  },
+  {
+    "id": "evt_20260218_workshop_observability",
+    "title": "Agent Observability Workshop",
+    "description": "Learn logging, traces, and replay strategies for debugging production agent workflows.",
+    "type": "workshop",
+    "date": "2026-02-18T19:00:00.000Z",
+    "url": "https://foragents.dev/events/observability-workshop",
+    "location": "Online",
+    "createdAt": "2026-02-01T18:10:00.000Z"
+  },
+  {
+    "id": "evt_20260222_hackathon_weekend",
+    "title": "Weekend Agent Build Hackathon",
+    "description": "A 2-day hackathon to ship agent tools, workflows, and integrations with community mentors.",
+    "type": "hackathon",
+    "date": "2026-02-22T17:00:00.000Z",
+    "url": "https://foragents.dev/events/weekend-hackathon",
+    "location": "Online",
+    "createdAt": "2026-02-01T18:15:00.000Z"
+  },
+  {
+    "id": "evt_20260301_meetup_nyc",
+    "title": "NYC Agents + MCP Meetup",
+    "description": "Meetup focused on MCP integrations, local demos, and networking with agent engineers.",
+    "type": "meetup",
+    "date": "2026-03-01T23:30:00.000Z",
+    "url": "https://foragents.dev/events/nyc-mcp-meetup",
+    "location": "New York, NY",
+    "createdAt": "2026-02-01T18:20:00.000Z"
+  },
+  {
+    "id": "evt_20260305_workshop_security",
+    "title": "Secure Agent Actions Workshop",
+    "description": "Practical controls for prompt-injection defense, tool allowlists, and safe action boundaries.",
+    "type": "workshop",
+    "date": "2026-03-05T20:00:00.000Z",
+    "url": "https://foragents.dev/events/security-workshop",
+    "location": "Online",
+    "createdAt": "2026-02-01T18:25:00.000Z"
+  },
+  {
+    "id": "evt_20260310_meetup_sf",
+    "title": "San Francisco Agent Operators Meetup",
+    "description": "In-person meetup for teams operating autonomous systems in production.",
+    "type": "meetup",
+    "date": "2026-03-10T01:00:00.000Z",
+    "url": "https://foragents.dev/events/sf-operators-meetup",
+    "location": "San Francisco, CA",
+    "createdAt": "2026-02-01T18:30:00.000Z"
+  },
+  {
+    "id": "evt_20260320_hackathon_global",
+    "title": "Global Agent Hackathon Spring 2026",
+    "description": "Global hackathon for agent-native products with mentors, tracks, and showcase judging.",
+    "type": "hackathon",
+    "date": "2026-03-20T16:00:00.000Z",
+    "url": "https://foragents.dev/events/global-hackathon-spring",
+    "location": "Online",
+    "createdAt": "2026-02-01T18:35:00.000Z"
+  }
+]
