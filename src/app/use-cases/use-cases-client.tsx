@@ -12,21 +12,17 @@ type Industry =
   | "security"
   | "automation";
 
-type UseCaseMetric = {
-  label: string;
-  value: string;
-};
+type Difficulty = "beginner" | "intermediate" | "advanced";
 
 type UseCaseEntry = {
   id: string;
   title: string;
   description: string;
   industry: Exclude<Industry, "all">;
-  agentStack: string[];
-  results: UseCaseMetric[];
-  author: string;
-  likes: number;
-  createdAt: string;
+  difficulty: Difficulty;
+  skills: string[];
+  tags: string[];
+  updatedAt: string;
 };
 
 type UseCasesResponse = {
@@ -44,21 +40,11 @@ const INDUSTRY_OPTIONS: Array<{ value: Industry; label: string }> = [
   { value: "automation", label: "Automation" },
 ];
 
-function parseResults(input: string): UseCaseMetric[] {
-  return input
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => {
-      const [label, ...rest] = line.split(":");
-      const value = rest.join(":").trim();
-      return {
-        label: (label || "").trim(),
-        value,
-      };
-    })
-    .filter((metric) => metric.label.length > 0 && metric.value.length > 0);
-}
+const DIFFICULTY_OPTIONS: Array<{ value: Difficulty; label: string }> = [
+  { value: "beginner", label: "Beginner" },
+  { value: "intermediate", label: "Intermediate" },
+  { value: "advanced", label: "Advanced" },
+];
 
 export default function UseCasesClient() {
   const [useCases, setUseCases] = useState<UseCaseEntry[]>([]);
@@ -67,14 +53,13 @@ export default function UseCasesClient() {
 
   const [industry, setIndustry] = useState<Industry>("all");
   const [search, setSearch] = useState("");
-  const [likeLoadingId, setLikeLoadingId] = useState<string | null>(null);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [submitIndustry, setSubmitIndustry] = useState<Exclude<Industry, "all">>("devops");
-  const [agentStackInput, setAgentStackInput] = useState("");
-  const [resultsInput, setResultsInput] = useState("");
-  const [author, setAuthor] = useState("");
+  const [difficulty, setDifficulty] = useState<Difficulty>("beginner");
+  const [skillsInput, setSkillsInput] = useState("");
+  const [tagsInput, setTagsInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
 
@@ -105,53 +90,37 @@ export default function UseCasesClient() {
     void fetchUseCases();
   }, [fetchUseCases]);
 
-  const totalLikes = useMemo(
-    () => useCases.reduce((sum, useCase) => sum + useCase.likes, 0),
+  const industriesRepresented = useMemo(
+    () => new Set(useCases.map((useCase) => useCase.industry)).size,
     [useCases]
   );
 
-  async function handleLike(useCaseId: string) {
-    setLikeLoadingId(useCaseId);
-
-    try {
-      const response = await fetch(`/api/use-cases/${useCaseId}`, {
-        method: "POST",
-      });
-
-      const data = (await response.json()) as { useCase?: UseCaseEntry; error?: string };
-
-      if (!response.ok || !data.useCase) {
-        throw new Error(data.error || "Unable to like this use case");
-      }
-
-      setUseCases((current) =>
-        current.map((useCase) => (useCase.id === data.useCase?.id ? data.useCase : useCase))
-      );
-    } catch {
-      setError("Unable to register like right now.");
-    } finally {
-      setLikeLoadingId(null);
-    }
-  }
+  const difficultiesRepresented = useMemo(
+    () => new Set(useCases.map((useCase) => useCase.difficulty)).size,
+    [useCases]
+  );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitMessage(null);
 
-    const agentStack = agentStackInput
+    const skills = skillsInput
       .split(",")
       .map((item) => item.trim())
       .filter(Boolean);
 
-    const results = parseResults(resultsInput);
+    const tags = tagsInput
+      .split(",")
+      .map((item) => item.trim().toLowerCase())
+      .filter(Boolean);
 
-    if (agentStack.length === 0) {
-      setSubmitMessage("Please include at least one tool in Agent Stack.");
+    if (skills.length === 0) {
+      setSubmitMessage("Please include at least one skill.");
       return;
     }
 
-    if (results.length === 0) {
-      setSubmitMessage("Please add at least one metric as label:value in Results.");
+    if (tags.length === 0) {
+      setSubmitMessage("Please include at least one tag.");
       return;
     }
 
@@ -165,9 +134,9 @@ export default function UseCasesClient() {
           title,
           description,
           industry: submitIndustry,
-          agentStack,
-          results,
-          author,
+          difficulty,
+          skills,
+          tags,
         }),
       });
 
@@ -183,18 +152,24 @@ export default function UseCasesClient() {
       setTitle("");
       setDescription("");
       setSubmitIndustry("devops");
-      setAgentStackInput("");
-      setResultsInput("");
-      setAuthor("");
+      setDifficulty("beginner");
+      setSkillsInput("");
+      setTagsInput("");
       setSubmitMessage("Use case submitted. Thanks for sharing!");
       setError(null);
 
+      const searchable = [
+        data.useCase.title,
+        data.useCase.description,
+        data.useCase.skills.join(" "),
+        data.useCase.tags.join(" "),
+      ]
+        .join(" ")
+        .toLowerCase();
+
       const shouldAdd =
         (industry === "all" || data.useCase.industry === industry) &&
-        (!search.trim() ||
-          `${data.useCase.title} ${data.useCase.description} ${data.useCase.author}`
-            .toLowerCase()
-            .includes(search.trim().toLowerCase()));
+        (!search.trim() || searchable.includes(search.trim().toLowerCase()));
 
       if (shouldAdd) {
         setUseCases((current) => [data.useCase as UseCaseEntry, ...current]);
@@ -212,7 +187,7 @@ export default function UseCasesClient() {
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Use Cases from Real Teams</h1>
         <p className="text-slate-300 max-w-3xl mx-auto">
           Discover how teams use agent workflows in production. Filter by industry, search by
-          outcome, and submit your own case study.
+          skills and tags, and submit your own case study.
         </p>
       </section>
 
@@ -237,7 +212,7 @@ export default function UseCasesClient() {
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search by title, author, tools, or results"
+            placeholder="Search by title, description, skills, tags, or difficulty"
             className="mt-2 w-full rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2"
           />
         </div>
@@ -249,12 +224,12 @@ export default function UseCasesClient() {
           <p className="text-3xl font-bold text-[#06D6A0] mt-1">{useCases.length}</p>
         </div>
         <div className="rounded-xl border border-white/10 bg-slate-900/25 p-5 text-center">
-          <p className="text-sm text-slate-400">Total likes</p>
-          <p className="text-3xl font-bold text-[#06D6A0] mt-1">{totalLikes}</p>
+          <p className="text-sm text-slate-400">Industries represented</p>
+          <p className="text-3xl font-bold text-[#06D6A0] mt-1">{industriesRepresented}</p>
         </div>
         <div className="rounded-xl border border-white/10 bg-slate-900/25 p-5 text-center">
-          <p className="text-sm text-slate-400">Industries represented</p>
-          <p className="text-3xl font-bold text-[#06D6A0] mt-1">6</p>
+          <p className="text-sm text-slate-400">Difficulties represented</p>
+          <p className="text-3xl font-bold text-[#06D6A0] mt-1">{difficultiesRepresented}</p>
         </div>
       </section>
 
@@ -284,58 +259,50 @@ export default function UseCasesClient() {
                 key={entry.id}
                 className="rounded-xl border border-white/10 bg-slate-900/30 p-5 space-y-4"
               >
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex flex-wrap items-start justify-between gap-3">
                   <h2 className="text-xl font-semibold text-[#F8FAFC]">{entry.title}</h2>
-                  <span className="text-xs px-2 py-1 rounded-full border border-[#06D6A0]/30 bg-[#06D6A0]/10 text-[#06D6A0]">
-                    {entry.industry}
-                  </span>
+                  <div className="flex gap-2">
+                    <span className="text-xs px-2 py-1 rounded-full border border-[#06D6A0]/30 bg-[#06D6A0]/10 text-[#06D6A0]">
+                      {entry.industry}
+                    </span>
+                    <span className="text-xs px-2 py-1 rounded-full border border-white/20 bg-white/5 text-slate-200">
+                      {entry.difficulty}
+                    </span>
+                  </div>
                 </div>
 
                 <p className="text-slate-300 leading-relaxed">{entry.description}</p>
 
                 <div>
-                  <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">Agent stack</p>
+                  <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">Skills</p>
                   <div className="flex flex-wrap gap-2">
-                    {entry.agentStack.map((tool) => (
+                    {entry.skills.map((skill) => (
                       <span
-                        key={`${entry.id}-${tool}`}
+                        key={`${entry.id}-${skill}`}
                         className="text-xs px-2 py-1 rounded-md border border-white/10 bg-white/5"
                       >
-                        {tool}
+                        {skill}
                       </span>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">Results</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                    {entry.results.map((metric) => (
-                      <div
-                        key={`${entry.id}-${metric.label}`}
-                        className="rounded-lg border border-white/10 bg-white/5 px-3 py-2"
+                  <p className="text-xs text-slate-400 uppercase tracking-wide mb-2">Tags</p>
+                  <div className="flex flex-wrap gap-2">
+                    {entry.tags.map((tag) => (
+                      <span
+                        key={`${entry.id}-${tag}`}
+                        className="text-xs px-2 py-1 rounded-md border border-[#06D6A0]/30 bg-[#06D6A0]/10 text-[#06D6A0]"
                       >
-                        <p className="text-sm font-semibold text-[#06D6A0]">{metric.value}</p>
-                        <p className="text-[11px] text-slate-400">{metric.label}</p>
-                      </div>
+                        #{tag}
+                      </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-white/10">
-                  <div className="text-sm text-slate-400">
-                    by <span className="text-slate-200">{entry.author}</span> •{" "}
-                    {new Date(entry.createdAt).toLocaleDateString()}
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => handleLike(entry.id)}
-                    disabled={likeLoadingId === entry.id}
-                    className="rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold px-3 py-2 disabled:opacity-70"
-                  >
-                    {likeLoadingId === entry.id ? "Liking..." : `👍 ${entry.likes}`}
-                  </button>
+                <div className="pt-2 border-t border-white/10 text-sm text-slate-400">
+                  Updated {new Date(entry.updatedAt).toLocaleDateString()}
                 </div>
               </article>
             ))}
@@ -346,7 +313,7 @@ export default function UseCasesClient() {
       <section className="rounded-2xl border border-white/10 bg-slate-900/30 p-6 md:p-8">
         <h2 className="text-2xl font-bold text-[#F8FAFC] mb-2">Share Your Use Case</h2>
         <p className="text-slate-400 mb-6">
-          Submit your case study with your stack and measurable outcomes.
+          Submit your case study with clear skills and tags so others can discover it.
         </p>
 
         <form className="grid gap-4" onSubmit={handleSubmit}>
@@ -380,30 +347,33 @@ export default function UseCasesClient() {
               ))}
             </select>
 
-            <input
-              value={author}
-              onChange={(event) => setAuthor(event.target.value)}
-              required
-              placeholder="Author"
+            <select
+              value={difficulty}
+              onChange={(event) => setDifficulty(event.target.value as Difficulty)}
               className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
-            />
+            >
+              {DIFFICULTY_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <input
-            value={agentStackInput}
-            onChange={(event) => setAgentStackInput(event.target.value)}
+            value={skillsInput}
+            onChange={(event) => setSkillsInput(event.target.value)}
             required
-            placeholder="Agent stack (comma separated): openclaw, slack, github-actions"
+            placeholder="Skills (comma separated): monitoring, incident-response, ci-cd"
             className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
           />
 
-          <textarea
-            value={resultsInput}
-            onChange={(event) => setResultsInput(event.target.value)}
+          <input
+            value={tagsInput}
+            onChange={(event) => setTagsInput(event.target.value)}
             required
-            rows={4}
-            placeholder={"Results (one metric per line):\nTime saved: 42%\nMTTR: -33%"}
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 resize-none"
+            placeholder="Tags (comma separated): reliability, automation"
+            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
           />
 
           <div className="flex items-center justify-between gap-4">

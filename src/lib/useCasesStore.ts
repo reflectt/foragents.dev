@@ -9,30 +9,26 @@ export type UseCaseIndustry =
   | "security"
   | "automation";
 
-export type UseCaseResult = {
-  label: string;
-  value: string;
-};
+export type UseCaseDifficulty = "beginner" | "intermediate" | "advanced";
 
 export type UseCaseEntry = {
   id: string;
   title: string;
   description: string;
   industry: UseCaseIndustry;
-  agentStack: string[];
-  results: UseCaseResult[];
-  author: string;
-  likes: number;
-  createdAt: string;
+  difficulty: UseCaseDifficulty;
+  skills: string[];
+  tags: string[];
+  updatedAt: string;
 };
 
 type UseCaseSubmission = {
   title?: unknown;
   description?: unknown;
   industry?: unknown;
-  agentStack?: unknown;
-  results?: unknown;
-  author?: unknown;
+  difficulty?: unknown;
+  skills?: unknown;
+  tags?: unknown;
 };
 
 const USE_CASES_PATH = path.join(process.cwd(), "data", "use-cases.json");
@@ -46,33 +42,13 @@ export const USE_CASE_INDUSTRIES: UseCaseIndustry[] = [
   "automation",
 ];
 
-function isUseCaseResult(value: unknown): value is UseCaseResult {
-  if (!value || typeof value !== "object") return false;
-  const metric = value as Partial<UseCaseResult>;
-  return typeof metric.label === "string" && typeof metric.value === "string";
-}
+export const USE_CASE_DIFFICULTIES: UseCaseDifficulty[] = [
+  "beginner",
+  "intermediate",
+  "advanced",
+];
 
-function isUseCaseEntry(value: unknown): value is UseCaseEntry {
-  if (!value || typeof value !== "object") return false;
-  const entry = value as Partial<UseCaseEntry>;
-
-  return (
-    typeof entry.id === "string" &&
-    typeof entry.title === "string" &&
-    typeof entry.description === "string" &&
-    typeof entry.industry === "string" &&
-    USE_CASE_INDUSTRIES.includes(entry.industry as UseCaseIndustry) &&
-    Array.isArray(entry.agentStack) &&
-    entry.agentStack.every((tool) => typeof tool === "string") &&
-    Array.isArray(entry.results) &&
-    entry.results.every((metric) => isUseCaseResult(metric)) &&
-    typeof entry.author === "string" &&
-    typeof entry.likes === "number" &&
-    typeof entry.createdAt === "string"
-  );
-}
-
-function normalizeAgentStack(value: unknown): string[] {
+function normalizeStringArray(value: unknown): string[] {
   if (Array.isArray(value)) {
     return value
       .filter((item): item is string => typeof item === "string")
@@ -90,22 +66,24 @@ function normalizeAgentStack(value: unknown): string[] {
   return [];
 }
 
-function normalizeResults(value: unknown): UseCaseResult[] {
-  if (!Array.isArray(value)) return [];
+function isUseCaseEntry(value: unknown): value is UseCaseEntry {
+  if (!value || typeof value !== "object") return false;
+  const entry = value as Partial<UseCaseEntry>;
 
-  return value
-    .map((metric): UseCaseResult | null => {
-      if (!metric || typeof metric !== "object") return null;
-      const item = metric as Partial<UseCaseResult>;
-      if (typeof item.label !== "string" || typeof item.value !== "string") return null;
-
-      const label = item.label.trim();
-      const metricValue = item.value.trim();
-
-      if (!label || !metricValue) return null;
-      return { label, value: metricValue };
-    })
-    .filter((metric): metric is UseCaseResult => metric !== null);
+  return (
+    typeof entry.id === "string" &&
+    typeof entry.title === "string" &&
+    typeof entry.description === "string" &&
+    typeof entry.industry === "string" &&
+    USE_CASE_INDUSTRIES.includes(entry.industry as UseCaseIndustry) &&
+    typeof entry.difficulty === "string" &&
+    USE_CASE_DIFFICULTIES.includes(entry.difficulty as UseCaseDifficulty) &&
+    Array.isArray(entry.skills) &&
+    entry.skills.every((skill) => typeof skill === "string") &&
+    Array.isArray(entry.tags) &&
+    entry.tags.every((tag) => typeof tag === "string") &&
+    typeof entry.updatedAt === "string"
+  );
 }
 
 export async function readUseCases(): Promise<UseCaseEntry[]> {
@@ -117,7 +95,7 @@ export async function readUseCases(): Promise<UseCaseEntry[]> {
 
     return parsed
       .filter((entry): entry is UseCaseEntry => isUseCaseEntry(entry))
-      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
   } catch {
     return [];
   }
@@ -151,10 +129,10 @@ export function filterUseCases(
     const haystack = [
       entry.title,
       entry.description,
-      entry.author,
       entry.industry,
-      entry.agentStack.join(" "),
-      entry.results.map((metric) => `${metric.label} ${metric.value}`).join(" "),
+      entry.difficulty,
+      entry.skills.join(" "),
+      entry.tags.join(" "),
     ]
       .join(" ")
       .toLowerCase();
@@ -169,9 +147,9 @@ export function validateUseCaseSubmission(input: UseCaseSubmission): {
     title: string;
     description: string;
     industry: UseCaseIndustry;
-    agentStack: string[];
-    results: UseCaseResult[];
-    author: string;
+    difficulty: UseCaseDifficulty;
+    skills: string[];
+    tags: string[];
   };
 } {
   const errors: string[] = [];
@@ -179,24 +157,28 @@ export function validateUseCaseSubmission(input: UseCaseSubmission): {
   const title = typeof input.title === "string" ? input.title.trim() : "";
   const description = typeof input.description === "string" ? input.description.trim() : "";
   const industry = typeof input.industry === "string" ? input.industry.trim().toLowerCase() : "";
-  const author = typeof input.author === "string" ? input.author.trim() : "";
-  const agentStack = normalizeAgentStack(input.agentStack);
-  const results = normalizeResults(input.results);
+  const difficulty =
+    typeof input.difficulty === "string" ? input.difficulty.trim().toLowerCase() : "";
+  const skills = normalizeStringArray(input.skills);
+  const tags = normalizeStringArray(input.tags);
 
   if (!title) errors.push("title is required");
   if (!description) errors.push("description is required");
-  if (!author) errors.push("author is required");
 
   if (!industry || !USE_CASE_INDUSTRIES.includes(industry as UseCaseIndustry)) {
     errors.push(`industry must be one of: ${USE_CASE_INDUSTRIES.join(", ")}`);
   }
 
-  if (agentStack.length === 0) {
-    errors.push("agentStack must include at least one tool");
+  if (!difficulty || !USE_CASE_DIFFICULTIES.includes(difficulty as UseCaseDifficulty)) {
+    errors.push(`difficulty must be one of: ${USE_CASE_DIFFICULTIES.join(", ")}`);
   }
 
-  if (results.length === 0) {
-    errors.push("results must include at least one metric");
+  if (skills.length === 0) {
+    errors.push("skills must include at least one skill");
+  }
+
+  if (tags.length === 0) {
+    errors.push("tags must include at least one tag");
   }
 
   if (errors.length > 0) {
@@ -209,9 +191,9 @@ export function validateUseCaseSubmission(input: UseCaseSubmission): {
       title,
       description,
       industry: industry as UseCaseIndustry,
-      agentStack,
-      results,
-      author,
+      difficulty: difficulty as UseCaseDifficulty,
+      skills,
+      tags,
     },
   };
 }
@@ -230,8 +212,7 @@ export async function createUseCase(input: UseCaseSubmission): Promise<{
   const useCase: UseCaseEntry = {
     id: `usecase_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     ...validation.payload,
-    likes: 0,
-    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
 
   await writeUseCases([useCase, ...useCases]);
@@ -240,24 +221,4 @@ export async function createUseCase(input: UseCaseSubmission): Promise<{
     errors: [],
     useCase,
   };
-}
-
-export async function likeUseCase(id: string): Promise<UseCaseEntry | null> {
-  const useCases = await readUseCases();
-  const index = useCases.findIndex((entry) => entry.id === id);
-
-  if (index === -1) {
-    return null;
-  }
-
-  const updated: UseCaseEntry = {
-    ...useCases[index]!,
-    likes: (useCases[index]!.likes || 0) + 1,
-  };
-
-  const next = [...useCases];
-  next[index] = updated;
-
-  await writeUseCases(next);
-  return updated;
 }
