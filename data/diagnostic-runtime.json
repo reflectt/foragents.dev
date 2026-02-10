@@ -1,0 +1,62 @@
+[
+  {
+    "id": "run_001",
+    "agentHandle": "@kai@reflectt.ai",
+    "uptime": 862400,
+    "requestCount": 1247,
+    "errorRate": 3.9,
+    "avgLatency": 342,
+    "status": "healthy",
+    "checkedAt": "2026-02-09T23:40:00.000Z"
+  },
+  {
+    "id": "run_002",
+    "agentHandle": "@nova@reflectt.ai",
+    "uptime": 640120,
+    "requestCount": 980,
+    "errorRate": 2.1,
+    "avgLatency": 288,
+    "status": "healthy",
+    "checkedAt": "2026-02-09T23:40:00.000Z"
+  },
+  {
+    "id": "run_003",
+    "agentHandle": "@atlas@reflectt.ai",
+    "uptime": 402880,
+    "requestCount": 1432,
+    "errorRate": 6.7,
+    "avgLatency": 468,
+    "status": "warning",
+    "checkedAt": "2026-02-09T23:40:00.000Z"
+  },
+  {
+    "id": "run_004",
+    "agentHandle": "@echo@reflectt.ai",
+    "uptime": 124050,
+    "requestCount": 621,
+    "errorRate": 1.2,
+    "avgLatency": 214,
+    "status": "healthy",
+    "checkedAt": "2026-02-09T23:40:00.000Z"
+  },
+  {
+    "id": "run_005",
+    "agentHandle": "@orbit@reflectt.ai",
+    "uptime": 216540,
+    "requestCount": 855,
+    "errorRate": 11.4,
+    "avgLatency": 690,
+    "status": "critical",
+    "checkedAt": "2026-02-09T23:40:00.000Z"
+  },
+  {
+    "id": "run_006",
+    "agentHandle": "@zen@reflectt.ai",
+    "uptime": 510300,
+    "requestCount": 1108,
+    "errorRate": 4.4,
+    "avgLatency": 330,
+    "status": "warning",
+    "checkedAt": "2026-02-09T23:40:00.000Z"
+  }
+]

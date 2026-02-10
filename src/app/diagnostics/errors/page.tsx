@@ -1,299 +1,293 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { AlertTriangle, Clock, TrendingUp, Wrench } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { AlertTriangle, Bug, Search, ShieldAlert } from "lucide-react";
 
-interface ErrorPattern {
-  type: string;
-  category: "timeout" | "overflow" | "rate_limit" | "auth" | "hallucination";
-  description: string;
-  frequency: number;
-  lastOccurrence: string;
-  trend: "increasing" | "stable" | "decreasing";
-  suggestedFix: string;
-  exampleError: string;
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+type ErrorSeverity = "low" | "medium" | "high" | "critical";
+type ErrorStatus = "open" | "investigating" | "resolved";
+
+interface DiagnosticError {
+  id: string;
+  message: string;
+  severity: ErrorSeverity;
+  source: string;
+  stackTrace: string;
+  count: number;
+  firstSeen: string;
+  lastSeen: string;
+  status: ErrorStatus;
 }
 
-// Sample error patterns - in production, this would come from logs/analytics
-const errorPatterns: ErrorPattern[] = [
-  {
-    type: "Tool Timeout",
-    category: "timeout",
-    description: "Tool execution exceeds configured timeout threshold",
-    frequency: 47,
-    lastOccurrence: "2 hours ago",
-    trend: "increasing",
-    suggestedFix: "Increase timeout in tool config or optimize tool implementation. For browser/exec tools, consider splitting long operations into smaller chunks.",
-    exampleError: "TimeoutError: Tool 'web_search' exceeded 30s timeout at query='complex research topic with many results'",
-  },
-  {
-    type: "Context Window Overflow",
-    category: "overflow",
-    description: "Agent context exceeds model's maximum token limit",
-    frequency: 23,
-    lastOccurrence: "45 minutes ago",
-    trend: "stable",
-    suggestedFix: "Implement conversation summarization or sliding window. Reduce system prompt size. Use external memory (vector DB) for long-term context.",
-    exampleError: "ContextLengthExceededError: Request tokens (128,450) exceed model limit (128,000). Consider summarizing conversation history.",
-  },
-  {
-    type: "API Rate Limit",
-    category: "rate_limit",
-    description: "Provider API rate limits exceeded",
-    frequency: 156,
-    lastOccurrence: "12 minutes ago",
-    trend: "stable",
-    suggestedFix: "Implement exponential backoff with jitter. Add request queuing. Consider upgrading API tier or distributing load across multiple keys.",
-    exampleError: "RateLimitError: Anthropic API rate limit exceeded (429). Retry after 15s. Daily quota: 9,847 / 10,000 requests.",
-  },
-  {
-    type: "Authentication Failure",
-    category: "auth",
-    description: "Tool authentication or API key issues",
-    frequency: 8,
-    lastOccurrence: "3 days ago",
-    trend: "decreasing",
-    suggestedFix: "Verify API keys are valid and not expired. Check key permissions/scopes. Ensure credentials are properly injected into tool configs.",
-    exampleError: "AuthenticationError: Invalid API key for tool 'web_search'. Key format: 'sk-proj-...' (length: 48). Received: 'sk-...' (length: 32).",
-  },
-  {
-    type: "Hallucinated Tool Call",
-    category: "hallucination",
-    description: "Agent invokes non-existent tools or malformed parameters",
-    frequency: 34,
-    lastOccurrence: "5 hours ago",
-    trend: "increasing",
-    suggestedFix: "Strengthen system prompt with explicit tool schemas. Use strict JSON mode. Add validation layer before tool execution. Consider function calling over text parsing.",
-    exampleError: "ToolNotFoundError: Agent attempted to call 'browse_webpage' (not in toolkit). Did you mean 'browser'? Raw output: '<tool>browse_webpage</tool>'",
-  },
-  {
-    type: "Network Connectivity",
-    category: "timeout",
-    description: "Network failures when calling external APIs",
-    frequency: 19,
-    lastOccurrence: "1 hour ago",
-    trend: "stable",
-    suggestedFix: "Implement retry logic with exponential backoff. Add circuit breaker pattern. Check DNS resolution and firewall rules. Monitor endpoint health.",
-    exampleError: "NetworkError: ECONNREFUSED connecting to https://api.example.com. Check network connectivity and endpoint availability.",
-  },
-];
-
-const getCategoryColor = (category: string) => {
-  switch (category) {
-    case "timeout":
-      return "border-yellow-500/50 text-yellow-500";
-    case "overflow":
-      return "border-red-500/50 text-red-500";
-    case "rate_limit":
-      return "border-orange-500/50 text-orange-500";
-    case "auth":
-      return "border-purple-500/50 text-purple-500";
-    case "hallucination":
-      return "border-pink-500/50 text-pink-500";
-    default:
-      return "border-gray-500/50 text-gray-500";
-  }
+const severityBadge: Record<ErrorSeverity, string> = {
+  low: "border-blue-500/40 text-blue-400",
+  medium: "border-yellow-500/40 text-yellow-400",
+  high: "border-orange-500/40 text-orange-400",
+  critical: "border-red-500/40 text-red-400",
 };
 
-const getTrendIcon = (trend: string) => {
-  switch (trend) {
-    case "increasing":
-      return <TrendingUp className="w-3 h-3 text-red-500" />;
-    case "decreasing":
-      return <TrendingUp className="w-3 h-3 text-green-500 rotate-180" />;
-    default:
-      return <span className="w-3 h-3 inline-block">—</span>;
-  }
+const statusBadge: Record<ErrorStatus, string> = {
+  open: "border-red-500/40 text-red-400",
+  investigating: "border-yellow-500/40 text-yellow-400",
+  resolved: "border-green-500/40 text-green-400",
 };
 
 export default function ErrorsPage() {
-  // Calculate summary stats
-  const totalErrors = errorPatterns.reduce((sum, p) => sum + p.frequency, 0);
-  const increasingErrors = errorPatterns.filter(p => p.trend === "increasing").length;
-  const categoryBreakdown = errorPatterns.reduce((acc, p) => {
-    acc[p.category] = (acc[p.category] || 0) + p.frequency;
-    return acc;
-  }, {} as Record<string, number>);
+  const [errors, setErrors] = useState<DiagnosticError[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  const [search, setSearch] = useState("");
+  const [severity, setSeverity] = useState("all");
+  const [status, setStatus] = useState("all");
+  const [source, setSource] = useState("all");
+
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadErrors = async () => {
+      try {
+        setLoading(true);
+        setFetchError(null);
+
+        const params = new URLSearchParams();
+        if (search.trim()) params.set("search", search.trim());
+        if (severity !== "all") params.set("severity", severity);
+        if (status !== "all") params.set("status", status);
+        if (source !== "all") params.set("source", source);
+
+        const response = await fetch(`/api/diagnostics/errors?${params.toString()}`, {
+          signal: controller.signal,
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch diagnostic errors");
+        }
+
+        const payload = (await response.json()) as { errors: DiagnosticError[] };
+        setErrors(payload.errors ?? []);
+      } catch (error) {
+        if ((error as Error).name === "AbortError") return;
+        setFetchError("Unable to load diagnostics right now.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadErrors();
+
+    return () => controller.abort();
+  }, [search, severity, status, source]);
+
+  useEffect(() => {
+    if (!errors.length) {
+      setSelectedId(null);
+      return;
+    }
+
+    const stillExists = selectedId && errors.some((item) => item.id === selectedId);
+    if (!stillExists) setSelectedId(errors[0].id);
+  }, [errors, selectedId]);
+
+  const selectedError = useMemo(
+    () => errors.find((item) => item.id === selectedId) ?? null,
+    [errors, selectedId]
+  );
+
+  const summary = useMemo(() => {
+    const critical = errors.filter((item) => item.severity === "critical").length;
+    const open = errors.filter((item) => item.status === "open").length;
+    const totalCount = errors.reduce((sum, item) => sum + item.count, 0);
+
+    return { critical, open, totalCount };
+  }, [errors]);
+
+  const sources = useMemo(
+    () => Array.from(new Set(errors.map((item) => item.source))).sort((a, b) => a.localeCompare(b)),
+    [errors]
+  );
 
   return (
     <main id="main-content" className="min-h-screen bg-[#0a0a0a]">
       <div className="mx-auto max-w-7xl px-4 py-10 md:py-14">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Error <span className="aurora-text">Pattern Analyzer</span>
+            Error <span className="aurora-text">Diagnostics</span>
           </h1>
           <p className="mt-2 text-muted-foreground">
-            Categorize common agent failure modes with suggested fixes and real-time trends.
+            Persistent error telemetry with search, filters, and deep stack trace inspection.
           </p>
         </div>
 
-        {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <Card className="bg-[#0f0f0f] border-white/10">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Total Errors (7d)</p>
-                  <p className="text-3xl font-bold mt-1">{totalErrors}</p>
-                </div>
-                <div className="p-3 rounded-lg bg-red-500/10">
-                  <AlertTriangle className="w-6 h-6 text-red-500" />
-                </div>
+            <CardContent className="pt-6 flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Total events</p>
+                <p className="text-3xl font-bold mt-1">{summary.totalCount}</p>
               </div>
+              <Bug className="w-6 h-6 text-[#06D6A0]" />
             </CardContent>
           </Card>
-
           <Card className="bg-[#0f0f0f] border-white/10">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Increasing Patterns</p>
-                  <p className="text-3xl font-bold mt-1">{increasingErrors}</p>
-                </div>
-                <div className="p-3 rounded-lg bg-orange-500/10">
-                  <TrendingUp className="w-6 h-6 text-orange-500" />
-                </div>
+            <CardContent className="pt-6 flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Open issues</p>
+                <p className="text-3xl font-bold mt-1">{summary.open}</p>
               </div>
+              <AlertTriangle className="w-6 h-6 text-yellow-400" />
             </CardContent>
           </Card>
-
           <Card className="bg-[#0f0f0f] border-white/10">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Most Common</p>
-                  <p className="text-xl font-bold mt-1">API Rate Limit</p>
-                </div>
-                <div className="p-3 rounded-lg bg-[#06D6A0]/10">
-                  <Clock className="w-6 h-6 text-[#06D6A0]" />
-                </div>
+            <CardContent className="pt-6 flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Critical patterns</p>
+                <p className="text-3xl font-bold mt-1">{summary.critical}</p>
               </div>
+              <ShieldAlert className="w-6 h-6 text-red-400" />
             </CardContent>
           </Card>
         </div>
 
-        {/* Category Breakdown */}
-        <Card className="bg-[#0f0f0f] border-white/10 mb-8">
-          <CardHeader>
-            <CardTitle className="text-xl">Error Category Breakdown</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {Object.entries(categoryBreakdown)
-                .sort(([, a], [, b]) => b - a)
-                .map(([category, count], idx) => {
-                  const percentage = ((count / totalErrors) * 100).toFixed(1);
-                  
-                  return (
-                    <div key={idx} className="space-y-2">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="font-medium capitalize">{category.replace('_', ' ')}</span>
-                        <span className="text-muted-foreground">
-                          {count} errors ({percentage}%)
-                        </span>
-                      </div>
-                      
-                      {/* Pure CSS Bar */}
-                      <div className="relative w-full h-3 bg-white/5 rounded-full overflow-hidden">
-                        <div
-                          className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#06D6A0] to-[#06D6A0]/60 transition-all"
-                          style={{ width: `${percentage}%` }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
+        <Card className="bg-[#0f0f0f] border-white/10 mb-6">
+          <CardContent className="pt-6 grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div className="md:col-span-2 relative">
+              <Search className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
+              <Input
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                className="pl-9"
+                placeholder="Search message, source, stack trace, or id"
+              />
             </div>
+            <Select value={severity} onValueChange={setSeverity}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Severity" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All severities</SelectItem>
+                <SelectItem value="low">Low</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="high">High</SelectItem>
+                <SelectItem value="critical">Critical</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select value={status} onValueChange={setStatus}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All statuses</SelectItem>
+                <SelectItem value="open">Open</SelectItem>
+                <SelectItem value="investigating">Investigating</SelectItem>
+                <SelectItem value="resolved">Resolved</SelectItem>
+              </SelectContent>
+            </Select>
           </CardContent>
         </Card>
 
-        {/* Error Patterns */}
-        <div className="space-y-6">
-          {errorPatterns
-            .sort((a, b) => b.frequency - a.frequency)
-            .map((pattern, idx) => (
-              <Card key={idx} className="bg-[#0f0f0f] border-white/10">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-3">
-                        <CardTitle className="text-xl">{pattern.type}</CardTitle>
-                        <Badge variant="outline" className={getCategoryColor(pattern.category)}>
-                          {pattern.category.replace('_', ' ')}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{pattern.description}</p>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      {getTrendIcon(pattern.trend)}
-                      <span className="capitalize">{pattern.trend}</span>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {/* Stats */}
-                  <div className="flex items-center gap-6 text-sm">
-                    <div>
-                      <span className="text-muted-foreground">Frequency: </span>
-                      <span className="font-semibold">{pattern.frequency} occurrences</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Last seen: </span>
-                      <span className="font-semibold">{pattern.lastOccurrence}</span>
-                    </div>
-                  </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card className="bg-[#0f0f0f] border-white/10">
+            <CardHeader>
+              <CardTitle>Error stream</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <Select value={source} onValueChange={setSource}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Filter by source" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All sources</SelectItem>
+                  {sources.map((item) => (
+                    <SelectItem key={item} value={item}>
+                      {item}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
 
-                  {/* Example Error */}
+              {loading && <p className="text-sm text-muted-foreground">Loading diagnostics...</p>}
+              {fetchError && <p className="text-sm text-red-400">{fetchError}</p>}
+              {!loading && !fetchError && errors.length === 0 && (
+                <p className="text-sm text-muted-foreground">No errors match your current filters.</p>
+              )}
+
+              <div className="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+                {errors.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setSelectedId(item.id)}
+                    className={`w-full text-left rounded-lg border p-3 transition-colors ${
+                      selectedId === item.id
+                        ? "border-[#06D6A0]/50 bg-[#06D6A0]/5"
+                        : "border-white/10 hover:border-white/25"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="font-medium text-sm truncate">{item.message}</p>
+                      <span className="text-xs text-muted-foreground">x{item.count}</span>
+                    </div>
+                    <div className="mt-2 flex items-center gap-2">
+                      <Badge variant="outline" className={severityBadge[item.severity]}>
+                        {item.severity}
+                      </Badge>
+                      <Badge variant="outline" className={statusBadge[item.status]}>
+                        {item.status}
+                      </Badge>
+                      <code className="text-xs text-[#06D6A0]">{item.source}</code>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-[#0f0f0f] border-white/10">
+            <CardHeader>
+              <CardTitle>Error detail</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {!selectedError && <p className="text-sm text-muted-foreground">Select an error to inspect details.</p>}
+              {selectedError && (
+                <div className="space-y-4">
                   <div>
-                    <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                      <AlertTriangle className="w-4 h-4 text-yellow-500" />
-                      Example Error
-                    </h4>
-                    <pre className="px-4 py-3 bg-[#0a0a0a] border border-red-500/20 rounded text-xs text-red-400 font-mono overflow-x-auto">
-                      {pattern.exampleError}
+                    <p className="text-xs text-muted-foreground">ID</p>
+                    <p className="font-mono text-sm">{selectedError.id}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Message</p>
+                    <p className="text-sm">{selectedError.message}</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-xs text-muted-foreground">First seen</p>
+                      <p className="text-sm">{new Date(selectedError.firstSeen).toLocaleString()}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">Last seen</p>
+                      <p className="text-sm">{new Date(selectedError.lastSeen).toLocaleString()}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-2">Stack trace</p>
+                    <pre className="text-xs font-mono whitespace-pre-wrap break-words rounded border border-red-500/20 bg-black/40 p-3 text-red-300">
+                      {selectedError.stackTrace}
                     </pre>
                   </div>
-
-                  {/* Suggested Fix */}
-                  <div>
-                    <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                      <Wrench className="w-4 h-4 text-[#06D6A0]" />
-                      Suggested Fix
-                    </h4>
-                    <div className="px-4 py-3 bg-[#06D6A0]/5 border border-[#06D6A0]/20 rounded text-sm text-foreground/90">
-                      {pattern.suggestedFix}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
-
-        {/* Agent-Readable Format Section */}
-        <Card className="bg-[#0f0f0f] border-white/10 mt-8">
-          <CardHeader>
-            <CardTitle className="text-xl">Agent-Readable Error Reference</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <pre className="px-4 py-3 bg-[#0a0a0a] border border-white/5 rounded text-xs text-foreground/80 font-mono overflow-x-auto">
-{`ERROR_PATTERNS:
-${errorPatterns.map(p => `
-[${p.type.toUpperCase().replace(/ /g, '_')}]
-Category: ${p.category}
-Frequency: ${p.frequency}
-Trend: ${p.trend}
-Fix: ${p.suggestedFix.slice(0, 100)}...
-`).join('')}
-`}
-            </pre>
-            <p className="text-sm text-muted-foreground mt-4">
-              💡 <strong>For agents:</strong> This structured format can be parsed programmatically 
-              to implement self-healing behaviors or automated error recovery.
-            </p>
-          </CardContent>
-        </Card>
       </div>
     </main>
   );
