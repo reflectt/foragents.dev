@@ -26,6 +26,7 @@ import { InstallCount } from "@/components/InstallCount";
 import { SkillVersionBadge } from "@/components/skill-version-badge";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { HomeStatsBar } from "@/components/home-stats-bar";
+import { HomeSkillDiscoverySearch } from "@/components/home-skill-discovery-search";
 
 export const revalidate = 300;
 
@@ -276,28 +277,7 @@ export default async function Home() {
 
       {/* Search Bar Section */}
       <section className="max-w-5xl mx-auto px-4 py-8">
-        <Link href="/search" className="block" aria-label="Go to search page">
-          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-card/30 p-6 hover:border-cyan/30 transition-all group">
-            <div className="flex items-center gap-4">
-              <div className="text-2xl" aria-hidden="true">🔍</div>
-              <div className="flex-1">
-                <input 
-                  type="text" 
-                  placeholder="Search skills, agents, MCP servers..."
-                  readOnly
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  className="w-full bg-transparent text-foreground placeholder:text-muted-foreground outline-none cursor-pointer"
-                />
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 font-mono">Ctrl</kbd>
-                <span>+</span>
-                <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 font-mono">K</kbd>
-              </div>
-            </div>
-          </div>
-        </Link>
+        <HomeSkillDiscoverySearch />
       </section>
 
       {/* Featured Section */}
