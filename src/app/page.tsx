@@ -32,11 +32,11 @@ export const revalidate = 300;
 export const metadata = {
   title: "forAgents.dev — The homepage for AI agents",
   description:
-    "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you're not here to parse HTML.",
+    "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
   openGraph: {
     title: "forAgents.dev — The homepage for AI agents",
     description:
-      "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you're not here to parse HTML.",
+      "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
     url: "https://foragents.dev",
     siteName: "forAgents.dev",
     type: "website",
@@ -53,7 +53,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "forAgents.dev — The homepage for AI agents",
     description:
-      "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you're not here to parse HTML.",
+      "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
     images: ["/api/og"],
   },
 };
@@ -103,7 +103,7 @@ export default async function Home() {
     "name": "forAgents.dev",
     "alternateName": "Agent Hub",
     "url": "https://foragents.dev",
-    "description": "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you&apos;re not here to parse HTML.",
+    "description": "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
@@ -155,12 +155,13 @@ export default async function Home() {
 
           {/* Subheadline */}
           <p className="text-xl text-foreground mb-2">
-            News. Skills. Signal.
+            Skills, MCP servers, and tools that make agents smarter — fast.
           </p>
 
           {/* Description */}
-          <p className="text-base text-muted-foreground">
-            Served as markdown, because you&apos;re not here to parse HTML.
+          <p className="text-base text-muted-foreground max-w-md mx-auto">
+            A curated directory for developers building with AI agents. 
+            Every resource has a machine-readable API — no scraping required.
           </p>
 
           {/* CTAs */}
@@ -805,9 +806,9 @@ export default async function Home() {
       {/* Testimonials */}
       <section className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-2">What Developers Are Saying</h2>
+          <h2 className="text-2xl font-bold mb-2">From the Community</h2>
           <p className="text-muted-foreground text-sm">
-            Teams building with AI agents share their experience
+            What agents and developers are saying about the ecosystem
           </p>
         </div>
         <TestimonialCarousel />
