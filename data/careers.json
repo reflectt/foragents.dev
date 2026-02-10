@@ -1,100 +1,136 @@
 {
   "positions": [
     {
-      "id": "platform-software-engineer",
-      "title": "Platform Software Engineer",
+      "id": "platform-engineer-core-runtime",
+      "title": "Platform Engineer, Core Runtime",
       "department": "engineering",
       "type": "full-time",
       "location": "remote",
-      "description": "Build and maintain the core platform powering forAgents.dev, from APIs to internal tools.",
+      "description": "Build the execution engine and APIs that power reliable multi-agent workflows across forAgents.dev.",
       "requirements": [
-        "4+ years shipping production web applications",
-        "Strong TypeScript, React, and Node.js skills",
-        "Experience designing reliable API and data models",
-        "Comfort working in fast-moving product teams"
+        "4+ years building production systems with TypeScript or Go",
+        "Experience with API design, queues, and background jobs",
+        "Strong debugging and performance profiling habits",
+        "Comfort owning features from architecture to deployment"
+      ],
+      "benefits": [
+        "Remote-first team with flexible working hours",
+        "Annual learning and tooling stipend",
+        "Health and wellness reimbursement",
+        "Generous vacation and company recharge days"
       ],
       "postedAt": "2026-02-01",
-      "open": true
+      "status": "open"
     },
     {
-      "id": "agent-infrastructure-engineer",
-      "title": "Agent Infrastructure Engineer",
+      "id": "agent-observability-engineer",
+      "title": "Agent Observability Engineer",
       "department": "engineering",
       "type": "contract",
       "location": "hybrid",
-      "description": "Improve runtime reliability, tracing, and observability for agent execution paths.",
+      "description": "Design telemetry pipelines and dashboards that make agent behavior understandable and trustworthy.",
       "requirements": [
-        "Experience with distributed systems and observability",
-        "Proficiency in TypeScript or Go",
-        "Ability to debug performance issues end-to-end",
-        "Familiarity with cloud infrastructure"
+        "Hands-on experience with distributed tracing and metrics",
+        "Ability to design and maintain data models for logs and events",
+        "Strong communication with product and infrastructure teams",
+        "Experience operating services in cloud environments"
+      ],
+      "benefits": [
+        "Hybrid collaboration hub in North America time zones",
+        "Competitive contract rates paid bi-weekly",
+        "Optional equipment allowance",
+        "Opportunity to extend to long-term role"
       ],
       "postedAt": "2026-02-03",
-      "open": true
+      "status": "open"
     },
     {
-      "id": "community-programs-manager",
-      "title": "Community Programs Manager",
+      "id": "product-designer-workflows",
+      "title": "Product Designer, Agent Workflows",
+      "department": "design",
+      "type": "part-time",
+      "location": "remote",
+      "description": "Craft intuitive interfaces for role setup, task routing, and agent collaboration experiences.",
+      "requirements": [
+        "Portfolio demonstrating strong systems-thinking in UX",
+        "Proficiency with Figma and rapid prototyping",
+        "Ability to run lightweight user research",
+        "Experience partnering closely with engineers"
+      ],
+      "benefits": [
+        "Flexible part-time schedule",
+        "Design conference and training budget",
+        "Async-first collaboration culture",
+        "Mentorship across product and engineering"
+      ],
+      "postedAt": "2026-01-31",
+      "status": "open"
+    },
+    {
+      "id": "community-programs-lead",
+      "title": "Community Programs Lead",
       "department": "community",
       "type": "full-time",
       "location": "remote",
-      "description": "Grow and support a thriving builder community through events, programs, and contributor workflows.",
+      "description": "Lead programs that help builders launch faster, share learnings, and contribute high-quality templates.",
       "requirements": [
-        "2+ years in developer community or ecosystem roles",
-        "Excellent async communication and moderation skills",
-        "Experience running programs or ambassador initiatives",
-        "Strong organizational skills"
+        "2+ years managing developer community initiatives",
+        "Excellent written communication and facilitation skills",
+        "Experience with events, AMAs, or cohort-based programs",
+        "Ability to build and track program KPIs"
+      ],
+      "benefits": [
+        "Home office stipend",
+        "Travel budget for partner events",
+        "Extended health and dental coverage",
+        "Paid volunteer days"
       ],
       "postedAt": "2026-02-04",
-      "open": true
+      "status": "open"
     },
     {
-      "id": "product-designer",
-      "title": "Product Designer",
-      "department": "design",
-      "type": "part-time",
-      "location": "hybrid",
-      "description": "Design clear, developer-first experiences across dashboard and docs surfaces.",
-      "requirements": [
-        "Portfolio showing strong UX and UI systems thinking",
-        "Proficiency in Figma and prototyping workflows",
-        "Experience collaborating directly with engineers",
-        "Ability to simplify technical complexity"
-      ],
-      "postedAt": "2026-01-30",
-      "open": true
-    },
-    {
-      "id": "technical-content-lead",
-      "title": "Technical Content Lead",
-      "department": "content",
-      "type": "contract",
-      "location": "remote",
-      "description": "Create practical guides, launch writeups, and technical tutorials for agent builders.",
-      "requirements": [
-        "Strong technical writing and editing skills",
-        "Hands-on experience with modern web stacks",
-        "Ability to translate product changes into clear docs",
-        "Comfort owning editorial calendars"
-      ],
-      "postedAt": "2026-02-05",
-      "open": true
-    },
-    {
-      "id": "operations-coordinator",
+      "id": "operations-coordinator-scale",
       "title": "Operations Coordinator",
       "department": "operations",
       "type": "part-time",
-      "location": "remote",
-      "description": "Support hiring ops, release workflows, and cross-functional planning as the team scales.",
+      "location": "hybrid",
+      "description": "Keep hiring, release, and cross-team execution running smoothly as the organization scales.",
       "requirements": [
-        "Experience coordinating operational processes",
-        "Strong project tracking and communication habits",
-        "Ability to manage multiple priorities independently",
-        "Attention to detail with documentation"
+        "Experience with project tracking and operations tooling",
+        "Strong organizational habits and attention to detail",
+        "Ability to coordinate across multiple stakeholders",
+        "Comfort documenting and improving recurring processes"
+      ],
+      "benefits": [
+        "Flexible hybrid schedule",
+        "Quarterly team offsites",
+        "Professional development reimbursement",
+        "Performance bonus program"
       ],
       "postedAt": "2026-01-27",
-      "open": false
+      "status": "closed"
+    },
+    {
+      "id": "docs-bounty-builder",
+      "title": "Documentation Bounty Builder",
+      "department": "community",
+      "type": "bounty",
+      "location": "remote",
+      "description": "Ship practical onboarding guides, migration docs, and examples for new agent teams.",
+      "requirements": [
+        "Strong technical writing with code examples",
+        "Experience with modern TypeScript and Next.js projects",
+        "Ability to work independently to a scoped brief",
+        "Fast turnaround with clean editorial standards"
+      ],
+      "benefits": [
+        "Clear scoped payout per accepted deliverable",
+        "Public contributor recognition",
+        "Access to private builder channels",
+        "Potential fast-track into recurring contract work"
+      ],
+      "postedAt": "2026-02-06",
+      "status": "open"
     }
   ],
   "applications": []
