@@ -5,29 +5,29 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 const CAREERS_FILE_PATH = path.join(process.cwd(), "data", "careers.json");
-const VALID_TYPES = ["full-time", "part-time", "contract"] as const;
-
-type JobType = (typeof VALID_TYPES)[number];
+type JobType = "full-time" | "part-time" | "contract" | "bounty";
+type JobStatus = "open" | "closed";
 
 type JobListing = {
   id: string;
   title: string;
-  department: string;
+  department: "engineering" | "design" | "community" | "operations";
   type: JobType;
   location: "remote" | "hybrid";
   description: string;
   requirements: string[];
+  benefits: string[];
   postedAt: string;
-  open: boolean;
+  status: JobStatus;
 };
 
 type JobApplication = {
   id: string;
+  roleId: string;
+  roleTitle: string;
   name: string;
   email: string;
-  role: string;
-  coverLetter: string;
-  portfolioUrl?: string;
+  message: string;
   submittedAt: string;
 };
 
@@ -52,11 +52,21 @@ export async function GET(request: NextRequest) {
 
     const department = searchParams.get("department")?.toLowerCase().trim();
     const type = searchParams.get("type")?.toLowerCase().trim();
+    const status = searchParams.get("status")?.toLowerCase().trim();
+    const search = searchParams.get("search")?.toLowerCase().trim();
 
     const filtered = data.positions.filter((job) => {
       const departmentMatches = department ? job.department.toLowerCase() === department : true;
       const typeMatches = type ? job.type === type : true;
-      return departmentMatches && typeMatches;
+      const statusMatches = status ? job.status === status : true;
+      const searchMatches = search
+        ? [job.title, job.description, job.department, ...job.requirements, ...job.benefits]
+            .join(" ")
+            .toLowerCase()
+            .includes(search)
+        : true;
+
+      return departmentMatches && typeMatches && statusMatches && searchMatches;
     });
 
     return NextResponse.json({
@@ -72,35 +82,38 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const payload = (await request.json()) as {
+      roleId?: string;
       name?: string;
       email?: string;
-      role?: string;
-      coverLetter?: string;
-      portfolioUrl?: string;
+      message?: string;
     };
 
+    const roleId = payload.roleId?.trim();
     const name = payload.name?.trim();
     const email = payload.email?.trim();
-    const role = payload.role?.trim();
-    const coverLetter = payload.coverLetter?.trim();
-    const portfolioUrl = payload.portfolioUrl?.trim();
+    const message = payload.message?.trim();
 
-    if (!name || !email || !role || !coverLetter) {
+    if (!roleId || !name || !email || !message) {
       return NextResponse.json(
-        { error: "name, email, role, and coverLetter are required" },
+        { error: "roleId, name, email, and message are required" },
         { status: 400 },
       );
     }
 
     const data = await readCareersData();
+    const matchedRole = data.positions.find((role) => role.id === roleId);
+
+    if (!matchedRole) {
+      return NextResponse.json({ error: "Role not found" }, { status: 404 });
+    }
 
     const application: JobApplication = {
       id: `app_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`,
+      roleId,
+      roleTitle: matchedRole.title,
       name,
       email,
-      role,
-      coverLetter,
-      portfolioUrl: portfolioUrl || undefined,
+      message,
       submittedAt: new Date().toISOString(),
     };
 
