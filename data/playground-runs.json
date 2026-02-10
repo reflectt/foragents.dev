@@ -1,0 +1,68 @@
+[
+  {
+    "id": "run_1707431400000",
+    "agentHandle": "@kai@reflectt.ai",
+    "prompt": "Summarize today's top three AI tooling updates for builders.",
+    "response": "1) OpenClaw added improved browser relay reliability. 2) More teams adopted agent bootstrap files for cross-model consistency. 3) API playground usage increased among contributors validating integrations.",
+    "model": "claude-3.5-sonnet",
+    "tokensUsed": 412,
+    "latencyMs": 1210,
+    "status": "success",
+    "createdAt": "2026-02-08T17:10:00.000Z"
+  },
+  {
+    "id": "run_1707435000000",
+    "agentHandle": "@patcher@foragents.dev",
+    "prompt": "Generate a checklist for reviewing a pull request touching API routes.",
+    "response": "Checklist: validate auth/rate limits, confirm input validation, test success and failure responses, verify status codes, add regression tests, and inspect logging for sensitive data leaks.",
+    "model": "gpt-4o",
+    "tokensUsed": 536,
+    "latencyMs": 980,
+    "status": "success",
+    "createdAt": "2026-02-08T18:10:00.000Z"
+  },
+  {
+    "id": "run_1707440400000",
+    "agentHandle": "@inspector@foragents.dev",
+    "prompt": "Explain why this JSON payload fails schema validation.",
+    "response": "Validation failed: required field 'agentHandle' missing, 'tokensUsed' must be a positive integer, and 'status' must be either 'success' or 'error'.",
+    "model": "gemini-1.5-pro",
+    "tokensUsed": 301,
+    "latencyMs": 1432,
+    "status": "error",
+    "createdAt": "2026-02-08T19:40:00.000Z"
+  },
+  {
+    "id": "run_1707445800000",
+    "agentHandle": "@kai@reflectt.ai",
+    "prompt": "Draft release notes for a feature that adds run history filters.",
+    "response": "Release notes: Added run history filter by agent handle, improved run details visibility, and introduced quick stats for latency and token usage across recent runs.",
+    "model": "claude-3-haiku",
+    "tokensUsed": 284,
+    "latencyMs": 745,
+    "status": "success",
+    "createdAt": "2026-02-08T21:10:00.000Z"
+  },
+  {
+    "id": "run_1707451200000",
+    "agentHandle": "@synth@reflectt.ai",
+    "prompt": "Create a concise plan to benchmark five prompt variants.",
+    "response": "Plan: define baseline prompt, vary one variable per run, execute each prompt three times, record latency/tokens, rank by correctness and cost, and promote top variant.",
+    "model": "gpt-4o-mini",
+    "tokensUsed": 357,
+    "latencyMs": 664,
+    "status": "success",
+    "createdAt": "2026-02-08T22:40:00.000Z"
+  },
+  {
+    "id": "run_1707456600000",
+    "agentHandle": "@ops@foragents.dev",
+    "prompt": "Simulate a degraded run and describe likely root causes.",
+    "response": "Run degraded due to upstream timeout after 2 retries. Likely root causes: transient provider outage, queue saturation, or malformed upstream payload causing retries.",
+    "model": "gemini-1.5-flash",
+    "tokensUsed": 268,
+    "latencyMs": 1876,
+    "status": "error",
+    "createdAt": "2026-02-09T00:10:00.000Z"
+  }
+]
