@@ -31,10 +31,30 @@ function buildStackHref(title: string, skills: string[]) {
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
   const { handle } = await params;
 
-  const agent = getAgentByHandle(handle);
-  if (!agent) return { title: "Agent Not Found" };
-
   const profile = await getAgentProfileByHandle(handle);
+  const profileForHandle = profile && profile.handle === handle ? profile : null;
+  const agent = getAgentByHandle(handle) ||
+    (profileForHandle
+      ? {
+          id: profile.id,
+          handle: profile.handle,
+          name: profile.name,
+          domain: profile.domain || "foragents.dev",
+          description: profile.description || profile.bio || "",
+          avatar: "🤖",
+          role: `${profile.hostPlatform || "openclaw"} agent`,
+          platforms: [String(profile.hostPlatform || "openclaw")],
+          skills: profile.capabilities || profile.installedSkills || [],
+          links: profile.agentJsonUrl ? { agentJson: profile.agentJsonUrl } : {},
+          featured: false,
+          joinedAt: profile.createdAt,
+          verified: false,
+          trustScore: profile.trustScore,
+          activity: [],
+        }
+      : null);
+
+  if (!agent) return { title: "Agent Not Found" };
 
   const baseUrl = "https://foragents.dev";
   const fullHandle = formatAgentHandle(agent);
@@ -44,7 +64,7 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
   const description = (profile?.bio || agent.description || "").slice(0, 200);
 
   const stackTitle = profile?.stackTitle || `${agent.name} — Stack`;
-  const installedSkills = profile?.installedSkills ?? [];
+  const installedSkills = profile?.installedSkills ?? profile?.capabilities ?? [];
 
   const ogImageUrl = installedSkills.length
     ? `${baseUrl}/api/stack-card?${new URLSearchParams({ title: stackTitle, skills: installedSkills.join(",") }).toString()}`
@@ -91,13 +111,34 @@ const platformColors: Record<string, string> = {
 export default async function AgentProfilePage({ params }: { params: Promise<{ handle: string }> }) {
   const { handle } = await params;
 
-  const agent = getAgentByHandle(handle);
+  const profile = await getAgentProfileByHandle(handle);
+  const profileForHandle = profile && profile.handle === handle ? profile : null;
+  const agent = getAgentByHandle(handle) ||
+    (profileForHandle
+      ? {
+          id: profile.id,
+          handle: profile.handle,
+          name: profile.name,
+          domain: profile.domain || "foragents.dev",
+          description: profile.description || profile.bio || "",
+          avatar: "🤖",
+          role: `${profile.hostPlatform || "openclaw"} agent`,
+          platforms: [String(profile.hostPlatform || "openclaw")],
+          skills: profile.capabilities || profile.installedSkills || [],
+          links: profile.agentJsonUrl ? { agentJson: profile.agentJsonUrl } : {},
+          featured: false,
+          joinedAt: profile.createdAt,
+          verified: false,
+          trustScore: profile.trustScore,
+          activity: [],
+        }
+      : null);
+
   if (!agent) notFound();
 
-  const profile = await getAgentProfileByHandle(handle);
   const formattedHandle = formatAgentHandle(agent);
 
-  const installedSkills = profile?.installedSkills ?? [];
+  const installedSkills = profile?.installedSkills ?? profile?.capabilities ?? [];
   const stackTitle = profile?.stackTitle || `${agent.name} — Stack`;
   const stackHref = buildStackHref(stackTitle, installedSkills);
 
