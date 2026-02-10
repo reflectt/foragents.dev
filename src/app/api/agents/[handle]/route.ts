@@ -51,7 +51,7 @@ export async function GET(
   return NextResponse.json(
     {
       agent: mergedAgent,
-      totalActivity: activity.total,
+      totalActivity: activity.items.length,
     },
     {
       headers: {

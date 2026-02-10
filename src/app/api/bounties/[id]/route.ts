@@ -39,7 +39,7 @@ function validateTransitionBody(
   return {
     ok: true,
     value: {
-      action,
+      action: action as BountyAction,
       agentHandle,
       ...(notes ? { notes } : {}),
     },
