@@ -1,3 +1,272 @@
-{
-  "results": []
-}
+[
+  {
+    "id": "run_001",
+    "skillSlug": "stripe-subscription-checkout",
+    "skillName": "Stripe Subscription Checkout",
+    "version": "2.4.1",
+    "status": "pass",
+    "duration": 1240,
+    "timestamp": "2026-02-09T18:02:11.000Z",
+    "checks": [
+      {
+        "name": "checkout_session_created",
+        "status": "pass",
+        "message": "Created Checkout Session with valid customer and trial settings."
+      },
+      {
+        "name": "webhook_signature_verified",
+        "status": "pass",
+        "message": "Stripe webhook signature validated and event persisted."
+      },
+      {
+        "name": "subscription_state_synced",
+        "status": "pass",
+        "message": "Subscription status reflected in tenant billing profile."
+      }
+    ],
+    "regression": false
+  },
+  {
+    "id": "run_002",
+    "skillSlug": "supabase-rls-audit",
+    "skillName": "Supabase RLS Audit",
+    "version": "1.9.0",
+    "status": "warning",
+    "duration": 2310,
+    "timestamp": "2026-02-09T17:41:37.000Z",
+    "checks": [
+      {
+        "name": "anonymous_reads_blocked",
+        "status": "pass",
+        "message": "Anonymous role cannot access private tenant rows."
+      },
+      {
+        "name": "service_role_write_scope",
+        "status": "warning",
+        "message": "Service role can still write to archival table; review policy scope."
+      },
+      {
+        "name": "cross_tenant_isolation",
+        "status": "pass",
+        "message": "Cross-tenant reads denied for authenticated users."
+      }
+    ],
+    "regression": true
+  },
+  {
+    "id": "run_003",
+    "skillSlug": "nextjs-cache-headers",
+    "skillName": "Next.js Cache Headers",
+    "version": "3.1.2",
+    "status": "pass",
+    "duration": 980,
+    "timestamp": "2026-02-09T17:16:08.000Z",
+    "checks": [
+      {
+        "name": "etag_present",
+        "status": "pass",
+        "message": "ETag header present on static content routes."
+      },
+      {
+        "name": "api_no_store",
+        "status": "pass",
+        "message": "Dynamic API responses include no-store cache control."
+      },
+      {
+        "name": "stale_while_revalidate",
+        "status": "pass",
+        "message": "Public feed routes return SWR directives as expected."
+      }
+    ],
+    "regression": false
+  },
+  {
+    "id": "run_004",
+    "skillSlug": "agent-bootstrap-health",
+    "skillName": "Agent Bootstrap Health",
+    "version": "4.0.0",
+    "status": "fail",
+    "duration": 3011,
+    "timestamp": "2026-02-09T16:53:40.000Z",
+    "checks": [
+      {
+        "name": "bootstrap_json_available",
+        "status": "pass",
+        "message": "Bootstrap JSON endpoint returned 200 with valid schema."
+      },
+      {
+        "name": "bootstrap_markdown_integrity",
+        "status": "fail",
+        "message": "Markdown route missing required section: ## Memory."
+      },
+      {
+        "name": "quickstart_route",
+        "status": "pass",
+        "message": "Quickstart route rendered expected onboarding blocks."
+      }
+    ],
+    "regression": true
+  },
+  {
+    "id": "run_005",
+    "skillSlug": "mcp-server-catalog",
+    "skillName": "MCP Server Catalog",
+    "version": "2.2.0",
+    "status": "pass",
+    "duration": 1678,
+    "timestamp": "2026-02-09T16:20:02.000Z",
+    "checks": [
+      {
+        "name": "catalog_endpoint",
+        "status": "pass",
+        "message": "MCP server catalog endpoint returned complete listing."
+      },
+      {
+        "name": "install_links_valid",
+        "status": "pass",
+        "message": "All install links resolved with 2xx responses."
+      },
+      {
+        "name": "slug_uniqueness",
+        "status": "pass",
+        "message": "No duplicate server slugs detected."
+      }
+    ],
+    "regression": false
+  },
+  {
+    "id": "run_006",
+    "skillSlug": "stripe-subscription-checkout",
+    "skillName": "Stripe Subscription Checkout",
+    "version": "2.4.0",
+    "status": "warning",
+    "duration": 2144,
+    "timestamp": "2026-02-09T15:49:59.000Z",
+    "checks": [
+      {
+        "name": "checkout_session_created",
+        "status": "pass",
+        "message": "Checkout session generated and returned hosted URL."
+      },
+      {
+        "name": "customer_portal_link",
+        "status": "warning",
+        "message": "Customer portal deep link returned intermittent 429 responses."
+      },
+      {
+        "name": "subscription_state_synced",
+        "status": "pass",
+        "message": "Subscription status persisted to billing table."
+      }
+    ],
+    "regression": false
+  },
+  {
+    "id": "run_007",
+    "skillSlug": "supabase-rls-audit",
+    "skillName": "Supabase RLS Audit",
+    "version": "1.8.9",
+    "status": "pass",
+    "duration": 1895,
+    "timestamp": "2026-02-09T15:18:34.000Z",
+    "checks": [
+      {
+        "name": "anonymous_reads_blocked",
+        "status": "pass",
+        "message": "Anonymous reads correctly blocked for protected tables."
+      },
+      {
+        "name": "service_role_write_scope",
+        "status": "pass",
+        "message": "Service role writes constrained to designated tables only."
+      },
+      {
+        "name": "cross_tenant_isolation",
+        "status": "pass",
+        "message": "Tenant-scoped claims prevent data leakage between orgs."
+      }
+    ],
+    "regression": false
+  },
+  {
+    "id": "run_008",
+    "skillSlug": "agent-bootstrap-health",
+    "skillName": "Agent Bootstrap Health",
+    "version": "3.9.8",
+    "status": "pass",
+    "duration": 1422,
+    "timestamp": "2026-02-09T14:44:10.000Z",
+    "checks": [
+      {
+        "name": "bootstrap_json_available",
+        "status": "pass",
+        "message": "Bootstrap JSON available and valid."
+      },
+      {
+        "name": "bootstrap_markdown_integrity",
+        "status": "pass",
+        "message": "Markdown includes all required sections and examples."
+      },
+      {
+        "name": "quickstart_route",
+        "status": "pass",
+        "message": "Quickstart endpoint delivered expected response body."
+      }
+    ],
+    "regression": false
+  },
+  {
+    "id": "run_009",
+    "skillSlug": "search-index-freshness",
+    "skillName": "Search Index Freshness",
+    "version": "1.3.5",
+    "status": "fail",
+    "duration": 2777,
+    "timestamp": "2026-02-09T14:11:26.000Z",
+    "checks": [
+      {
+        "name": "index_latency",
+        "status": "warning",
+        "message": "Index lag exceeded target by 12 minutes."
+      },
+      {
+        "name": "document_count_match",
+        "status": "fail",
+        "message": "Indexed document count is behind source by 247 records."
+      },
+      {
+        "name": "query_relevancy_smoke",
+        "status": "pass",
+        "message": "Top 3 results for smoke queries remained stable."
+      }
+    ],
+    "regression": true
+  },
+  {
+    "id": "run_010",
+    "skillSlug": "webhook-retry-monitor",
+    "skillName": "Webhook Retry Monitor",
+    "version": "0.8.4",
+    "status": "pass",
+    "duration": 1328,
+    "timestamp": "2026-02-09T13:36:51.000Z",
+    "checks": [
+      {
+        "name": "retry_queue_depth",
+        "status": "pass",
+        "message": "Retry queue depth stayed below alert threshold."
+      },
+      {
+        "name": "dead_letter_routing",
+        "status": "pass",
+        "message": "Failed events routed to dead-letter topic correctly."
+      },
+      {
+        "name": "backoff_schedule",
+        "status": "pass",
+        "message": "Exponential backoff intervals matched policy settings."
+      }
+    ],
+    "regression": false
+  }
+]
