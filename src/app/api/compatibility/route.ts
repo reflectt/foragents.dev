@@ -60,7 +60,7 @@ export async function GET(request: NextRequest) {
   const statusFilter = statusFilterRaw && VALID_STATUSES.includes(statusFilterRaw) ? statusFilterRaw : undefined;
 
   const seed = await readCompatibilitySeed();
-  const mcpBySlug = new Map((mcpServers as McpServer[]).map((server) => [server.slug, server]));
+  const mcpBySlug = new Map((mcpServers as any as McpServer[]).map((server) => [server.slug, server]));
 
   const rows = seed.servers
     .map((row) => {

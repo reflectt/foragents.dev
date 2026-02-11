@@ -80,6 +80,17 @@ export type McpServer = {
 
   // Optional curation
   featured?: boolean;
+  
+  // Legacy fields (backward compat)
+  url?: string;
+  github?: string;
+  author?: string;
+  tags?: string[];
+  
+  // Phase 1 stats
+  stars?: number;
+  installs?: number;
+  framework?: string;
 };
 
 export function getMcpServers(category?: string): McpServer[] {

@@ -195,6 +195,27 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
                       {server.description}
                     </p>
 
+                    {/* Stats */}
+                    {((server as any).stars || (server as any).installs || (server as any).framework) && (
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3 font-mono">
+                        {(server as any).stars && (
+                          <span className="flex items-center gap-1">
+                            ⭐ {(server as any).stars.toLocaleString()}
+                          </span>
+                        )}
+                        {(server as any).installs && (
+                          <span className="flex items-center gap-1">
+                            📦 {(server as any).installs.toLocaleString()}
+                          </span>
+                        )}
+                        {(server as any).framework && (
+                          <span className="text-[11px] text-muted-foreground/80">
+                            {(server as any).framework}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
                     <div className="relative">
                       <code className="block text-xs text-green bg-black/30 rounded px-3 py-2 pr-12 mb-3 overflow-x-auto font-mono">
                         $ {server.install_cmd}
@@ -288,6 +309,27 @@ export function McpHubClient({ servers }: { servers: McpServer[] }) {
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     {server.description}
                   </p>
+
+                  {/* Stats */}
+                  {((server as any).stars || (server as any).installs || (server as any).framework) && (
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3 font-mono">
+                      {(server as any).stars && (
+                        <span className="flex items-center gap-1">
+                          ⭐ {(server as any).stars.toLocaleString()}
+                        </span>
+                      )}
+                      {(server as any).installs && (
+                        <span className="flex items-center gap-1">
+                          📦 {(server as any).installs.toLocaleString()}
+                        </span>
+                      )}
+                      {(server as any).framework && (
+                        <span className="text-[11px] text-muted-foreground/80">
+                          {(server as any).framework}
+                        </span>
+                      )}
+                    </div>
+                  )}
 
                   <div className="relative">
                     <code className="block text-xs text-green bg-black/30 rounded px-3 py-2 pr-12 mb-3 overflow-x-auto font-mono">
