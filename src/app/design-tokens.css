@@ -1,0 +1,339 @@
+/**
+ * Reflectt Design Tokens
+ * Version: 1.0
+ * Auto-generated from brand-identity.md
+ * Import this file to use consistent design system values
+ */
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+
+:root {
+  /* Font Families */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Font Sizes */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+
+  /* Font Weights */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Line Heights */
+  --leading-tight: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+}
+
+/* ===========================
+   COLORS
+   =========================== */
+
+:root {
+  /* Brand Colors */
+  --color-primary: #2563EB;
+  --color-primary-dark: #1D4ED8;
+  --color-primary-light: #3B82F6;
+  
+  --color-dark: #0F172A;
+  --color-white: #FFFFFF;
+
+  /* Gray Scale */
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --gray-900: #0F172A;
+
+  /* Semantic Colors */
+  --color-success: #059669; /* Darkened for WCAG AA contrast */
+  --color-success-dark: #059669;
+  --color-success-light: #D1FAE5;
+  
+  --color-danger: #EF4444;
+  --color-danger-dark: #DC2626;
+  --color-danger-light: #FEE2E2;
+  
+  --color-warning: #F59E0B;
+  --color-warning-dark: #D97706;
+  --color-warning-light: #FEF3C7;
+  
+  --color-info: #8B5CF6;
+  --color-info-dark: #7C3AED;
+  --color-info-light: #EDE9FE;
+
+  /* Background Colors */
+  --bg-base: #FFFFFF;
+  --bg-subtle: #F8FAFC;
+  --bg-muted: #F1F5F9;
+  --bg-dark: #0F172A;
+
+  /* Text Colors */
+  --text-heading: #0F172A;
+  --text-body: #475569;
+  --text-muted: #64748B;
+  --text-placeholder: #64748B; /* Using muted text color for WCAG AA compliance */
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-muted: #CBD5E1;
+
+  /* Border Colors */
+  --border-light: #E2E8F0;
+  --border-medium: #CBD5E1;
+  --border-dark: #94A3B8;
+  --border-primary: #2563EB;
+
+  /* Focus Ring */
+  --focus-ring-primary: #DBEAFE;
+  --focus-ring-success: #D1FAE5;
+  --focus-ring-danger: #FEE2E2;
+}
+
+/* ===========================
+   SPACING
+   =========================== */
+
+:root {
+  /* Base unit: 4px */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Common spacing aliases */
+  --spacing-xs: var(--space-2);
+  --spacing-sm: var(--space-3);
+  --spacing-md: var(--space-4);
+  --spacing-lg: var(--space-6);
+  --spacing-xl: var(--space-8);
+  --spacing-2xl: var(--space-12);
+  --spacing-3xl: var(--space-16);
+}
+
+/* ===========================
+   BORDERS & RADIUS
+   =========================== */
+
+:root {
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* Border Widths */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+}
+
+/* ===========================
+   SHADOWS
+   =========================== */
+
+:root {
+  /* Box Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+
+  /* Focus Shadow */
+  --shadow-focus-primary: 0 0 0 3px var(--focus-ring-primary);
+  --shadow-focus-success: 0 0 0 3px var(--focus-ring-success);
+  --shadow-focus-danger: 0 0 0 3px var(--focus-ring-danger);
+}
+
+/* ===========================
+   TRANSITIONS
+   =========================== */
+
+:root {
+  /* Timing Functions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+
+  /* Common transitions */
+  --transition-base: all var(--duration-base) var(--ease-out);
+  --transition-colors: background-color var(--duration-base) var(--ease-out),
+                       border-color var(--duration-base) var(--ease-out),
+                       color var(--duration-base) var(--ease-out);
+  --transition-transform: transform var(--duration-base) var(--ease-out);
+}
+
+/* ===========================
+   Z-INDEX SCALE
+   =========================== */
+
+:root {
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+}
+
+/* ===========================
+   COMPONENT-SPECIFIC TOKENS
+   =========================== */
+
+:root {
+  /* Buttons */
+  --button-padding-y: var(--space-3);
+  --button-padding-x: var(--space-6);
+  --button-padding-y-sm: var(--space-2);
+  --button-padding-x-sm: var(--space-4);
+  --button-padding-y-lg: var(--space-4);
+  --button-padding-x-lg: var(--space-8);
+  --button-radius: var(--radius-lg);
+
+  /* Inputs */
+  --input-padding-y: var(--space-3);
+  --input-padding-x: var(--space-4);
+  --input-radius: var(--radius-lg);
+  --input-border: var(--border-width-thin);
+
+  /* Cards */
+  --card-padding: var(--space-6);
+  --card-radius: var(--radius-xl);
+  --card-border: var(--border-width-thin);
+
+  /* Navigation */
+  --navbar-height: 64px;
+  --sidebar-width: 240px;
+}
+
+/* ===========================
+   UTILITY CLASSES (OPTIONAL)
+   =========================== */
+
+/* Typography */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-md { font-size: var(--text-md); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+
+.font-regular { font-weight: var(--font-regular); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+
+/* Colors */
+.text-heading { color: var(--text-heading); }
+.text-body { color: var(--text-body); }
+.text-muted { color: var(--text-muted); }
+.text-primary { color: var(--color-primary); }
+.text-success { color: var(--color-success); }
+.text-danger { color: var(--color-danger); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-subtle { background-color: var(--bg-subtle); }
+.bg-white { background-color: var(--bg-base); }
+
+/* Spacing (margin/padding) */
+.m-0 { margin: 0; }
+.m-1 { margin: var(--space-1); }
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-6 { margin: var(--space-6); }
+.m-8 { margin: var(--space-8); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+
+/* Border Radius */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Shadows */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+/* ===========================
+   USAGE EXAMPLE
+   =========================== */
+
+/*
+Import this file in your HTML:
+<link rel="stylesheet" href="design-tokens.css">
+
+Then use tokens in your CSS:
+
+.my-button {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border-radius: var(--button-radius);
+  font-family: var(--font-primary);
+  font-weight: var(--font-semibold);
+  transition: var(--transition-base);
+}
+
+.my-button:hover {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+.my-card {
+  background: var(--bg-base);
+  border: var(--card-border) solid var(--border-light);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-md);
+}
+*/

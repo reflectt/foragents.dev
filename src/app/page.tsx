@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import {
   Card,
   CardContent,
@@ -10,65 +8,50 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents, getRecentSubmissions, getCreators, type McpServer } from "@/lib/data";
+import { getNews, getSkills, getMcpServers, getLlmsTxtEntries, getAgents, getFeaturedAgents, formatAgentHandle, getAcpAgents, getRecentSubmissions, getCreators, type Skill } from "@/lib/data";
 import { getSupabase } from "@/lib/supabase";
 import Link from "next/link";
-import Image from "next/image";
+import { MobileNav } from "@/components/mobile-nav";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { NewsFeed } from "@/components/news-feed";
 import { RecentSubmissions } from "@/components/recent-submissions";
 import { AnnouncementBanner } from "@/components/announcement-banner";
+import { Footer } from "@/components/footer";
 import { ResumeSection } from "@/components/recently-viewed/ResumeSection";
 import { AgentBootstrapPanel } from "@/components/agent-bootstrap-panel";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { InstallCount } from "@/components/InstallCount";
-import { SkillVersionBadge } from "@/components/skill-version-badge";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
-import { HomeStatsBar } from "@/components/home-stats-bar";
-import { HomeSkillDiscoverySearch } from "@/components/home-skill-discovery-search";
-import { HomeTrendingSection } from "@/components/home-trending-section";
 
 export const revalidate = 300;
 
 export const metadata = {
-  title: "forAgents.dev — The homepage for AI agents",
-  description:
-    "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
+  title: "forAgents.dev — The MCP Server Registry",
+  description: "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
   openGraph: {
-    title: "forAgents.dev — The homepage for AI agents",
-    description:
-      "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
+    title: "forAgents.dev — The MCP Server Registry",
+    description: "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
     url: "https://foragents.dev",
     siteName: "forAgents.dev",
     type: "website",
-    images: [
-      {
-        url: "/api/og",
-        width: 1200,
-        height: 630,
-        alt: "forAgents.dev — The homepage for AI agents",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "forAgents.dev — The homepage for AI agents",
-    description:
-      "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
-    images: ["/api/og"],
+    title: "forAgents.dev — The MCP Server Registry",
+    description: "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
   },
 };
 
-function getMcpRepoUrl(server: McpServer): string {
-  const s = server as unknown as Record<string, unknown>;
-  const repo = s.repo_url ?? s.github ?? s.url;
-  return typeof repo === "string" ? repo : "";
-}
-
-function getMcpCompatTags(server: McpServer): string[] {
-  const s = server as unknown as Record<string, unknown>;
-  const tags = s.compatibility ?? s.tags;
-  if (!Array.isArray(tags)) return [];
-  return tags.filter((t): t is string => typeof t === "string");
+// Simple trending score algorithm (same as /trending page)
+function calculateTrendingScore(skill: Skill): number {
+  let score = 0;
+  score += skill.tags.length * 10;
+  if (skill.author === "Team Reflectt") {
+    score += 20;
+  }
+  score += Math.max(0, 50 - skill.name.length);
+  score += Math.random() * 15;
+  return score;
 }
 
 export default async function Home() {
@@ -96,6 +79,10 @@ export default async function Home() {
   const recentSubmissions = await getRecentSubmissions(5);
   const creators = getCreators();
   const topCreators = creators.slice(0, 6);
+  const trendingSkills = skills
+    .map(skill => ({ ...skill, trendingScore: calculateTrendingScore(skill) }))
+    .sort((a, b) => b.trendingScore - a.trendingScore)
+    .slice(0, 6);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -103,7 +90,7 @@ export default async function Home() {
     "name": "forAgents.dev",
     "alternateName": "Agent Hub",
     "url": "https://foragents.dev",
-    "description": "Skills, MCP servers, and tools that make AI agents smarter. A curated directory with machine-readable APIs for developers building with AI agents.",
+    "description": "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
@@ -126,6 +113,20 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Header */}
+      <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80 relative" role="banner">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-bold aurora-text">⚡ Agent Hub</span>
+            <span className="text-xs text-muted-foreground font-mono">
+              forAgents.dev
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <MobileNav />
+          </div>
+        </div>
+      </header>
 
       {/* Announcement Banner */}
       <AnnouncementBanner />
@@ -149,48 +150,63 @@ export default async function Home() {
           </p>
 
           {/* Headline with blinking cursor */}
-          <h1 className="text-[32px] md:text-[48px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
-            The homepage for AI agents<span className="cursor-blink" />
+          <h1 className="text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4 leading-tight">
+            The MCP Server Registry<span className="cursor-blink" />
           </h1>
 
           {/* Subheadline */}
           <p className="text-xl text-foreground mb-2">
-            Skills, MCP servers, and tools that make agents smarter — fast.
+            Skills. Servers. Agents. Signal.
           </p>
 
           {/* Description */}
           <p className="text-base text-muted-foreground max-w-md mx-auto">
-            A curated directory for developers building with AI agents. 
-            Every resource has a machine-readable API — no scraping required.
+            Find and install MCP servers, agent skills, and tools. Served as markdown, because you&apos;re not here to parse HTML.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
             <Link
-              href="#news"
-              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+              href="/mcp"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Browse Feed
+              Browse Servers
             </Link>
             <Link
-              href="/api/feed.md"
-              className="inline-flex items-center justify-center h-12 px-6 rounded-lg border border-cyan text-cyan font-mono text-sm hover:bg-cyan/10 transition-colors"
+              href="/docs"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg border border-cyan text-cyan font-mono text-sm hover:bg-cyan/10 transition-all hover:-translate-y-0.5"
             >
-              GET /api/feed.md
+              Read Docs
             </Link>
           </div>
 
           {/* Stats bar - Enhanced */}
-          <HomeStatsBar
-            initial={{
-              articles: news.length,
-              agents: agents.length,
-              skills: skills.length,
-              mcpServers: mcpServers.length,
-              acpAgents: acpAgents.length,
-              llmsTxtSites: llmsTxtEntries.length,
-            }}
-          />
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
+            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
+              <div className="text-2xl font-bold text-cyan">{news.length}+</div>
+              <div className="text-xs text-muted-foreground mt-1">Articles</div>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
+              <div className="text-2xl font-bold text-cyan">{agents.length}</div>
+              <div className="text-xs text-muted-foreground mt-1">Agents</div>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
+              <div className="text-2xl font-bold text-cyan">{skills.length}</div>
+              <div className="text-xs text-muted-foreground mt-1">Skills</div>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
+              <div className="text-2xl font-bold text-purple">{mcpServers.length}</div>
+              <div className="text-xs text-muted-foreground mt-1">MCP Servers</div>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
+              <div className="text-2xl font-bold text-purple">{acpAgents.length}</div>
+              <div className="text-xs text-muted-foreground mt-1">ACP Agents</div>
+            </div>
+            <div className="text-center p-3 rounded-lg bg-card/30 border border-white/5">
+              <div className="text-2xl font-bold text-purple">{llmsTxtEntries.length}</div>
+              <div className="text-xs text-muted-foreground mt-1">llms.txt Sites</div>
+            </div>
+          </div>
 
           {/* Add to your agent */}
           <div className="mt-10 text-left">
@@ -205,7 +221,7 @@ export default async function Home() {
           {/* Trending */}
           <Link 
             href="/trending"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-orange-500/10 to-red-500/10 p-6 hover:border-orange-500/30 transition-all"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-orange-500/10 to-red-500/10 p-6 hover:border-orange-500/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/20 rounded-full blur-[40px]" />
             <div className="relative">
@@ -222,7 +238,7 @@ export default async function Home() {
           {/* Search */}
           <Link 
             href="/search"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-cyan/10 to-blue-500/10 p-6 hover:border-cyan/30 transition-all"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-cyan/10 to-blue-500/10 p-6 hover:border-cyan/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-cyan/20 rounded-full blur-[40px]" />
             <div className="relative">
@@ -239,7 +255,7 @@ export default async function Home() {
           {/* Creators */}
           <Link 
             href="/creators"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-purple/10 to-pink-500/10 p-6 hover:border-purple/30 transition-all"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-purple/10 to-pink-500/10 p-6 hover:border-purple/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-purple/20 rounded-full blur-[40px]" />
             <div className="relative">
@@ -253,19 +269,19 @@ export default async function Home() {
             </div>
           </Link>
 
-          {/* Get Started */}
+          {/* Request a Kit */}
           <Link 
-            href="/onboarding"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-cyan/10 to-emerald-500/10 p-6 hover:border-cyan/30 transition-all"
+            href="/requests"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-6 hover:border-green-500/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
-            <div className="absolute top-0 right-0 w-24 h-24 bg-cyan/20 rounded-full blur-[40px]" />
+            <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/20 rounded-full blur-[40px]" />
             <div className="relative">
-              <div className="text-3xl mb-3">🚀</div>
-              <h3 className="text-lg font-bold mb-2 group-hover:text-cyan transition-colors">
-                Get Started
+              <div className="text-3xl mb-3">💡</div>
+              <h3 className="text-lg font-bold mb-2 group-hover:text-green-500 transition-colors">
+                Request a Kit
               </h3>
               <p className="text-sm text-muted-foreground">
-                Personalize your stack in 60 seconds
+                Need something custom? Ask!
               </p>
             </div>
           </Link>
@@ -274,7 +290,28 @@ export default async function Home() {
 
       {/* Search Bar Section */}
       <section className="max-w-5xl mx-auto px-4 py-8">
-        <HomeSkillDiscoverySearch />
+        <Link href="/search" className="block" aria-label="Go to search page">
+          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-card/30 p-6 hover:border-cyan/30 transition-all group">
+            <div className="flex items-center gap-4">
+              <div className="text-2xl" aria-hidden="true">🔍</div>
+              <div className="flex-1">
+                <input 
+                  type="text" 
+                  placeholder="Search skills, agents, MCP servers..."
+                  readOnly
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="w-full bg-transparent text-foreground placeholder:text-muted-foreground outline-none cursor-pointer"
+                />
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 font-mono">Ctrl</kbd>
+                <span>+</span>
+                <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 font-mono">K</kbd>
+              </div>
+            </div>
+          </div>
+        </Link>
       </section>
 
       {/* Featured Section */}
@@ -341,7 +378,96 @@ export default async function Home() {
       <Separator className="opacity-10" />
 
       {/* Trending This Week */}
-      <HomeTrendingSection />
+      <section className="max-w-5xl mx-auto px-4 py-12">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-2xl font-bold">🔥 Trending This Week</h2>
+            <p className="text-muted-foreground text-sm mt-1">
+              Hot skills agents are using right now
+            </p>
+          </div>
+          <Link href="/trending" className="text-sm text-cyan hover:underline">
+            View all trending →
+          </Link>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {trendingSkills.map((skill, index) => (
+            <Link key={skill.id} href={`/skills/${skill.slug}`}>
+              <Card className="bg-card/50 border-white/5 hover:border-orange-500/20 transition-all group h-full relative">
+                {/* Trending badge for top 3 */}
+                {index < 3 && (
+                  <div className="absolute top-3 right-3">
+                    <Badge 
+                      variant="outline" 
+                      className={`text-xs font-bold ${
+                        index === 0 
+                          ? 'bg-yellow-500/20 text-yellow-300 border-yellow-400/30' 
+                          : index === 1
+                          ? 'bg-gray-400/20 text-gray-300 border-gray-400/30'
+                          : 'bg-orange-500/20 text-orange-300 border-orange-400/30'
+                      }`}
+                    >
+                      #{index + 1}
+                    </Badge>
+                  </div>
+                )}
+                
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-orange-500 transition-colors flex items-center gap-1.5 pr-12">
+                    {skill.name}
+                    {skill.author === "Team Reflectt" && (
+                      <img 
+                        src="/badges/verified-skill.svg" 
+                        alt="Verified Skill" 
+                        title="Verified: Team Reflectt skill"
+                        className="w-5 h-5 inline-block"
+                      />
+                    )}
+                  </CardTitle>
+                  <CardDescription className="text-xs flex items-center gap-2">
+                    <span>by {skill.author}</span>
+                    <span className="text-white/20">•</span>
+                    <InstallCount 
+                      skillSlug={skill.slug} 
+                      className="text-xs text-cyan"
+                    />
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {skill.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1">
+                      {skill.tags.slice(0, 2).map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="text-xs bg-white/5 text-white/60 border-white/10"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                      {skill.tags.length > 2 && (
+                        <Badge
+                          variant="outline"
+                          className="text-xs bg-white/5 text-white/60 border-white/10"
+                        >
+                          +{skill.tags.length - 2}
+                        </Badge>
+                      )}
+                    </div>
+                    <span className="text-xs text-orange-500 group-hover:underline">
+                      View →
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <Separator className="opacity-10" />
 
@@ -369,12 +495,10 @@ export default async function Home() {
                       <CardTitle className="text-lg group-hover:text-purple transition-colors flex items-center gap-1.5">
                         {creator.username}
                         {creator.verified && (
-                          <Image
-                            src="/badges/verified-skill.svg"
-                            alt="Verified Creator"
+                          <img 
+                            src="/badges/verified-skill.svg" 
+                            alt="Verified Creator" 
                             title="Verified Creator"
-                            width={20}
-                            height={20}
                             className="w-5 h-5 inline-block"
                           />
                         )}
@@ -468,19 +592,16 @@ export default async function Home() {
             <Link key={skill.id} href={`/skills/${skill.slug}`}>
               <Card className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all group h-full">
                 <CardHeader>
-                  <CardTitle className="text-lg group-hover:text-cyan transition-colors flex items-center gap-2">
-                    <span className="truncate flex-1">{skill.name}</span>
+                  <CardTitle className="text-lg group-hover:text-cyan transition-colors flex items-center gap-1.5">
+                    {skill.name}
                     {skill.author === "Team Reflectt" && (
-                      <Image
-                        src="/badges/verified-skill.svg"
-                        alt="Verified Skill"
+                      <img 
+                        src="/badges/verified-skill.svg" 
+                        alt="Verified Skill" 
                         title="Verified: Team Reflectt skill"
-                        width={20}
-                        height={20}
                         className="w-5 h-5 inline-block"
                       />
                     )}
-                    <SkillVersionBadge slug={skill.slug} />
                   </CardTitle>
                   <CardDescription className="text-xs flex items-center gap-2">
                     <span>by {skill.author}</span>
@@ -560,23 +681,17 @@ export default async function Home() {
               <CardHeader>
                 <CardTitle className="text-lg group-hover:text-purple transition-colors flex items-center gap-1.5">
                   {server.name}
-                  {getMcpRepoUrl(server).includes(
-                    "modelcontextprotocol"
-                  ) && (
-                    <Image
-                      src="/badges/verified-mcp.svg"
-                      alt="Official MCP Server"
-                      title="Official: Maintained by the MCP team"
-                      width={20}
-                      height={20}
+                  {server.tags.includes("official") && (
+                    <img 
+                      src="/badges/verified-mcp.svg" 
+                      alt="Official MCP Server" 
+                      title="Official: Maintained by MCP team"
                       className="w-5 h-5 inline-block"
                     />
                   )}
                 </CardTitle>
-                <CardDescription className="text-xs font-mono text-muted-foreground">
-                  {getMcpCompatTags(server)
-                    .slice(0, 3)
-                    .join(" · ")}
+                <CardDescription className="text-xs">
+                  by {server.author}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -594,12 +709,12 @@ export default async function Home() {
                     {server.category}
                   </Badge>
                   <a
-                    href={getMcpRepoUrl(server) || "#"}
+                    href={server.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-cyan hover:underline"
                   >
-                    Repo ↗
+                    GitHub ↗
                   </a>
                 </div>
               </CardContent>
@@ -650,12 +765,10 @@ export default async function Home() {
                       <CardTitle className="text-lg group-hover:text-cyan transition-colors flex items-center gap-1.5">
                         {agent.name}
                         {agent.links.agentJson && (
-                          <Image
-                            src="/badges/verified-agent.svg"
-                            alt="Verified Agent"
+                          <img 
+                            src="/badges/verified-agent.svg" 
+                            alt="Verified Agent" 
                             title="Verified: Has public agent.json"
-                            width={20}
-                            height={20}
                             className="w-5 h-5 inline-block"
                           />
                         )}
@@ -806,9 +919,9 @@ export default async function Home() {
       {/* Testimonials */}
       <section className="max-w-5xl mx-auto px-4 py-12">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-2">From the Community</h2>
+          <h2 className="text-2xl font-bold mb-2">What Developers Are Saying</h2>
           <p className="text-muted-foreground text-sm">
-            What agents and developers are saying about the ecosystem
+            Teams building with AI agents share their experience
           </p>
         </div>
         <TestimonialCarousel />
@@ -839,6 +952,8 @@ export default async function Home() {
         <NewsletterSignup />
       </section>
 
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
