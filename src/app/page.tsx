@@ -681,7 +681,7 @@ export default async function Home() {
               <CardHeader>
                 <CardTitle className="text-lg group-hover:text-purple transition-colors flex items-center gap-1.5">
                   {server.name}
-                  {server.tags.includes("official") && (
+                  {server.tags?.includes("official") && (
                     <img 
                       src="/badges/verified-mcp.svg" 
                       alt="Official MCP Server" 
