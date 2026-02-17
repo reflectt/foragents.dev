@@ -1,16 +1,8 @@
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CopyButton } from "@/components/copy-button";
 import { getMcpServers } from "@/lib/data";
+import { mapAllServers } from "@/lib/mcp-adapter";
+import MCPServerCard from "@/components/MCPServerCard";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -25,30 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
-  "file-system":    { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]", border: "border-[#F59E0B]/20" },
-  "dev-tools":      { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]", border: "border-[#8B5CF6]/20" },
-  "web":            { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]", border: "border-[#3B82F6]/20" },
-  "data":           { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]", border: "border-[#06D6A0]/20" },
-  "productivity":   { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]", border: "border-[#EC4899]/20" },
-  "communication":  { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]", border: "border-[#F59E0B]/20" },
-};
-
-function InstallCopyButton({ text }: { text: string }) {
-  return (
-    <CopyButton
-      text={text}
-      label="📋"
-      variant="ghost"
-      size="sm"
-      className="absolute top-2 right-2 text-[10px] font-mono text-muted-foreground hover:text-cyan transition-colors opacity-0 group-hover/cmd:opacity-100 h-auto p-1"
-      showIcon={false}
-    />
-  );
-}
-
 export default function McpPage() {
   const servers = getMcpServers();
+  const cardServers = mapAllServers(servers);
 
   return (
     <div className="min-h-screen">
@@ -156,77 +127,12 @@ export default function McpPage() {
 
       <Separator className="opacity-10" />
 
-      {/* Server Cards */}
+      {/* Server Cards - New Design */}
       <section className="max-w-5xl mx-auto px-4 py-12">
-        <div className="grid gap-4 md:grid-cols-2">
-          {servers.map((server) => {
-            const catStyle = categoryColors[server.category] || categoryColors.web;
-
-            return (
-              <Card
-                key={server.id}
-                className="bg-card/50 border-white/5 hover:border-cyan/20 transition-all group h-full"
-              >
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between mb-1">
-                    <span
-                      className={`inline-block font-mono text-[11px] font-bold uppercase tracking-[0.08em] px-2 py-1 rounded-md ${catStyle.bg} ${catStyle.text} ${catStyle.border} border`}
-                    >
-                      {server.category}
-                    </span>
-                    <a
-                      href={server.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-muted-foreground hover:text-cyan transition-colors font-mono"
-                    >
-                      GitHub ↗
-                    </a>
-                  </div>
-                  <CardTitle className="text-lg group-hover:text-cyan transition-colors flex items-center gap-1.5">
-                    {server.name}
-                    {server.tags.includes("official") && (
-                      <img 
-                        src="/badges/verified-mcp.svg" 
-                        alt="Official MCP Server" 
-                        title="Official: Maintained by MCP team"
-                        className="w-5 h-5 inline-block"
-                      />
-                    )}
-                  </CardTitle>
-                  <CardDescription className="text-xs">
-                    by {server.author}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {server.description}
-                  </p>
-
-                  {/* Install command - copyable */}
-                  <div className="relative group/cmd">
-                    <code className="block text-xs text-green bg-black/30 rounded px-3 py-2 mb-3 overflow-x-auto font-mono">
-                      $ {server.install_cmd}
-                    </code>
-                    <CopyButton text={server.install_cmd} />
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1">
-                    {server.tags.map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="text-[10px] bg-white/5 text-white/60 border-white/10"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 max-w-4xl mx-auto">
+          {cardServers.map((server, index) => (
+            <MCPServerCard key={`${server.name}-${index}`} server={server} />
+          ))}
         </div>
       </section>
 
@@ -293,24 +199,6 @@ export default function McpPage() {
           </div>
         </div>
       </footer>
-
-      {/* Copy-to-clipboard script */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            document.addEventListener('click', function(e) {
-              var btn = e.target.closest('[data-copy]');
-              if (btn) {
-                navigator.clipboard.writeText(btn.dataset.copy).then(function() {
-                  var orig = btn.textContent;
-                  btn.textContent = '✅';
-                  setTimeout(function() { btn.textContent = orig; }, 1500);
-                });
-              }
-            });
-          `,
-        }}
-      />
     </div>
   );
 }

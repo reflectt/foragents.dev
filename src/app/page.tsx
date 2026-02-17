@@ -26,19 +26,19 @@ import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 export const revalidate = 300;
 
 export const metadata = {
-  title: "forAgents.dev — The homepage for AI agents",
-  description: "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you're not here to parse HTML.",
+  title: "forAgents.dev — The MCP Server Registry",
+  description: "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
   openGraph: {
-    title: "forAgents.dev — The homepage for AI agents",
-    description: "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you're not here to parse HTML.",
+    title: "forAgents.dev — The MCP Server Registry",
+    description: "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
     url: "https://foragents.dev",
     siteName: "forAgents.dev",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "forAgents.dev — The homepage for AI agents",
-    description: "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you're not here to parse HTML.",
+    title: "forAgents.dev — The MCP Server Registry",
+    description: "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
   },
 };
 
@@ -90,7 +90,7 @@ export default async function Home() {
     "name": "forAgents.dev",
     "alternateName": "Agent Hub",
     "url": "https://foragents.dev",
-    "description": "The homepage for AI agents. News. Skills. Signal. Served as markdown, because you&apos;re not here to parse HTML.",
+    "description": "The MCP server registry for AI agents. Find and install MCP servers, agent skills, and tools.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
@@ -150,33 +150,33 @@ export default async function Home() {
           </p>
 
           {/* Headline with blinking cursor */}
-          <h1 className="text-[32px] md:text-[48px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
-            The homepage for AI agents<span className="cursor-blink" />
+          <h1 className="text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4 leading-tight">
+            The MCP Server Registry<span className="cursor-blink" />
           </h1>
 
           {/* Subheadline */}
           <p className="text-xl text-foreground mb-2">
-            News. Skills. Signal.
+            Skills. Servers. Agents. Signal.
           </p>
 
           {/* Description */}
-          <p className="text-base text-muted-foreground">
-            Served as markdown, because you&apos;re not here to parse HTML.
+          <p className="text-base text-muted-foreground max-w-md mx-auto">
+            Find and install MCP servers, agent skills, and tools. Served as markdown, because you&apos;re not here to parse HTML.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
             <Link
-              href="#news"
-              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+              href="/mcp"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Browse Feed
+              Browse Servers
             </Link>
             <Link
-              href="/api/feed.md"
-              className="inline-flex items-center justify-center h-12 px-6 rounded-lg border border-cyan text-cyan font-mono text-sm hover:bg-cyan/10 transition-colors"
+              href="/docs"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg border border-cyan text-cyan font-mono text-sm hover:bg-cyan/10 transition-all hover:-translate-y-0.5"
             >
-              GET /api/feed.md
+              Read Docs
             </Link>
           </div>
 
@@ -221,7 +221,7 @@ export default async function Home() {
           {/* Trending */}
           <Link 
             href="/trending"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-orange-500/10 to-red-500/10 p-6 hover:border-orange-500/30 transition-all"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-orange-500/10 to-red-500/10 p-6 hover:border-orange-500/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/20 rounded-full blur-[40px]" />
             <div className="relative">
@@ -238,7 +238,7 @@ export default async function Home() {
           {/* Search */}
           <Link 
             href="/search"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-cyan/10 to-blue-500/10 p-6 hover:border-cyan/30 transition-all"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-cyan/10 to-blue-500/10 p-6 hover:border-cyan/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-cyan/20 rounded-full blur-[40px]" />
             <div className="relative">
@@ -255,7 +255,7 @@ export default async function Home() {
           {/* Creators */}
           <Link 
             href="/creators"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-purple/10 to-pink-500/10 p-6 hover:border-purple/30 transition-all"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-purple/10 to-pink-500/10 p-6 hover:border-purple/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-purple/20 rounded-full blur-[40px]" />
             <div className="relative">
@@ -272,7 +272,7 @@ export default async function Home() {
           {/* Request a Kit */}
           <Link 
             href="/requests"
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-6 hover:border-green-500/30 transition-all"
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-green-500/10 to-emerald-500/10 p-6 hover:border-green-500/30 hover:-translate-y-1 hover:shadow-lg transition-all"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/20 rounded-full blur-[40px]" />
             <div className="relative">
