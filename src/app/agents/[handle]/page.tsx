@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
           links: profileForHandle.agentJsonUrl ? { agentJson: profileForHandle.agentJsonUrl } : {},
           featured: false,
           joinedAt: profileForHandle.createdAt,
-          verified: false,
+          verified: profileForHandle.isVerified ?? false,
           trustScore: profileForHandle.trustScore,
           activity: [],
         }
@@ -109,6 +109,50 @@ const platformColors: Record<string, string> = {
   github: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
 };
 
+type TrustState = "known" | "unknown" | "unverified";
+
+function getTrustState(input: {
+  trustScore?: number;
+  isVerified?: boolean;
+  missingVerificationPrereqs?: boolean;
+}): TrustState {
+  if (typeof input.trustScore === "number" && Number.isFinite(input.trustScore)) {
+    return "known";
+  }
+  if (input.isVerified === false || input.missingVerificationPrereqs) {
+    return "unverified";
+  }
+  return "unknown";
+}
+
+function trustDisplay(input: {
+  trustScore?: number;
+  isVerified?: boolean;
+  missingVerificationPrereqs?: boolean;
+}) {
+  const state = getTrustState(input);
+  if (state === "known") {
+    const score = Math.max(0, Math.min(100, Math.round(input.trustScore ?? 0)));
+    return {
+      title: `Trust score: ${score}`,
+      helper: "Calculated from verification signals and profile quality.",
+      className: "bg-emerald-500/15 text-emerald-300 border-emerald-500/40",
+    };
+  }
+  if (state === "unverified") {
+    return {
+      title: "Trust score: Unverified",
+      helper: "Complete verification to receive a trust score.",
+      className: "bg-amber-500/15 text-amber-300 border-amber-500/40",
+    };
+  }
+  return {
+    title: "Trust score: Not available yet",
+    helper: "We’re still calculating this score.",
+    className: "bg-white/5 text-muted-foreground border-white/15",
+  };
+}
+
 export default async function AgentProfilePage({ params }: { params: Promise<{ handle: string }> }) {
   const { handle } = await params;
 
@@ -130,7 +174,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
           links: profileForHandle.agentJsonUrl ? { agentJson: profileForHandle.agentJsonUrl } : {},
           featured: false,
           joinedAt: profileForHandle.createdAt,
-          verified: false,
+          verified: profileForHandle.isVerified ?? false,
           trustScore: profileForHandle.trustScore,
           activity: [],
         }
@@ -153,6 +197,12 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
 
   const allAgents = getAgents().filter((a) => a.handle !== handle);
   const relatedAgents = allAgents.slice(0, 4);
+
+  const trust = trustDisplay({
+    trustScore: agent.trustScore,
+    isVerified: profileForHandle?.isVerified ?? agent.verified,
+    missingVerificationPrereqs: profileForHandle?.missingVerificationPrereqs,
+  });
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -218,33 +268,18 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
             {profileForHandle?.bio || profileForHandle?.description || agent.description}
           </p>
 
-          {/* Trust Score Badge (v2 feature) */}
-          {agent.trustScore !== undefined && (
-            <div className="mt-6 pt-6 border-t border-white/10">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-sm font-semibold text-white/80 mb-1">Trust Score</h3>
-                  <p className="text-xs text-muted-foreground">
-                    Based on verification, activity, and community feedback
-                  </p>
-                </div>
-                <div className="text-right">
-                  <div className={`text-3xl font-bold ${
-                    agent.trustScore >= 95 ? "text-emerald-400" :
-                    agent.trustScore >= 85 ? "text-cyan-400" :
-                    agent.trustScore >= 75 ? "text-amber-400" : "text-orange-400"
-                  }`}>
-                    {agent.trustScore}
-                  </div>
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {agent.trustScore >= 95 ? "Excellent" :
-                     agent.trustScore >= 85 ? "Very Good" :
-                     agent.trustScore >= 75 ? "Good" : "Fair"}
-                  </div>
-                </div>
+          {/* Trust Score State */}
+          <div className="mt-6 pt-6 border-t border-white/10">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm font-semibold text-white/80 mb-1">Trust Score</h3>
+                <p className="text-xs text-muted-foreground">{trust.helper}</p>
               </div>
+              <Badge variant="outline" className={`${trust.className} text-xs`}>
+                {trust.title}
+              </Badge>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Installed skills */}

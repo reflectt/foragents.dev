@@ -15,7 +15,9 @@ export type DirectoryAgent = {
   capabilities: string[];
   hostPlatform: string;
   createdAt: string;
-  trustScore: number;
+  trustScore?: number;
+  isVerified?: boolean;
+  missingVerificationPrereqs?: boolean;
   agentJsonUrl?: string;
 };
 
@@ -28,6 +30,8 @@ type SeedAgentShape = {
   platforms?: string[];
   joinedAt?: string;
   trustScore?: number;
+  isVerified?: boolean;
+  missingVerificationPrereqs?: boolean;
   links?: { agentJson?: string };
 };
 
@@ -50,7 +54,13 @@ function normalizeAgent(input: DirectoryAgent | SeedAgentShape): DirectoryAgent 
     capabilities: Array.isArray(input.skills) ? input.skills : [],
     hostPlatform: Array.isArray(input.platforms) && input.platforms.length > 0 ? input.platforms[0] : "openclaw",
     createdAt: input.joinedAt || new Date(0).toISOString(),
-    trustScore: input.trustScore ?? 0,
+    ...(typeof input.trustScore === "number" && Number.isFinite(input.trustScore)
+      ? { trustScore: Math.max(0, Math.min(100, Math.round(input.trustScore))) }
+      : {}),
+    ...(typeof input.isVerified === "boolean" ? { isVerified: input.isVerified } : {}),
+    ...(typeof input.missingVerificationPrereqs === "boolean"
+      ? { missingVerificationPrereqs: input.missingVerificationPrereqs }
+      : {}),
     ...(input.links?.agentJson ? { agentJsonUrl: input.links.agentJson } : {}),
   };
 }
@@ -96,7 +106,7 @@ export function AgentsPageClient({ agents: initialAgents }: AgentsPageClientProp
   }, [searchQuery, platformFilter, sort]);
 
   const featuredAgents = useMemo(
-    () => agents.filter((agent) => agent.trustScore >= 80).slice(0, 6),
+    () => agents.filter((agent) => typeof agent.trustScore === "number" && agent.trustScore >= 80).slice(0, 6),
     [agents]
   );
 
@@ -207,7 +217,47 @@ export function AgentsPageClient({ agents: initialAgents }: AgentsPageClientProp
   );
 }
 
+type TrustState = "known" | "unknown" | "unverified";
+
+function getTrustState(agent: DirectoryAgent): TrustState {
+  if (typeof agent.trustScore === "number" && Number.isFinite(agent.trustScore)) {
+    return "known";
+  }
+  if (agent.isVerified === false || agent.missingVerificationPrereqs) {
+    return "unverified";
+  }
+  return "unknown";
+}
+
+function trustBadge(state: TrustState, score?: number): { label: string; helper: string; className: string } {
+  if (state === "known") {
+    const clamped = Math.max(0, Math.min(100, Math.round(score ?? 0)));
+    return {
+      label: `Trust score: ${clamped}`,
+      helper: "Calculated from verification signals and profile quality.",
+      className: "bg-emerald-500/15 text-emerald-300 border-emerald-500/40",
+    };
+  }
+
+  if (state === "unverified") {
+    return {
+      label: "Trust score: Unverified",
+      helper: "Complete verification to receive a trust score.",
+      className: "bg-amber-500/15 text-amber-300 border-amber-500/40",
+    };
+  }
+
+  return {
+    label: "Trust score: Not available yet",
+    helper: "We’re still calculating this score.",
+    className: "bg-white/5 text-muted-foreground border-white/15",
+  };
+}
+
 function AgentCard({ agent }: { agent: DirectoryAgent }) {
+  const state = getTrustState(agent);
+  const trust = trustBadge(state, agent.trustScore);
+
   return (
     <Link href={`/agents/${agent.handle}`}>
       <Card className="bg-black/20 border-white/10 hover:border-cyan/30 transition-all cursor-pointer h-full group">
@@ -224,14 +274,15 @@ function AgentCard({ agent }: { agent: DirectoryAgent }) {
 
           <p className="text-sm text-foreground/80 line-clamp-2 mb-3">{agent.description}</p>
 
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-2">
             <Badge variant="outline" className="bg-white/5 text-white/70 border-white/10 text-[10px]">
               {agent.hostPlatform}
             </Badge>
-            <Badge variant="outline" className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-[10px]">
-              trust {agent.trustScore}
+            <Badge variant="outline" className={`${trust.className} text-[10px]`}>
+              {trust.label}
             </Badge>
           </div>
+          <p className="text-[11px] text-muted-foreground mb-3">{trust.helper}</p>
 
           {agent.capabilities.length > 0 && (
             <div className="text-xs text-muted-foreground">

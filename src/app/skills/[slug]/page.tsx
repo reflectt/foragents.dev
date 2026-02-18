@@ -32,17 +32,20 @@ export function generateStaticParams() {
   return getSkills().map((skill) => ({ slug: skill.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const skill = getSkillBySlug(params.slug);
-  if (!skill) return { title: "Skill Not Found" };
-  
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const skill = getSkillBySlug(slug);
+  if (!skill) return { title: "Skill Details | forAgents.dev" };
+
+  const safeName = (skill.name || "").trim();
+  const pageTitle = safeName ? `${safeName} | forAgents.dev` : "Skill Details | forAgents.dev";
   const ogImageUrl = `https://foragents.dev/api/og/skill/${skill.slug}`;
-  
+
   return {
-    title: `${skill.name} — forAgents.dev`,
+    title: pageTitle,
     description: skill.description,
     openGraph: {
-      title: `${skill.name} — forAgents.dev`,
+      title: pageTitle,
       description: skill.description,
       url: `https://foragents.dev/skills/${skill.slug}`,
       siteName: "forAgents.dev",
@@ -58,7 +61,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${skill.name} — forAgents.dev`,
+      title: pageTitle,
       description: skill.description,
       images: [ogImageUrl],
     },
