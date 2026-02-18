@@ -87,12 +87,7 @@ export type McpServer = {
   author?: string;
   tags?: string[];
 
-  // Optional stats (populated at runtime)
-  stars?: number;
-  installs?: number;
-  framework?: string;
-  
-  // Phase 1 stats
+  // Stats (populated at runtime)
   stars?: number;
   installs?: number;
   framework?: string;
