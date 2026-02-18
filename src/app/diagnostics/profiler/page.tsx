@@ -112,7 +112,7 @@ export default function ProfilerPage() {
   );
 
   return (
-    <main id="main-content" className="min-h-screen bg-[#0a0a0a]">
+    <main id="main-content" className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-4 py-10 md:py-14">
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -124,16 +124,16 @@ export default function ProfilerPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <Card className="bg-[#0f0f0f] border-white/10">
+          <Card className="bg-background border-white/10">
             <CardContent className="pt-6 flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">Avg duration</p>
                 <p className="text-3xl font-bold mt-1">{summary.avgDuration.toFixed(0)}ms</p>
               </div>
-              <Clock className="w-6 h-6 text-[#06D6A0]" />
+              <Clock className="w-6 h-6 text-primary" />
             </CardContent>
           </Card>
-          <Card className="bg-[#0f0f0f] border-white/10">
+          <Card className="bg-background border-white/10">
             <CardContent className="pt-6 flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">Avg token usage</p>
@@ -142,7 +142,7 @@ export default function ProfilerPage() {
               <Zap className="w-6 h-6 text-yellow-400" />
             </CardContent>
           </Card>
-          <Card className="bg-[#0f0f0f] border-white/10">
+          <Card className="bg-background border-white/10">
             <CardContent className="pt-6 flex items-center justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">Avg p95 latency</p>
@@ -153,7 +153,7 @@ export default function ProfilerPage() {
           </Card>
         </div>
 
-        <Card className="bg-[#0f0f0f] border-white/10 mb-6">
+        <Card className="bg-background border-white/10 mb-6">
           <CardContent className="pt-6 grid grid-cols-1 md:grid-cols-4 gap-3">
             <div className="md:col-span-2 relative">
               <Search className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
@@ -197,7 +197,7 @@ export default function ProfilerPage() {
         </Card>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-[#0f0f0f] border-white/10">
+          <Card className="bg-background border-white/10">
             <CardHeader>
               <CardTitle>Profiles</CardTitle>
             </CardHeader>
@@ -218,7 +218,7 @@ export default function ProfilerPage() {
                     onClick={() => setSelectedId(profile.id)}
                     className={`w-full rounded-lg border p-3 text-left transition-colors ${
                       selectedId === profile.id
-                        ? "border-[#06D6A0]/50 bg-[#06D6A0]/5"
+                        ? "border-primary/50 bg-primary/5"
                         : "border-white/10 hover:border-white/25"
                     }`}
                   >
@@ -229,7 +229,7 @@ export default function ProfilerPage() {
                       </Badge>
                     </div>
                     <div className="h-2 rounded bg-white/5 overflow-hidden">
-                      <div className="h-full bg-[#06D6A0]/80" style={{ width: `${width}%` }} />
+                      <div className="h-full bg-primary/80" style={{ width: `${width}%` }} />
                     </div>
                     <p className="mt-2 text-xs text-muted-foreground">{new Date(profile.createdAt).toLocaleString()}</p>
                   </button>
@@ -238,7 +238,7 @@ export default function ProfilerPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#0f0f0f] border-white/10">
+          <Card className="bg-background border-white/10">
             <CardHeader>
               <CardTitle>Profile detail</CardTitle>
             </CardHeader>

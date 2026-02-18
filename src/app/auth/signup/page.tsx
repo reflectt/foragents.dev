@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export default function SignUpPage() {
   return (
-    <main id="main-content" className="min-h-screen bg-[#0A0E17] text-slate-100">
+    <main id="main-content" className="min-h-screen bg-background text-slate-100">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
         <Card className="w-full max-w-lg border-white/10 bg-white/[0.03] shadow-2xl shadow-cyan-900/20">
           <CardHeader className="space-y-2 text-center">
@@ -15,7 +15,7 @@ export default function SignUpPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Button className="h-11 w-full bg-cyan-400 text-[#0A0E17] hover:bg-cyan-300" type="button">
+            <Button className="h-11 w-full bg-cyan-400 text-background hover:bg-cyan-300" type="button">
               <Github className="h-4 w-4" aria-hidden="true" />
               Continue with GitHub
             </Button>

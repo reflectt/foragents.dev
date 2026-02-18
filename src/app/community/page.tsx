@@ -130,7 +130,7 @@ export default function CommunityPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-white/5 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -147,12 +147,12 @@ export default function CommunityPage() {
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-3xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Join the Agent Community
           </h1>
           <p className="text-xl text-foreground/80 mb-2">
@@ -169,14 +169,14 @@ export default function CommunityPage() {
           {stats.map((stat, index) => (
             <Card
               key={index}
-              className="bg-card/50 border-white/5 hover:border-[#06D6A0]/20 transition-all group"
+              className="bg-card/50 border-white/5 hover:border-primary/20 transition-all group"
             >
               <CardContent className="pt-6">
                 <div className="flex flex-col items-center text-center">
                   <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
                     {stat.icon}
                   </div>
-                  <div className="text-3xl font-bold text-[#06D6A0] mb-1">
+                  <div className="text-3xl font-bold text-primary mb-1">
                     {stat.value}
                   </div>
                   <div className="text-sm font-semibold text-foreground mb-1">
@@ -207,9 +207,9 @@ export default function CommunityPage() {
           {contributions.map((contribution, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-xl border border-white/10 bg-card/30 p-6 hover:border-[#06D6A0]/30 transition-all group"
+              className="relative overflow-hidden rounded-xl border border-white/10 bg-card/30 p-6 hover:border-primary/30 transition-all group"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#06D6A0]/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <div className="text-3xl mb-4">{contribution.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{contribution.title}</h3>
@@ -221,14 +221,14 @@ export default function CommunityPage() {
                     href={contribution.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#06D6A0] hover:underline"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
                   >
                     {contribution.linkText}
                   </a>
                 ) : (
                   <Link
                     href={contribution.link}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#06D6A0] hover:underline"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
                   >
                     {contribution.linkText}
                   </Link>
@@ -254,7 +254,7 @@ export default function CommunityPage() {
           {featuredMembers.map((member, index) => (
             <Card
               key={index}
-              className="bg-card/50 border-white/5 hover:border-[#06D6A0]/20 transition-all group"
+              className="bg-card/50 border-white/5 hover:border-primary/20 transition-all group"
             >
               <CardHeader>
                 <div className="flex items-start justify-between">
@@ -271,7 +271,7 @@ export default function CommunityPage() {
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-xs bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30"
+                    className="text-xs bg-primary/10 text-primary border-primary/30"
                   >
                     {member.badge}
                   </Badge>
@@ -282,7 +282,7 @@ export default function CommunityPage() {
                   {member.description}
                 </p>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <span className="text-[#06D6A0]">⚡</span>
+                  <span className="text-primary">⚡</span>
                   <span>{member.skills} skills published</span>
                 </div>
               </CardContent>
@@ -295,8 +295,8 @@ export default function CommunityPage() {
 
       {/* Discord CTA */}
       <section className="max-w-3xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card/80 to-purple/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
@@ -308,15 +308,15 @@ export default function CommunityPage() {
 
             <div className="space-y-3 mb-8">
               <div className="flex items-center justify-center gap-2 text-sm">
-                <span className="text-[#06D6A0]">✓</span>
+                <span className="text-primary">✓</span>
                 <span className="text-muted-foreground">Real-time support and collaboration</span>
               </div>
               <div className="flex items-center justify-center gap-2 text-sm">
-                <span className="text-[#06D6A0]">✓</span>
+                <span className="text-primary">✓</span>
                 <span className="text-muted-foreground">Early access to new features</span>
               </div>
               <div className="flex items-center justify-center gap-2 text-sm">
-                <span className="text-[#06D6A0]">✓</span>
+                <span className="text-primary">✓</span>
                 <span className="text-muted-foreground">Weekly community events and AMAs</span>
               </div>
             </div>
@@ -325,7 +325,7 @@ export default function CommunityPage() {
               href="https://discord.gg/foragents"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-bold text-base hover:brightness-110 transition-all shadow-lg shadow-[#06D6A0]/20"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-primary text-background font-bold text-base hover:brightness-110 transition-all shadow-lg shadow-primary/20"
             >
               Join Discord Server ↗
             </a>

@@ -52,7 +52,7 @@ export default function GovernanceReadiness({ checklist, maturityCriteria }: Pro
           >
             <input
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-[#06D6A0]"
+              className="mt-1 h-4 w-4 accent-primary"
               checked={Boolean(checked[item.id])}
               onChange={(event) => {
                 setChecked((prev) => ({ ...prev, [item.id]: event.target.checked }));
@@ -63,9 +63,9 @@ export default function GovernanceReadiness({ checklist, maturityCriteria }: Pro
         ))}
       </div>
 
-      <div className="mt-6 rounded-lg border border-[#06D6A0]/25 bg-[#06D6A0]/10 p-4">
+      <div className="mt-6 rounded-lg border border-primary/25 bg-primary/10 p-4">
         <p className="text-sm text-foreground/80">Self-assessment score</p>
-        <p className="mt-1 text-2xl font-bold text-[#06D6A0]">
+        <p className="mt-1 text-2xl font-bold text-primary">
           {score}/{checklist.length} ({percentage}%)
         </p>
         <p className="mt-1 text-sm text-foreground/90">

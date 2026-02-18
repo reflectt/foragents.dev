@@ -36,7 +36,7 @@ export function ForumThreadList({ threads }: ForumThreadListProps) {
             onClick={() => setActiveCategory(cat.value)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               activeCategory === cat.value
-                ? 'bg-[#06D6A0]/10 text-[#06D6A0] border border-[#06D6A0]/30'
+                ? 'bg-primary/10 text-primary border border-primary/30'
                 : 'bg-zinc-900 text-gray-300 hover:bg-zinc-800 hover:text-white border border-zinc-800'
             }`}
           >
@@ -56,13 +56,13 @@ export function ForumThreadList({ threads }: ForumThreadListProps) {
             <Link
               key={thread.id}
               href={`/forum/${thread.id}`}
-              className="block bg-zinc-900 rounded-lg p-4 hover:bg-zinc-800 transition-colors border border-zinc-800 hover:border-[#06D6A0]/30"
+              className="block bg-zinc-900 rounded-lg p-4 hover:bg-zinc-800 transition-colors border border-zinc-800 hover:border-primary/30"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   {/* Title and Tags */}
                   <div className="mb-2">
-                    <h3 className="text-lg font-semibold text-white mb-2 hover:text-[#06D6A0] transition-colors">
+                    <h3 className="text-lg font-semibold text-white mb-2 hover:text-primary transition-colors">
                       {thread.title}
                     </h3>
                     <div className="flex flex-wrap gap-2">

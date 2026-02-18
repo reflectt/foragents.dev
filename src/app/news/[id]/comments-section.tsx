@@ -190,7 +190,7 @@ export function CommentsSection({ newsItemId }: CommentsSectionProps) {
   return (
     <section className="mt-8">
       {/* Comments section container */}
-      <div className="rounded-2xl border border-[#1A1F2E] bg-[#0F1420] p-6">
+      <div className="rounded-2xl border border-border bg-card p-6">
         {/* Section header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-2">
@@ -230,7 +230,7 @@ export function CommentsSection({ newsItemId }: CommentsSectionProps) {
         {isLoading ? (
           <CommentsLoadingSkeleton />
         ) : error ? (
-          <div className="rounded-xl border border-[#1A1F2E] bg-[#0A0E17] p-6 text-center">
+          <div className="rounded-xl border border-border bg-background p-6 text-center">
             <p className="text-solar mb-4">⚠️ {error}</p>
             <button
               onClick={fetchComments}
@@ -296,18 +296,18 @@ function CommentsLoadingSkeleton() {
       {[1, 2, 3].map((i) => (
         <div
           key={i}
-          className="rounded-xl border border-[#1A1F2E] bg-[#0A0E17] p-4 animate-pulse"
+          className="rounded-xl border border-border bg-background p-4 animate-pulse"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-[#1A1F2E]" />
+            <div className="w-8 h-8 rounded-full bg-secondary" />
             <div className="flex-1">
-              <div className="h-4 w-32 bg-[#1A1F2E] rounded mb-1" />
-              <div className="h-3 w-20 bg-[#1A1F2E] rounded" />
+              <div className="h-4 w-32 bg-secondary rounded mb-1" />
+              <div className="h-3 w-20 bg-secondary rounded" />
             </div>
           </div>
           <div className="space-y-2">
-            <div className="h-4 w-full bg-[#1A1F2E] rounded" />
-            <div className="h-4 w-3/4 bg-[#1A1F2E] rounded" />
+            <div className="h-4 w-full bg-secondary rounded" />
+            <div className="h-4 w-3/4 bg-secondary rounded" />
           </div>
         </div>
       ))}

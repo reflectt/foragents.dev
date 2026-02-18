@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 
 export default function AccessibilityPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-3 text-[#06D6A0]">Accessibility</h1>
+          <h1 className="text-4xl font-bold mb-3 text-primary">Accessibility</h1>
           <p className="text-gray-400 max-w-3xl mx-auto">
             We're publishing real accessibility audit data sourced from persistent records through the /api/accessibility endpoint.
           </p>

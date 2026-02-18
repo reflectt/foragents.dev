@@ -64,7 +64,7 @@ export default function NewsletterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -73,11 +73,11 @@ export default function NewsletterPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Stay in the Loop
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
@@ -92,7 +92,7 @@ export default function NewsletterPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Subscription Form */}
           <div className="lg:col-span-2">
-            <Card className="bg-[#0f0f0f] border-white/10">
+            <Card className="bg-background border-white/10">
               <CardHeader>
                 <CardTitle className="text-2xl">Subscribe to Our Newsletter</CardTitle>
                 <p className="text-muted-foreground text-sm">
@@ -102,9 +102,9 @@ export default function NewsletterPage() {
               <CardContent>
                 {subscribeSubmitted ? (
                   <div className="p-8 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#06D6A0]/10 mb-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                       <svg
-                        className="w-8 h-8 text-[#06D6A0]"
+                        className="w-8 h-8 text-primary"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -140,7 +140,7 @@ export default function NewsletterPage() {
                         onChange={(e) =>
                           setSubscribeForm({ ...subscribeForm, email: e.target.value })
                         }
-                        className="bg-[#0a0a0a] border-white/10 focus:border-[#06D6A0]"
+                        className="bg-background border-white/10 focus:border-primary"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -160,7 +160,7 @@ export default function NewsletterPage() {
                         onChange={(e) =>
                           setSubscribeForm({ ...subscribeForm, name: e.target.value })
                         }
-                        className="bg-[#0a0a0a] border-white/10 focus:border-[#06D6A0]"
+                        className="bg-background border-white/10 focus:border-primary"
                         placeholder="Your name"
                       />
                     </div>
@@ -196,7 +196,7 @@ export default function NewsletterPage() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black font-medium"
+                      className="w-full bg-primary hover:bg-primary/90 text-black font-medium"
                     >
                       Subscribe
                     </Button>
@@ -208,11 +208,11 @@ export default function NewsletterPage() {
 
           {/* Subscriber Count Badge */}
           <div className="space-y-6">
-            <Card className="bg-[#0f0f0f] border-white/10">
+            <Card className="bg-background border-white/10">
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#06D6A0]/10 mb-4">
-                    <Users className="w-8 h-8 text-[#06D6A0]" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                    <Users className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2">
                     {newsletterData.subscriberCount.toLocaleString()}+
@@ -235,11 +235,11 @@ export default function NewsletterPage() {
             {newsletterData.benefits.map((benefit) => {
               const Icon = iconMap[benefit.icon as keyof typeof iconMap];
               return (
-                <Card key={benefit.id} className="bg-[#0f0f0f] border-white/10">
+                <Card key={benefit.id} className="bg-background border-white/10">
                   <CardContent className="pt-6">
                     <div className="flex flex-col items-center text-center">
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#06D6A0]/10 mb-4">
-                        <Icon className="w-6 h-6 text-[#06D6A0]" />
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
+                        <Icon className="w-6 h-6 text-primary" />
                       </div>
                       <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
                       <p className="text-sm text-muted-foreground">
@@ -260,7 +260,7 @@ export default function NewsletterPage() {
           </h2>
           <div className="space-y-4">
             {newsletterData.recentIssues.map((issue) => (
-              <Card key={issue.id} className="bg-[#0f0f0f] border-white/10 hover:border-[#06D6A0]/30 transition-colors">
+              <Card key={issue.id} className="bg-background border-white/10 hover:border-primary/30 transition-colors">
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                     <div className="flex-1">
@@ -281,7 +281,7 @@ export default function NewsletterPage() {
                     </div>
                     <Link
                       href={issue.readUrl}
-                      className="flex items-center gap-2 text-sm text-[#06D6A0] hover:text-[#06D6A0]/80 transition-colors whitespace-nowrap"
+                      className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors whitespace-nowrap"
                     >
                       Read Online
                       <ExternalLink className="w-4 h-4" />
@@ -295,7 +295,7 @@ export default function NewsletterPage() {
 
         {/* Unsubscribe Section */}
         <div className="mt-16">
-          <Card className="bg-[#0f0f0f] border-white/10">
+          <Card className="bg-background border-white/10">
             <CardHeader>
               <CardTitle className="text-xl">Need to Unsubscribe?</CardTitle>
               <p className="text-muted-foreground text-sm">
@@ -305,9 +305,9 @@ export default function NewsletterPage() {
             <CardContent>
               {unsubscribeSubmitted ? (
                 <div className="p-8 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#06D6A0]/10 mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                     <svg
-                      className="w-8 h-8 text-[#06D6A0]"
+                      className="w-8 h-8 text-primary"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -341,7 +341,7 @@ export default function NewsletterPage() {
                       required
                       value={unsubscribeToken}
                       onChange={(e) => setUnsubscribeToken(e.target.value)}
-                      className="bg-[#0a0a0a] border-white/10 focus:border-[#06D6A0]"
+                      className="bg-background border-white/10 focus:border-primary"
                       placeholder="Enter your token"
                     />
                   </div>

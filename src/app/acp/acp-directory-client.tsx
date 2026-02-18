@@ -18,17 +18,17 @@ export type AcpProtocol = {
 };
 
 const statusStyles: Record<AcpProtocol["status"], { bg: string; text: string; border: string }> = {
-  stable: { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]", border: "border-[#06D6A0]/20" },
-  beta: { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]", border: "border-[#3B82F6]/20" },
-  draft: { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]", border: "border-[#F59E0B]/20" },
-  deprecated: { bg: "bg-[#EF4444]/10", text: "text-[#EF4444]", border: "border-[#EF4444]/20" },
+  stable: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
+  beta: { bg: "bg-electric-blue/10", text: "text-electric-blue", border: "border-electric-blue/20" },
+  draft: { bg: "bg-solar/10", text: "text-solar", border: "border-solar/20" },
+  deprecated: { bg: "bg-destructive/10", text: "text-destructive", border: "border-destructive/20" },
 };
 
 const categoryStyles: Record<AcpProtocol["category"], { bg: string; text: string }> = {
   messaging: { bg: "bg-cyan/10", text: "text-cyan" },
-  discovery: { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]" },
-  auth: { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]" },
-  data: { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]" },
+  discovery: { bg: "bg-purple/10", text: "text-purple" },
+  auth: { bg: "bg-aurora-pink/10", text: "text-aurora-pink" },
+  data: { bg: "bg-solar/10", text: "text-solar" },
 };
 
 export function AcpDirectoryClient({ initialProtocols }: { initialProtocols: AcpProtocol[] }) {

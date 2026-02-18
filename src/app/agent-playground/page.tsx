@@ -166,7 +166,7 @@ export default function AgentPlaygroundPage() {
   }, [runs]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden py-12">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-purple-500/5 blur-[120px]" />
@@ -237,7 +237,7 @@ export default function AgentPlaygroundPage() {
                   <SelectTrigger id="agent-select" className="border-white/10 bg-white/5 text-white">
                     <SelectValue placeholder="Select agent" />
                   </SelectTrigger>
-                  <SelectContent className="border-white/10 bg-[#1a1a1a]">
+                  <SelectContent className="border-white/10 bg-background">
                     {AGENT_OPTIONS.map((agent) => (
                       <SelectItem key={agent} value={agent} className="text-white focus:bg-white/10 focus:text-white">
                         {agent === "all" ? "All agents (filter off)" : agent}
@@ -253,7 +253,7 @@ export default function AgentPlaygroundPage() {
                   <SelectTrigger id="model-select" className="border-white/10 bg-white/5 text-white">
                     <SelectValue placeholder="Select model" />
                   </SelectTrigger>
-                  <SelectContent className="border-white/10 bg-[#1a1a1a]">
+                  <SelectContent className="border-white/10 bg-background">
                     {MODEL_OPTIONS.map((model) => (
                       <SelectItem key={model} value={model} className="text-white focus:bg-white/10 focus:text-white">
                         {model}
@@ -311,7 +311,7 @@ export default function AgentPlaygroundPage() {
                     </Badge>
                   </div>
 
-                  <div className="rounded-lg border border-white/10 bg-[#0a0a0a] p-4">
+                  <div className="rounded-lg border border-white/10 bg-background p-4">
                     <p className="mb-2 text-xs text-muted-foreground">Prompt</p>
                     <p className="mb-4 whitespace-pre-wrap text-sm text-white">{currentRun.prompt}</p>
                     <p className="mb-2 text-xs text-muted-foreground">Response</p>

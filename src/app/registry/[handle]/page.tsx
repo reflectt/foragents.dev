@@ -84,7 +84,7 @@ export default async function AgentDetailPage({ params }: AgentDetailPageProps) 
             <div className="text-8xl">{agent.avatar}</div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2 flex-wrap">
-                <h1 className="text-4xl font-bold text-[#F8FAFC]">{agent.name}</h1>
+                <h1 className="text-4xl font-bold text-foreground">{agent.name}</h1>
                 {agent.verified && (
                   <Badge className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-sm px-2 py-1">
                     ✓ Verified

@@ -29,30 +29,30 @@ const HIGH_SIGNAL_SOURCES = new Set([
 ]);
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
-  tools:     { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]" },
-  skills:    { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]" },
-  models:    { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]" },
-  community: { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]" },
-  breaking:  { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]" },
+  tools:     { bg: "bg-primary/10", text: "text-primary" },
+  skills:    { bg: "bg-solar/10", text: "text-solar" },
+  models:    { bg: "bg-purple/10", text: "text-purple" },
+  community: { bg: "bg-electric-blue/10", text: "text-electric-blue" },
+  breaking:  { bg: "bg-aurora-pink/10", text: "text-aurora-pink" },
 };
 
 const tagColors: Record<string, string> = {
-  breaking: "bg-[#EC4899]/10 text-[#EC4899] border-[#EC4899]/20",
-  security: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  openclaw: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  community: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  tools: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  skills: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  enterprise: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  models: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
-  standards: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  trends: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
-  milestone: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  funding: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  partnerships: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  analysis: "bg-[#6B7280]/10 text-[#6B7280] border-[#6B7280]/20",
-  moltbook: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  mcp: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+  breaking: "bg-aurora-pink/10 text-aurora-pink border-aurora-pink/20",
+  security: "bg-solar/10 text-solar border-solar/20",
+  openclaw: "bg-primary/10 text-primary border-primary/20",
+  community: "bg-electric-blue/10 text-electric-blue border-electric-blue/20",
+  tools: "bg-primary/10 text-primary border-primary/20",
+  skills: "bg-solar/10 text-solar border-solar/20",
+  enterprise: "bg-electric-blue/10 text-electric-blue border-electric-blue/20",
+  models: "bg-purple/10 text-purple border-purple/20",
+  standards: "bg-electric-blue/10 text-electric-blue border-electric-blue/20",
+  trends: "bg-purple/10 text-purple border-purple/20",
+  milestone: "bg-solar/10 text-solar border-solar/20",
+  funding: "bg-primary/10 text-primary border-primary/20",
+  partnerships: "bg-electric-blue/10 text-electric-blue border-electric-blue/20",
+  analysis: "bg-muted-foreground/10 text-muted-foreground border-muted/20",
+  moltbook: "bg-solar/10 text-solar border-solar/20",
+  mcp: "bg-primary/10 text-primary border-primary/20",
 };
 
 function timeAgo(dateStr: string): string {
@@ -207,10 +207,10 @@ export function NewsFeed({ items }: { items: NewsItem[] }) {
               href={item.source_url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`block rounded-xl border bg-card/50 p-5 transition-all duration-200 hover:border-[#2A3040] hover:shadow-[0_0_20px_rgba(6,214,160,0.05)] group ${
+              className={`block rounded-xl border bg-card/50 p-5 transition-all duration-200 hover:border-input hover:shadow-[0_0_20px_rgba(6,214,160,0.05)] group ${
                 isBreaking
-                  ? "border-l-[3px] border-l-aurora-pink border-[#1A1F2E]"
-                  : "border-[#1A1F2E]"
+                  ? "border-l-[3px] border-l-aurora-pink border-border"
+                  : "border-border"
               }`}
             >
               {/* Meta row */}
@@ -224,7 +224,7 @@ export function NewsFeed({ items }: { items: NewsItem[] }) {
                   <span className="text-muted-foreground text-[13px]">·</span>
                   <span className="text-muted-foreground text-[13px]">
                     {itemIsColony && (
-                      <span className="inline-flex items-center gap-1 text-[#F59E0B]">
+                      <span className="inline-flex items-center gap-1 text-solar">
                         🏠{" "}
                       </span>
                     )}
@@ -233,12 +233,12 @@ export function NewsFeed({ items }: { items: NewsItem[] }) {
 
                   {/* Badges */}
                   {itemIsNew && (
-                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#06D6A0]/15 text-[#06D6A0] border border-[#06D6A0]/25">
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/15 text-primary border border-primary/25">
                       NEW
                     </span>
                   )}
                   {itemIsHot && (
-                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#EC4899]/15 text-[#EC4899] border border-[#EC4899]/25">
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-aurora-pink/15 text-aurora-pink border border-aurora-pink/25">
                       🔥 HOT
                     </span>
                   )}
@@ -249,7 +249,7 @@ export function NewsFeed({ items }: { items: NewsItem[] }) {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-semibold text-[#F8FAFC] leading-tight group-hover:text-cyan transition-colors line-clamp-2 mb-2">
+              <h3 className="text-lg font-semibold text-foreground leading-tight group-hover:text-cyan transition-colors line-clamp-2 mb-2">
                 {item.title}
               </h3>
 
@@ -306,8 +306,8 @@ function FilterButton({
       onClick={onClick}
       className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
         active
-          ? "bg-white/10 text-[#F8FAFC]"
-          : "text-muted-foreground hover:text-[#F8FAFC] hover:bg-white/5"
+          ? "bg-white/10 text-foreground"
+          : "text-muted-foreground hover:text-foreground hover:bg-white/5"
       }`}
     >
       {children}
@@ -330,7 +330,7 @@ function SortButton({
       className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
         active
           ? "bg-cyan/15 text-cyan"
-          : "text-muted-foreground hover:text-[#F8FAFC] hover:bg-white/5"
+          : "text-muted-foreground hover:text-foreground hover:bg-white/5"
       }`}
     >
       {children}

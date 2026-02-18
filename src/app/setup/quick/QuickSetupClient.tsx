@@ -31,7 +31,7 @@ export default function QuickSetupClient() {
   const bootstrapCommand = selectedPreset.bootstrapCommand;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="max-w-4xl mx-auto px-4 py-12">
         <h1 className="text-3xl md:text-4xl font-bold">Express Agent Setup</h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
@@ -48,7 +48,7 @@ export default function QuickSetupClient() {
                 onClick={() => setSelectedPresetId(preset.id)}
                 className={`rounded-xl border p-4 text-left transition-colors ${
                   active
-                    ? "border-[#06D6A0]/60 bg-[#06D6A0]/10"
+                    ? "border-primary/60 bg-primary/10"
                     : "border-white/10 bg-black/20 hover:bg-black/30"
                 }`}
               >
@@ -61,11 +61,11 @@ export default function QuickSetupClient() {
 
         <div className="mt-6 rounded-xl border border-white/10 bg-black/20 p-4">
           <div className="mb-2 text-sm text-muted-foreground">Bootstrap command</div>
-          <pre className="overflow-x-auto rounded bg-black/40 p-3 text-sm text-[#06D6A0]">
+          <pre className="overflow-x-auto rounded bg-black/40 p-3 text-sm text-primary">
             <code>{bootstrapCommand}</code>
           </pre>
           <div className="mt-3">
-            <Button className="bg-[#06D6A0] text-black hover:bg-[#06D6A0]/90" onClick={() => copyText(bootstrapCommand)}>
+            <Button className="bg-primary text-black hover:bg-primary/90" onClick={() => copyText(bootstrapCommand)}>
               Copy command
             </Button>
           </div>

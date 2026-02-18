@@ -141,18 +141,18 @@ export default function CreditsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
 
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-3xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Standing on the shoulders of giants
           </h1>
           <p className="text-xl text-foreground/80 mb-2">
@@ -176,19 +176,19 @@ export default function CreditsPage() {
           {technologies.map((tech) => (
             <Card 
               key={tech.name}
-              className="bg-card/50 border-white/5 hover:border-[#06D6A0]/20 transition-all group"
+              className="bg-card/50 border-white/5 hover:border-primary/20 transition-all group"
             >
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <span className="text-3xl">{tech.icon}</span>
                   <Badge 
                     variant="outline" 
-                    className="text-xs bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30"
+                    className="text-xs bg-primary/10 text-primary border-primary/30"
                   >
                     v{tech.version}
                   </Badge>
                 </div>
-                <CardTitle className="text-lg group-hover:text-[#06D6A0] transition-colors">
+                <CardTitle className="text-lg group-hover:text-primary transition-colors">
                   {tech.name}
                 </CardTitle>
               </CardHeader>
@@ -200,7 +200,7 @@ export default function CreditsPage() {
                   href={tech.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#06D6A0] hover:underline inline-flex items-center gap-1"
+                  className="text-xs text-primary hover:underline inline-flex items-center gap-1"
                 >
                   Visit site
                   <span aria-hidden="true">↗</span>
@@ -226,13 +226,13 @@ export default function CreditsPage() {
           {contributors.map((contributor, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-lg border border-white/10 bg-card/30 p-6 hover:border-[#06D6A0]/20 transition-all group"
+              className="relative overflow-hidden rounded-lg border border-white/10 bg-card/30 p-6 hover:border-primary/20 transition-all group"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#06D6A0]/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-[#06D6A0] transition-colors">
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                       {contributor.name}
                     </h3>
                     <Badge
@@ -250,7 +250,7 @@ export default function CreditsPage() {
                   href={contributor.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#06D6A0] hover:underline inline-flex items-center gap-1"
+                  className="text-xs text-primary hover:underline inline-flex items-center gap-1"
                 >
                   Learn more
                   <span aria-hidden="true">↗</span>
@@ -282,7 +282,7 @@ export default function CreditsPage() {
                     className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition-colors border border-white/5"
                   >
                     <div className="flex-1 min-w-0">
-                      <code className="text-sm font-mono text-[#06D6A0] block mb-1">
+                      <code className="text-sm font-mono text-primary block mb-1">
                         {lib.name}
                       </code>
                       <span className="text-xs text-muted-foreground font-mono">
@@ -309,7 +309,7 @@ export default function CreditsPage() {
                   href="https://github.com/reflectt/foragents.dev/blob/main/package.json"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#06D6A0]/30 text-sm text-[#06D6A0] hover:bg-[#06D6A0]/10 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-primary/30 text-sm text-primary hover:bg-primary/10 transition-colors"
                 >
                   View package.json on GitHub
                   <span aria-hidden="true">↗</span>
@@ -324,8 +324,8 @@ export default function CreditsPage() {
 
       {/* License Section */}
       <section className="max-w-3xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card/80 to-purple/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12">
@@ -340,15 +340,15 @@ export default function CreditsPage() {
 
             <div className="space-y-3 mb-6">
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-[#06D6A0]">✓</span>
+                <span className="text-primary">✓</span>
                 <span className="text-muted-foreground">Free to use, modify, and distribute</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-[#06D6A0]">✓</span>
+                <span className="text-primary">✓</span>
                 <span className="text-muted-foreground">Community contributions welcome</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-[#06D6A0]">✓</span>
+                <span className="text-primary">✓</span>
                 <span className="text-muted-foreground">Transparent development process</span>
               </div>
             </div>
@@ -358,7 +358,7 @@ export default function CreditsPage() {
                 href="https://github.com/reflectt/foragents.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
               >
                 View on GitHub
                 <span aria-hidden="true">↗</span>
@@ -388,7 +388,7 @@ export default function CreditsPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/submit"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
             >
               Submit a Skill
             </Link>

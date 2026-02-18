@@ -297,7 +297,7 @@ export default function NotificationsPage() {
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="mb-8">
-          <Link href="/" className="text-[#06D6A0] hover:underline text-sm mb-4 inline-block">
+          <Link href="/" className="text-primary hover:underline text-sm mb-4 inline-block">
             ← Back to Home
           </Link>
           <div className="flex items-center justify-between gap-3">
@@ -306,7 +306,7 @@ export default function NotificationsPage() {
               <p className="text-slate-400 mt-2">Manage category and channel preferences, then save to persist.</p>
             </div>
             {unreadCount > 0 && (
-              <Badge variant="outline" className="bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30 text-sm px-3 py-1">
+              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30 text-sm px-3 py-1">
                 {unreadCount} unread
               </Badge>
             )}
@@ -356,7 +356,7 @@ export default function NotificationsPage() {
                                 <Switch
                                   checked={preferences.categories[category].channels[channel]}
                                   onCheckedChange={(checked) => setCategoryChannel(category, channel, checked)}
-                                  className="data-[state=checked]:bg-[#06D6A0]"
+                                  className="data-[state=checked]:bg-primary"
                                   aria-label={`${CATEGORY_LABELS[category]} ${CHANNEL_LABELS[channel]} toggle`}
                                 />
                               </td>
@@ -392,7 +392,7 @@ export default function NotificationsPage() {
                     <Button
                       onClick={handleSave}
                       disabled={isSaving || isResetting}
-                      className="bg-[#06D6A0] hover:bg-[#05c291] text-white"
+                      className="bg-primary hover:bg-primary/85 text-white"
                     >
                       {isSaving ? "Saving..." : "Save"}
                     </Button>
@@ -404,7 +404,7 @@ export default function NotificationsPage() {
                     >
                       {isResetting ? "Resetting..." : "Reset to defaults"}
                     </Button>
-                    {statusMessage && <p className="text-sm text-[#06D6A0] self-center">{statusMessage}</p>}
+                    {statusMessage && <p className="text-sm text-primary self-center">{statusMessage}</p>}
                   </div>
                 </>
               )}
@@ -449,7 +449,7 @@ export default function NotificationsPage() {
                     className={`block rounded-lg border p-4 transition-all ${
                       notif.read
                         ? "bg-slate-800/30 border-slate-700/50 hover:border-slate-600"
-                        : "bg-slate-800/70 border-[#06D6A0]/30 hover:border-[#06D6A0]/50"
+                        : "bg-slate-800/70 border-primary/30 hover:border-primary/50"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3 mb-2">
@@ -458,7 +458,7 @@ export default function NotificationsPage() {
                         className={`text-xs ${
                           notif.read
                             ? "bg-slate-700/30 text-slate-400 border-slate-600"
-                            : "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30"
+                            : "bg-primary/10 text-primary border-primary/30"
                         }`}
                       >
                         {NOTIFICATION_TYPE_LABELS[notif.type]}

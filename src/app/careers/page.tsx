@@ -230,7 +230,7 @@ export default function CareersPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingsJsonLd) }}
@@ -238,7 +238,7 @@ export default function CareersPage() {
 
       <section className="relative mx-auto max-w-6xl space-y-10 px-4 py-16">
         <div className="space-y-4 text-center">
-          <h1 className="text-[40px] font-bold tracking-[-0.02em] text-[#F8FAFC] md:text-[56px]">
+          <h1 className="text-[40px] font-bold tracking-[-0.02em] text-foreground md:text-[56px]">
             Build the Future of Agent Infrastructure
           </h1>
           <p className="mx-auto max-w-2xl text-xl text-foreground/80">
@@ -246,7 +246,7 @@ export default function CareersPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 rounded-2xl border border-white/10 bg-[#0f0f0f] p-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 rounded-2xl border border-white/10 bg-background p-4 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-2 lg:col-span-4">
             <Label htmlFor="career-search">Search roles</Label>
             <div className="relative">
@@ -311,7 +311,7 @@ export default function CareersPage() {
         </div>
 
         {loading && (
-          <div className="rounded-xl border border-white/10 bg-[#0f0f0f] p-6 text-sm text-muted-foreground">
+          <div className="rounded-xl border border-white/10 bg-background p-6 text-sm text-muted-foreground">
             Loading careers...
           </div>
         )}
@@ -330,7 +330,7 @@ export default function CareersPage() {
             </div>
 
             {jobs.length === 0 ? (
-              <div className="rounded-xl border border-white/10 bg-[#0f0f0f] p-6 text-sm text-muted-foreground">
+              <div className="rounded-xl border border-white/10 bg-background p-6 text-sm text-muted-foreground">
                 No roles match your current filters.
               </div>
             ) : (
@@ -340,7 +340,7 @@ export default function CareersPage() {
                 const isOpen = job.status === "open";
 
                 return (
-                  <Card key={job.id} className="border-white/10 bg-[#0f0f0f]">
+                  <Card key={job.id} className="border-white/10 bg-background">
                     <CardHeader className="space-y-3">
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <CardTitle>{job.title}</CardTitle>
@@ -385,7 +385,7 @@ export default function CareersPage() {
                           type="button"
                           onClick={() => handleOpenApplication(job.id)}
                           disabled={!isOpen}
-                          className="bg-[#06D6A0] text-black hover:bg-[#06D6A0]/90"
+                          className="bg-primary text-black hover:bg-primary/90"
                         >
                           {isApplyOpen ? "Close application form" : "Apply"}
                         </Button>

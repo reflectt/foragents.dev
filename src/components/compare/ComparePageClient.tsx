@@ -160,7 +160,7 @@ export default function ComparePageClient({
           </button>
           <button
             type="button"
-            className="h-9 px-3 rounded-md text-xs bg-cyan text-[#0A0E17] font-semibold hover:brightness-110 transition-all"
+            className="h-9 px-3 rounded-md text-xs bg-cyan text-background font-semibold hover:brightness-110 transition-all"
             onClick={() => {
               copyLink().catch(() => null);
             }}

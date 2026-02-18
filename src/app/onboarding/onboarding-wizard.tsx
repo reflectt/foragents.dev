@@ -505,7 +505,7 @@ export function OnboardingWizard() {
         <Button
           onClick={() => setCurrentStep((s) => Math.min(TOTAL_STEPS, s + 1))}
           disabled={currentStep === TOTAL_STEPS}
-          className="bg-cyan text-[#0A0E17] hover:brightness-110"
+          className="bg-cyan text-background hover:brightness-110"
         >
           Next
         </Button>

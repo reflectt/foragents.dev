@@ -814,7 +814,7 @@ export default function SkillsPlaygroundClient({
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative overflow-hidden py-12">
         <div className="absolute inset-0">
@@ -900,7 +900,7 @@ export default function SkillsPlaygroundClient({
                     <SelectTrigger id="skill" className="bg-white/5 border-white/10 text-white">
                       <SelectValue placeholder="Select a skill…" />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#1a1a1a] border-white/10">
+                    <SelectContent className="bg-background border-white/10">
                       {skills.map((skill) => (
                         <SelectItem
                           key={skill.slug}
@@ -914,7 +914,7 @@ export default function SkillsPlaygroundClient({
                   </Select>
 
                   {selectedSkill && (
-                    <div className="mt-3 rounded-lg bg-[#0a0a0a] border border-white/5 p-3">
+                    <div className="mt-3 rounded-lg bg-background border border-white/5 p-3">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="text-sm text-white font-semibold truncate">{selectedSkill.name}</div>
@@ -954,7 +954,7 @@ export default function SkillsPlaygroundClient({
                     <SelectTrigger id="model" className="bg-white/5 border-white/10 text-white">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#1a1a1a] border-white/10">
+                    <SelectContent className="bg-background border-white/10">
                       {models.map((m) => (
                         <SelectItem
                           key={m.id}
@@ -1069,7 +1069,7 @@ export default function SkillsPlaygroundClient({
                   <TabsContent value="terminal" className="mt-3">
                     <div
                       ref={terminalRef}
-                      className="h-[420px] overflow-auto rounded-lg border border-white/5 bg-[#050505] p-4"
+                      className="h-[420px] overflow-auto rounded-lg border border-white/5 bg-background p-4"
                     >
                       {terminalLines.length === 0 ? (
                         <div className="text-sm text-muted-foreground">
@@ -1084,7 +1084,7 @@ export default function SkillsPlaygroundClient({
                   </TabsContent>
 
                   <TabsContent value="result" className="mt-3">
-                    <div className="h-[420px] overflow-auto rounded-lg border border-white/5 bg-[#050505] p-4">
+                    <div className="h-[420px] overflow-auto rounded-lg border border-white/5 bg-background p-4">
                       {resultText ? (
                         <pre className="text-xs text-white whitespace-pre-wrap font-mono">{resultText}</pre>
                       ) : (

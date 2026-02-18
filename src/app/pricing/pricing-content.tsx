@@ -164,17 +164,17 @@ export function PricingContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden py-20">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-purple/3 rounded-full blur-[140px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 text-center">
           <Badge
             variant="outline"
-            className="mb-4 text-xs bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30"
+            className="mb-4 text-xs bg-primary/10 text-primary border-primary/30"
           >
             Simple, transparent pricing
           </Badge>
@@ -205,7 +205,7 @@ export function PricingContent() {
               Yearly
             </span>
           </div>
-          <p className="text-sm text-[#06D6A0]">See yearly savings instantly</p>
+          <p className="text-sm text-primary">See yearly savings instantly</p>
         </div>
       </section>
 
@@ -241,13 +241,13 @@ export function PricingContent() {
                   key={plan.slug}
                   className={`relative ${
                     plan.highlighted
-                      ? "bg-gradient-to-br from-[#06D6A0]/10 via-card/80 to-purple/5 border-[#06D6A0]/30"
+                      ? "bg-gradient-to-br from-primary/10 via-card/80 to-purple/5 border-primary/30"
                       : "bg-card/50 border-white/10"
                   }`}
                 >
                   {plan.highlighted && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <Badge className="bg-[#06D6A0] text-[#0a0a0a] font-semibold px-4">
+                      <Badge className="bg-primary text-background font-semibold px-4">
                         Recommended
                       </Badge>
                     </div>
@@ -269,7 +269,7 @@ export function PricingContent() {
                             </div>
                           </div>
                           {isYearly && yearlySavings > 0 && (
-                            <div className="text-sm text-[#06D6A0] mt-1">
+                            <div className="text-sm text-primary mt-1">
                               Save ${yearlySavings}/year vs monthly
                             </div>
                           )}
@@ -285,7 +285,7 @@ export function PricingContent() {
                         .slice(0, 6)
                         .map((feature) => (
                           <li key={`${plan.slug}-${feature.name}`} className="flex items-start gap-3">
-                            <Check className="w-5 h-5 shrink-0 mt-0.5 text-[#06D6A0]" />
+                            <Check className="w-5 h-5 shrink-0 mt-0.5 text-primary" />
                             <span className="text-sm text-muted-foreground">
                               {feature.name}
                               {feature.limit ? ` (${feature.limit})` : ""}
@@ -297,7 +297,7 @@ export function PricingContent() {
                     <Button
                       className={`w-full ${
                         plan.highlighted
-                          ? "bg-[#06D6A0] hover:brightness-110 text-[#0a0a0a] font-semibold"
+                          ? "bg-primary hover:brightness-110 text-background font-semibold"
                           : "bg-white/10 hover:bg-white/20 text-white border border-white/20"
                       }`}
                       onClick={() => trackInterest(plan)}
@@ -342,7 +342,7 @@ export function PricingContent() {
                     <div
                       key={`head-${plan.slug}`}
                       className={`text-sm font-semibold text-center ${
-                        plan.highlighted ? "text-[#06D6A0]" : "text-muted-foreground"
+                        plan.highlighted ? "text-primary" : "text-muted-foreground"
                       }`}
                     >
                       {plan.name}
@@ -367,7 +367,7 @@ export function PricingContent() {
                           ) : feature.limit ? (
                             <span className="text-sm text-white">{feature.limit}</span>
                           ) : (
-                            <Check className="w-5 h-5 text-[#06D6A0]" />
+                            <Check className="w-5 h-5 text-primary" />
                           )}
                         </div>
                       );
@@ -408,7 +408,7 @@ export function PricingContent() {
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">Still have questions?</p>
           <Button variant="outline" asChild>
-            <Link href="/contact" className="text-[#06D6A0] border-[#06D6A0]/30">
+            <Link href="/contact" className="text-primary border-primary/30">
               Contact Us
             </Link>
           </Button>
@@ -418,8 +418,8 @@ export function PricingContent() {
       <Separator className="opacity-10" />
 
       <section className="max-w-5xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#06D6A0]/10 via-purple/10 to-[#06D6A0]/10 border border-white/10 p-12 text-center">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/20 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary/10 via-purple/10 to-primary/10 border border-white/10 p-12 text-center">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
           <div className="relative">
             <h2 className="text-3xl font-bold mb-4 text-white">Ready to Get Started?</h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
@@ -429,7 +429,7 @@ export function PricingContent() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-[#06D6A0] hover:brightness-110 text-[#0a0a0a] font-semibold"
+                className="bg-primary hover:brightness-110 text-background font-semibold"
                 onClick={() => {
                   const freePlan = plans.find((plan) => plan.slug === "free");
                   if (freePlan) {

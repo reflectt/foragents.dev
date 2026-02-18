@@ -54,21 +54,21 @@ export default function PricingCalculatorPage() {
   }, [tokenCostPer1M, avgTokensPerRequest, requestsPerUserPerMonth, monthlyUsers, targetMargin, marketplaceFee]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 right-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-cyan-500/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
           <Link href="/monetization">
-            <Badge className="mb-4 bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30 cursor-pointer hover:bg-[#06D6A0]/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30 cursor-pointer hover:bg-primary/30">
               ← Back to Monetization Guide
             </Badge>
           </Link>
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             🧮 Pricing Calculator
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
@@ -97,7 +97,7 @@ export default function PricingCalculatorPage() {
                     type="number"
                     value={tokenCostPer1M}
                     onChange={(e) => setTokenCostPer1M(Number(e.target.value))}
-                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-[#06D6A0]/50 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-primary/50 focus:outline-none"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
                     GPT-4: $15 | GPT-3.5: $2 | Claude Opus: $15 | Haiku: $0.80
@@ -112,7 +112,7 @@ export default function PricingCalculatorPage() {
                     type="number"
                     value={avgTokensPerRequest}
                     onChange={(e) => setAvgTokensPerRequest(Number(e.target.value))}
-                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-[#06D6A0]/50 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-primary/50 focus:outline-none"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
                     Include both input and output tokens
@@ -134,7 +134,7 @@ export default function PricingCalculatorPage() {
                     type="number"
                     value={requestsPerUserPerMonth}
                     onChange={(e) => setRequestsPerUserPerMonth(Number(e.target.value))}
-                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-[#06D6A0]/50 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-primary/50 focus:outline-none"
                   />
                 </div>
 
@@ -146,7 +146,7 @@ export default function PricingCalculatorPage() {
                     type="number"
                     value={monthlyUsers}
                     onChange={(e) => setMonthlyUsers(Number(e.target.value))}
-                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-[#06D6A0]/50 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-primary/50 focus:outline-none"
                   />
                 </div>
               </CardContent>
@@ -165,7 +165,7 @@ export default function PricingCalculatorPage() {
                     type="number"
                     value={targetMargin}
                     onChange={(e) => setTargetMargin(Number(e.target.value))}
-                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-[#06D6A0]/50 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-primary/50 focus:outline-none"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
                     Typical SaaS: 70-80%
@@ -180,7 +180,7 @@ export default function PricingCalculatorPage() {
                     type="number"
                     value={marketplaceFee}
                     onChange={(e) => setMarketplaceFee(Number(e.target.value))}
-                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-[#06D6A0]/50 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-foreground focus:border-primary/50 focus:outline-none"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
                     App stores: 30% | Self-hosted: 0% | Stripe: 2.9%
@@ -192,14 +192,14 @@ export default function PricingCalculatorPage() {
 
           {/* Results */}
           <div className="space-y-6">
-            <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-cyan-500/5 border-[#06D6A0]/30">
+            <Card className="bg-gradient-to-br from-primary/10 to-cyan-500/5 border-primary/30">
               <CardHeader>
                 <CardTitle>💰 Recommended Pricing</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
                   <p className="text-sm text-foreground/70 mb-2">Price Per User (Monthly)</p>
-                  <div className="text-4xl font-bold text-[#06D6A0]">
+                  <div className="text-4xl font-bold text-primary">
                     ${calculations.pricePerUser.toFixed(2)}
                   </div>
                 </div>
@@ -255,7 +255,7 @@ export default function PricingCalculatorPage() {
                     <span className="text-xs text-foreground/60 w-16">Current:</span>
                     <div className="flex-1 h-8 bg-black/40 rounded-lg overflow-hidden relative">
                       <div 
-                        className="h-full bg-gradient-to-r from-cyan-500 to-[#06D6A0] transition-all duration-500 flex items-center justify-end pr-2"
+                        className="h-full bg-gradient-to-r from-cyan-500 to-primary transition-all duration-500 flex items-center justify-end pr-2"
                         style={{ width: `${Math.min((monthlyUsers / calculations.breakEvenUsers) * 100, 100)}%` }}
                       >
                         <span className="text-xs font-bold text-black">{monthlyUsers}</span>
@@ -302,13 +302,13 @@ export default function PricingCalculatorPage() {
                     </p>
                   </div>
 
-                  <div className="bg-[#06D6A0]/10 rounded-lg p-4 border border-[#06D6A0]/50 relative">
-                    <div className="absolute -top-2 -right-2 bg-[#06D6A0] text-black text-xs font-bold px-2 py-1 rounded-full">
+                  <div className="bg-primary/10 rounded-lg p-4 border border-primary/50 relative">
+                    <div className="absolute -top-2 -right-2 bg-primary text-black text-xs font-bold px-2 py-1 rounded-full">
                       RECOMMENDED
                     </div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-semibold text-[#06D6A0]">Pro</span>
-                      <span className="text-2xl font-bold text-[#06D6A0]">${calculations.tiers.pro}</span>
+                      <span className="font-semibold text-primary">Pro</span>
+                      <span className="text-2xl font-bold text-primary">${calculations.tiers.pro}</span>
                     </div>
                     <p className="text-xs text-foreground/60">
                       Full calculated price • {requestsPerUserPerMonth} requests/mo
@@ -367,7 +367,7 @@ export default function PricingCalculatorPage() {
                   </div>
                 )}
                 <div 
-                  className="bg-gradient-to-r from-[#06D6A0] to-green-400 flex items-center justify-center text-black font-bold text-sm transition-all duration-500"
+                  className="bg-gradient-to-r from-primary to-green-400 flex items-center justify-center text-black font-bold text-sm transition-all duration-500"
                   style={{ width: `${marketplaceFee > 0 ? calculations.actualMargin : targetMargin}%` }}
                   title={`Profit: $${(calculations.revenueAfterFees - calculations.totalMonthlyCost).toFixed(2)}`}
                 >
@@ -388,7 +388,7 @@ export default function PricingCalculatorPage() {
                 )}
                 <div>
                   <div className="text-sm text-foreground/60 mb-1">Net Profit</div>
-                  <div className="text-xl font-bold text-[#06D6A0]">
+                  <div className="text-xl font-bold text-primary">
                     ${(calculations.revenueAfterFees - calculations.totalMonthlyCost).toFixed(0)}
                   </div>
                 </div>
@@ -402,9 +402,9 @@ export default function PricingCalculatorPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple/5 via-card/80 to-[#06D6A0]/5">
+        <div className="relative overflow-hidden rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple/5 via-card/80 to-primary/5">
           <div className="absolute top-0 right-0 w-64 h-64 bg-purple/10 rounded-full blur-[80px]" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#06D6A0]/10 rounded-full blur-[60px]" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -417,7 +417,7 @@ export default function PricingCalculatorPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/monetization/cases"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
               >
                 View Case Studies →
               </Link>

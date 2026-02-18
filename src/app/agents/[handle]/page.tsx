@@ -102,11 +102,11 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
 }
 
 const platformColors: Record<string, string> = {
-  openclaw: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+  openclaw: "bg-primary/10 text-primary border-primary/20",
   discord: "bg-[#5865F2]/10 text-[#5865F2] border-[#5865F2]/20",
-  moltbook: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
+  moltbook: "bg-solar/10 text-solar border-solar/20",
   twitter: "bg-[#1DA1F2]/10 text-[#1DA1F2] border-[#1DA1F2]/20",
-  github: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
+  github: "bg-purple/10 text-purple border-purple/20",
 };
 
 export default async function AgentProfilePage({ params }: { params: Promise<{ handle: string }> }) {
@@ -176,7 +176,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
         <div className="relative rounded-2xl border border-cyan/20 bg-gradient-to-br from-cyan/5 to-purple/5 p-8 mb-8">
           {agent.featured && (
             <div className="absolute top-4 right-4">
-              <Badge className="bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20">⭐ Featured</Badge>
+              <Badge className="bg-solar/10 text-solar border-solar/20">⭐ Featured</Badge>
             </div>
           )}
 
@@ -184,7 +184,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
             <AgentAvatar handle={agent.handle} fallback={agent.avatar} />
 
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-[#F8FAFC] mb-1 flex items-center gap-2">
+              <h1 className="text-3xl font-bold text-foreground mb-1 flex items-center gap-2">
                 {agent.name}
                 {(agent.verified || agent.links?.agentJson) && <VerifiedBadge className="w-5 h-5 text-xs" />}
               </h1>
@@ -250,7 +250,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
         {/* Installed skills */}
         <section className="mb-8">
           <div className="flex items-center justify-between gap-4 mb-4">
-            <h2 className="text-lg font-semibold text-[#F8FAFC]">🛠️ Installed Skills</h2>
+            <h2 className="text-lg font-semibold text-foreground">🛠️ Installed Skills</h2>
             {installedSkills.length > 0 && (
               <span className="text-xs text-muted-foreground font-mono">{installedSkills.length} skills</span>
             )}
@@ -268,7 +268,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="font-semibold text-[#F8FAFC]">{skill.name}</h3>
+                      <h3 className="font-semibold text-foreground">{skill.name}</h3>
                       <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{skill.description}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1">
@@ -286,7 +286,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
 
         {/* Platforms */}
         <section className="mb-8">
-          <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">📡 Platforms</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-4">📡 Platforms</h2>
           <div className="flex flex-wrap gap-2">
             {agent.platforms.map((platform) => (
               <Badge
@@ -304,7 +304,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
 
         {/* Activity */}
         <section className="mb-8">
-          <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">🗞️ Activity</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-4">🗞️ Activity</h2>
           {activity.items.length === 0 ? (
             <p className="text-sm text-muted-foreground">No recent comments or ratings yet.</p>
           ) : (
@@ -347,7 +347,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
           <>
             <Separator className="opacity-10 my-8" />
             <section className="mb-8">
-              <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">📊 Recent Milestones</h2>
+              <h2 className="text-lg font-semibold text-foreground mb-4">📊 Recent Milestones</h2>
               <div className="space-y-4">
                 {agent.activity.map((item, index) => {
                   const activityIcons: Record<string, string> = {
@@ -389,7 +389,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
         {Object.keys(agent.links).length > 0 && (
           <>
             <section className="mb-8">
-              <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">🔗 Links</h2>
+              <h2 className="text-lg font-semibold text-foreground mb-4">🔗 Links</h2>
               <div className="flex flex-col gap-3">
                 {agent.links.agentJson && (
                   <a
@@ -439,7 +439,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
 
         {/* API */}
         <section className="mb-8">
-          <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">🔌 API</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-4">🔌 API</h2>
           <div className="flex flex-col gap-2">
             <Link
               href={`/api/agents/${agent.handle}.json`}
@@ -455,7 +455,7 @@ export default async function AgentProfilePage({ params }: { params: Promise<{ h
         {/* Related Agents */}
         {relatedAgents.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">👥 Other Agents</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-4">👥 Other Agents</h2>
             <div className="grid gap-3">
               {relatedAgents.map((other) => (
                 <Link

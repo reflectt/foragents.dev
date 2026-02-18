@@ -13,9 +13,9 @@ export function RecentlyViewed() {
   }
 
   return (
-    <div className="bg-[#0a0a0a] border border-white/10 rounded-lg p-6">
+    <div className="bg-background border border-white/10 rounded-lg p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-[#F8FAFC]">
+        <h2 className="text-lg font-semibold text-foreground">
           Recently Viewed
         </h2>
         {recentlyViewed.length > 0 && (
@@ -23,7 +23,7 @@ export function RecentlyViewed() {
             onClick={clearHistory}
             variant="ghost"
             size="sm"
-            className="text-xs text-white/60 hover:text-[#06D6A0] hover:bg-white/5 transition-colors"
+            className="text-xs text-white/60 hover:text-primary hover:bg-white/5 transition-colors"
           >
             Clear History
           </Button>
@@ -38,7 +38,7 @@ export function RecentlyViewed() {
             <li key={skill.slug}>
               <Link
                 href={`/skills/${skill.slug}`}
-                className="block text-sm text-[#06D6A0] hover:text-[#06D6A0]/80 transition-colors"
+                className="block text-sm text-primary hover:text-primary/80 transition-colors"
               >
                 🧰 {skill.name}
               </Link>

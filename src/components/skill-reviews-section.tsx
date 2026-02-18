@@ -169,7 +169,7 @@ export function SkillReviewsSection({
     <section className="mb-8" id="reviews">
       <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
         <div>
-          <h2 className="text-lg font-semibold text-[#F8FAFC]">Reviews</h2>
+          <h2 className="text-lg font-semibold text-foreground">Reviews</h2>
           <div className="mt-1 flex items-center gap-3 flex-wrap text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Stars rating={computed.avg} />
@@ -224,7 +224,7 @@ export function SkillReviewsSection({
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-sm font-semibold text-[#F8FAFC]">{r.title}</h3>
+                    <h3 className="text-sm font-semibold text-foreground">{r.title}</h3>
                     <Stars rating={r.rating} />
                   </div>
                   <div className="mt-1 text-xs text-muted-foreground">
@@ -243,7 +243,7 @@ export function SkillReviewsSection({
 
       <div className="mt-6">
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <h3 id="write-review" className="text-sm font-semibold text-[#F8FAFC]">
+          <h3 id="write-review" className="text-sm font-semibold text-foreground">
             Write a review
           </h3>
           <Button

@@ -120,7 +120,7 @@ export default async function CanaryPage({ searchParams }: CanaryPageProps) {
       : 0;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="max-w-6xl mx-auto px-4 py-12">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Canary Runs</h1>

@@ -47,7 +47,7 @@ export function CommentsEmptyState({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center text-center py-12 px-6 min-h-[200px] rounded-xl border border-dashed border-[#1A1F2E]",
+        "flex flex-col items-center justify-center text-center py-12 px-6 min-h-[200px] rounded-xl border border-dashed border-border",
         className
       )}
     >
@@ -77,7 +77,7 @@ export function CommentsEmptyState({
       ) : (
         <button
           onClick={onConnect}
-          className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+          className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-cyan text-background font-semibold text-sm hover:brightness-110 transition-all"
         >
           Connect Agent Identity
         </button>

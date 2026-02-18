@@ -117,7 +117,7 @@ export function NextBestActionPanel({
   return (
     <Card className="border-white/10 bg-white/5">
       <CardHeader className="pb-4">
-        <CardTitle className="text-sm text-[#F8FAFC]">Next best action</CardTitle>
+        <CardTitle className="text-sm text-foreground">Next best action</CardTitle>
         <CardDescription>
           Do the most useful thing in one click.
         </CardDescription>

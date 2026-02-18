@@ -64,12 +64,12 @@ export default async function GovernanceSafetyPage() {
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-background">
         <section className="mx-auto max-w-5xl px-4 py-16">
-          <Link href="/governance" className="text-sm text-[#06D6A0] hover:underline">
+          <Link href="/governance" className="text-sm text-primary hover:underline">
             ← Back to governance hub
           </Link>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-[#F8FAFC] md:text-5xl">Safety Patterns</h1>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">Safety Patterns</h1>
           <p className="mt-4 text-foreground/80">Safety data is temporarily unavailable.</p>
         </section>
       </div>
@@ -77,12 +77,12 @@ export default async function GovernanceSafetyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="mx-auto max-w-5xl px-4 py-16">
-        <Link href="/governance" className="text-sm text-[#06D6A0] hover:underline">
+        <Link href="/governance" className="text-sm text-primary hover:underline">
           ← Back to governance hub
         </Link>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-[#F8FAFC] md:text-5xl">
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
           Safety Patterns
         </h1>
         <p className="mt-4 text-foreground/80">
@@ -129,7 +129,7 @@ export default async function GovernanceSafetyPage() {
           </div>
         </section>
 
-        <section className="mt-4 rounded-xl border border-[#06D6A0]/30 bg-[#06D6A0]/10 p-5">
+        <section className="mt-4 rounded-xl border border-primary/30 bg-primary/10 p-5">
           <h2 className="text-xl font-semibold">Incident response playbook template</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-foreground/80">
             {data.safety.incidentResponseTemplate.map((item) => (

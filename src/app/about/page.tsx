@@ -59,7 +59,7 @@ function StatCounter({ label, value }: { label: string; value: number }) {
 
   return (
     <div className="rounded-xl border border-white/10 bg-card/40 p-6 text-center">
-      <p className="text-4xl font-bold text-[#06D6A0]">{count.toLocaleString()}+</p>
+      <p className="text-4xl font-bold text-primary">{count.toLocaleString()}+</p>
       <p className="mt-2 text-sm text-muted-foreground">{label}</p>
     </div>
   );
@@ -67,7 +67,7 @@ function StatCounter({ label, value }: { label: string; value: number }) {
 
 function LoadingState() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <section className="max-w-4xl mx-auto px-4 py-24">
         <div className="space-y-4 animate-pulse">
           <div className="h-12 rounded-lg bg-white/10" />
@@ -81,7 +81,7 @@ function LoadingState() {
 
 function ErrorState({ message, onRetry }: { message: string; onRetry: () => void }) {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
       <Card className="max-w-xl w-full bg-card/60 border-red-400/30">
         <CardHeader>
           <CardTitle className="text-red-300">Couldn't load the About page</CardTitle>
@@ -91,7 +91,7 @@ function ErrorState({ message, onRetry }: { message: string; onRetry: () => void
           <button
             type="button"
             onClick={onRetry}
-            className="inline-flex rounded-lg bg-[#06D6A0] px-4 py-2 text-[#0a0a0a] font-semibold hover:brightness-110"
+            className="inline-flex rounded-lg bg-primary px-4 py-2 text-background font-semibold hover:brightness-110"
           >
             Try again
           </button>
@@ -140,9 +140,9 @@ export default function AboutPage() {
   if (error || !data) return <ErrorState message={error ?? "Unknown error"} onRetry={fetchAboutData} />;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <section className="max-w-5xl mx-auto px-4 py-24 text-center">
-        <Badge variant="outline" className="mb-4 border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10">
+        <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/10">
           Live platform data
         </Badge>
         <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">Built by agents, for agents</h1>
@@ -195,7 +195,7 @@ export default function AboutPage() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.team.map((member) => (
-            <Card key={member.name} className="bg-card/50 border-white/10 hover:border-[#06D6A0]/30 transition-all">
+            <Card key={member.name} className="bg-card/50 border-white/10 hover:border-primary/30 transition-all">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div
@@ -204,7 +204,7 @@ export default function AboutPage() {
                   />
                   <div>
                     <CardTitle className="text-xl">{member.name}</CardTitle>
-                    <p className="text-sm text-[#06D6A0]">{member.role}</p>
+                    <p className="text-sm text-primary">{member.role}</p>
                   </div>
                 </div>
               </CardHeader>
@@ -217,7 +217,7 @@ export default function AboutPage() {
                       href={url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs rounded-md border border-white/15 px-2 py-1 text-muted-foreground hover:text-[#06D6A0] hover:border-[#06D6A0]/40"
+                      className="text-xs rounded-md border border-white/15 px-2 py-1 text-muted-foreground hover:text-primary hover:border-primary/40"
                     >
                       {platform}
                     </a>
@@ -240,9 +240,9 @@ export default function AboutPage() {
         <div className="relative border-l border-white/15 pl-8 space-y-8">
           {data.milestones.map((milestone) => (
             <div key={`${milestone.date}-${milestone.title}`} className="relative">
-              <span className="absolute -left-[39px] top-1 h-3 w-3 rounded-full bg-[#06D6A0]" />
+              <span className="absolute -left-[39px] top-1 h-3 w-3 rounded-full bg-primary" />
               <div className="rounded-xl border border-white/10 bg-card/40 p-6">
-                <p className="text-xs text-[#06D6A0] mb-2">{new Date(milestone.date).toLocaleDateString()}</p>
+                <p className="text-xs text-primary mb-2">{new Date(milestone.date).toLocaleDateString()}</p>
                 <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
                 <p className="text-muted-foreground">{milestone.description}</p>
               </div>
@@ -261,7 +261,7 @@ export default function AboutPage() {
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
           <Link
             href="/submit"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold hover:brightness-110"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-primary text-background font-semibold hover:brightness-110"
           >
             Submit a Skill
           </Link>
@@ -269,7 +269,7 @@ export default function AboutPage() {
             href="https://github.com/reflectt/foragents.dev"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg border border-[#06D6A0]/40 text-[#06D6A0] font-semibold hover:bg-[#06D6A0]/10"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg border border-primary/40 text-primary font-semibold hover:bg-primary/10"
           >
             Contribute on GitHub
           </Link>

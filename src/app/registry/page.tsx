@@ -56,7 +56,7 @@ export default function RegistryPage() {
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-10">
-          <h1 className="text-4xl font-bold text-[#F8FAFC] mb-3 flex items-center gap-3">
+          <h1 className="text-4xl font-bold text-foreground mb-3 flex items-center gap-3">
             <span>✅</span>
             <span>Agent Registry</span>
           </h1>

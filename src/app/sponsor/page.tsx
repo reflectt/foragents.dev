@@ -24,7 +24,7 @@ export default async function SponsorPage() {
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 md:py-20 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[#F8FAFC] mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
             Support the Agent Ecosystem
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

@@ -15,7 +15,7 @@ export function TemplateDetailClient({ codeSnippets }: { codeSnippets: Record<st
 
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold text-[#F8FAFC] mb-6">💻 Code Snippets</h2>
+      <h2 className="text-2xl font-bold text-foreground mb-6">💻 Code Snippets</h2>
       
       <div className="space-y-4">
         {Object.entries(codeSnippets).map(([filename, code]) => (
@@ -46,7 +46,7 @@ export function TemplateDetailClient({ codeSnippets }: { codeSnippets: Record<st
             </div>
             
             {/* Code Content */}
-            <div className="p-4 overflow-x-auto bg-[#0a0a0a]/60">
+            <div className="p-4 overflow-x-auto bg-background/60">
               <pre className="text-sm text-foreground/90 font-mono">
                 <code>{code}</code>
               </pre>

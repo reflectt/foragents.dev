@@ -44,7 +44,7 @@ export function RelatedKits({ currentSkill, allSkills, maxResults = 5 }: Props) 
 
   return (
     <section>
-      <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">
+      <h2 className="text-lg font-semibold text-foreground mb-4">
         🔗 Works well with
       </h2>
       <div className="grid gap-3">

@@ -51,9 +51,9 @@ export default async function BrandKitPage({
   });
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <section className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <Badge variant="outline" className="mb-4 border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10">
+        <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/10">
           Persistent JSON + API
         </Badge>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-3">forAgents.dev Brand Kit</h1>
@@ -66,7 +66,7 @@ export default async function BrandKitPage({
 
       <section className="max-w-6xl mx-auto px-4 py-10 space-y-6">
         <div className="flex flex-wrap gap-2 justify-center">
-          <Button asChild variant={!selectedType ? "default" : "outline"} className={!selectedType ? "bg-[#06D6A0] text-black" : ""}>
+          <Button asChild variant={!selectedType ? "default" : "outline"} className={!selectedType ? "bg-primary text-black" : ""}>
             <Link href="/brand-kit">All</Link>
           </Button>
           {brandKitTypes.map((type) => (
@@ -74,7 +74,7 @@ export default async function BrandKitPage({
               key={type}
               asChild
               variant={selectedType === type ? "default" : "outline"}
-              className={selectedType === type ? "bg-[#06D6A0] text-black" : ""}
+              className={selectedType === type ? "bg-primary text-black" : ""}
             >
               <Link href={`/brand-kit?type=${type}${search ? `&search=${encodeURIComponent(search)}` : ""}`}>
                 {titleForType(type)}
@@ -110,7 +110,7 @@ export default async function BrandKitPage({
                 <p className="text-sm text-muted-foreground">{item.description}</p>
                 <p className="text-xs text-muted-foreground">Format: {item.format.toUpperCase()}</p>
                 <p className="text-xs text-muted-foreground">Updated: {new Date(item.updatedAt).toLocaleString()}</p>
-                <Button asChild className="bg-[#06D6A0] text-black hover:brightness-110">
+                <Button asChild className="bg-primary text-black hover:brightness-110">
                   <a href={item.url} target="_blank" rel="noreferrer">
                     Open asset
                   </a>

@@ -26,7 +26,7 @@ function SlugBadgeList({
 }) {
   return (
     <div>
-      <h3 className="text-sm font-semibold text-[#F8FAFC] mb-2">{title}</h3>
+      <h3 className="text-sm font-semibold text-foreground mb-2">{title}</h3>
       {slugs.length === 0 ? (
         <p className="text-sm text-muted-foreground">None reported.</p>
       ) : (
@@ -53,7 +53,7 @@ export function CompatibilityMatrix({ skillSlug }: { skillSlug: string }) {
 
   return (
     <section>
-      <h2 className="text-lg font-semibold text-[#F8FAFC] mb-4">
+      <h2 className="text-lg font-semibold text-foreground mb-4">
         🧩 Compatibility
       </h2>
 

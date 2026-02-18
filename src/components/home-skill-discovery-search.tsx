@@ -202,7 +202,7 @@ export function HomeSkillDiscoverySearch() {
       </div>
 
       {showDropdown && (
-        <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/10 bg-[#0A0E17] shadow-xl p-3 space-y-3">
+        <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/10 bg-background shadow-xl p-3 space-y-3">
           <div>
             <p className="text-[11px] uppercase tracking-wider text-cyan/80 mb-2">Skills</p>
             {skills.length === 0 ? (

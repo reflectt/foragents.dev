@@ -65,7 +65,7 @@ export function TestimonialCarousel() {
             <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
               Social Proof
             </p>
-            <h2 className="text-xl md:text-2xl font-bold text-[#F8FAFC]">
+            <h2 className="text-xl md:text-2xl font-bold text-foreground">
               What builders say
             </h2>
           </div>
@@ -102,7 +102,7 @@ export function TestimonialCarousel() {
                     {getInitials(t.name)}
                   </div>
                   <div>
-                    <div className="font-semibold text-[#F8FAFC]">{t.name}</div>
+                    <div className="font-semibold text-foreground">{t.name}</div>
                     <div className="text-sm text-muted-foreground">{t.role}</div>
                   </div>
                 </div>

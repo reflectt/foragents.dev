@@ -114,23 +114,23 @@ const categories = [
 
 export default function SitemapVisualPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
 
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#06D6A0]/10 border border-[#06D6A0]/20 text-[#06D6A0] text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
             <span>🗺️</span>
             <span>Site Index</span>
           </div>
           
-          <h1 className="text-[36px] md:text-[48px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[36px] md:text-[48px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Visual Sitemap
           </h1>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
@@ -145,10 +145,10 @@ export default function SitemapVisualPage() {
           {categories.map((category) => (
             <div
               key={category.name}
-              className="relative overflow-hidden rounded-xl border border-white/10 bg-card/30 p-6 hover:border-[#06D6A0]/30 transition-all group"
+              className="relative overflow-hidden rounded-xl border border-white/10 bg-card/30 p-6 hover:border-primary/30 transition-all group"
             >
               {/* Hover effect */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#06D6A0]/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="relative">
                 {/* Category Header */}
@@ -165,9 +165,9 @@ export default function SitemapVisualPage() {
                     <li key={page.href}>
                       <Link
                         href={page.href}
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-[#06D6A0] transition-colors group/link"
+                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group/link"
                       >
-                        <span className="text-[#06D6A0]/50 group-hover/link:text-[#06D6A0] transition-colors">
+                        <span className="text-primary/50 group-hover/link:text-primary transition-colors">
                           →
                         </span>
                         <span>{page.name}</span>
@@ -188,7 +188,7 @@ export default function SitemapVisualPage() {
             </p>
             <a
               href="/sitemap.xml"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#06D6A0]/10 border border-[#06D6A0]/30 text-[#06D6A0] text-sm font-medium hover:bg-[#06D6A0]/20 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
             >
               View sitemap.xml →
             </a>

@@ -109,7 +109,7 @@ export function TemplatesClient({ templates }: { templates: Template[] }) {
                   {/* Header */}
                   <div className="mb-4">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+                      <h3 className="text-lg font-semibold text-foreground group-hover:text-cyan transition-colors">
                         {template.name}
                       </h3>
                       <Badge

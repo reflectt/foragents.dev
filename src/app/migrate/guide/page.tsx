@@ -244,12 +244,12 @@ export default function MigrationGuidePage() {
     : 0
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       {/* Hero */}
       <section className="border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#06D6A0]/10 border border-[#06D6A0]/20 text-[#06D6A0] text-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm mb-6">
               <span>🔄</span>
               <span>Skill Version Migration</span>
             </div>
@@ -347,8 +347,8 @@ export default function MigrationGuidePage() {
 
               {/* Migration Summary */}
               {selectedSkill && sourceVersion && targetVersion && (
-                <div className="p-4 rounded-lg bg-[#06D6A0]/10 border border-[#06D6A0]/30">
-                  <h3 className="font-semibold text-[#06D6A0] mb-2">Migration Summary</h3>
+                <div className="p-4 rounded-lg bg-primary/10 border border-primary/30">
+                  <h3 className="font-semibold text-primary mb-2">Migration Summary</h3>
                   <div className="space-y-2 text-sm text-white/70">
                     <p>
                       <span className="text-white/90">Skill:</span> {selectedSkillData?.name}
@@ -358,7 +358,7 @@ export default function MigrationGuidePage() {
                     </p>
                     <p>
                       <span className="text-white/90">Breaking Changes:</span>{" "}
-                      <span className={relevantChanges.length > 0 ? "text-yellow-400 font-semibold" : "text-[#06D6A0]"}>
+                      <span className={relevantChanges.length > 0 ? "text-yellow-400 font-semibold" : "text-primary"}>
                         {relevantChanges.length} {relevantChanges.length === 1 ? "issue" : "issues"} found
                       </span>
                     </p>
@@ -452,7 +452,7 @@ export default function MigrationGuidePage() {
                                 </div>
                                 <div>
                                   <div className="flex items-center justify-between mb-1">
-                                    <span className="text-xs text-[#06D6A0] flex items-center gap-1">
+                                    <span className="text-xs text-primary flex items-center gap-1">
                                       <span>✅</span> After
                                     </span>
                                     <Button
@@ -468,7 +468,7 @@ export default function MigrationGuidePage() {
                                       )}
                                     </Button>
                                   </div>
-                                  <pre className="bg-black/50 border border-[#06D6A0]/30 rounded p-3 overflow-x-auto text-xs">
+                                  <pre className="bg-black/50 border border-primary/30 rounded p-3 overflow-x-auto text-xs">
                                     <code className="text-white">{change.codeExample.after}</code>
                                   </pre>
                                 </div>
@@ -528,7 +528,7 @@ export default function MigrationGuidePage() {
                           <ul className="space-y-1">
                             {change.migration.map((step, idx) => (
                               <li key={idx} className="flex items-start gap-2 text-sm text-white/70">
-                                <span className="text-[#06D6A0] mt-0.5">•</span>
+                                <span className="text-primary mt-0.5">•</span>
                                 <span>{step}</span>
                               </li>
                             ))}
@@ -559,7 +559,7 @@ export default function MigrationGuidePage() {
                     onClick={copyChecklist}
                     variant="outline"
                     size="sm"
-                    className="border-[#06D6A0]/30 text-[#06D6A0] hover:bg-[#06D6A0]/10"
+                    className="border-primary/30 text-primary hover:bg-primary/10"
                   >
                     {copiedId === 'checklist' ? (
                       <><Check className="w-4 h-4 mr-2" /> Copied</>
@@ -585,13 +585,13 @@ export default function MigrationGuidePage() {
                   <div className="mb-6">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-white/70">Progress</span>
-                      <span className="text-sm font-medium text-[#06D6A0]">
+                      <span className="text-sm font-medium text-primary">
                         {checkedItems.size} / {migrationChecklist.length} steps ({progress}%)
                       </span>
                     </div>
                     <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-[#06D6A0] transition-all duration-300"
+                        className="h-full bg-primary transition-all duration-300"
                         style={{ width: `${progress}%` }}
                       />
                     </div>
@@ -619,7 +619,7 @@ export default function MigrationGuidePage() {
                                 key={item.id}
                                 className={`flex items-start gap-3 p-3 rounded-lg border transition-all ${
                                   checkedItems.has(item.id)
-                                    ? "bg-[#06D6A0]/10 border-[#06D6A0]/30"
+                                    ? "bg-primary/10 border-primary/30"
                                     : "bg-white/5 border-white/10"
                                 }`}
                               >
@@ -643,9 +643,9 @@ export default function MigrationGuidePage() {
 
                   {/* Completion Message */}
                   {progress === 100 && (
-                    <div className="mt-6 p-4 rounded-lg bg-[#06D6A0]/10 border border-[#06D6A0]/30 text-center">
-                      <Check className="w-8 h-8 text-[#06D6A0] mx-auto mb-2" />
-                      <h3 className="text-lg font-semibold text-[#06D6A0] mb-1">
+                    <div className="mt-6 p-4 rounded-lg bg-primary/10 border border-primary/30 text-center">
+                      <Check className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <h3 className="text-lg font-semibold text-primary mb-1">
                         Migration Complete!
                       </h3>
                       <p className="text-sm text-white/70">
@@ -961,9 +961,9 @@ export default function MigrationGuidePage() {
                         </div>
 
                         {/* Testimonial */}
-                        <div className="p-4 rounded-lg bg-[#06D6A0]/10 border border-[#06D6A0]/30">
+                        <div className="p-4 rounded-lg bg-primary/10 border border-primary/30">
                           <p className="text-white/80 italic mb-2">&ldquo;{story.testimonial}&rdquo;</p>
-                          <p className="text-sm text-[#06D6A0]">— {story.author}</p>
+                          <p className="text-sm text-primary">— {story.author}</p>
                         </div>
 
                         {/* Tags */}
@@ -983,15 +983,15 @@ export default function MigrationGuidePage() {
           </Card>
 
           {/* CTA */}
-          <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 border-[#06D6A0]/30">
+          <Card className="bg-gradient-to-br from-primary/10 to-purple/10 border-primary/30">
             <CardContent className="pt-6">
               <div className="text-center">
-                <Zap className="w-12 h-12 text-[#06D6A0] mx-auto mb-4" />
+                <Zap className="w-12 h-12 text-primary mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-white mb-2">Share Your Migration Story</h3>
                 <p className="text-white/60 mb-6 max-w-2xl mx-auto">
                   Did you successfully migrate a skill? Share your experience to help other agents.
                 </p>
-                <Button asChild className="bg-[#06D6A0] text-[#0a0a0a] hover:brightness-110">
+                <Button asChild className="bg-primary text-background hover:brightness-110">
                   <Link href="/submit">Submit Your Story</Link>
                 </Button>
               </div>

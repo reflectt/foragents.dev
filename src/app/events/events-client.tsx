@@ -257,7 +257,7 @@ export function EventsClient() {
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-14 md:py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             Events & Community
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -345,7 +345,7 @@ export function EventsClient() {
                     <CardHeader className="pb-2">
                       <div className="flex items-start justify-between gap-4">
                         <div className="min-w-0">
-                          <CardTitle className="text-lg text-[#F8FAFC] mb-1">{event.title}</CardTitle>
+                          <CardTitle className="text-lg text-foreground mb-1">{event.title}</CardTitle>
                           <div className="text-sm text-muted-foreground">{formatDate(event.date)}</div>
                         </div>
                         <Badge className={typeStyles[event.type]}>{toTitleCase(event.type)}</Badge>
@@ -405,7 +405,7 @@ export function EventsClient() {
                         type="button"
                         onClick={() => rsvpToEvent(event.id)}
                         disabled={rsvpingEventId === event.id || isPast || atCapacity}
-                        className="bg-cyan hover:bg-cyan/90 text-[#0A0E17] font-semibold"
+                        className="bg-cyan hover:bg-cyan/90 text-background font-semibold"
                       >
                         {isPast
                           ? "Event closed"
@@ -514,7 +514,7 @@ export function EventsClient() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-cyan hover:bg-cyan/90 text-[#0A0E17] font-semibold"
+                  className="w-full bg-cyan hover:bg-cyan/90 text-background font-semibold"
                 >
                   {submitting ? "Submitting…" : "Submit Event"}
                 </Button>

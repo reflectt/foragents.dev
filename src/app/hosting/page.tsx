@@ -175,7 +175,7 @@ export default function HostingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -185,7 +185,7 @@ export default function HostingPage() {
       <section className="max-w-6xl mx-auto px-4 py-16 text-center">
         <div className="relative">
           <div className="absolute inset-0 -z-10 opacity-30">
-            <div className="absolute top-0 left-1/3 w-96 h-96 bg-[#06D6A0]/20 rounded-full blur-[120px]" />
+            <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
             <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-blue-500/20 rounded-full blur-[100px]" />
           </div>
 
@@ -207,10 +207,10 @@ export default function HostingPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link
             href="/hosting/cloud"
-            className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">☁️</div>
-            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#06D6A0] transition-colors">
+            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary transition-colors">
               Cloud Deployment
             </h3>
             <p className="text-sm text-gray-400">
@@ -220,10 +220,10 @@ export default function HostingPage() {
 
           <Link
             href="/hosting/local"
-            className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">💻</div>
-            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#06D6A0] transition-colors">
+            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary transition-colors">
               Local Setup
             </h3>
             <p className="text-sm text-gray-400">
@@ -233,10 +233,10 @@ export default function HostingPage() {
 
           <Link
             href="/hosting/containers"
-            className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">🐳</div>
-            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#06D6A0] transition-colors">
+            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary transition-colors">
               Docker & Containers
             </h3>
             <p className="text-sm text-gray-400">
@@ -260,7 +260,7 @@ export default function HostingPage() {
               onClick={() => setFilterType(filter.id as "all" | "local" | "cloud" | "serverless")}
               className={`px-4 py-2 rounded-lg border transition-all ${
                 filterType === filter.id
-                  ? "bg-[#06D6A0]/10 border-[#06D6A0] text-[#06D6A0]"
+                  ? "bg-primary/10 border-primary text-primary"
                   : "bg-gray-900/50 border-gray-800 text-gray-400 hover:border-gray-700"
               }`}
             >
@@ -278,12 +278,12 @@ export default function HostingPage() {
             <Link
               key={option.name}
               href={option.link}
-              className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+              className="group p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="text-4xl">{option.icon}</div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[#06D6A0] transition-colors">
+                  <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-primary transition-colors">
                     {option.name}
                   </h3>
                   <p className="text-sm text-gray-400">{option.description}</p>
@@ -340,7 +340,7 @@ export default function HostingPage() {
               <div>
                 <h3 className="font-semibold text-white mb-1">Just getting started?</h3>
                 <p className="text-sm text-gray-400">
-                  Start with <Link href="/hosting/local" className="text-[#06D6A0] hover:underline">local setup</Link> 
+                  Start with <Link href="/hosting/local" className="text-primary hover:underline">local setup</Link> 
                   {" "}(OpenClaw or LangChain) for zero cost and full control while learning.
                 </p>
               </div>
@@ -351,8 +351,8 @@ export default function HostingPage() {
               <div>
                 <h3 className="font-semibold text-white mb-1">Need production reliability?</h3>
                 <p className="text-sm text-gray-400">
-                  Go with <Link href="/hosting/cloud#railway" className="text-[#06D6A0] hover:underline">Railway</Link>
-                  {" "}or <Link href="/hosting/cloud#flyio" className="text-[#06D6A0] hover:underline">Fly.io</Link>
+                  Go with <Link href="/hosting/cloud#railway" className="text-primary hover:underline">Railway</Link>
+                  {" "}or <Link href="/hosting/cloud#flyio" className="text-primary hover:underline">Fly.io</Link>
                   {" "}for simple deployment with high uptime.
                 </p>
               </div>
@@ -363,9 +363,9 @@ export default function HostingPage() {
               <div>
                 <h3 className="font-semibold text-white mb-1">Enterprise requirements?</h3>
                 <p className="text-sm text-gray-400">
-                  Choose <Link href="/hosting/cloud#aws" className="text-[#06D6A0] hover:underline">AWS</Link>, 
-                  {" "}<Link href="/hosting/cloud#gcp" className="text-[#06D6A0] hover:underline">GCP</Link>, or
-                  {" "}<Link href="/hosting/cloud#azure" className="text-[#06D6A0] hover:underline">Azure</Link>
+                  Choose <Link href="/hosting/cloud#aws" className="text-primary hover:underline">AWS</Link>, 
+                  {" "}<Link href="/hosting/cloud#gcp" className="text-primary hover:underline">GCP</Link>, or
+                  {" "}<Link href="/hosting/cloud#azure" className="text-primary hover:underline">Azure</Link>
                   {" "}for compliance, SLAs, and advanced infrastructure.
                 </p>
               </div>
@@ -376,7 +376,7 @@ export default function HostingPage() {
               <div>
                 <h3 className="font-semibold text-white mb-1">Optimizing for cost?</h3>
                 <p className="text-sm text-gray-400">
-                  Use <Link href="/hosting/cloud#lambda" className="text-[#06D6A0] hover:underline">serverless</Link>
+                  Use <Link href="/hosting/cloud#lambda" className="text-primary hover:underline">serverless</Link>
                   {" "}(Lambda, Cloud Functions) for sporadic workloads that don&apos;t need 24/7 uptime.
                 </p>
               </div>
@@ -387,7 +387,7 @@ export default function HostingPage() {
               <div>
                 <h3 className="font-semibold text-white mb-1">Privacy-first or air-gapped?</h3>
                 <p className="text-sm text-gray-400">
-                  Stick with <Link href="/hosting/local" className="text-[#06D6A0] hover:underline">local hosting</Link>
+                  Stick with <Link href="/hosting/local" className="text-primary hover:underline">local hosting</Link>
                   {" "}— nothing beats running on your own hardware for data sovereignty.
                 </p>
               </div>
@@ -402,7 +402,7 @@ export default function HostingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Link
             href="/guides"
-            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <h3 className="font-semibold text-white mb-2">📖 Deployment Guides</h3>
             <p className="text-sm text-gray-400">
@@ -412,7 +412,7 @@ export default function HostingPage() {
 
           <Link
             href="/security"
-            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <h3 className="font-semibold text-white mb-2">🔒 Security Best Practices</h3>
             <p className="text-sm text-gray-400">
@@ -422,7 +422,7 @@ export default function HostingPage() {
 
           <Link
             href="/monitoring"
-            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <h3 className="font-semibold text-white mb-2">📊 Monitoring & Observability</h3>
             <p className="text-sm text-gray-400">
@@ -432,7 +432,7 @@ export default function HostingPage() {
 
           <Link
             href="/benchmarks"
-            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-4 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <h3 className="font-semibold text-white mb-2">⚡ Performance Benchmarks</h3>
             <p className="text-sm text-gray-400">

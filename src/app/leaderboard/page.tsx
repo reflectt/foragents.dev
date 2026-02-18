@@ -40,7 +40,7 @@ export default function LeaderboardPage() {
     .sort((a, b) => a.localeCompare(b));
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <main className="max-w-6xl mx-auto px-4 py-12">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Skill Leaderboard</h1>

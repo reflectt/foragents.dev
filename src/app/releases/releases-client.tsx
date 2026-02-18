@@ -263,7 +263,7 @@ export function ReleasesClient() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-gradient-to-r from-[#06D6A0] to-purple text-[#0a0a0a] font-semibold hover:brightness-110"
+                  className="w-full bg-gradient-to-r from-primary to-purple text-background font-semibold hover:brightness-110"
                 >
                   {submitting ? "Publishing…" : "Publish Release"}
                 </Button>
@@ -313,12 +313,12 @@ export function ReleasesClient() {
           ) : (
             <div className="space-y-4">
               {releases.map((release) => (
-                <Card id={release.id} key={release.id} className="bg-card/30 border-white/10 hover:border-[#06D6A0]/30 transition-colors">
+                <Card id={release.id} key={release.id} className="bg-card/30 border-white/10 hover:border-primary/30 transition-colors">
                   <CardHeader className="pb-3">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-2">
-                          <Badge variant="outline" className="bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30 font-mono">
+                          <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30 font-mono">
                             v{release.version}
                           </Badge>
                           <Badge variant="outline" className={typeBadgeClass(release.type)}>
@@ -339,7 +339,7 @@ export function ReleasesClient() {
                       <ul className="space-y-2">
                         {release.highlights.map((highlight, index) => (
                           <li key={`${release.id}-${index}`} className="text-sm text-white/80 flex items-start gap-2">
-                            <span className="text-[#06D6A0] mt-1">•</span>
+                            <span className="text-primary mt-1">•</span>
                             <span>{highlight}</span>
                           </li>
                         ))}

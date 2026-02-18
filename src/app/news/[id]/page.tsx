@@ -37,23 +37,23 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 }
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
-  tools: { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]" },
-  skills: { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]" },
-  models: { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]" },
-  community: { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]" },
-  breaking: { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]" },
+  tools: { bg: "bg-primary/10", text: "text-primary" },
+  skills: { bg: "bg-solar/10", text: "text-solar" },
+  models: { bg: "bg-purple/10", text: "text-purple" },
+  community: { bg: "bg-electric-blue/10", text: "text-electric-blue" },
+  breaking: { bg: "bg-aurora-pink/10", text: "text-aurora-pink" },
 };
 
 const tagColors: Record<string, string> = {
-  breaking: "bg-[#EC4899]/10 text-[#EC4899] border-[#EC4899]/20",
-  security: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  openclaw: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  community: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  tools: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
-  skills: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
-  enterprise: "bg-[#3B82F6]/10 text-[#3B82F6] border-[#3B82F6]/20",
-  models: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
-  mcp: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+  breaking: "bg-aurora-pink/10 text-aurora-pink border-aurora-pink/20",
+  security: "bg-solar/10 text-solar border-solar/20",
+  openclaw: "bg-primary/10 text-primary border-primary/20",
+  community: "bg-electric-blue/10 text-electric-blue border-electric-blue/20",
+  tools: "bg-primary/10 text-primary border-primary/20",
+  skills: "bg-solar/10 text-solar border-solar/20",
+  enterprise: "bg-electric-blue/10 text-electric-blue border-electric-blue/20",
+  models: "bg-purple/10 text-purple border-purple/20",
+  mcp: "bg-primary/10 text-primary border-primary/20",
 };
 
 function getCategoryFromTags(tags: string[]): string {
@@ -130,7 +130,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
         </p>
         
         {/* Divider */}
-        <div className="h-px bg-[#1A1F2E] mb-6" />
+        <div className="h-px bg-secondary mb-6" />
         
         {/* Article content (summary) */}
         <div className="prose prose-invert max-w-none">
@@ -171,7 +171,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
       </div>
       
       {/* Agent-native link */}
-      <div className="max-w-[768px] mx-auto px-6 pb-8 border-t border-[#1A1F2E] pt-6">
+      <div className="max-w-[768px] mx-auto px-6 pb-8 border-t border-border pt-6">
         <p className="text-xs text-muted-foreground text-center">
           View as markdown:{" "}
           <a

@@ -114,7 +114,7 @@ export default function StatusPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -123,13 +123,13 @@ export default function StatusPage() {
       <section className="relative overflow-hidden min-h-[260px] flex items-center">
         <div className="relative max-w-5xl mx-auto px-4 py-16 w-full">
           <div className="text-center mb-8">
-            <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+            <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
               System Status
             </h1>
             <p className="text-xl text-foreground/80">Live health checks, refreshed every 30 seconds</p>
           </div>
 
-          <Card className="bg-[#0f0f0f] border-white/10 max-w-3xl mx-auto">
+          <Card className="bg-background border-white/10 max-w-3xl mx-auto">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
                 <div className={`w-4 h-4 rounded-full ${statusConfig[overallStatus].color}`} />
@@ -153,7 +153,7 @@ export default function StatusPage() {
           {services.map((service) => (
             <Card
               key={service.name}
-              className="bg-[#0f0f0f] border-white/10 hover:border-white/20 transition-colors"
+              className="bg-background border-white/10 hover:border-white/20 transition-colors"
             >
               <CardContent className="pt-6">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -168,11 +168,11 @@ export default function StatusPage() {
                   <div className="flex gap-8 text-sm">
                     <div>
                       <p className="text-muted-foreground">Latency</p>
-                      <p className="font-semibold text-[#06D6A0]">{service.latencyMs}ms</p>
+                      <p className="font-semibold text-primary">{service.latencyMs}ms</p>
                     </div>
                     <div>
                       <p className="text-muted-foreground">Last check</p>
-                      <p className="font-semibold text-[#06D6A0]">
+                      <p className="font-semibold text-primary">
                         {new Date(service.lastCheck).toLocaleTimeString()}
                       </p>
                     </div>
@@ -187,7 +187,7 @@ export default function StatusPage() {
       <section className="relative max-w-5xl mx-auto px-4 py-8 mb-12">
         <h2 className="text-3xl font-bold mb-6">Uptime (Last 7 Days)</h2>
 
-        <Card className="bg-[#0f0f0f] border-white/10">
+        <Card className="bg-background border-white/10">
           <CardContent className="pt-6">
             <div className="grid grid-cols-7 gap-3 h-48 items-end">
               {history.map((entry) => {
@@ -197,12 +197,12 @@ export default function StatusPage() {
                   <div key={entry.date} className="flex flex-col items-center gap-2">
                     <div className="w-full h-36 bg-white/5 rounded-md relative overflow-hidden border border-white/10">
                       <div
-                        className="absolute bottom-0 w-full bg-[#06D6A0]"
+                        className="absolute bottom-0 w-full bg-primary"
                         style={{ height: `${heightPct}%` }}
                       />
                     </div>
                     <p className="text-xs text-muted-foreground">{formatDate(entry.date)}</p>
-                    <p className="text-xs text-[#06D6A0] font-semibold">{entry.uptime.toFixed(2)}%</p>
+                    <p className="text-xs text-primary font-semibold">{entry.uptime.toFixed(2)}%</p>
                     <p className="text-[10px] text-muted-foreground">Incidents: {entry.incidents}</p>
                   </div>
                 );

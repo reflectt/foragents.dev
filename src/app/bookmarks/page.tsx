@@ -47,11 +47,11 @@ const ITEM_TYPES: Array<{ value: BookmarkItemType; label: string }> = [
 ];
 
 const badgeClassByType: Record<BookmarkItemType, string> = {
-  skill: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30",
-  mcp: "bg-[#7C3AED]/10 text-[#A78BFA] border-[#7C3AED]/30",
-  collection: "bg-[#E879F9]/10 text-[#F5D0FE] border-[#E879F9]/30",
-  guide: "bg-[#0EA5E9]/10 text-[#67E8F9] border-[#0EA5E9]/30",
-  connector: "bg-[#F59E0B]/10 text-[#FCD34D] border-[#F59E0B]/30",
+  skill: "bg-primary/10 text-primary border-primary/30",
+  mcp: "bg-purple/10 text-purple/80 border-purple/30",
+  collection: "bg-purple/60/10 text-purple/60 border-purple/60/30",
+  guide: "bg-cyan/10 text-cyan/70 border-cyan/30",
+  connector: "bg-solar/10 text-solar border-solar/30",
 };
 
 const routeSegmentByType: Record<BookmarkItemType, string> = {
@@ -209,15 +209,15 @@ export default function BookmarksPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-[#06D6A0]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-primary/5 rounded-full blur-[120px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[400px] max-h-[400px] bg-purple/3 rounded-full blur-[100px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             🔖 Saved Bookmarks
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -271,7 +271,7 @@ export default function BookmarksPage() {
                 <Button
                   type="button"
                   variant={tagFilter === "all" ? "default" : "outline"}
-                  className={tagFilter === "all" ? "bg-[#06D6A0] text-black hover:brightness-110" : ""}
+                  className={tagFilter === "all" ? "bg-primary text-black hover:brightness-110" : ""}
                   onClick={() => setTagFilter("all")}
                 >
                   All tags
@@ -281,7 +281,7 @@ export default function BookmarksPage() {
                     key={tag}
                     type="button"
                     variant={tagFilter === tag ? "default" : "outline"}
-                    className={tagFilter === tag ? "bg-[#06D6A0] text-black hover:brightness-110" : ""}
+                    className={tagFilter === tag ? "bg-primary text-black hover:brightness-110" : ""}
                     onClick={() => setTagFilter(tag)}
                   >
                     #{tag}
@@ -376,7 +376,7 @@ export default function BookmarksPage() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-[#06D6A0] text-black hover:brightness-110"
+                  className="bg-primary text-black hover:brightness-110"
                 >
                   {isSubmitting ? "Adding..." : "Save Bookmark"}
                 </Button>
@@ -459,7 +459,7 @@ export default function BookmarksPage() {
                             <div className="flex flex-wrap gap-2">
                               <Link
                                 href={`/${routeSegmentByType[bookmark.itemType]}/${bookmark.itemSlug}`}
-                                className="inline-flex items-center justify-center h-9 px-4 rounded-md bg-[#06D6A0] text-black text-sm font-medium hover:brightness-110"
+                                className="inline-flex items-center justify-center h-9 px-4 rounded-md bg-primary text-black text-sm font-medium hover:brightness-110"
                               >
                                 Open Item
                               </Link>

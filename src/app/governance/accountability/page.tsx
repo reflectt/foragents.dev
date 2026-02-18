@@ -84,12 +84,12 @@ export default async function GovernanceAccountabilityPage() {
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-background">
         <section className="mx-auto max-w-5xl px-4 py-16">
-          <Link href="/governance" className="text-sm text-[#06D6A0] hover:underline">
+          <Link href="/governance" className="text-sm text-primary hover:underline">
             ← Back to governance hub
           </Link>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-[#F8FAFC] md:text-5xl">
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
             Accountability Deep Dive
           </h1>
           <p className="mt-4 text-foreground/80">Accountability data is temporarily unavailable.</p>
@@ -99,12 +99,12 @@ export default async function GovernanceAccountabilityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="mx-auto max-w-5xl px-4 py-16">
-        <Link href="/governance" className="text-sm text-[#06D6A0] hover:underline">
+        <Link href="/governance" className="text-sm text-primary hover:underline">
           ← Back to governance hub
         </Link>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-[#F8FAFC] md:text-5xl">
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
           Accountability Deep Dive
         </h1>
         <p className="mt-4 text-foreground/80">
@@ -140,7 +140,7 @@ export default async function GovernanceAccountabilityPage() {
           </ul>
         </section>
 
-        <section className="mt-4 rounded-xl border border-[#06D6A0]/30 bg-[#06D6A0]/10 p-5">
+        <section className="mt-4 rounded-xl border border-primary/30 bg-primary/10 p-5">
           <h2 className="text-xl font-semibold">Human-in-the-loop gate design</h2>
           <p className="mt-2 text-sm text-foreground/80">
             Use risk-tiered gates so low-risk actions flow automatically and high-impact actions pause

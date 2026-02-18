@@ -121,7 +121,7 @@ export function BlogListClient() {
             onClick={() => setSelectedTag("all")}
             className={
               selectedTag === "all"
-                ? "bg-cyan text-[#0A0E17]"
+                ? "bg-cyan text-background"
                 : "border-white/10 text-muted-foreground hover:text-foreground"
             }
           >
@@ -136,7 +136,7 @@ export function BlogListClient() {
               onClick={() => setSelectedTag(tag)}
               className={
                 selectedTag === tag
-                  ? "bg-cyan text-[#0A0E17]"
+                  ? "bg-cyan text-background"
                   : "border-white/10 text-muted-foreground hover:text-foreground"
               }
             >

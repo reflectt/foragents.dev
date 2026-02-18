@@ -204,16 +204,16 @@ export default function CalculatorPage() {
   const chartMax = Math.max(results?.monthlyCost ?? 0, results?.monthlySavings ?? 0, 1);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden py-20">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#06D6A0]/5 blur-[140px]" />
+          <div className="absolute top-0 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-primary/5 blur-[140px]" />
         </div>
 
         <div className="relative mx-auto max-w-4xl px-4 text-center">
           <Badge
             variant="outline"
-            className="mb-4 border-[#06D6A0]/30 bg-[#06D6A0]/10 text-xs text-[#06D6A0]"
+            className="mb-4 border-primary/30 bg-primary/10 text-xs text-primary"
           >
             <TrendingUp className="mr-1 inline h-3 w-3" />
             ROI Calculator
@@ -331,7 +331,7 @@ export default function CalculatorPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#06D6A0]/30 bg-gradient-to-br from-[#06D6A0]/10 via-card/80 to-purple/5">
+        <Card className="border-primary/30 bg-gradient-to-br from-primary/10 via-card/80 to-purple/5">
           <CardHeader>
             <CardTitle className="text-white">Computed ROI</CardTitle>
             <CardDescription>Live values from the calculator API.</CardDescription>
@@ -376,7 +376,7 @@ export default function CalculatorPage() {
                       Human value / month: <span className="text-white">{formatCurrency(results.monthlySavings)}</span>
                     </div>
                     <div>
-                      Net monthly impact: <span className={netMonthly >= 0 ? "text-[#06D6A0]" : "text-red-400"}>{formatCurrency(netMonthly)}</span>
+                      Net monthly impact: <span className={netMonthly >= 0 ? "text-primary" : "text-red-400"}>{formatCurrency(netMonthly)}</span>
                     </div>
                     <div>
                       ROI: <span className="text-white">{results.roiPercentage.toFixed(2)}%</span>
@@ -396,7 +396,7 @@ export default function CalculatorPage() {
                     label="Monthly Savings"
                     value={results.monthlySavings}
                     max={chartMax}
-                    colorClass="bg-[#06D6A0]/80"
+                    colorClass="bg-primary/80"
                   />
                 </div>
 
@@ -449,7 +449,7 @@ function InputRow({ label, value, min, max, step, onChange, displayValue }: Inpu
         step={step}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="w-full accent-[#06D6A0]"
+        className="w-full accent-primary"
       />
       <Input
         type="number"
@@ -474,11 +474,11 @@ function MetricTile({ label, value, accent }: MetricTileProps) {
   return (
     <div
       className={`rounded-lg border p-4 ${
-        accent ? "border-[#06D6A0]/35 bg-[#06D6A0]/10" : "border-white/10 bg-white/5"
+        accent ? "border-primary/35 bg-primary/10" : "border-white/10 bg-white/5"
       }`}
     >
       <div className="mb-1 text-sm text-muted-foreground">{label}</div>
-      <div className={accent ? "text-3xl font-bold text-[#06D6A0]" : "text-2xl font-bold text-white"}>
+      <div className={accent ? "text-3xl font-bold text-primary" : "text-2xl font-bold text-white"}>
         {value}
       </div>
     </div>

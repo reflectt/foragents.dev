@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function CompatibilityPage() {
   return (
-    <div className="min-h-screen bg-[#0A0E17]">
+    <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">
         <Link href="/mcp" className="text-sm text-cyan-400 hover:underline">
           ← Back to MCP Hub

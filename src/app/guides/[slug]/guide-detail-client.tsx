@@ -94,16 +94,16 @@ export function GuideDetailClient({ slug }: { slug: string }) {
   }
 
   if (loading) {
-    return <div className="min-h-screen bg-[#0a0a0a] py-20 text-center text-gray-400">Loading guide…</div>;
+    return <div className="min-h-screen bg-background py-20 text-center text-gray-400">Loading guide…</div>;
   }
 
   if (error || !guide) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] py-20 text-center">
+      <div className="min-h-screen bg-background py-20 text-center">
         <p className="text-rose-400 mb-4">{error ?? "Guide not found."}</p>
         <Link
           href="/guides"
-          className="inline-flex px-4 py-2 bg-[#06D6A0] text-black rounded-lg font-semibold"
+          className="inline-flex px-4 py-2 bg-primary text-black rounded-lg font-semibold"
         >
           Back to Guides
         </Link>
@@ -112,15 +112,15 @@ export function GuideDetailClient({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <div className="border-b border-white/10 bg-[#0a0a0a]/80 backdrop-blur-sm">
+    <div className="min-h-screen bg-background">
+      <div className="border-b border-white/10 bg-background/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex items-center gap-2 text-sm text-gray-500">
-            <Link href="/" className="hover:text-[#06D6A0] transition-colors">
+            <Link href="/" className="hover:text-primary transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link href="/guides" className="hover:text-[#06D6A0] transition-colors">
+            <Link href="/guides" className="hover:text-primary transition-colors">
               Guides
             </Link>
             <span>/</span>
@@ -153,14 +153,14 @@ export function GuideDetailClient({ slug }: { slug: string }) {
         <GuideContent markdown={guide.content} />
 
         <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-between gap-4">
-          <Link href="/guides" className="text-sm text-[#06D6A0] hover:underline">
+          <Link href="/guides" className="text-sm text-primary hover:underline">
             ← Back to all guides
           </Link>
           <button
             type="button"
             disabled={markingRead}
             onClick={markAsRead}
-            className="px-4 py-2 bg-[#06D6A0] text-black font-semibold rounded-lg disabled:opacity-60"
+            className="px-4 py-2 bg-primary text-black font-semibold rounded-lg disabled:opacity-60"
           >
             {markingRead ? "Saving…" : "Mark as Read"}
           </button>

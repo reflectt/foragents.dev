@@ -121,7 +121,7 @@ export default function RoadmapItemPage({ params }: PageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-[#0A0E17]">
+    <main className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Link
           href="/roadmap"
@@ -164,7 +164,7 @@ export default function RoadmapItemPage({ params }: PageProps) {
                 onClick={handleVote}
                 disabled={voting}
                 size="lg"
-                className="bg-cyan text-[#0a0a0a] hover:bg-cyan/90 disabled:bg-slate-700 disabled:text-slate-400"
+                className="bg-cyan text-background hover:bg-cyan/90 disabled:bg-slate-700 disabled:text-slate-400"
               >
                 {voting ? "Voting..." : "Vote for this feature"}
               </Button>

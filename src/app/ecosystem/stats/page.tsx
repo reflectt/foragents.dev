@@ -89,17 +89,17 @@ export default function EcosystemStatsPage() {
   const maxAgents = Math.max(...data.growth.monthlyData.map((m) => m.agents));
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Ecosystem Stats
           </h1>
           <p className="text-xl text-foreground/80 mb-6">
@@ -125,46 +125,46 @@ export default function EcosystemStatsPage() {
       {/* Overview Cards */}
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-card/30 border-[#06D6A0]/20">
+          <Card className="bg-gradient-to-br from-primary/10 to-card/30 border-primary/20">
             <CardContent className="pt-6">
               <div className="text-sm text-muted-foreground mb-2">Total Skills</div>
-              <div className="text-4xl font-bold text-[#06D6A0]">
+              <div className="text-4xl font-bold text-primary">
                 {formatNumber(data.overview.totalSkills)}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[#8B5CF6]/10 to-card/30 border-[#8B5CF6]/20">
+          <Card className="bg-gradient-to-br from-purple/10 to-card/30 border-purple/20">
             <CardContent className="pt-6">
               <div className="text-sm text-muted-foreground mb-2">Total Agents</div>
-              <div className="text-4xl font-bold text-[#8B5CF6]">
+              <div className="text-4xl font-bold text-purple">
                 {formatNumber(data.overview.totalAgents)}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[#3B82F6]/10 to-card/30 border-[#3B82F6]/20">
+          <Card className="bg-gradient-to-br from-electric-blue/10 to-card/30 border-electric-blue/20">
             <CardContent className="pt-6">
               <div className="text-sm text-muted-foreground mb-2">Total Downloads</div>
-              <div className="text-4xl font-bold text-[#3B82F6]">
+              <div className="text-4xl font-bold text-electric-blue">
                 {formatNumber(data.overview.totalDownloads)}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[#F59E0B]/10 to-card/30 border-[#F59E0B]/20">
+          <Card className="bg-gradient-to-br from-solar/10 to-card/30 border-solar/20">
             <CardContent className="pt-6">
               <div className="text-sm text-muted-foreground mb-2">Active Contributors</div>
-              <div className="text-4xl font-bold text-[#F59E0B]">
+              <div className="text-4xl font-bold text-solar">
                 {formatNumber(data.overview.activeContributors)}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[#EC4899]/10 to-card/30 border-[#EC4899]/20">
+          <Card className="bg-gradient-to-br from-aurora-pink/10 to-card/30 border-aurora-pink/20">
             <CardContent className="pt-6">
               <div className="text-sm text-muted-foreground mb-2">MCP Servers</div>
-              <div className="text-4xl font-bold text-[#EC4899]">
+              <div className="text-4xl font-bold text-aurora-pink">
                 {formatNumber(data.overview.mcpServersTracked)}
               </div>
             </CardContent>
@@ -183,7 +183,7 @@ export default function EcosystemStatsPage() {
               {/* Skills Growth */}
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-[#06D6A0]">Skills Added Per Month</h3>
+                  <h3 className="text-lg font-semibold text-primary">Skills Added Per Month</h3>
                   <div className="text-sm text-muted-foreground">Peak: {maxSkills} skills</div>
                 </div>
                 <div className="flex items-end gap-2 h-48">
@@ -193,11 +193,11 @@ export default function EcosystemStatsPage() {
                       <div key={idx} className="flex-1 flex flex-col items-center gap-2">
                         <div className="relative w-full flex-1 flex items-end group">
                           <div
-                            className="w-full bg-gradient-to-t from-[#06D6A0] to-[#06D6A0]/50 rounded-t-lg transition-all hover:brightness-125"
+                            className="w-full bg-gradient-to-t from-primary to-primary/50 rounded-t-lg transition-all hover:brightness-125"
                             style={{ height: `${heightPercent}%` }}
                           >
                             <div className="absolute inset-x-0 -top-8 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                              <div className="text-sm font-bold text-[#06D6A0]">{month.skills}</div>
+                              <div className="text-sm font-bold text-primary">{month.skills}</div>
                             </div>
                           </div>
                         </div>
@@ -213,7 +213,7 @@ export default function EcosystemStatsPage() {
               {/* Agents Growth */}
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-[#8B5CF6]">New Agents Per Month</h3>
+                  <h3 className="text-lg font-semibold text-purple">New Agents Per Month</h3>
                   <div className="text-sm text-muted-foreground">Peak: {maxAgents} agents</div>
                 </div>
                 <div className="flex items-end gap-2 h-48">
@@ -223,11 +223,11 @@ export default function EcosystemStatsPage() {
                       <div key={idx} className="flex-1 flex flex-col items-center gap-2">
                         <div className="relative w-full flex-1 flex items-end group">
                           <div
-                            className="w-full bg-gradient-to-t from-[#8B5CF6] to-[#8B5CF6]/50 rounded-t-lg transition-all hover:brightness-125"
+                            className="w-full bg-gradient-to-t from-purple to-purple/50 rounded-t-lg transition-all hover:brightness-125"
                             style={{ height: `${heightPercent}%` }}
                           >
                             <div className="absolute inset-x-0 -top-8 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                              <div className="text-sm font-bold text-[#8B5CF6]">{month.agents}</div>
+                              <div className="text-sm font-bold text-purple">{month.agents}</div>
                             </div>
                           </div>
                         </div>
@@ -320,7 +320,7 @@ export default function EcosystemStatsPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm font-bold text-[#06D6A0]">
+                        <div className="text-sm font-bold text-primary">
                           {contributor.skillsCreated} skills
                         </div>
                         <div className="text-xs text-muted-foreground">
@@ -393,10 +393,10 @@ export default function EcosystemStatsPage() {
                   <div className="flex-1">
                     <div className="w-full h-8 bg-white/5 rounded-full overflow-hidden relative">
                       <div
-                        className="h-full bg-gradient-to-r from-[#06D6A0] to-[#06D6A0]/70 flex items-center justify-end px-4 transition-all"
+                        className="h-full bg-gradient-to-r from-primary to-primary/70 flex items-center justify-end px-4 transition-all"
                         style={{ width: `${host.percentage}%` }}
                       >
-                        <span className="text-sm font-bold text-[#0a0a0a]">
+                        <span className="text-sm font-bold text-background">
                           {host.percentage.toFixed(1)}%
                         </span>
                       </div>
@@ -458,8 +458,8 @@ export default function EcosystemStatsPage() {
 
       {/* CTA Section */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card/80 to-purple/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
@@ -474,7 +474,7 @@ export default function EcosystemStatsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/submit"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Submit a Skill →
               </Link>

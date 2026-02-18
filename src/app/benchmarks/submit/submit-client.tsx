@@ -116,7 +116,7 @@ export function BenchmarkSubmitClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b1020] text-slate-100">
+    <div className="min-h-screen bg-background text-slate-100">
       <main className="mx-auto grid max-w-6xl gap-6 px-4 py-12 md:grid-cols-2 md:px-6">
         <section className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
           <h1 className="text-2xl font-bold">Submit Benchmark Results</h1>
