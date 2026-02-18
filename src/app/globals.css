@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./tokens.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -54,83 +55,100 @@
 
 :root {
   --radius: 0.625rem;
-  /* Midnight Aurora - Brand Spec */
-  --background: #0A0E17;
-  --foreground: #E2E8F0;
-  --card: #0F1420;
-  --card-foreground: #E2E8F0;
-  --popover: #0F1420;
-  --popover-foreground: #E2E8F0;
-  --primary: #06D6A0;
-  --primary-foreground: #0A0E17;
-  --secondary: #1A1F2E;
-  --secondary-foreground: #E2E8F0;
-  --muted: #1A1F2E;
-  --muted-foreground: #6B7280;
-  --accent: #1A1F2E;
-  --accent-foreground: #E2E8F0;
-  --destructive: #EC4899;
-  --border: #1A1F2E;
+
+  /* forAgents.dev — Midnight Aurora brand overrides on token layer */
+  --color-bg: #0A0E17;
+  --color-surface: #0F1420;
+  --color-surface-raised: #1A1F2E;
+  --color-text: #E2E8F0;
+  --color-text-secondary: #6B7280;
+  --color-border: #1A1F2E;
+  --color-primary: #06D6A0;
+  --color-primary-hover: #34D399;
+  --color-primary-active: #059669;
+  --color-secondary: #8B5CF6;
+  --color-accent: #EC4899;
+  --color-error: #EC4899;
+  --color-warning: #F59E0B;
+  --color-success: #06D6A0;
+
+  /* Midnight Aurora - Brand Spec (shadcn mappings) */
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-bg);
+  --secondary: var(--color-surface-raised);
+  --secondary-foreground: var(--color-text);
+  --muted: var(--color-surface-raised);
+  --muted-foreground: var(--color-text-secondary);
+  --accent: var(--color-surface-raised);
+  --accent-foreground: var(--color-text);
+  --destructive: var(--color-error);
+  --border: var(--color-border);
   --input: #2A3040;
-  --ring: #06D6A0;
+  --ring: var(--color-primary);
   --cyan: #06D6A0;
-  --purple: #8B5CF6;
+  --purple: var(--color-secondary);
   --green: #06D6A0;
   --electric-blue: #3B82F6;
-  --aurora-pink: #EC4899;
-  --solar: #F59E0B;
+  --aurora-pink: var(--color-accent);
+  --solar: var(--color-warning);
   --chart-1: #06D6A0;
-  --chart-2: #8B5CF6;
+  --chart-2: var(--color-secondary);
   --chart-3: #3B82F6;
-  --chart-4: #F59E0B;
-  --chart-5: #EC4899;
-  --sidebar: #0A0E17;
-  --sidebar-foreground: #E2E8F0;
-  --sidebar-primary: #06D6A0;
-  --sidebar-primary-foreground: #0A0E17;
-  --sidebar-accent: #1A1F2E;
-  --sidebar-accent-foreground: #E2E8F0;
-  --sidebar-border: #1A1F2E;
-  --sidebar-ring: #06D6A0;
+  --chart-4: var(--color-warning);
+  --chart-5: var(--color-accent);
+  --sidebar: var(--color-bg);
+  --sidebar-foreground: var(--color-text);
+  --sidebar-primary: var(--color-primary);
+  --sidebar-primary-foreground: var(--color-bg);
+  --sidebar-accent: var(--color-surface-raised);
+  --sidebar-accent-foreground: var(--color-text);
+  --sidebar-border: var(--color-border);
+  --sidebar-ring: var(--color-primary);
 }
 
 .light {
   --background: #FFFFFF;
-  --foreground: #0F172A;
-  --card: #F8FAFC;
-  --card-foreground: #0F172A;
+  --foreground: var(--rt-slate-900);
+  --card: var(--rt-slate-50);
+  --card-foreground: var(--rt-slate-900);
   --popover: #FFFFFF;
-  --popover-foreground: #0F172A;
+  --popover-foreground: var(--rt-slate-900);
   --primary: #06D6A0;
   --primary-foreground: #FFFFFF;
-  --secondary: #F1F5F9;
-  --secondary-foreground: #0F172A;
-  --muted: #F1F5F9;
-  --muted-foreground: #64748B;
-  --accent: #F1F5F9;
-  --accent-foreground: #0F172A;
-  --destructive: #EC4899;
-  --border: #E2E8F0;
-  --input: #E2E8F0;
+  --secondary: var(--rt-slate-100);
+  --secondary-foreground: var(--rt-slate-900);
+  --muted: var(--rt-slate-100);
+  --muted-foreground: var(--rt-slate-500);
+  --accent: var(--rt-slate-100);
+  --accent-foreground: var(--rt-slate-900);
+  --destructive: var(--color-accent);
+  --border: var(--rt-slate-200);
+  --input: var(--rt-slate-200);
   --ring: #06D6A0;
   --cyan: #06D6A0;
-  --purple: #8B5CF6;
+  --purple: var(--color-secondary);
   --green: #06D6A0;
   --electric-blue: #3B82F6;
-  --aurora-pink: #EC4899;
-  --solar: #F59E0B;
+  --aurora-pink: var(--color-accent);
+  --solar: var(--color-warning);
   --chart-1: #06D6A0;
-  --chart-2: #8B5CF6;
+  --chart-2: var(--color-secondary);
   --chart-3: #3B82F6;
-  --chart-4: #F59E0B;
-  --chart-5: #EC4899;
-  --sidebar: #F8FAFC;
-  --sidebar-foreground: #0F172A;
+  --chart-4: var(--color-warning);
+  --chart-5: var(--color-accent);
+  --sidebar: var(--rt-slate-50);
+  --sidebar-foreground: var(--rt-slate-900);
   --sidebar-primary: #06D6A0;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F1F5F9;
-  --sidebar-accent-foreground: #0F172A;
-  --sidebar-border: #E2E8F0;
+  --sidebar-accent: var(--rt-slate-100);
+  --sidebar-accent-foreground: var(--rt-slate-900);
+  --sidebar-border: var(--rt-slate-200);
   --sidebar-ring: #06D6A0;
 }
 
@@ -149,22 +167,22 @@
 
 /* Aurora gradient utilities */
 .aurora-gradient {
-  background: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--electric-blue) 50%, var(--color-secondary) 100%);
 }
 
 .aurora-text {
-  background: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--electric-blue) 50%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .aurora-border {
-  border-image: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%) 1;
+  border-image: linear-gradient(135deg, var(--color-primary) 0%, var(--electric-blue) 50%, var(--color-secondary) 100%) 1;
 }
 
 .aurora-glow {
-  box-shadow: 0 0 40px rgba(6, 214, 160, 0.08), 0 0 80px rgba(139, 92, 246, 0.05);
+  box-shadow: var(--shadow-glow-primary);
 }
 
 /* Typewriter cursor blink */
@@ -176,13 +194,13 @@
 .cursor-blink::after {
   content: "_";
   animation: blink 1s step-end infinite;
-  color: #06D6A0;
+  color: var(--color-primary);
 }
 
 /* 404 gradient stroke text */
 .gradient-stroke {
   -webkit-text-stroke: 2px transparent;
-  background: linear-gradient(135deg, #06D6A0 0%, #3B82F6 50%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--electric-blue) 50%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
