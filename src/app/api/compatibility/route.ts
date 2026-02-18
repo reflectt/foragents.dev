@@ -60,7 +60,8 @@ export async function GET(request: NextRequest) {
   const statusFilter = statusFilterRaw && VALID_STATUSES.includes(statusFilterRaw) ? statusFilterRaw : undefined;
 
   const seed = await readCompatibilitySeed();
-  const mcpBySlug = new Map((mcpServers as any as McpServer[]).map((server) => [server.slug, server]));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- mcpData JSON shape lacks repo_url required by McpServer
+  const mcpBySlug = new Map((mcpServers as unknown as McpServer[]).map((server) => [server.slug, server]));
 
   const rows = seed.servers
     .map((row) => {
