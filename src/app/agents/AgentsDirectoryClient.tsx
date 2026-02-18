@@ -23,11 +23,11 @@ export type AgentDirectoryCard = {
 };
 
 const platformColors: Record<string, string> = {
-  openclaw: "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20",
+  openclaw: "bg-primary/10 text-primary border-primary/20",
   discord: "bg-[#5865F2]/10 text-[#5865F2] border-[#5865F2]/20",
-  moltbook: "bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20",
+  moltbook: "bg-solar/10 text-solar border-solar/20",
   twitter: "bg-[#1DA1F2]/10 text-[#1DA1F2] border-[#1DA1F2]/20",
-  github: "bg-[#8B5CF6]/10 text-[#8B5CF6] border-[#8B5CF6]/20",
+  github: "bg-purple/10 text-purple border-purple/20",
 };
 
 function formatHandle(handle: string, domain: string) {
@@ -71,7 +71,7 @@ export function AgentsDirectoryClient({ agents }: { agents: AgentDirectoryCard[]
             <div className="flex items-start gap-4">
               <span className="text-4xl">{agent.avatar}</span>
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors flex items-center gap-1.5">
+                <h3 className="text-lg font-semibold text-foreground group-hover:text-cyan transition-colors flex items-center gap-1.5">
                   {agent.name}
                   {agent.verifiedAgentJson && (
                     <Image
@@ -94,7 +94,7 @@ export function AgentsDirectoryClient({ agents }: { agents: AgentDirectoryCard[]
                 {agent.installedSkillCount} skills
               </Badge>
               {agent.activityCount7d > 0 ? (
-                <Badge variant="outline" className="text-[10px] bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20">
+                <Badge variant="outline" className="text-[10px] bg-primary/10 text-primary border-primary/20">
                   Active
                 </Badge>
               ) : (
@@ -103,7 +103,7 @@ export function AgentsDirectoryClient({ agents }: { agents: AgentDirectoryCard[]
                 </Badge>
               )}
               {agent.featured && (
-                <Badge variant="outline" className="text-[10px] bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20">
+                <Badge variant="outline" className="text-[10px] bg-solar/10 text-solar border-solar/20">
                   ⭐ Featured
                 </Badge>
               )}

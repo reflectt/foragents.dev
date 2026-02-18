@@ -250,17 +250,17 @@ export default function FAQPage() {
 
   const renderFaqSection = (category: FaqCategory, questions: FaqItem[]) => (
     <div key={category}>
-      <h2 className="text-2xl font-bold mb-6 text-[#F8FAFC]">
+      <h2 className="text-2xl font-bold mb-6 text-foreground">
         {CATEGORY_LABELS[category]}
         <span className="ml-3 text-sm font-normal text-muted-foreground">({questions.length})</span>
       </h2>
 
-      <Card className="bg-[#0f0f0f] border-white/10">
+      <Card className="bg-background border-white/10">
         <CardContent className="p-6">
           <Accordion type="single" collapsible className="space-y-0">
             {questions.map((question) => (
               <AccordionItem key={question.id} value={question.id} className="border-white/10">
-                <AccordionTrigger className="text-left hover:text-[#06D6A0] transition-colors">
+                <AccordionTrigger className="text-left hover:text-primary transition-colors">
                   <span className="font-semibold pr-4">{question.question}</span>
                 </AccordionTrigger>
                 <AccordionContent>
@@ -292,7 +292,7 @@ export default function FAQPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -300,11 +300,11 @@ export default function FAQPage() {
 
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-foreground/80 mb-2">Everything you need to know about forAgents.dev</p>
@@ -322,7 +322,7 @@ export default function FAQPage() {
             placeholder="Search questions or answers..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="w-full pl-12 pr-4 py-6 text-lg bg-[#0f0f0f] border-white/10 focus:border-[#06D6A0] rounded-lg"
+            className="w-full pl-12 pr-4 py-6 text-lg bg-background border-white/10 focus:border-primary rounded-lg"
           />
         </div>
 
@@ -346,11 +346,11 @@ export default function FAQPage() {
 
       <section className="relative max-w-5xl mx-auto px-4 pb-12">
         {isLoading ? (
-          <Card className="bg-[#0f0f0f] border-white/10 p-12 text-center">
+          <Card className="bg-background border-white/10 p-12 text-center">
             <p className="text-muted-foreground">Loading FAQs...</p>
           </Card>
         ) : fetchError ? (
-          <Card className="bg-[#0f0f0f] border-white/10 p-12 text-center">
+          <Card className="bg-background border-white/10 p-12 text-center">
             <p className="text-red-400 mb-4">{fetchError}</p>
             <Button
               variant="outline"
@@ -365,7 +365,7 @@ export default function FAQPage() {
             </Button>
           </Card>
         ) : faqData.faqs.length === 0 ? (
-          <Card className="bg-[#0f0f0f] border-white/10 p-12 text-center">
+          <Card className="bg-background border-white/10 p-12 text-center">
             <p className="text-muted-foreground mb-4">
               No questions found matching "{debouncedSearch || activeCategory}".
             </p>
@@ -394,9 +394,9 @@ export default function FAQPage() {
       </section>
 
       <section className="relative max-w-5xl mx-auto px-4 pb-10">
-        <Card className="bg-[#0f0f0f] border-white/10">
+        <Card className="bg-background border-white/10">
           <CardContent className="p-8">
-            <h2 className="text-2xl font-bold mb-2 text-[#F8FAFC]">Ask a Question</h2>
+            <h2 className="text-2xl font-bold mb-2 text-foreground">Ask a Question</h2>
             <p className="text-sm text-muted-foreground mb-6">
               Didn't find your answer? Submit your question and we'll review it for the FAQ.
             </p>
@@ -415,7 +415,7 @@ export default function FAQPage() {
                   placeholder="What would you like to ask?"
                   required
                   minLength={10}
-                  className="bg-[#0a0a0a] border-white/10"
+                  className="bg-background border-white/10"
                 />
               </div>
 
@@ -430,7 +430,7 @@ export default function FAQPage() {
                     onChange={(event) =>
                       setAskForm((prev) => ({ ...prev, category: event.target.value as FaqCategory }))
                     }
-                    className="w-full h-10 rounded-md border border-white/10 bg-[#0a0a0a] px-3 text-sm"
+                    className="w-full h-10 rounded-md border border-white/10 bg-background px-3 text-sm"
                   >
                     {FALLBACK_CATEGORIES.map((category) => (
                       <option key={category} value={category}>
@@ -452,14 +452,14 @@ export default function FAQPage() {
                       setAskForm((prev) => ({ ...prev, email: event.target.value }))
                     }
                     placeholder="you@company.com"
-                    className="bg-[#0a0a0a] border-white/10"
+                    className="bg-background border-white/10"
                   />
                 </div>
               </div>
 
               <Button
                 type="submit"
-                className="bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black font-medium"
+                className="bg-primary hover:bg-primary/90 text-black font-medium"
                 disabled={askStatus === "submitting"}
               >
                 {askStatus === "submitting" ? "Submitting..." : "Submit Question"}
@@ -467,7 +467,7 @@ export default function FAQPage() {
             </form>
 
             {askMessage ? (
-              <p className={`mt-4 text-sm ${askStatus === "success" ? "text-[#06D6A0]" : "text-red-400"}`}>
+              <p className={`mt-4 text-sm ${askStatus === "success" ? "text-primary" : "text-red-400"}`}>
                 {askMessage}
               </p>
             ) : null}
@@ -476,9 +476,9 @@ export default function FAQPage() {
       </section>
 
       <section className="relative max-w-5xl mx-auto px-4 pb-16">
-        <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-transparent border-[#06D6A0]/20">
+        <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-transparent border-primary/20">
           <CardContent className="p-8 md:p-12 text-center">
-            <h2 className="text-3xl font-bold mb-4 text-[#F8FAFC]">Still need help?</h2>
+            <h2 className="text-3xl font-bold mb-4 text-foreground">Still need help?</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Can't find what you're looking for? Our community and support team are here to help you get
               the most out of forAgents.dev.
@@ -486,7 +486,7 @@ export default function FAQPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/community">
-                <Button className="bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black font-medium gap-2">
+                <Button className="bg-primary hover:bg-primary/90 text-black font-medium gap-2">
                   <MessageCircle className="w-4 h-4" />
                   Join Community
                 </Button>
@@ -502,7 +502,7 @@ export default function FAQPage() {
             <div className="mt-8 pt-8 border-t border-white/10">
               <p className="text-sm text-muted-foreground">
                 Looking for detailed documentation?{" "}
-                <Link href="/docs/api" className="text-[#06D6A0] hover:underline font-medium">
+                <Link href="/docs/api" className="text-primary hover:underline font-medium">
                   Check out our API docs
                 </Link>
               </p>

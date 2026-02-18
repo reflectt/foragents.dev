@@ -231,7 +231,7 @@ export default function RoadmapPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0A0E17]">
+    <main className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-3">Product Roadmap</h1>
@@ -287,7 +287,7 @@ export default function RoadmapPage() {
                       onClick={() => setStatusFilter(status)}
                       className={
                         statusFilter === status
-                          ? "bg-cyan text-[#0a0a0a] hover:bg-cyan/90"
+                          ? "bg-cyan text-primary-foreground hover:bg-cyan/90"
                           : "border-white/15 text-slate-300"
                       }
                     >
@@ -352,7 +352,7 @@ export default function RoadmapPage() {
                                 size="sm"
                                 onClick={() => handleVote(item.id)}
                                 disabled={disableVote}
-                                className="bg-cyan text-[#0a0a0a] hover:bg-cyan/90 disabled:bg-slate-700 disabled:text-slate-400"
+                                className="bg-cyan text-primary-foreground hover:bg-cyan/90 disabled:bg-slate-700 disabled:text-slate-400"
                               >
                                 {votingIds.has(item.id)
                                   ? "Voting..."
@@ -436,7 +436,7 @@ export default function RoadmapPage() {
                   <Button
                     type="submit"
                     disabled={requesting}
-                    className="bg-cyan text-[#0a0a0a] hover:bg-cyan/90"
+                    className="bg-cyan text-primary-foreground hover:bg-cyan/90"
                   >
                     {requesting ? "Submitting..." : "Submit Request"}
                   </Button>

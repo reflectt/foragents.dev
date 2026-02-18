@@ -185,18 +185,18 @@ export default function ObservabilityPage() {
   };
 
   return (
-    <main id="main-content" className="min-h-screen bg-[#0a0a0a]">
+    <main id="main-content" className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#06D6A0]/10 mb-6">
-            <Eye className="w-8 h-8 text-[#06D6A0]" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+            <Eye className="w-8 h-8 text-primary" />
           </div>
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Agent <span className="aurora-text">Observability</span>
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl">
@@ -207,7 +207,7 @@ export default function ObservabilityPage() {
 
       {/* Intro Section */}
       <section className="relative max-w-5xl mx-auto px-4 py-8">
-        <Card className="bg-[#0f0f0f] border-white/10">
+        <Card className="bg-background border-white/10">
           <CardContent className="pt-6 space-y-4">
             <p className="text-foreground/80 leading-relaxed">
               Production AI agents need visibility into their behavior, performance, and errors. 
@@ -216,11 +216,11 @@ export default function ObservabilityPage() {
             </p>
             <p className="text-sm text-foreground/70">
               💡 <strong>Before deploying:</strong> Use{" "}
-              <a href="/diagnostics" className="text-[#06D6A0] hover:underline">
+              <a href="/diagnostics" className="text-primary hover:underline">
                 Agent Diagnostics
               </a>{" "}
               to validate your configuration, or{" "}
-              <a href="/trace" className="text-[#06D6A0] hover:underline">
+              <a href="/trace" className="text-primary hover:underline">
                 Trace Viewer
               </a>{" "}
               to inspect live agent runs.
@@ -241,8 +241,8 @@ export default function ObservabilityPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     selectedCategory === cat
-                      ? "bg-[#06D6A0] text-[#0a0a0a]"
-                      : "bg-[#0f0f0f] text-foreground/70 hover:bg-[#0f0f0f]/80"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-background text-foreground/70 hover:bg-background/80"
                   }`}
                 >
                   {cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -260,8 +260,8 @@ export default function ObservabilityPage() {
                   onClick={() => setSelectedHost(host)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     selectedHost === host
-                      ? "bg-[#06D6A0] text-[#0a0a0a]"
-                      : "bg-[#0f0f0f] text-foreground/70 hover:bg-[#0f0f0f]/80"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-background text-foreground/70 hover:bg-background/80"
                   }`}
                 >
                   {host}
@@ -276,17 +276,17 @@ export default function ObservabilityPage() {
       <section className="relative max-w-5xl mx-auto px-4 py-6 pb-16">
         <div className="grid gap-6">
           {filteredTools.map((tool, idx) => (
-            <Card key={idx} className="bg-[#0f0f0f] border-white/10">
+            <Card key={idx} className="bg-background border-white/10">
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-[#06D6A0]/10">
+                    <div className="p-2 rounded-lg bg-primary/10">
                       {tool.icon}
                     </div>
                     <div>
                       <CardTitle className="text-xl">{tool.name}</CardTitle>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#06D6A0]/10 text-[#06D6A0] text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
                           {getCategoryIcon(tool.category)}
                           {tool.category}
                         </span>
@@ -310,7 +310,7 @@ export default function ObservabilityPage() {
                 
                 <div>
                   <h4 className="text-sm font-semibold mb-2">Installation</h4>
-                  <code className="block px-4 py-2 bg-[#0a0a0a] border border-white/5 rounded text-sm text-[#06D6A0] font-mono">
+                  <code className="block px-4 py-2 bg-background border border-white/5 rounded text-sm text-primary font-mono">
                     {tool.setup}
                   </code>
                 </div>
@@ -318,7 +318,7 @@ export default function ObservabilityPage() {
                 {tool.codeSnippet && (
                   <div>
                     <h4 className="text-sm font-semibold mb-2">Quick Start</h4>
-                    <pre className="px-4 py-3 bg-[#0a0a0a] border border-white/5 rounded text-xs text-foreground/80 font-mono overflow-x-auto">
+                    <pre className="px-4 py-3 bg-background border border-white/5 rounded text-xs text-foreground/80 font-mono overflow-x-auto">
                       {tool.codeSnippet}
                     </pre>
                   </div>
@@ -329,7 +329,7 @@ export default function ObservabilityPage() {
         </div>
 
         {filteredTools.length === 0 && (
-          <Card className="bg-[#0f0f0f] border-white/10">
+          <Card className="bg-background border-white/10">
             <CardContent className="py-12 text-center">
               <p className="text-foreground/60">
                 No tools match your filters. Try adjusting your selection.
@@ -341,7 +341,7 @@ export default function ObservabilityPage() {
 
       {/* Integration Matrix */}
       <section className="relative max-w-5xl mx-auto px-4 py-8 pb-16">
-        <Card className="bg-[#0f0f0f] border-white/10">
+        <Card className="bg-background border-white/10">
           <CardHeader>
             <CardTitle className="text-2xl">Integration Matrix</CardTitle>
           </CardHeader>

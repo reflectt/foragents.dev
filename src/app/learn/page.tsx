@@ -201,7 +201,7 @@ export default function LearnPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -213,7 +213,7 @@ export default function LearnPage() {
         <div className="relative">
           {/* Subtle aurora background */}
           <div className="absolute inset-0 -z-10 opacity-30">
-            <div className="absolute top-0 left-1/3 w-96 h-96 bg-[#06D6A0]/20 rounded-full blur-[120px]" />
+            <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
             <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-purple/20 rounded-full blur-[100px]" />
           </div>
 
@@ -231,7 +231,7 @@ export default function LearnPage() {
           <div className="mt-8 max-w-md mx-auto">
             <div className="flex items-center justify-between text-sm mb-2">
               <span className="text-gray-400">Overall Progress</span>
-              <span className="text-[#06D6A0] font-semibold">
+              <span className="text-primary font-semibold">
                 {completedLessons.size} / {TRACKS.reduce((sum, track) => sum + track.lessons.length, 0)} lessons
               </span>
             </div>
@@ -251,7 +251,7 @@ export default function LearnPage() {
 
       {/* Recommended Path */}
       <section className="max-w-5xl mx-auto px-4 py-12">
-        <div className="bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 border border-[#06D6A0]/20 rounded-xl p-6">
+        <div className="bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 border border-primary/20 rounded-xl p-6">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-2xl">🎯</span>
             <h2 className="text-2xl font-bold text-white">Recommended Learning Path</h2>
@@ -272,11 +272,11 @@ export default function LearnPage() {
                   key={`${item.trackId}-${item.lessonId}`}
                   className={`flex items-center gap-4 p-4 rounded-lg border transition-all ${
                     isCompleted
-                      ? "bg-[#06D6A0]/5 border-[#06D6A0]/30"
-                      : "bg-white/5 border-white/10 hover:border-[#06D6A0]/30"
+                      ? "bg-primary/5 border-primary/30"
+                      : "bg-white/5 border-white/10 hover:border-primary/30"
                   }`}
                 >
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#06D6A0]/10 text-[#06D6A0] font-bold text-sm">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm">
                     {item.order}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -291,8 +291,8 @@ export default function LearnPage() {
                     onClick={() => toggleLesson(lesson.id)}
                     className={`flex items-center justify-center w-6 h-6 rounded border-2 transition-colors ${
                       isCompleted
-                        ? "bg-[#06D6A0] border-[#06D6A0]"
-                        : "bg-transparent border-gray-600 hover:border-[#06D6A0]"
+                        ? "bg-primary border-primary"
+                        : "bg-transparent border-gray-600 hover:border-primary"
                     }`}
                     aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
                   >
@@ -325,7 +325,7 @@ export default function LearnPage() {
             return (
               <div
                 key={track.id}
-                className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-[#06D6A0]/30 transition-all"
+                className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-primary/30 transition-all"
               >
                 {/* Track Header */}
                 <div className="flex items-start justify-between mb-6">
@@ -337,7 +337,7 @@ export default function LearnPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-[#06D6A0]">{progress}%</div>
+                    <div className="text-2xl font-bold text-primary">{progress}%</div>
                     <div className="text-xs text-gray-500">Complete</div>
                   </div>
                 </div>
@@ -346,7 +346,7 @@ export default function LearnPage() {
                 <div className="mb-6">
                   <div className="h-2 bg-white/5 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-[#06D6A0] transition-all duration-500"
+                      className="h-full bg-primary transition-all duration-500"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
@@ -363,16 +363,16 @@ export default function LearnPage() {
                         key={lesson.id}
                         className={`flex items-start gap-4 p-4 rounded-lg border transition-all ${
                           isCompleted
-                            ? "bg-[#06D6A0]/5 border-[#06D6A0]/30"
-                            : "bg-black/30 border-white/10 hover:border-[#06D6A0]/20"
+                            ? "bg-primary/5 border-primary/30"
+                            : "bg-black/30 border-white/10 hover:border-primary/20"
                         }`}
                       >
                         <button
                           onClick={() => toggleLesson(lesson.id)}
                           className={`mt-1 flex items-center justify-center w-5 h-5 rounded border-2 transition-colors flex-shrink-0 ${
                             isCompleted
-                              ? "bg-[#06D6A0] border-[#06D6A0]"
-                              : "bg-transparent border-gray-600 hover:border-[#06D6A0]"
+                              ? "bg-primary border-primary"
+                              : "bg-transparent border-gray-600 hover:border-primary"
                           }`}
                           aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
                         >
@@ -392,7 +392,7 @@ export default function LearnPage() {
                           <div className="flex items-center gap-2 mb-2">
                             <h4 className="text-white font-semibold">{lesson.title}</h4>
                             {recommended && (
-                              <span className="px-2 py-0.5 text-xs font-semibold bg-[#06D6A0]/20 text-[#06D6A0] rounded border border-[#06D6A0]/30">
+                              <span className="px-2 py-0.5 text-xs font-semibold bg-primary/20 text-primary rounded border border-primary/30">
                                 #{recommended.order} Recommended
                               </span>
                             )}
@@ -429,8 +429,8 @@ export default function LearnPage() {
 
       {/* CTA Section */}
       <section className="max-w-5xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 p-8 text-center">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/20 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 p-8 text-center">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/20 rounded-full blur-[60px]" />
 
           <div className="relative">
@@ -443,13 +443,13 @@ export default function LearnPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/skills"
-                className="px-6 py-3 bg-[#06D6A0] text-black font-semibold rounded-lg hover:brightness-110 transition-all"
+                className="px-6 py-3 bg-primary text-black font-semibold rounded-lg hover:brightness-110 transition-all"
               >
                 Browse Skills →
               </Link>
               <Link
                 href="/trending"
-                className="px-6 py-3 border border-[#06D6A0] text-[#06D6A0] font-semibold rounded-lg hover:bg-[#06D6A0]/10 transition-all"
+                className="px-6 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 transition-all"
               >
                 View Trending
               </Link>

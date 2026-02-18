@@ -247,7 +247,7 @@ export default function GlossaryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -256,7 +256,7 @@ export default function GlossaryPage() {
       <section className="max-w-5xl mx-auto px-4 py-16">
         <div className="relative">
           <div className="absolute inset-0 -z-10 opacity-30">
-            <div className="absolute top-0 left-1/3 w-96 h-96 bg-[#06D6A0]/20 rounded-full blur-[120px]" />
+            <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
             <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-purple/20 rounded-full blur-[100px]" />
           </div>
 
@@ -279,7 +279,7 @@ export default function GlossaryPage() {
                 placeholder="Search terms, definitions, or categories..."
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                className="w-full px-5 py-3 pl-12 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#06D6A0]/50 focus:ring-1 focus:ring-[#06D6A0]/50 transition-all"
+                className="w-full px-5 py-3 pl-12 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-[#06D6A0]/50 transition-all"
               />
               <svg
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"
@@ -304,7 +304,7 @@ export default function GlossaryPage() {
                 id="glossary-category"
                 value={selectedCategory}
                 onChange={(event) => setSelectedCategory(event.target.value as GlossaryCategory | "all")}
-                className="px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-[#06D6A0]/50"
+                className="px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-primary/50"
               >
                 <option value="all">All categories</option>
                 {availableCategories.map((category) => (
@@ -327,7 +327,7 @@ export default function GlossaryPage() {
                 {(debouncedSearch || selectedLetter || selectedCategory !== "all") && (
                   <button
                     onClick={clearFilters}
-                    className="text-[#06D6A0] hover:underline"
+                    className="text-primary hover:underline"
                   >
                     Clear filters
                   </button>
@@ -336,7 +336,7 @@ export default function GlossaryPage() {
             )}
           </div>
 
-          <div className="sticky top-0 z-10 bg-[#0a0a0a]/95 backdrop-blur-sm border-y border-white/10 py-4 -mx-4 px-4">
+          <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-y border-white/10 py-4 -mx-4 px-4">
             <div className="max-w-5xl mx-auto">
               <div className="flex flex-wrap items-center justify-center gap-2">
                 {alphabet.map((letter) => {
@@ -350,9 +350,9 @@ export default function GlossaryPage() {
                       disabled={!isAvailable}
                       className={`w-8 h-8 flex items-center justify-center rounded font-semibold text-sm transition-all ${
                         isSelected
-                          ? "bg-[#06D6A0] text-black"
+                          ? "bg-primary text-black"
                           : isAvailable
-                          ? "bg-white/5 text-white hover:bg-white/10 hover:text-[#06D6A0]"
+                          ? "bg-white/5 text-white hover:bg-white/10 hover:text-primary"
                           : "bg-transparent text-gray-700 cursor-not-allowed"
                       }`}
                       aria-label={`Filter by letter ${letter}`}
@@ -377,7 +377,7 @@ export default function GlossaryPage() {
             </p>
             <button
               onClick={clearFilters}
-              className="px-6 py-2 bg-[#06D6A0] text-black font-semibold rounded-lg hover:brightness-110 transition-all"
+              className="px-6 py-2 bg-primary text-black font-semibold rounded-lg hover:brightness-110 transition-all"
             >
               Show all terms
             </button>
@@ -398,8 +398,8 @@ export default function GlossaryPage() {
             {Object.entries(groupedEntries).map(([letter, entries]) => (
               <div key={letter} id={`letter-${letter}`}>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#06D6A0]/10 border border-[#06D6A0]/30">
-                    <span className="text-2xl font-bold text-[#06D6A0]">{letter}</span>
+                  <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 border border-primary/30">
+                    <span className="text-2xl font-bold text-primary">{letter}</span>
                   </div>
                   <div className="flex-1 h-px bg-white/10" />
                 </div>
@@ -409,7 +409,7 @@ export default function GlossaryPage() {
                     <article
                       key={entry.slug}
                       id={entry.slug}
-                      className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-[#06D6A0]/30 transition-all scroll-mt-32"
+                      className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-primary/30 transition-all scroll-mt-32"
                     >
                       <div className="flex flex-wrap items-center gap-3 mb-3">
                         <h3 className="text-2xl font-bold text-white">{entry.term}</h3>
@@ -447,7 +447,7 @@ export default function GlossaryPage() {
                                 <a
                                   key={`${entry.slug}-related-${index}`}
                                   href={`#${relatedEntry.slug}`}
-                                  className="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded text-gray-300 hover:text-[#06D6A0] hover:border-[#06D6A0]/30 transition-all"
+                                  className="px-2 py-1 text-xs bg-white/5 border border-white/10 rounded text-gray-300 hover:text-primary hover:border-primary/30 transition-all"
                                   onClick={(event) => {
                                     event.preventDefault();
                                     const element = document.getElementById(relatedEntry.slug);
@@ -504,7 +504,7 @@ export default function GlossaryPage() {
                   }
                   required
                   maxLength={100}
-                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-[#06D6A0]/50"
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary/50"
                   placeholder="Example: Agent Loop"
                 />
               </div>
@@ -522,7 +522,7 @@ export default function GlossaryPage() {
                   required
                   maxLength={1200}
                   rows={4}
-                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-[#06D6A0]/50"
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary/50"
                   placeholder="Describe what this term means in an agent ecosystem context..."
                 />
               </div>
@@ -540,7 +540,7 @@ export default function GlossaryPage() {
                       category: event.target.value as GlossaryCategory,
                     }))
                   }
-                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-[#06D6A0]/50"
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary/50"
                 >
                   {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
                     <option key={value} value={value}>
@@ -560,7 +560,7 @@ export default function GlossaryPage() {
                   onChange={(event) =>
                     setFormData((previous) => ({ ...previous, relatedTerms: event.target.value }))
                   }
-                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-[#06D6A0]/50"
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary/50"
                   placeholder="Example: MCP, Tool Calling"
                 />
               </div>
@@ -575,7 +575,7 @@ export default function GlossaryPage() {
                   onChange={(event) =>
                     setFormData((previous) => ({ ...previous, tags: event.target.value }))
                   }
-                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-[#06D6A0]/50"
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:border-primary/50"
                   placeholder="Example: ai-agents, security"
                 />
               </div>
@@ -595,14 +595,14 @@ export default function GlossaryPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-5 py-2.5 bg-[#06D6A0] text-black font-semibold rounded-lg hover:brightness-110 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                className="px-5 py-2.5 bg-primary text-black font-semibold rounded-lg hover:brightness-110 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "Creating..." : "Create term"}
               </button>
             </form>
           </div>
 
-          <div className="rounded-xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 p-6">
+          <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-[#06D6A0]/10 to-purple/10 p-6">
             <h2 className="text-2xl font-semibold text-white mb-3">Ready to build?</h2>
             <p className="text-gray-300 mb-6">
               Turn concepts into execution with production-ready skills, tools, and protocols.
@@ -610,13 +610,13 @@ export default function GlossaryPage() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <Link
                 href="/skills"
-                className="px-5 py-2.5 bg-[#06D6A0] text-black font-semibold rounded-lg hover:brightness-110 transition-all"
+                className="px-5 py-2.5 bg-primary text-black font-semibold rounded-lg hover:brightness-110 transition-all"
               >
                 Browse Skills →
               </Link>
               <Link
                 href="/learn"
-                className="px-5 py-2.5 border border-[#06D6A0] text-[#06D6A0] font-semibold rounded-lg hover:bg-[#06D6A0]/10 transition-all"
+                className="px-5 py-2.5 border border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 transition-all"
               >
                 Start Learning
               </Link>

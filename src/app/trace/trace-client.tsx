@@ -221,7 +221,7 @@ export function TraceClient({ initialId }: { initialId: string }) {
             <div className="flex gap-2">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center rounded-lg bg-cyan px-4 py-2 text-sm font-semibold text-[#0A0E17] hover:bg-cyan/90"
+                className="inline-flex items-center justify-center rounded-lg bg-cyan px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-cyan/90"
               >
                 Load
               </button>

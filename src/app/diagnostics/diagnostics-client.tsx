@@ -281,15 +281,15 @@ export function DiagnosticsClient() {
   return (
     <div className="space-y-6">
       {/* Related Tools */}
-      <Card className="bg-[#0f0f0f] border-white/10">
+      <Card className="bg-background border-white/10">
         <CardContent className="pt-6">
           <p className="text-sm text-foreground/80">
             💡 <strong>Also check out:</strong>{" "}
-            <a href="/observability" className="text-[#06D6A0] hover:underline">
+            <a href="/observability" className="text-primary hover:underline">
               Observability Tools
             </a>{" "}
             to monitor your agent in production, and{" "}
-            <a href="/trace" className="text-[#06D6A0] hover:underline">
+            <a href="/trace" className="text-primary hover:underline">
               Trace Viewer
             </a>{" "}
             to inspect agent runs.
@@ -298,7 +298,7 @@ export function DiagnosticsClient() {
       </Card>
 
       {/* Input Section */}
-      <Card className="bg-[#0f0f0f] border-white/10">
+      <Card className="bg-background border-white/10">
         <CardHeader>
           <CardTitle>Configuration Input</CardTitle>
         </CardHeader>
@@ -312,13 +312,13 @@ export function DiagnosticsClient() {
               value={configInput}
               onChange={(e) => setConfigInput(e.target.value)}
               placeholder="https://example.com/agent.json or paste your agent.json here..."
-              className="w-full h-32 px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-lg font-mono text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#06D6A0]/50"
+              className="w-full h-32 px-4 py-3 bg-background border border-white/10 rounded-lg font-mono text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#06D6A0]/50"
             />
           </div>
           <button
             onClick={runDiagnostics}
             disabled={loading || !configInput.trim()}
-            className="px-6 py-2.5 bg-[#06D6A0] text-[#0a0a0a] font-semibold rounded-lg hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2"
+            className="px-6 py-2.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2"
           >
             {loading ? (
               <>
@@ -351,7 +351,7 @@ export function DiagnosticsClient() {
       {results && (
         <div className="space-y-4">
           {results.map((result, idx) => (
-            <Card key={idx} className="bg-[#0f0f0f] border-white/10">
+            <Card key={idx} className="bg-background border-white/10">
               <CardHeader>
                 <CardTitle className="text-xl">{result.category}</CardTitle>
               </CardHeader>
@@ -360,7 +360,7 @@ export function DiagnosticsClient() {
                   {result.checks.map((check, checkIdx) => (
                     <div
                       key={checkIdx}
-                      className="flex items-start gap-3 p-3 rounded-lg bg-[#0a0a0a] border border-white/5"
+                      className="flex items-start gap-3 p-3 rounded-lg bg-background border border-white/5"
                     >
                       <div className="flex-shrink-0 mt-0.5">
                         {getStatusIcon(check.status)}
@@ -371,7 +371,7 @@ export function DiagnosticsClient() {
                           {check.message}
                         </p>
                         {check.recommendation && (
-                          <p className="text-sm text-[#06D6A0] mt-2">
+                          <p className="text-sm text-primary mt-2">
                             💡 {check.recommendation}
                           </p>
                         )}

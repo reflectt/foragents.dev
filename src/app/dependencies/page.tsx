@@ -184,7 +184,7 @@ export default async function DependenciesPage({
         />
 
         <div className="mt-6">
-          <h1 className="text-3xl font-bold text-[#F8FAFC]">Skill Dependency Graph</h1>
+          <h1 className="text-3xl font-bold text-foreground">Skill Dependency Graph</h1>
           <p className="mt-2 text-foreground/70 max-w-3xl">
             A lightweight graph of how skills relate to each other. Click any skill to explore its
             dependencies, dependents, and full dependency chain.
@@ -201,7 +201,7 @@ export default async function DependenciesPage({
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-4 rounded-xl border border-white/10 bg-white/5 p-5">
-            <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Skills</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-3">Skills</h2>
             <div className="flex flex-col gap-1">
               {skills
                 .slice()
@@ -231,7 +231,7 @@ export default async function DependenciesPage({
           <div id="skill-details" className="lg:col-span-8 rounded-xl border border-white/10 bg-white/5 p-5">
             <div className="flex items-start justify-between gap-4 flex-wrap">
               <div>
-                <h2 className="text-lg font-semibold text-[#F8FAFC]">{skillNameBySlug.get(selectedSlug) ?? selectedSlug}</h2>
+                <h2 className="text-lg font-semibold text-foreground">{skillNameBySlug.get(selectedSlug) ?? selectedSlug}</h2>
                 <p className="text-sm text-muted-foreground mt-1">
                   <span className="font-mono">{selectedSlug}</span>
                 </p>
@@ -248,7 +248,7 @@ export default async function DependenciesPage({
 
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-sm font-semibold text-[#F8FAFC] mb-2">Depends on</h3>
+                <h3 className="text-sm font-semibold text-foreground mb-2">Depends on</h3>
                 {dependsOn.length === 0 ? (
                   <p className="text-sm text-muted-foreground">No declared dependencies.</p>
                 ) : (
@@ -263,7 +263,7 @@ export default async function DependenciesPage({
                 )}
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-[#F8FAFC] mb-2">Used by</h3>
+                <h3 className="text-sm font-semibold text-foreground mb-2">Used by</h3>
                 {usedBy.length === 0 ? (
                   <p className="text-sm text-muted-foreground">No skills depend on this yet.</p>
                 ) : (
@@ -283,7 +283,7 @@ export default async function DependenciesPage({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-[#F8FAFC]">Full dependency chain</h3>
+                <h3 className="text-sm font-semibold text-foreground">Full dependency chain</h3>
                 <p className="text-xs text-muted-foreground mt-1">
                   Direct + transitive dependencies (cycle-safe).
                 </p>
@@ -305,7 +305,7 @@ export default async function DependenciesPage({
               </div>
 
               <div>
-                <h3 className="text-sm font-semibold text-[#F8FAFC]">Dependency tree</h3>
+                <h3 className="text-sm font-semibold text-foreground">Dependency tree</h3>
                 <p className="text-xs text-muted-foreground mt-1">Nested view of dependencies.</p>
                 <div className="mt-3">{renderDependencyTree({ graph, slug: selectedSlug, skillNameBySlug })}</div>
               </div>
@@ -314,7 +314,7 @@ export default async function DependenciesPage({
             <Separator className="opacity-10 my-8" />
 
             <div>
-              <h3 className="text-sm font-semibold text-[#F8FAFC]">Reverse tree (dependents)</h3>
+              <h3 className="text-sm font-semibold text-foreground">Reverse tree (dependents)</h3>
               <p className="text-xs text-muted-foreground mt-1">Which skills build on this one.</p>
               <div className="mt-3">
                 {usedBy.length === 0 ? (
@@ -330,7 +330,7 @@ export default async function DependenciesPage({
         <Separator className="opacity-10 my-10" />
 
         <section>
-          <h2 className="text-lg font-semibold text-[#F8FAFC]">Foundations</h2>
+          <h2 className="text-lg font-semibold text-foreground">Foundations</h2>
           <p className="text-sm text-muted-foreground mt-1 max-w-3xl">
             Skills with no declared dependencies. Expand from these to see what they enable.
           </p>
@@ -362,7 +362,7 @@ export default async function DependenciesPage({
         <Separator className="opacity-10 my-10" />
 
         <section>
-          <h2 className="text-lg font-semibold text-[#F8FAFC]">Matrix view</h2>
+          <h2 className="text-lg font-semibold text-foreground">Matrix view</h2>
           <p className="text-sm text-muted-foreground mt-1">
             A compact summary of declared dependencies and dependents.
           </p>

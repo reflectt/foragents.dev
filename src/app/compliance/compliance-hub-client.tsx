@@ -145,15 +145,15 @@ export default function ComplianceHubClient() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 py-16 w-full">
-          <Badge className="mb-4 bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20">Live Aggregated Compliance Data</Badge>
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">Compliance Hub</h1>
+          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Live Aggregated Compliance Data</Badge>
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">Compliance Hub</h1>
           <p className="text-lg text-foreground/80 max-w-2xl">
             Unified view across audits and governance policies with framework-level scores, policy status totals, and recent findings.
           </p>
@@ -187,7 +187,7 @@ export default function ComplianceHubClient() {
               <CardContent>
                 <div className="grid gap-6 md:grid-cols-[1fr_2fr] md:items-center">
                   <div className="space-y-2">
-                    <p className="text-5xl font-bold text-[#F8FAFC]">{data.overallComplianceScore}%</p>
+                    <p className="text-5xl font-bold text-foreground">{data.overallComplianceScore}%</p>
                     <p className="text-sm text-foreground/70">
                       {data.summary.totalFrameworks} frameworks · {data.summary.totalAudits} audits · {data.policyStatusCounts.total} policies
                     </p>
@@ -215,7 +215,7 @@ export default function ComplianceHubClient() {
                   {data.frameworkBreakdown.map((framework) => (
                     <article key={framework.framework} className="rounded-lg border border-white/10 bg-black/20 p-4 space-y-3">
                       <div className="flex items-center justify-between gap-3">
-                        <h3 className="font-semibold text-[#F8FAFC]">{framework.framework}</h3>
+                        <h3 className="font-semibold text-foreground">{framework.framework}</h3>
                         <Badge variant="secondary">{framework.score}%</Badge>
                       </div>
 
@@ -263,7 +263,7 @@ export default function ComplianceHubClient() {
                         <Badge variant="outline" className={`uppercase ${statusChipClass(audit.status)}`}>{audit.status}</Badge>
                         <span className="text-xs text-foreground/60">{formatDate(audit.auditDate)}</span>
                       </div>
-                      <p className="text-sm font-medium text-[#F8FAFC]">{audit.controlName}</p>
+                      <p className="text-sm font-medium text-foreground">{audit.controlName}</p>
                       <p className="text-xs text-foreground/60 mt-1">{audit.controlId} · Auditor: {audit.auditor}</p>
                     </article>
                   ))}
@@ -278,10 +278,10 @@ export default function ComplianceHubClient() {
               <CardContent>
                 <div className="grid gap-4 md:grid-cols-3">
                   {SUB_PAGE_LINKS.map((link) => (
-                    <Link key={link.href} href={link.href} className="rounded-lg border border-white/10 bg-black/20 p-4 hover:border-[#06D6A0]/40 transition-colors block">
+                    <Link key={link.href} href={link.href} className="rounded-lg border border-white/10 bg-black/20 p-4 hover:border-primary/40 transition-colors block">
                       <div className="flex items-center justify-between gap-3 mb-2">
-                        <h3 className="font-semibold text-[#F8FAFC]">{link.title}</h3>
-                        <ArrowRight className="h-4 w-4 text-[#06D6A0]" />
+                        <h3 className="font-semibold text-foreground">{link.title}</h3>
+                        <ArrowRight className="h-4 w-4 text-primary" />
                       </div>
                       <p className="text-sm text-foreground/70">{link.description}</p>
                     </Link>

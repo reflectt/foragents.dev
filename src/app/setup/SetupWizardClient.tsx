@@ -126,7 +126,7 @@ function HostDetectionStep({
               onClick={() => onHostChange(preset.id)}
               className={`rounded-xl border p-4 text-left transition-colors ${
                 active
-                  ? "border-[#06D6A0]/60 bg-[#06D6A0]/10"
+                  ? "border-primary/60 bg-primary/10"
                   : "border-white/10 bg-black/20 hover:bg-black/30"
               }`}
             >
@@ -180,7 +180,7 @@ function SkillsChecklistStep({
               <div>
                 <div className="font-semibold">{skill.label}</div>
                 <p className="text-sm text-muted-foreground">{skill.note}</p>
-                <code className="mt-2 block rounded bg-black/40 px-2 py-1 text-xs text-[#06D6A0]">
+                <code className="mt-2 block rounded bg-black/40 px-2 py-1 text-xs text-primary">
                   {skill.install}
                 </code>
               </div>
@@ -233,7 +233,7 @@ function McpConnectionsStep({
                 <div className="min-w-0 flex-1">
                   <div className="font-semibold">{server.name}</div>
                   <p className="text-sm text-muted-foreground">{server.description}</p>
-                  <code className="mt-2 block overflow-x-auto rounded bg-black/40 px-2 py-1 text-xs text-[#06D6A0]">
+                  <code className="mt-2 block overflow-x-auto rounded bg-black/40 px-2 py-1 text-xs text-primary">
                     {connectionString}
                   </code>
                 </div>
@@ -327,7 +327,7 @@ function IdentitySetupStep({
                 }
                 className={`rounded-lg border px-3 py-1 text-sm ${
                   checked
-                    ? "border-[#06D6A0]/60 bg-[#06D6A0]/10 text-[#06D6A0]"
+                    ? "border-primary/60 bg-primary/10 text-primary"
                     : "border-white/10 bg-black/20"
                 }`}
               >
@@ -353,7 +353,7 @@ function VerificationStep({ report }: { report: VerificationReport }) {
     <div className="space-y-4">
       <div className="rounded-xl border border-white/10 bg-black/20 p-4">
         <div className="text-sm text-muted-foreground">Readiness Score</div>
-        <div className="text-4xl font-bold text-[#06D6A0]">{report.score}%</div>
+        <div className="text-4xl font-bold text-primary">{report.score}%</div>
       </div>
 
       <div className="space-y-2">
@@ -480,7 +480,7 @@ export default function SetupWizardClient() {
   }, [identity, mcpSelection, selectedPreset?.id, skills]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="max-w-5xl mx-auto px-4 py-10">
         <h1 className="text-3xl md:text-4xl font-bold">Agent Environment Setup Wizard</h1>
         <p className="mt-3 text-muted-foreground max-w-3xl">
@@ -496,7 +496,7 @@ export default function SetupWizardClient() {
             <span>{ALL_STEPS[step - 1]}</span>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full bg-[#06D6A0]" style={{ width: `${progress}%` }} />
+            <div className="h-full bg-primary" style={{ width: `${progress}%` }} />
           </div>
         </div>
 
@@ -536,13 +536,13 @@ export default function SetupWizardClient() {
         </div>
 
         {step === ALL_STEPS.length && (
-          <div className="mt-6 rounded-xl border border-[#06D6A0]/30 bg-[#06D6A0]/5 p-4">
-            <div className="mb-2 text-sm font-semibold text-[#06D6A0]">Full Config Script</div>
+          <div className="mt-6 rounded-xl border border-primary/30 bg-primary/5 p-4">
+            <div className="mb-2 text-sm font-semibold text-primary">Full Config Script</div>
             <pre className="max-h-80 overflow-auto rounded bg-black/40 p-3 text-xs">
               <code>{fullSetupScript}</code>
             </pre>
             <div className="mt-3">
-              <Button className="bg-[#06D6A0] text-black hover:bg-[#06D6A0]/90" onClick={() => copyText(fullSetupScript)}>
+              <Button className="bg-primary text-black hover:bg-primary/90" onClick={() => copyText(fullSetupScript)}>
                 Copy full config
               </Button>
             </div>

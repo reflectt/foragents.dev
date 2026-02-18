@@ -196,15 +196,15 @@ export default function PartnersPage() {
   const hasResults = partners.length > 0;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden min-h-[320px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Partner Directory
           </h1>
           <p className="text-xl text-foreground/80 mb-2">Browse ecosystem partners and apply to join.</p>
@@ -230,7 +230,7 @@ export default function PartnersPage() {
               onClick={() => setTierFilter("all")}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                 tierFilter === "all"
-                  ? "bg-[#06D6A0] text-[#0a0a0a]"
+                  ? "bg-primary text-primary-foreground"
                   : "border border-white/10 text-foreground hover:bg-white/5"
               }`}
             >
@@ -243,7 +243,7 @@ export default function PartnersPage() {
                 onClick={() => setTierFilter(tier)}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                   tierFilter === tier
-                    ? "bg-[#06D6A0] text-[#0a0a0a]"
+                    ? "bg-primary text-primary-foreground"
                     : "border border-white/10 text-foreground hover:bg-white/5"
                 }`}
               >
@@ -258,7 +258,7 @@ export default function PartnersPage() {
               onClick={() => setCategoryFilter("all")}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                 categoryFilter === "all"
-                  ? "bg-cyan-400 text-[#0a0a0a]"
+                  ? "bg-cyan-400 text-primary-foreground"
                   : "border border-white/10 text-foreground hover:bg-white/5"
               }`}
             >
@@ -271,7 +271,7 @@ export default function PartnersPage() {
                 onClick={() => setCategoryFilter(category)}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                   categoryFilter === category
-                    ? "bg-cyan-400 text-[#0a0a0a]"
+                    ? "bg-cyan-400 text-primary-foreground"
                     : "border border-white/10 text-foreground hover:bg-white/5"
                 }`}
               >
@@ -296,7 +296,7 @@ export default function PartnersPage() {
                   {featuredPartners.map((partner) => (
                     <Card
                       key={partner.id}
-                      className="relative overflow-hidden bg-card/40 border-[#06D6A0]/30 ring-1 ring-[#06D6A0]/20"
+                      className="relative overflow-hidden bg-card/40 border-primary/30 ring-1 ring-[#06D6A0]/20"
                     >
                       <CardHeader>
                         <div className="flex items-center justify-between gap-3">
@@ -308,7 +308,7 @@ export default function PartnersPage() {
                             />
                             <CardTitle className="text-lg">{partner.name}</CardTitle>
                           </div>
-                          <Badge className="bg-[#06D6A0]/20 text-[#8af5d8] border-[#06D6A0]/30">Featured</Badge>
+                          <Badge className="bg-primary/20 text-primary border-primary/30">Featured</Badge>
                         </div>
                         <div className="flex items-center flex-wrap gap-2 pt-3">
                           <Badge variant="outline" className={getTierBadgeColor(partner.tier)}>
@@ -325,7 +325,7 @@ export default function PartnersPage() {
                       <CardContent className="space-y-4">
                         <p className="text-sm text-muted-foreground">{partner.description}</p>
                         <div className="flex items-center gap-3 text-sm font-medium">
-                          <Link href={`/partners/${partner.slug}`} className="text-[#06D6A0] hover:underline">
+                          <Link href={`/partners/${partner.slug}`} className="text-primary hover:underline">
                             View details →
                           </Link>
                           <a
@@ -351,7 +351,7 @@ export default function PartnersPage() {
                   {directoryPartners.map((partner) => (
                     <Card
                       key={partner.id}
-                      className="relative overflow-hidden bg-card/30 border-white/10 hover:border-[#06D6A0]/30 transition-all"
+                      className="relative overflow-hidden bg-card/30 border-white/10 hover:border-primary/30 transition-all"
                     >
                       <CardHeader>
                         <div className="flex items-center gap-3">
@@ -384,7 +384,7 @@ export default function PartnersPage() {
                           ))}
                         </div>
                         <div className="flex items-center gap-3 text-sm font-medium">
-                          <Link href={`/partners/${partner.slug}`} className="text-[#06D6A0] hover:underline">
+                          <Link href={`/partners/${partner.slug}`} className="text-primary hover:underline">
                             View details →
                           </Link>
                           <a
@@ -409,7 +409,7 @@ export default function PartnersPage() {
       <Separator className="opacity-10" />
 
       <section id="apply" className="max-w-3xl mx-auto px-4 py-16">
-        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-[#06D6A0]/20">
+        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-primary/20">
           <CardHeader>
             <CardTitle className="text-2xl">Become a Partner</CardTitle>
             <p className="text-muted-foreground">Submit your application. We review every request manually.</p>
@@ -449,7 +449,7 @@ export default function PartnersPage() {
                       onClick={() => setForm((prev) => ({ ...prev, tierInterest: tier }))}
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                         form.tierInterest === tier
-                          ? "bg-[#06D6A0] text-[#0a0a0a]"
+                          ? "bg-primary text-primary-foreground"
                           : "border border-white/10 text-foreground hover:bg-white/5"
                       }`}
                     >
@@ -470,7 +470,7 @@ export default function PartnersPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all disabled:opacity-50"
               >
                 {submitting ? "Submitting..." : "Submit Application"}
               </button>

@@ -144,7 +144,7 @@ export default function ApiPlaygroundPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-4 aurora-text">
@@ -166,7 +166,7 @@ export default function ApiPlaygroundPage() {
               setSelectedEndpoint(e.target.value);
               setShowResponse(false);
             }}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-[#06D6A0] transition-colors"
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
           >
             <option value="skills">GET /api/skills - List all skills</option>
             <option value="skills-slug">GET /api/skills/:slug - Get specific skill</option>
@@ -181,7 +181,7 @@ export default function ApiPlaygroundPage() {
             <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded text-sm font-mono font-semibold">
               {currentEndpoint.method}
             </span>
-            <code className="text-[#06D6A0] text-lg font-mono">
+            <code className="text-primary text-lg font-mono">
               {currentEndpoint.path}
             </code>
           </div>
@@ -199,7 +199,7 @@ export default function ApiPlaygroundPage() {
               {copied ? (
                 <>
                   <svg
-                    className="w-4 h-4 text-[#06D6A0]"
+                    className="w-4 h-4 text-primary"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -235,7 +235,7 @@ export default function ApiPlaygroundPage() {
           </div>
           <div className="bg-black/60 rounded-lg p-4 border border-white/10 overflow-x-auto">
             <pre className="text-sm">
-              <code className="text-[#06D6A0] font-mono">
+              <code className="text-primary font-mono">
                 {currentEndpoint.curl}
               </code>
             </pre>
@@ -246,7 +246,7 @@ export default function ApiPlaygroundPage() {
         <div className="mb-6">
           <button
             onClick={handleTryIt}
-            className="w-full bg-[#06D6A0] hover:bg-[#05c293] text-black font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#06D6A0]/20"
+            className="w-full bg-primary hover:bg-primary text-black font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#06D6A0]/20"
           >
             Try it
           </button>
@@ -276,7 +276,7 @@ export default function ApiPlaygroundPage() {
         <div className="mt-12 bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
           <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
             <svg
-              className="w-5 h-5 text-[#06D6A0]"
+              className="w-5 h-5 text-primary"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -295,7 +295,7 @@ export default function ApiPlaygroundPage() {
           </p>
           <p className="text-sm text-muted-foreground">
             For complete API documentation, rate limits, and authentication details, visit the{" "}
-            <a href="/docs/api" className="text-[#06D6A0] hover:underline font-semibold">
+            <a href="/docs/api" className="text-primary hover:underline font-semibold">
               API Documentation
             </a>
             .

@@ -33,9 +33,9 @@ type SpacesResponse = {
 };
 
 const visibilityStyles: Record<Visibility, string> = {
-  public: "bg-[#06D6A0]/15 border-[#06D6A0] text-[#06D6A0]",
-  private: "bg-[#3B82F6]/15 border-[#3B82F6] text-[#3B82F6]",
-  unlisted: "bg-[#F59E0B]/15 border-[#F59E0B] text-[#F59E0B]",
+  public: "bg-primary/15 border-primary text-primary",
+  private: "bg-electric-blue/15 border-electric-blue text-electric-blue",
+  unlisted: "bg-solar/15 border-solar text-solar",
 };
 
 export default function SpacesPage() {
@@ -163,15 +163,15 @@ export default function SpacesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden min-h-[320px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Collaboration Spaces
           </h1>
           <p className="text-xl text-foreground/80 mb-6">
@@ -180,17 +180,17 @@ export default function SpacesPage() {
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
-              <span className="text-[#06D6A0] font-bold text-2xl">{stats.totalSpaces}</span>
+              <span className="text-primary font-bold text-2xl">{stats.totalSpaces}</span>
               <span className="text-muted-foreground">Spaces</span>
             </div>
             <div className="h-4 w-px bg-white/10" />
             <div className="flex items-center gap-2">
-              <span className="text-[#8B5CF6] font-bold text-2xl">{stats.totalMembers}</span>
+              <span className="text-purple font-bold text-2xl">{stats.totalMembers}</span>
               <span className="text-muted-foreground">Members</span>
             </div>
             <div className="h-4 w-px bg-white/10" />
             <div className="flex items-center gap-2">
-              <span className="text-[#3B82F6] font-bold text-2xl">{stats.totalSkills}</span>
+              <span className="text-electric-blue font-bold text-2xl">{stats.totalSkills}</span>
               <span className="text-muted-foreground">Skills</span>
             </div>
           </div>
@@ -319,7 +319,7 @@ export default function SpacesPage() {
                   <CardHeader>
                     <div className="flex items-start justify-between gap-3 mb-2">
                       <CardTitle className="text-xl line-clamp-2">{space.name}</CardTitle>
-                      {space.featured && <Badge className="bg-[#8B5CF6] text-white">Featured</Badge>}
+                      {space.featured && <Badge className="bg-purple text-white">Featured</Badge>}
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
                       <Badge variant="outline" className={visibilityStyles[space.visibility]}>
@@ -358,7 +358,7 @@ export default function SpacesPage() {
                       </Button>
                       <Link
                         href={`/spaces/${space.id}`}
-                        className="text-sm text-[#06D6A0] font-semibold hover:underline whitespace-nowrap"
+                        className="text-sm text-primary font-semibold hover:underline whitespace-nowrap"
                       >
                         View →
                       </Link>

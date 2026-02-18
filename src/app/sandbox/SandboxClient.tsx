@@ -90,10 +90,10 @@ export default function SandboxClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden border-b border-white/5">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[520px] max-h-[520px] bg-[#06D6A0]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[520px] max-h-[520px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-10">
@@ -109,7 +109,7 @@ export default function SandboxClient() {
           <div className="space-y-4">
             <div className="rounded-lg border border-white/10 bg-white/5 p-5">
               <div className="flex items-center justify-between mb-4 gap-3">
-                <h2 className="text-lg font-semibold text-[#06D6A0]">Configuration Editor</h2>
+                <h2 className="text-lg font-semibold text-primary">Configuration Editor</h2>
                 <div className="flex items-center gap-2">
                   <label htmlFor="template-select" className="text-sm text-slate-300">
                     Template:
@@ -117,7 +117,7 @@ export default function SandboxClient() {
                   <select
                     id="template-select"
                     onChange={handleTemplateChange}
-                    className="bg-black/20 border border-white/10 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0]"
+                    className="bg-black/20 border border-white/10 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-[#06D6A0]"
                     defaultValue=""
                   >
                     <option value="">Select...</option>
@@ -143,7 +143,7 @@ export default function SandboxClient() {
   "version": "1.0.0",
   "capabilities": ["chat"]
 }'
-                className="w-full h-[420px] bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-sm font-mono focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0] resize-none"
+                className="w-full h-[420px] bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-sm font-mono focus:outline-none focus:border-primary focus:ring-1 focus:ring-[#06D6A0] resize-none"
                 spellCheck={false}
               />
 
@@ -151,7 +151,7 @@ export default function SandboxClient() {
                 <Button
                   onClick={handleValidate}
                   disabled={!configText.trim() || isValidating}
-                  className="bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black font-semibold"
+                  className="bg-primary hover:bg-primary/90 text-black font-semibold"
                 >
                   {isValidating ? "Validating..." : "Validate"}
                 </Button>
@@ -173,7 +173,7 @@ export default function SandboxClient() {
 
           <div className="space-y-4">
             <div className="rounded-lg border border-white/10 bg-white/5 p-5">
-              <h2 className="text-lg font-semibold text-[#06D6A0] mb-4">Validation Results</h2>
+              <h2 className="text-lg font-semibold text-primary mb-4">Validation Results</h2>
 
               {!validation && !requestError ? (
                 <div className="text-sm text-muted-foreground">

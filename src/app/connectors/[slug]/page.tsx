@@ -122,7 +122,7 @@ export default function ConnectorDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] max-w-4xl mx-auto px-4 py-16 text-muted-foreground">
+      <div className="min-h-screen bg-background max-w-4xl mx-auto px-4 py-16 text-muted-foreground">
         Loading connector...
       </div>
     );
@@ -130,8 +130,8 @@ export default function ConnectorDetailPage() {
 
   if (notFound || !connector) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold text-[#F8FAFC] mb-3">Connector not found</h1>
+      <div className="min-h-screen bg-background max-w-4xl mx-auto px-4 py-16">
+        <h1 className="text-3xl font-bold text-foreground mb-3">Connector not found</h1>
         <p className="text-muted-foreground mb-6">
           The connector you requested does not exist or may have been removed.
         </p>
@@ -143,7 +143,7 @@ export default function ConnectorDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <div className="border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -166,7 +166,7 @@ export default function ConnectorDetailPage() {
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-16">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">{connector.name}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">{connector.name}</h1>
 
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <Badge variant="outline" className={getTypeBadgeColor(connector.type)}>
@@ -184,7 +184,7 @@ export default function ConnectorDetailPage() {
             <button
               type="button"
               onClick={trackInstall}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
             >
               Track install +1
             </button>

@@ -48,7 +48,7 @@ export default function Error({
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={reset}
-              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
             >
               Try again
             </button>

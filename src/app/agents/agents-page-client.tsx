@@ -174,7 +174,7 @@ export function AgentsPageClient({ agents: initialAgents }: AgentsPageClientProp
 
       {featuredAgents.length > 0 && (
         <div className="mb-10">
-          <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <span>⭐</span>
             <span>Top Trust Agents</span>
           </h2>
@@ -188,7 +188,7 @@ export function AgentsPageClient({ agents: initialAgents }: AgentsPageClientProp
 
       {otherAgents.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">All Agents</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">All Agents</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {otherAgents.map((agent) => (
               <AgentCard key={agent.id} agent={agent} />
@@ -215,7 +215,7 @@ function AgentCard({ agent }: { agent: DirectoryAgent }) {
           <div className="flex items-start gap-3 mb-3">
             <div className="text-3xl">🤖</div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-bold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+              <h3 className="font-bold text-foreground group-hover:text-cyan transition-colors">
                 {agent.name}
               </h3>
               <p className="text-xs text-muted-foreground">@{agent.handle}</p>

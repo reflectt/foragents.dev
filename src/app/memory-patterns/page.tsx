@@ -56,7 +56,7 @@ const complexityClasses = {
 
 export default function MemoryPatternsHubPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <section className="border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Agent Memory Patterns Guide</h1>
@@ -67,7 +67,7 @@ export default function MemoryPatternsHubPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/memory-patterns/cookbook"
-              className="rounded-lg bg-[#06D6A0] px-4 py-2.5 text-sm font-semibold text-black hover:brightness-110"
+              className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-black hover:brightness-110"
             >
               Open Memory Cookbook
             </Link>

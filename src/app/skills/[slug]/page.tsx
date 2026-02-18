@@ -140,7 +140,7 @@ export default async function SkillPage({
       <main className="max-w-3xl mx-auto px-4 py-12">
         {/* Title area */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[#F8FAFC] mb-2 flex items-center gap-3 flex-wrap">
+          <h1 className="text-3xl font-bold text-foreground mb-2 flex items-center gap-3 flex-wrap">
             <span>🧰 {skill.name}</span>
             <SkillInstallCta slug={skill.slug} initialInstalls={installs} />
           </h1>
@@ -207,7 +207,7 @@ export default async function SkillPage({
 
         {/* Description */}
         <section className="mb-8">
-          <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Description</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-3">Description</h2>
           <p className="text-foreground/80 leading-relaxed text-[15px]">
             {skill.description}
           </p>
@@ -222,14 +222,14 @@ export default async function SkillPage({
 
         {/* Version history */}
         <section className="mb-8" id="versions">
-          <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Version history</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-3">Version history</h2>
           <SkillVersionHistory slug={skill.slug} />
         </section>
 
         {/* Dependencies */}
         <section className="mb-8" id="dependencies">
           <div className="flex items-center justify-between gap-3 flex-wrap mb-3">
-            <h2 className="text-lg font-semibold text-[#F8FAFC]">Dependencies</h2>
+            <h2 className="text-lg font-semibold text-foreground">Dependencies</h2>
             <Link
               href={`/dependencies?skill=${encodeURIComponent(skill.slug)}#skill-details`}
               className="text-sm text-cyan hover:underline"
@@ -240,7 +240,7 @@ export default async function SkillPage({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-              <h3 className="text-sm font-semibold text-[#F8FAFC] mb-2">Requires</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-2">Requires</h3>
               {dependencies.length === 0 ? (
                 <p className="text-sm text-muted-foreground">No declared dependencies yet.</p>
               ) : (
@@ -266,7 +266,7 @@ export default async function SkillPage({
             </div>
 
             <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-              <h3 className="text-sm font-semibold text-[#F8FAFC] mb-2">Used by</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-2">Used by</h3>
               {usedBy.length === 0 ? (
                 <p className="text-sm text-muted-foreground">No skills depend on this yet.</p>
               ) : (
@@ -300,7 +300,7 @@ export default async function SkillPage({
 
         {skill.verification ? (
           <section className="mb-8 rounded-xl border border-cyan/20 bg-cyan/5 p-5">
-            <h2 className="text-lg font-semibold text-[#F8FAFC] mb-2">Why this skill is verified</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-2">Why this skill is verified</h2>
             <p className="text-sm text-foreground/80 leading-relaxed">
               {skill.verification.reason}
             </p>
@@ -317,7 +317,7 @@ export default async function SkillPage({
 
         {inCollections.length > 0 ? (
           <section className="mb-8">
-            <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Collections</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-3">Collections</h2>
             <p className="text-sm text-muted-foreground mb-3">
               This skill appears in:
             </p>
@@ -349,7 +349,7 @@ export default async function SkillPage({
         {/* Install */}
         <section className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
-            <h2 className="text-lg font-semibold text-[#F8FAFC]">Install</h2>
+            <h2 className="text-lg font-semibold text-foreground">Install</h2>
             <RunInReflecttButton skillSlug={skill.slug} name={skill.name} size="sm" />
           </div>
           <div className="relative group">
@@ -365,7 +365,7 @@ export default async function SkillPage({
 
         {/* Links */}
         <section className="mb-8">
-          <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Links</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-3">Links</h2>
           <div className="flex flex-col gap-2">
             <a
               href={skill.repo_url}

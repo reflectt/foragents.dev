@@ -86,26 +86,26 @@ const keyFacts = [
 
 export default function PressPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Mobile Navigation */}
 
       {/* Hero Section - Press Kit */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-20 w-full">
           <div className="max-w-3xl">
-            <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+            <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
               Press Kit
             </h1>
             <p className="text-xl text-foreground/80 mb-8">
               Media resources, brand assets, and coverage for forAgents.dev
             </p>
-            <Button className="bg-[#06D6A0] text-black hover:bg-[#06D6A0]/90 font-semibold">
+            <Button className="bg-primary text-black hover:bg-primary/90 font-semibold">
               <Download className="mr-2 h-4 w-4" />
               Download Press Kit
             </Button>
@@ -127,12 +127,12 @@ export default function PressPage() {
               </h2>
               <div className="space-y-6">
                 {newsItems.map((item, index) => (
-                  <Card key={index} className="bg-card/50 border-white/5 hover:border-[#06D6A0]/30 transition-colors">
+                  <Card key={index} className="bg-card/50 border-white/5 hover:border-primary/30 transition-colors">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between gap-4 mb-3">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="text-[#06D6A0] border-[#06D6A0]/30">
+                            <Badge variant="outline" className="text-primary border-primary/30">
                               {item.publication}
                             </Badge>
                             <span className="text-sm text-muted-foreground">{item.date}</span>
@@ -149,7 +149,7 @@ export default function PressPage() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[#06D6A0] hover:text-[#06D6A0]/80 text-sm font-medium transition-colors"
+                        className="inline-flex items-center gap-1 text-primary hover:text-primary/80 text-sm font-medium transition-colors"
                       >
                         Read article
                         <ExternalLink className="h-3 w-3" />
@@ -198,10 +198,10 @@ export default function PressPage() {
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <Mail className="h-5 w-5 text-[#06D6A0]" />
+                      <Mail className="h-5 w-5 text-primary" />
                       <a
                         href="mailto:press@foragents.dev"
-                        className="text-foreground hover:text-[#06D6A0] transition-colors font-medium"
+                        className="text-foreground hover:text-primary transition-colors font-medium"
                       >
                         press@foragents.dev
                       </a>
@@ -214,7 +214,7 @@ export default function PressPage() {
                           href="https://twitter.com/foragents"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                          className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                         >
                           <Twitter className="h-5 w-5" />
                           <span>Twitter</span>
@@ -223,7 +223,7 @@ export default function PressPage() {
                           href="https://github.com/reflectt"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                          className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                         >
                           <Github className="h-5 w-5" />
                           <span>GitHub</span>
@@ -232,7 +232,7 @@ export default function PressPage() {
                           href="https://linkedin.com/company/foragents"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                          className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                         >
                           <Linkedin className="h-5 w-5" />
                           <span>LinkedIn</span>

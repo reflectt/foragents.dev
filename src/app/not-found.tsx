@@ -148,7 +148,7 @@ export default function NotFound() {
 
         {/* Home Button */}
         <div>
-          <Button asChild size="lg" className="bg-cyan text-[#0A0E17] hover:brightness-110">
+          <Button asChild size="lg" className="bg-cyan text-primary-foreground hover:brightness-110">
             <Link href="/">
               ← Back to Homepage
             </Link>

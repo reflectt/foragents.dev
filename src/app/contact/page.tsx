@@ -119,7 +119,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -127,11 +127,11 @@ export default function ContactPage() {
 
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Get in Touch
           </h1>
           <p className="text-xl text-foreground/80">We'd love to hear from you</p>
@@ -141,13 +141,13 @@ export default function ContactPage() {
       <section className="relative max-w-5xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <Card className="bg-[#0f0f0f] border-white/10">
+            <Card className="bg-background border-white/10">
               <CardHeader>
                 <CardTitle className="text-2xl">Send us a message</CardTitle>
               </CardHeader>
               <CardContent>
                 {successMessage ? (
-                  <div className="mb-4 rounded-md border border-[#06D6A0]/40 bg-[#06D6A0]/10 px-4 py-3 text-sm text-[#9AF4D6]">
+                  <div className="mb-4 rounded-md border border-primary/40 bg-primary/10 px-4 py-3 text-sm text-primary">
                     {successMessage}
                   </div>
                 ) : null}
@@ -169,7 +169,7 @@ export default function ContactPage() {
                       type="text"
                       value={formData.name}
                       onChange={handleChange}
-                      className="bg-[#0a0a0a] border-white/10 focus:border-[#06D6A0]"
+                      className="bg-background border-white/10 focus:border-primary"
                       placeholder="Your name"
                       aria-invalid={Boolean(fieldErrors.name)}
                     />
@@ -186,7 +186,7 @@ export default function ContactPage() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="bg-[#0a0a0a] border-white/10 focus:border-[#06D6A0]"
+                      className="bg-background border-white/10 focus:border-primary"
                       placeholder="your@email.com"
                       aria-invalid={Boolean(fieldErrors.email)}
                     />
@@ -203,7 +203,7 @@ export default function ContactPage() {
                       type="text"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="bg-[#0a0a0a] border-white/10 focus:border-[#06D6A0]"
+                      className="bg-background border-white/10 focus:border-primary"
                       placeholder="How can we help?"
                       aria-invalid={Boolean(fieldErrors.subject)}
                     />
@@ -220,7 +220,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="bg-[#0a0a0a] border-white/10 focus:border-[#06D6A0] resize-none"
+                      className="bg-background border-white/10 focus:border-primary resize-none"
                       placeholder="Tell us what's on your mind..."
                       aria-invalid={Boolean(fieldErrors.message)}
                     />
@@ -230,7 +230,7 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black font-medium disabled:opacity-60"
+                    className="w-full bg-primary hover:bg-primary/90 text-black font-medium disabled:opacity-60"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
@@ -240,20 +240,20 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-6">
-            <Card className="bg-[#0f0f0f] border-white/10">
+            <Card className="bg-background border-white/10">
               <CardHeader>
                 <CardTitle className="text-xl">Contact Info</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 p-2 rounded-lg bg-[#06D6A0]/10">
-                    <Mail className="w-5 h-5 text-[#06D6A0]" />
+                  <div className="mt-1 p-2 rounded-lg bg-primary/10">
+                    <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm font-medium mb-1">Email</p>
                     <a
                       href="mailto:support@foragents.dev"
-                      className="text-sm text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       support@foragents.dev
                     </a>
@@ -261,8 +261,8 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 p-2 rounded-lg bg-[#06D6A0]/10">
-                    <MessageSquare className="w-5 h-5 text-[#06D6A0]" />
+                  <div className="mt-1 p-2 rounded-lg bg-primary/10">
+                    <MessageSquare className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm font-medium mb-1">Discord Community</p>
@@ -270,7 +270,7 @@ export default function ContactPage() {
                       href="https://discord.gg/foragents"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       Join our Discord
                     </a>
@@ -278,8 +278,8 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 p-2 rounded-lg bg-[#06D6A0]/10">
-                    <Github className="w-5 h-5 text-[#06D6A0]" />
+                  <div className="mt-1 p-2 rounded-lg bg-primary/10">
+                    <Github className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm font-medium mb-1">GitHub Discussions</p>
@@ -287,7 +287,7 @@ export default function ContactPage() {
                       href="https://github.com/reflectt/foragents.dev/discussions"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       github.com/reflectt/foragents.dev
                     </a>
@@ -296,14 +296,14 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#0f0f0f] border-white/10">
+            <Card className="bg-background border-white/10">
               <CardHeader>
                 <CardTitle className="text-xl">Office Hours</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 p-2 rounded-lg bg-[#06D6A0]/10">
-                    <Clock className="w-5 h-5 text-[#06D6A0]" />
+                  <div className="mt-1 p-2 rounded-lg bg-primary/10">
+                    <Clock className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Our team responds within 24 hours</p>
@@ -312,14 +312,14 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#0f0f0f] border-white/10">
+            <Card className="bg-background border-white/10">
               <CardHeader>
                 <CardTitle className="text-xl">Location</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 p-2 rounded-lg bg-[#06D6A0]/10">
-                    <MapPin className="w-5 h-5 text-[#06D6A0]" />
+                  <div className="mt-1 p-2 rounded-lg bg-primary/10">
+                    <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Remote-first, Vancouver Island, BC, Canada</p>
@@ -328,32 +328,32 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#0f0f0f] border-white/10">
+            <Card className="bg-background border-white/10">
               <CardHeader>
                 <CardTitle className="text-xl">Quick FAQ</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Link
                   href="/faq#what-is-foragents"
-                  className="block text-sm text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   What is forAgents.dev?
                 </Link>
                 <Link
                   href="/faq#who-is-it-for"
-                  className="block text-sm text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Who is forAgents.dev for?
                 </Link>
                 <Link
                   href="/faq#how-does-it-work"
-                  className="block text-sm text-muted-foreground hover:text-[#06D6A0] transition-colors"
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   How does forAgents.dev work?
                 </Link>
                 <Link
                   href="/faq"
-                  className="block text-sm font-medium text-[#06D6A0] hover:underline transition-colors mt-4 pt-3 border-t border-white/5"
+                  className="block text-sm font-medium text-primary hover:underline transition-colors mt-4 pt-3 border-t border-white/5"
                 >
                   View all FAQ →
                 </Link>

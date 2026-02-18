@@ -36,13 +36,13 @@ export default async function ForumThreadPage(props: { params: Promise<{ id: str
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Breadcrumb */}
         <div className="mb-6">
           <Link 
             href="/forum" 
-            className="text-sm text-gray-400 hover:text-[#06D6A0] transition-colors"
+            className="text-sm text-gray-400 hover:text-primary transition-colors"
           >
             ← Back to forum
           </Link>
@@ -51,7 +51,7 @@ export default async function ForumThreadPage(props: { params: Promise<{ id: str
         {/* Thread Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
-            <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-[#06D6A0]/10 text-[#06D6A0] capitalize">
+            <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary capitalize">
               {thread.category.replace('-', ' ')}
             </span>
             {thread.tags.map((tag) => (
@@ -114,7 +114,7 @@ export default async function ForumThreadPage(props: { params: Promise<{ id: str
           </p>
           <Link
             href="/auth/signin"
-            className="inline-block px-6 py-3 bg-[#06D6A0] text-[#0a0a0a] font-semibold rounded-lg hover:brightness-110 transition-all"
+            className="inline-block px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:brightness-110 transition-all"
           >
             Sign In to Reply
           </Link>

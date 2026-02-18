@@ -96,17 +96,17 @@ export default function ProtocolsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Agent Communication Protocols
           </h1>
           <p className="text-xl text-foreground/80 mb-8">
@@ -116,17 +116,17 @@ export default function ProtocolsPage() {
           {/* Stats Banner */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm mb-8">
             <div className="flex items-center gap-2">
-              <span className="text-[#06D6A0] font-bold text-2xl">{data.stats.totalProtocols}</span>
+              <span className="text-primary font-bold text-2xl">{data.stats.totalProtocols}</span>
               <span className="text-muted-foreground">Total Protocols</span>
             </div>
             <div className="h-4 w-px bg-white/10" />
             <div className="flex items-center gap-2">
-              <span className="text-[#8B5CF6] font-bold text-2xl">{data.stats.mostAdopted}</span>
+              <span className="text-purple font-bold text-2xl">{data.stats.mostAdopted}</span>
               <span className="text-muted-foreground">Most Adopted</span>
             </div>
             <div className="h-4 w-px bg-white/10" />
             <div className="flex items-center gap-2">
-              <span className="text-[#3B82F6] font-bold text-2xl">{data.stats.newestAddition}</span>
+              <span className="text-electric-blue font-bold text-2xl">{data.stats.newestAddition}</span>
               <span className="text-muted-foreground">Newest Addition</span>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function ProtocolsPage() {
             <Button
               onClick={() => setShowComparison(!showComparison)}
               variant={showComparison ? "default" : "outline"}
-              className={showComparison ? "bg-[#06D6A0] text-[#0a0a0a] hover:bg-[#06D6A0]/90" : ""}
+              className={showComparison ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}
             >
               📊 Compare Protocols
             </Button>
@@ -183,7 +183,7 @@ export default function ProtocolsPage() {
                       return (
                         <td key={protocolId} className="text-center p-4">
                           {protocol?.features.streaming ? (
-                            <span className="text-[#06D6A0]">✓</span>
+                            <span className="text-primary">✓</span>
                           ) : (
                             <span className="text-muted-foreground">✗</span>
                           )}
@@ -198,7 +198,7 @@ export default function ProtocolsPage() {
                       return (
                         <td key={protocolId} className="text-center p-4">
                           {protocol?.features.auth ? (
-                            <span className="text-[#06D6A0]">✓</span>
+                            <span className="text-primary">✓</span>
                           ) : (
                             <span className="text-muted-foreground">✗</span>
                           )}
@@ -213,7 +213,7 @@ export default function ProtocolsPage() {
                       return (
                         <td key={protocolId} className="text-center p-4">
                           {protocol?.features.discovery ? (
-                            <span className="text-[#06D6A0]">✓</span>
+                            <span className="text-primary">✓</span>
                           ) : (
                             <span className="text-muted-foreground">✗</span>
                           )}
@@ -228,7 +228,7 @@ export default function ProtocolsPage() {
                       return (
                         <td key={protocolId} className="text-center p-4">
                           {protocol?.features.bidirectional ? (
-                            <span className="text-[#06D6A0]">✓</span>
+                            <span className="text-primary">✓</span>
                           ) : (
                             <span className="text-muted-foreground">✗</span>
                           )}
@@ -475,7 +475,7 @@ export default function ProtocolsPage() {
                       <ul className="space-y-2">
                         {selectedProtocol.useCases.map((useCase, index) => (
                           <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-[#06D6A0] mt-0.5">•</span>
+                            <span className="text-primary mt-0.5">•</span>
                             <span>{useCase}</span>
                           </li>
                         ))}
@@ -512,7 +512,7 @@ export default function ProtocolsPage() {
                         href={selectedProtocol.documentation}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
                       >
                         📖 Documentation →
                       </a>
@@ -534,7 +534,7 @@ export default function ProtocolsPage() {
                     <h3 className="text-lg font-semibold mb-3">Get Started</h3>
                     <div className="relative">
                       <pre className="bg-black/50 border border-white/10 rounded-lg p-4 overflow-x-auto text-xs">
-                        <code className="text-[#06D6A0]">{selectedProtocol.codeExample}</code>
+                        <code className="text-primary">{selectedProtocol.codeExample}</code>
                       </pre>
                     </div>
                   </div>
@@ -582,8 +582,8 @@ export default function ProtocolsPage() {
 
       {/* CTA Section */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
@@ -598,7 +598,7 @@ export default function ProtocolsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Suggest a Protocol →
               </a>

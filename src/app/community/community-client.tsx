@@ -55,7 +55,7 @@ function categoryBadgeClass(category: CommunityCategory) {
     help: "border-amber-500/30 text-amber-400 bg-amber-500/10",
     showcase: "border-purple/30 text-purple bg-purple/10",
     feedback: "border-cyan-500/30 text-cyan-300 bg-cyan-500/10",
-    ideas: "border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10",
+    ideas: "border-primary/30 text-primary bg-primary/10",
   };
 
   return classes[category];
@@ -165,7 +165,7 @@ export function CommunityClient() {
 
         <Button
           onClick={() => setShowNewThread((current) => !current)}
-          className="bg-gradient-to-r from-[#06D6A0] to-purple text-[#0a0a0a] font-semibold hover:brightness-110"
+          className="bg-gradient-to-r from-[#06D6A0] to-purple text-primary-foreground font-semibold hover:brightness-110"
         >
           + New Thread
         </Button>
@@ -211,7 +211,7 @@ export function CommunityClient() {
                   className="w-full h-10 rounded-md border border-input bg-transparent px-3 py-2 text-sm"
                 >
                   {COMMUNITY_CATEGORIES.map((item) => (
-                    <option key={item} value={item} className="bg-[#111]">
+                    <option key={item} value={item} className="bg-background">
                       {CATEGORY_LABELS[item]}
                     </option>
                   ))}
@@ -245,7 +245,7 @@ export function CommunityClient() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="bg-gradient-to-r from-[#06D6A0] to-purple text-[#0a0a0a] font-semibold hover:brightness-110"
+                  className="bg-gradient-to-r from-[#06D6A0] to-purple text-primary-foreground font-semibold hover:brightness-110"
                 >
                   {submitting ? "Posting..." : "Post Thread"}
                 </Button>
@@ -267,11 +267,11 @@ export function CommunityClient() {
           onChange={(event) => setCategory(event.target.value as CommunityCategory | "all")}
           className="h-10 rounded-md border border-input bg-transparent px-3 py-2 text-sm"
         >
-          <option value="all" className="bg-[#111]">
+          <option value="all" className="bg-background">
             All categories
           </option>
           {COMMUNITY_CATEGORIES.map((item) => (
-            <option key={item} value={item} className="bg-[#111]">
+            <option key={item} value={item} className="bg-background">
               {CATEGORY_LABELS[item]}
             </option>
           ))}
@@ -299,7 +299,7 @@ export function CommunityClient() {
         <div className="space-y-4">
           {threads.map((thread) => (
             <Link key={thread.id} href={`/community/${encodeURIComponent(thread.id)}`} className="block">
-              <Card className="bg-card/30 border-white/10 hover:border-[#06D6A0]/30 transition-colors">
+              <Card className="bg-card/30 border-white/10 hover:border-primary/30 transition-colors">
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0 flex-1">

@@ -222,7 +222,7 @@ export function SponsorClient({ initialTiers = [], initialSponsors = [] }: Spons
     <>
       <section className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-4">Sponsor Tiers</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Sponsor Tiers</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Choose the tier that matches your goals. Every contribution helps.
           </p>
@@ -243,7 +243,7 @@ export function SponsorClient({ initialTiers = [], initialSponsors = [] }: Spons
               <Card key={tierItem.name} className="border-white/10 bg-card/40 flex flex-col">
                 <CardHeader>
                   <div className="flex items-center justify-between gap-2">
-                    <CardTitle className="text-xl text-[#F8FAFC]">{formatTierName(tierItem.name)}</CardTitle>
+                    <CardTitle className="text-xl text-foreground">{formatTierName(tierItem.name)}</CardTitle>
                     <Badge variant="outline" className={getTierBadgeColor(tierItem.name)}>
                       {tierItem.sponsorCount} sponsors
                     </Badge>
@@ -274,7 +274,7 @@ export function SponsorClient({ initialTiers = [], initialSponsors = [] }: Spons
 
       <section className="max-w-5xl mx-auto px-4 py-16">
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-4">Current Sponsors</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Current Sponsors</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Backers helping keep the ecosystem open and useful for agent builders.
           </p>
@@ -319,7 +319,7 @@ export function SponsorClient({ initialTiers = [], initialSponsors = [] }: Spons
                   <div className="flex items-center gap-3">
                     <img src={sponsor.logo} alt={`${sponsor.name} logo`} className="w-10 h-10 rounded-md bg-white/5" />
                     <div className="min-w-0">
-                      <h3 className="font-semibold text-[#F8FAFC] truncate">{sponsor.name}</h3>
+                      <h3 className="font-semibold text-foreground truncate">{sponsor.name}</h3>
                       <Badge variant="outline" className={`text-xs ${getTierBadgeColor(sponsor.tier)}`}>
                         {formatTierName(sponsor.tier)}
                       </Badge>
@@ -349,7 +349,7 @@ export function SponsorClient({ initialTiers = [], initialSponsors = [] }: Spons
       <section className="max-w-3xl mx-auto px-4 py-16">
         <Card className="border-white/10 bg-card/40">
           <CardHeader>
-            <CardTitle className="text-2xl text-[#F8FAFC]">Add a Sponsor</CardTitle>
+            <CardTitle className="text-2xl text-foreground">Add a Sponsor</CardTitle>
             <p className="text-sm text-muted-foreground">
               Create a new sponsor entry and persist it to the sponsor data file.
             </p>

@@ -241,7 +241,7 @@ export function ShowcaseClient() {
       <section className="bg-slate-900/30 border border-white/10 rounded-2xl p-6 md:p-8">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-[#F8FAFC] mb-2">Vote as an agent</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Vote as an agent</h2>
             <p className="text-slate-400">
               Save your agent handle to upvote projects. Each handle can vote once per project.
             </p>
@@ -252,12 +252,12 @@ export function ShowcaseClient() {
               value={agentHandle}
               onChange={(event) => handleAgentHandleChange(event.target.value)}
               placeholder="kai"
-              className="px-4 py-2 rounded-lg bg-[#0a0a0a] border border-white/10 text-[#F8FAFC]"
+              className="px-4 py-2 rounded-lg bg-background border border-white/10 text-foreground"
             />
           </label>
         </div>
 
-        <h2 className="text-2xl font-bold text-[#F8FAFC] mb-2">Submit Project</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Submit Project</h2>
         <p className="text-slate-400 mb-6">
           Share your project with the forAgents.dev community.
         </p>
@@ -268,7 +268,7 @@ export function ShowcaseClient() {
             onChange={(event) => setTitle(event.target.value)}
             required
             placeholder="Project title"
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 text-[#F8FAFC]"
+            className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-foreground"
           />
 
           <textarea
@@ -277,7 +277,7 @@ export function ShowcaseClient() {
             required
             rows={4}
             placeholder="Project description"
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 text-[#F8FAFC] resize-none"
+            className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-foreground resize-none"
           />
 
           <div className="grid md:grid-cols-2 gap-4">
@@ -287,7 +287,7 @@ export function ShowcaseClient() {
               onChange={(event) => setUrl(event.target.value)}
               required
               placeholder="https://example.com"
-              className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 text-[#F8FAFC]"
+              className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-foreground"
             />
 
             <input
@@ -295,7 +295,7 @@ export function ShowcaseClient() {
               onChange={(event) => setAuthor(event.target.value)}
               required
               placeholder="Author"
-              className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 text-[#F8FAFC]"
+              className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-foreground"
             />
           </div>
 
@@ -303,7 +303,7 @@ export function ShowcaseClient() {
             <select
               value={category}
               onChange={(event) => setCategory(event.target.value as ShowcaseCategory)}
-              className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 text-[#F8FAFC]"
+              className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-foreground"
             >
               {CATEGORIES.filter((option) => option.value !== "all").map((option) => (
                 <option key={option.value} value={option.value}>
@@ -317,7 +317,7 @@ export function ShowcaseClient() {
               onChange={(event) => setTagsInput(event.target.value)}
               required
               placeholder="tags,comma,separated"
-              className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 text-[#F8FAFC]"
+              className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-foreground"
             />
           </div>
 
@@ -325,7 +325,7 @@ export function ShowcaseClient() {
             <button
               type="submit"
               disabled={submitting}
-              className="px-6 py-3 bg-[#06D6A0] text-[#0a0a0a] font-semibold rounded-lg hover:brightness-110 disabled:opacity-70"
+              className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:brightness-110 disabled:opacity-70"
             >
               {submitting ? "Submitting..." : "Submit Project"}
             </button>
@@ -337,20 +337,20 @@ export function ShowcaseClient() {
 
       <section>
         <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between mb-6">
-          <h2 className="text-2xl font-bold text-[#F8FAFC]">Projects ({total})</h2>
+          <h2 className="text-2xl font-bold text-foreground">Projects ({total})</h2>
 
           <div className="flex flex-col md:flex-row gap-3 md:items-center">
             <input
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search title, tags, author"
-              className="px-4 py-2 rounded-lg bg-slate-900/40 border border-white/10 text-[#F8FAFC]"
+              className="px-4 py-2 rounded-lg bg-slate-900/40 border border-white/10 text-foreground"
             />
 
             <select
               value={categoryFilter}
               onChange={(event) => setCategoryFilter(event.target.value as "all" | ShowcaseCategory)}
-              className="px-4 py-2 rounded-lg bg-slate-900/40 border border-white/10 text-[#F8FAFC]"
+              className="px-4 py-2 rounded-lg bg-slate-900/40 border border-white/10 text-foreground"
             >
               {CATEGORIES.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -362,7 +362,7 @@ export function ShowcaseClient() {
             <select
               value={sort}
               onChange={(event) => setSort(event.target.value as SortOption)}
-              className="px-4 py-2 rounded-lg bg-slate-900/40 border border-white/10 text-[#F8FAFC]"
+              className="px-4 py-2 rounded-lg bg-slate-900/40 border border-white/10 text-foreground"
             >
               <option value="newest">Recently Updated</option>
               <option value="popular">Most Upvoted</option>
@@ -386,14 +386,14 @@ export function ShowcaseClient() {
                   className="bg-slate-900/30 border border-white/10 rounded-xl p-5"
                 >
                   <div className="flex items-start justify-between gap-3 mb-2">
-                    <h3 className="text-xl font-semibold text-[#F8FAFC]">{project.title}</h3>
+                    <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
                     <div className="flex items-center gap-2">
                       {project.featured && (
                         <span className="text-xs px-2 py-1 rounded-full border border-amber-300/30 text-amber-200 bg-amber-300/10">
                           featured
                         </span>
                       )}
-                      <span className="text-xs px-2 py-1 rounded-full border border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10">
+                      <span className="text-xs px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/10">
                         {project.category}
                       </span>
                     </div>
@@ -409,7 +409,7 @@ export function ShowcaseClient() {
                     {project.tags.map((tag) => (
                       <span
                         key={`${project.id}-${tag}`}
-                        className="text-xs px-2 py-1 rounded-md bg-[#06D6A0]/10 border border-[#06D6A0]/20 text-[#06D6A0]"
+                        className="text-xs px-2 py-1 rounded-md bg-primary/10 border border-primary/20 text-primary"
                       >
                         #{tag}
                       </span>
@@ -418,7 +418,7 @@ export function ShowcaseClient() {
 
                   <div className="flex items-center justify-between gap-3">
                     <div className="text-sm text-slate-300">
-                      <span className="font-semibold text-[#F8FAFC]">{project.voteCount}</span> votes
+                      <span className="font-semibold text-foreground">{project.voteCount}</span> votes
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -434,7 +434,7 @@ export function ShowcaseClient() {
                         type="button"
                         onClick={() => handleVote(project)}
                         disabled={voteDisabled}
-                        className="px-3 py-2 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold disabled:opacity-60"
+                        className="px-3 py-2 rounded-lg bg-primary text-primary-foreground font-semibold disabled:opacity-60"
                       >
                         {projectHasVote
                           ? "Voted"

@@ -9,12 +9,12 @@ import { RunInReflecttButton } from "@/components/RunInReflecttButton";
 import Link from "next/link";
 
 const categoryStyles: Record<McpServerCategory, { bg: string; text: string; border: string }> = {
-  "file-system": { bg: "bg-[#F59E0B]/10", text: "text-[#F59E0B]", border: "border-[#F59E0B]/20" },
-  database: { bg: "bg-[#06D6A0]/10", text: "text-[#06D6A0]", border: "border-[#06D6A0]/20" },
-  API: { bg: "bg-[#3B82F6]/10", text: "text-[#3B82F6]", border: "border-[#3B82F6]/20" },
-  coding: { bg: "bg-[#8B5CF6]/10", text: "text-[#8B5CF6]", border: "border-[#8B5CF6]/20" },
+  "file-system": { bg: "bg-solar/10", text: "text-solar", border: "border-solar/20" },
+  database: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
+  API: { bg: "bg-electric-blue/10", text: "text-electric-blue", border: "border-electric-blue/20" },
+  coding: { bg: "bg-purple/10", text: "text-purple", border: "border-purple/20" },
   search: { bg: "bg-cyan/10", text: "text-cyan", border: "border-cyan/20" },
-  communication: { bg: "bg-[#EC4899]/10", text: "text-[#EC4899]", border: "border-[#EC4899]/20" },
+  communication: { bg: "bg-destructive/10", text: "text-destructive", border: "border-destructive/20" },
 };
 
 const categoryTabs: Array<{ key: "all" | McpServerCategory; label: string }> = [

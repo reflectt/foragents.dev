@@ -337,10 +337,10 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
   }, [selectedEndpoint, values]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden border-b border-white/5">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[520px] max-h-[520px] bg-[#06D6A0]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[520px] max-h-[520px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-10">
@@ -356,7 +356,7 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
           {/* History */}
           <aside className="rounded-lg border border-white/10 bg-white/5 p-4 h-fit">
             <div className="flex items-center justify-between gap-3 mb-3">
-              <h2 className="text-sm font-semibold text-[#06D6A0]">History</h2>
+              <h2 className="text-sm font-semibold text-primary">History</h2>
               <button
                 type="button"
                 onClick={clearHistory}
@@ -408,12 +408,12 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
             <div className="rounded-lg border border-white/10 bg-white/5 p-5">
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label htmlFor="endpoint" className="block text-sm font-semibold mb-2 text-[#06D6A0]">
+                  <label htmlFor="endpoint" className="block text-sm font-semibold mb-2 text-primary">
                     Endpoint
                   </label>
                   <select
                     id="endpoint"
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0]"
+                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-[#06D6A0]"
                     value={selectedEndpoint?.id}
                     onChange={(e) => setSelectedId(e.target.value)}
                   >
@@ -427,7 +427,7 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
                 </div>
 
                 <div>
-                  <div className="text-sm font-semibold mb-2 text-[#06D6A0]">Request preview</div>
+                  <div className="text-sm font-semibold mb-2 text-primary">Request preview</div>
                   <div className="rounded-md border border-white/10 bg-black/30 px-3 py-2">
                     {builtPreview && "error" in builtPreview ? (
                       <p className="text-xs text-red-400">{builtPreview.error}</p>
@@ -445,7 +445,7 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
 
               {/* Params */}
               <div className="mt-6">
-                <h3 className="text-sm font-semibold text-[#06D6A0] mb-3">Parameters</h3>
+                <h3 className="text-sm font-semibold text-primary mb-3">Parameters</h3>
                 {selectedEndpoint?.params?.length ? (
                   <div className="grid gap-4 md:grid-cols-2">
                     {selectedEndpoint.params.map((p) => {
@@ -461,7 +461,7 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
                             value={values[p.name] ?? ""}
                             onChange={(e) => setValues((v) => ({ ...v, [p.name]: e.target.value }))}
                             placeholder={p.placeholder}
-                            className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0]"
+                            className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-[#06D6A0]"
                           />
                           {p.description ? (
                             <p className="text-[11px] text-muted-foreground mt-1">{p.description}</p>
@@ -479,7 +479,7 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
                 <Button
                   onClick={sendRequest}
                   disabled={loading || !selectedEndpoint}
-                  className="bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black font-semibold"
+                  className="bg-primary hover:bg-primary/90 text-black font-semibold"
                 >
                   {loading ? "Sending…" : "Send Request"}
                 </Button>
@@ -505,7 +505,7 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
 
             {/* Response */}
             <div className="rounded-lg border border-white/10 bg-white/5 p-5">
-              <h3 className="text-sm font-semibold text-[#06D6A0] mb-3">Response</h3>
+              <h3 className="text-sm font-semibold text-primary mb-3">Response</h3>
 
               {!response && !loading ? (
                 <p className="text-sm text-muted-foreground">Send a request to see the response.</p>
@@ -567,7 +567,7 @@ export default function PlaygroundClient({ endpoints, initialSelection }: Playgr
             </div>
 
             <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-              <div className="text-sm font-semibold text-[#06D6A0] mb-2">Related Tools</div>
+              <div className="text-sm font-semibold text-primary mb-2">Related Tools</div>
               <div className="flex flex-wrap gap-2">
                 <a
                   href="/sandbox"

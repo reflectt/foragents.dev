@@ -78,7 +78,7 @@ export default function MetricsPage() {
   };
 
   const getStatusColor = (statusCode: number) => {
-    if (statusCode >= 200 && statusCode < 300) return "text-[#06D6A0]";
+    if (statusCode >= 200 && statusCode < 300) return "text-primary";
     if (statusCode >= 400 && statusCode < 500) return "text-yellow-500";
     if (statusCode >= 500) return "text-red-500";
     return "text-foreground";
@@ -86,7 +86,7 @@ export default function MetricsPage() {
 
   const getStatusBadgeColor = (statusCode: number) => {
     if (statusCode >= 200 && statusCode < 300)
-      return "bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30";
+      return "bg-primary/20 text-primary border-primary/30";
     if (statusCode >= 400 && statusCode < 500)
       return "bg-yellow-500/20 text-yellow-500 border-yellow-500/30";
     if (statusCode >= 500) return "bg-red-500/20 text-red-500 border-red-500/30";
@@ -94,19 +94,19 @@ export default function MetricsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-20 w-full">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-2">
+              <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-2">
                 API Metrics
               </h1>
               <p className="text-xl text-foreground/80">
@@ -119,13 +119,13 @@ export default function MetricsPage() {
               <div
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${
                   isRefreshing
-                    ? "border-[#06D6A0] bg-[#06D6A0]/10"
+                    ? "border-primary bg-primary/10"
                     : "border-white/10 bg-card/20"
                 }`}
               >
                 <div
                   className={`w-2 h-2 rounded-full ${
-                    isRefreshing ? "bg-[#06D6A0] animate-pulse" : "bg-[#06D6A0]"
+                    isRefreshing ? "bg-primary animate-pulse" : "bg-primary"
                   }`}
                 />
                 <span className="text-sm text-foreground/80">
@@ -143,14 +143,14 @@ export default function MetricsPage() {
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Requests per minute */}
-          <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-card/30 border-[#06D6A0]/20">
+          <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-card/30 border-primary/20">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 Requests / Minute
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-[#06D6A0] mb-1">
+              <div className="text-4xl font-bold text-primary mb-1">
                 {data.currentMetrics.requestsPerMinute.toLocaleString()}
               </div>
               <p className="text-xs text-muted-foreground">
@@ -160,14 +160,14 @@ export default function MetricsPage() {
           </Card>
 
           {/* Average latency */}
-          <Card className="bg-gradient-to-br from-[#3B82F6]/10 to-card/30 border-[#3B82F6]/20">
+          <Card className="bg-gradient-to-br from-[#3B82F6]/10 to-card/30 border-electric-blue/20">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 Avg Latency
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-[#3B82F6] mb-1">
+              <div className="text-4xl font-bold text-electric-blue mb-1">
                 {data.currentMetrics.avgLatencyMs}
                 <span className="text-2xl">ms</span>
               </div>
@@ -178,14 +178,14 @@ export default function MetricsPage() {
           </Card>
 
           {/* Error rate */}
-          <Card className="bg-gradient-to-br from-[#8B5CF6]/10 to-card/30 border-[#8B5CF6]/20">
+          <Card className="bg-gradient-to-br from-[#8B5CF6]/10 to-card/30 border-purple/20">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 Error Rate
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-[#8B5CF6] mb-1">
+              <div className="text-4xl font-bold text-purple mb-1">
                 {data.currentMetrics.errorRate}
                 <span className="text-2xl">%</span>
               </div>
@@ -196,14 +196,14 @@ export default function MetricsPage() {
           </Card>
 
           {/* Active agents */}
-          <Card className="bg-gradient-to-br from-[#F59E0B]/10 to-card/30 border-[#F59E0B]/20">
+          <Card className="bg-gradient-to-br from-[#F59E0B]/10 to-card/30 border-solar/20">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 Active Agents
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-[#F59E0B] mb-1">
+              <div className="text-4xl font-bold text-solar mb-1">
                 {data.currentMetrics.activeAgents.toLocaleString()}
               </div>
               <p className="text-xs text-muted-foreground">
@@ -260,9 +260,9 @@ export default function MetricsPage() {
                         <span
                           className={`text-sm font-semibold ${
                             endpoint.avgResponseTime < 100
-                              ? "text-[#06D6A0]"
+                              ? "text-primary"
                               : endpoint.avgResponseTime < 200
-                                ? "text-[#3B82F6]"
+                                ? "text-electric-blue"
                                 : "text-yellow-500"
                           }`}
                         >
@@ -382,7 +382,7 @@ export default function MetricsPage() {
                         {isToday && (
                           <Badge
                             variant="outline"
-                            className="bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30 text-xs"
+                            className="bg-primary/20 text-primary border-primary/30 text-xs"
                           >
                             Today
                           </Badge>
@@ -410,7 +410,7 @@ export default function MetricsPage() {
             <Separator className="opacity-10 my-6" />
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">7-day average</span>
-              <span className="text-2xl font-bold text-[#06D6A0]">
+              <span className="text-2xl font-bold text-primary">
                 {(
                   data.uptimeHistory.reduce((acc, day) => acc + day.uptime, 0) /
                   data.uptimeHistory.length
@@ -426,8 +426,8 @@ export default function MetricsPage() {
 
       {/* CTA Section */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
@@ -442,7 +442,7 @@ export default function MetricsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="/pricing"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Upgrade to Premium →
               </a>

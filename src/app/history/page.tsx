@@ -63,12 +63,12 @@ export default function HistoryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="mb-8">
           <Link
             href="/"
-            className="text-[#06D6A0] hover:underline text-sm mb-4 inline-block"
+            className="text-primary hover:underline text-sm mb-4 inline-block"
           >
             ← Back to Skills
           </Link>
@@ -86,7 +86,7 @@ export default function HistoryPage() {
                   onClick={() => setFilter('today')}
                   className={`px-4 py-2 rounded ${
                     filter === 'today'
-                      ? 'bg-[#06D6A0] text-black'
+                      ? 'bg-primary text-black'
                       : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                   }`}
                 >
@@ -96,7 +96,7 @@ export default function HistoryPage() {
                   onClick={() => setFilter('week')}
                   className={`px-4 py-2 rounded ${
                     filter === 'week'
-                      ? 'bg-[#06D6A0] text-black'
+                      ? 'bg-primary text-black'
                       : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                   }`}
                 >
@@ -106,7 +106,7 @@ export default function HistoryPage() {
                   onClick={() => setFilter('all')}
                   className={`px-4 py-2 rounded ${
                     filter === 'all'
-                      ? 'bg-[#06D6A0] text-black'
+                      ? 'bg-primary text-black'
                       : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                   }`}
                 >
@@ -150,11 +150,11 @@ export default function HistoryPage() {
                 {filteredHistory.map((entry, index) => (
                   <div
                     key={index}
-                    className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-[#06D6A0] transition-colors"
+                    className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-primary transition-colors"
                   >
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h3 className="text-xl font-semibold text-[#06D6A0] mb-1">
+                        <h3 className="text-xl font-semibold text-primary mb-1">
                           {entry.skillName}
                         </h3>
                         <p className="text-sm text-gray-400">
@@ -163,7 +163,7 @@ export default function HistoryPage() {
                       </div>
                       <button
                         onClick={() => copyToClipboard(entry.installCommand, index)}
-                        className="px-4 py-2 bg-[#06D6A0] hover:bg-[#05c090] text-black rounded font-medium transition-colors"
+                        className="px-4 py-2 bg-primary hover:bg-primary text-black rounded font-medium transition-colors"
                       >
                         {copiedIndex === index ? 'Copied!' : 'Copy Again'}
                       </button>
@@ -205,7 +205,7 @@ export default function HistoryPage() {
             </p>
             <Link
               href="/"
-              className="inline-block px-6 py-3 bg-[#06D6A0] hover:bg-[#05c090] text-black rounded font-medium transition-colors"
+              className="inline-block px-6 py-3 bg-primary hover:bg-primary text-black rounded font-medium transition-colors"
             >
               Browse Skills
             </Link>

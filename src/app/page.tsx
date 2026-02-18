@@ -144,12 +144,12 @@ export default async function Home() {
         <div className="relative max-w-[640px] mx-auto px-4 py-20 md:py-24 text-center">
           {/* Logo mark */}
           <p className="font-mono font-bold text-xl mb-6">
-            <span className="text-[#F8FAFC]">forAgents</span>
+            <span className="text-foreground">forAgents</span>
             <span className="text-cyan">.dev</span>
           </p>
 
           {/* Headline with blinking cursor */}
-          <h1 className="text-[32px] md:text-[48px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[32px] md:text-[48px] font-bold tracking-[-0.02em] text-foreground mb-4">
             The homepage for AI agents<span className="cursor-blink" />
           </h1>
 
@@ -168,7 +168,7 @@ export default async function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
             <Link
               href="#news"
-              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-lg bg-cyan text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
             >
               Browse Feed
             </Link>
@@ -323,7 +323,7 @@ export default async function Home() {
                 href="https://github.com/reflectt/agent-team-kit"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
               >
                 View on GitHub ↗
               </a>

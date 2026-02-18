@@ -114,7 +114,7 @@ export function MarketplaceClient({ agents }: MarketplaceClientProps) {
       {/* Featured Skills Banner */}
       {featuredAgents.length > 0 && (
         <div className="mb-10">
-          <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             ⭐ Editor&apos;s Picks
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -210,7 +210,7 @@ function FeaturedAgentCard({ agent }: { agent: MarketplaceAgent }) {
           <div className="text-5xl">{agent.avatar}</div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <h3 className="font-bold text-[#F8FAFC] text-lg">{agent.name}</h3>
+              <h3 className="font-bold text-foreground text-lg">{agent.name}</h3>
               {agent.verified && (
                 <Badge className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] px-1.5 py-0">
                   ✓
@@ -277,7 +277,7 @@ function AgentCard({
           <div className="text-4xl">{agent.avatar}</div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <h3 className="font-bold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+              <h3 className="font-bold text-foreground group-hover:text-cyan transition-colors">
                 {agent.name}
               </h3>
               {agent.verified && (
@@ -372,7 +372,7 @@ function AgentCard({
           <Button
             onClick={handleDeploy}
             disabled={deploying}
-            className="w-full bg-[#06D6A0] hover:bg-[#05c494] text-[#0a0a0a] font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-primary hover:bg-primary text-primary-foreground font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {deploying ? "Installing..." : "Install Agent"}
           </Button>
@@ -442,7 +442,7 @@ function WriteReviewDialog({ agentName }: { agentName: string }) {
           Write a Review
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-[#0a0a0a] border-white/20 text-white">
+      <DialogContent className="bg-background border-white/20 text-white">
         <DialogHeader>
           <DialogTitle>Write a Review for {agentName}</DialogTitle>
           <DialogDescription className="text-white/60">
@@ -506,7 +506,7 @@ function WriteReviewDialog({ agentName }: { agentName: string }) {
           <Button
             onClick={handleSubmit}
             disabled={!reviewerName || !reviewText}
-            className="bg-[#06D6A0] hover:bg-[#05c494] text-[#0a0a0a] font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-primary hover:bg-primary text-primary-foreground font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Submit Review
           </Button>

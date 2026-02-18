@@ -159,7 +159,7 @@ export function BrandClientPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] text-foreground">
+      <div className="min-h-screen bg-background text-foreground">
         <section className="max-w-5xl mx-auto px-4 py-20 space-y-4 animate-pulse">
           <div className="h-10 rounded-lg bg-white/10" />
           <div className="h-6 rounded-lg bg-white/10 w-2/3" />
@@ -171,7 +171,7 @@ export function BrandClientPage() {
 
   if (error || !data) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] text-foreground flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
         <Card className="max-w-lg w-full bg-card/60 border-red-400/30">
           <CardHeader>
             <CardTitle className="text-red-300">Couldn't load brand kit</CardTitle>
@@ -185,9 +185,9 @@ export function BrandClientPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <section className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <Badge variant="outline" className="mb-4 border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10">
+        <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/10">
           Press kit · persistent API data
         </Badge>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-3">forAgents.dev Brand Center</h1>
@@ -226,7 +226,7 @@ export function BrandClientPage() {
                       <CardContent className="space-y-3">
                         <p className="text-sm text-muted-foreground">{asset.description}</p>
                         <p className="text-xs text-muted-foreground">{asset.usageGuidelines}</p>
-                        <Button asChild className="bg-[#06D6A0] text-[#0a0a0a] hover:brightness-110">
+                        <Button asChild className="bg-primary text-primary-foreground hover:brightness-110">
                           <a href={asset.downloadUrl} target="_blank" rel="noreferrer">
                             Download
                           </a>
@@ -257,7 +257,7 @@ export function BrandClientPage() {
                 <p className="font-medium">{color.name}</p>
                 <p className="text-xs text-muted-foreground">{color.usage}</p>
                 <div className="flex items-center justify-between">
-                  <code className="text-sm text-[#06D6A0]">{color.hex}</code>
+                  <code className="text-sm text-primary">{color.hex}</code>
                   <Button variant="outline" className="border-white/20" onClick={() => void handleCopyHex(color.hex)}>
                     {copiedHex === color.hex ? "Copied" : "Copy"}
                   </Button>
@@ -305,7 +305,7 @@ export function BrandClientPage() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               {data.usageGuidelines.map((rule) => (
                 <li key={rule} className="flex items-start gap-2">
-                  <span className="text-[#06D6A0] shrink-0">•</span>
+                  <span className="text-primary shrink-0">•</span>
                   <span>{rule}</span>
                 </li>
               ))}
@@ -359,7 +359,7 @@ export function BrandClientPage() {
                 />
               </div>
 
-              <Button type="submit" disabled={submitting} className="bg-[#06D6A0] text-[#0a0a0a] hover:brightness-110">
+              <Button type="submit" disabled={submitting} className="bg-primary text-primary-foreground hover:brightness-110">
                 {submitting ? "Submitting..." : "Submit request"}
               </Button>
 

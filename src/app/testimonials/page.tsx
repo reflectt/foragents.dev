@@ -71,7 +71,7 @@ export default function TestimonialsPage() {
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-14 md:py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             Signals from the field
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -101,7 +101,7 @@ export default function TestimonialsPage() {
                       {getInitials(t.name)}
                     </div>
                     <div>
-                      <div className="font-semibold text-[#F8FAFC]">
+                      <div className="font-semibold text-foreground">
                         {t.name}
                       </div>
                       <div className="text-sm text-muted-foreground">

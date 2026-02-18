@@ -80,7 +80,7 @@ export default async function MemoryPatternDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="border-b border-white/10">
         <div className="mx-auto max-w-6xl px-6 py-4 text-sm text-white/60">
           <Link href="/" className="hover:text-white">Home</Link>
@@ -149,7 +149,7 @@ export default async function MemoryPatternDetailPage({
               </ol>
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-[#090d16] p-6">
+            <div className="rounded-xl border border-white/10 bg-background p-6">
               <h3 className="text-lg font-semibold">Code example ({entry.implementationGuide.codeExample.language})</h3>
               <pre className="mt-4 overflow-x-auto rounded bg-black/50 p-4 text-xs text-white/85">
                 <code>{entry.implementationGuide.codeExample.code}</code>

@@ -54,7 +54,7 @@ export default function TemplatesPage() {
       <section className="relative overflow-hidden border-b border-white/5 bg-gradient-to-br from-cyan/5 via-transparent to-purple/5">
         <div className="max-w-6xl mx-auto px-4 py-16 sm:py-24">
           <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#F8FAFC] mb-4">
+            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
               🎨 Skill Templates Gallery
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">

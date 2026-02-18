@@ -51,7 +51,7 @@ function statusLabel(status: BountyStatus) {
 function statusBadgeClass(status: BountyStatus) {
   switch (status) {
     case "open":
-      return "border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10";
+      return "border-primary/30 text-primary bg-primary/10";
     case "claimed":
       return "border-purple/30 text-purple bg-purple/10";
     case "submitted":
@@ -210,7 +210,7 @@ export function BountiesClient({ initialBounties }: { initialBounties: Bounty[] 
 
         <Button
           onClick={() => setShowCreateForm((prev) => !prev)}
-          className="bg-gradient-to-r from-[#06D6A0] to-purple text-[#0a0a0a] font-semibold hover:brightness-110"
+          className="bg-gradient-to-r from-[#06D6A0] to-purple text-primary-foreground font-semibold hover:brightness-110"
         >
           {showCreateForm ? "Cancel" : "Post Bounty"}
         </Button>
@@ -254,7 +254,7 @@ export function BountiesClient({ initialBounties }: { initialBounties: Bounty[] 
             />
           </div>
 
-          <Button type="submit" className="bg-[#06D6A0] text-[#0a0a0a] hover:brightness-110 font-semibold">
+          <Button type="submit" className="bg-primary text-primary-foreground hover:brightness-110 font-semibold">
             Submit bounty
           </Button>
         </form>
@@ -267,7 +267,7 @@ export function BountiesClient({ initialBounties }: { initialBounties: Bounty[] 
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value as BountyStatus | "all")}
-            className="mt-1 w-full px-3 py-2 rounded-lg bg-card border border-white/10 text-foreground focus:outline-none focus:border-[#06D6A0]/40"
+            className="mt-1 w-full px-3 py-2 rounded-lg bg-card border border-white/10 text-foreground focus:outline-none focus:border-primary/40"
           >
             <option value="open">Open</option>
             <option value="claimed">Claimed</option>
@@ -282,7 +282,7 @@ export function BountiesClient({ initialBounties }: { initialBounties: Bounty[] 
           <select
             value={tag}
             onChange={(e) => setTag(e.target.value)}
-            className="mt-1 w-full px-3 py-2 rounded-lg bg-card border border-white/10 text-foreground focus:outline-none focus:border-[#06D6A0]/40"
+            className="mt-1 w-full px-3 py-2 rounded-lg bg-card border border-white/10 text-foreground focus:outline-none focus:border-primary/40"
           >
             <option value="all">All</option>
             {allTags.map((t) => (
@@ -320,7 +320,7 @@ export function BountiesClient({ initialBounties }: { initialBounties: Bounty[] 
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
-            className="mt-1 w-full px-3 py-2 rounded-lg bg-card border border-white/10 text-foreground focus:outline-none focus:border-[#06D6A0]/40"
+            className="mt-1 w-full px-3 py-2 rounded-lg bg-card border border-white/10 text-foreground focus:outline-none focus:border-primary/40"
           >
             <option value="recent">Most recent</option>
             <option value="budget">Highest bounty</option>
@@ -344,7 +344,7 @@ export function BountiesClient({ initialBounties }: { initialBounties: Bounty[] 
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <CardTitle className="text-lg text-white/90 truncate">
-                    <Link href={`/bounties/${encodeURIComponent(b.id)}`} className="hover:text-[#06D6A0] transition-colors">
+                    <Link href={`/bounties/${encodeURIComponent(b.id)}`} className="hover:text-primary transition-colors">
                       {b.title}
                     </Link>
                   </CardTitle>
@@ -354,7 +354,7 @@ export function BountiesClient({ initialBounties }: { initialBounties: Bounty[] 
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10"
+                      className="border-primary/30 text-primary bg-primary/10"
                       title={b.currency}
                     >
                       {formatMoney(b.budget, b.currency)}

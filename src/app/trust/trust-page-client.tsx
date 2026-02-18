@@ -92,8 +92,8 @@ export function TrustPageClient() {
 
   if (loading) {
     return (
-      <Card className="bg-[#0f0f0f] border-white/10 p-10 text-center">
-        <Loader2 className="w-7 h-7 mx-auto mb-4 animate-spin text-[#06D6A0]" />
+      <Card className="bg-background border-white/10 p-10 text-center">
+        <Loader2 className="w-7 h-7 mx-auto mb-4 animate-spin text-primary" />
         <p className="text-gray-300">Loading trust center data...</p>
       </Card>
     );
@@ -117,7 +117,7 @@ export function TrustPageClient() {
 
   return (
     <div className="space-y-10">
-      <Card className="bg-[#0f0f0f] border-white/10 p-8">
+      <Card className="bg-background border-white/10 p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="text-2xl font-semibold mb-2">Overall Security Posture</h2>
@@ -128,7 +128,7 @@ export function TrustPageClient() {
             <div className="relative mx-auto w-36 h-36">
               <div className="absolute inset-0 rounded-full border-8 border-white/10" />
               <div
-                className="absolute inset-0 rounded-full border-8 border-[#06D6A0]"
+                className="absolute inset-0 rounded-full border-8 border-primary"
                 style={{
                   clipPath: `inset(${100 - data.overallTrustScore}% 0 0 0)`,
                 }}
@@ -142,26 +142,26 @@ export function TrustPageClient() {
         </div>
 
         <div className="mt-6 grid gap-3 md:grid-cols-4">
-          <div className="rounded-lg border border-white/10 bg-[#141414] p-4">
+          <div className="rounded-lg border border-white/10 bg-card p-4">
             <p className="text-xs uppercase text-gray-500">Audit Status</p>
             <p className="mt-1 font-medium capitalize text-emerald-300">{data.auditResults.overallStatus}</p>
           </div>
-          <div className="rounded-lg border border-white/10 bg-[#141414] p-4">
+          <div className="rounded-lg border border-white/10 bg-card p-4">
             <p className="text-xs uppercase text-gray-500">Last Audit</p>
             <p className="mt-1 font-medium">{formatDate(data.auditResults.lastAudit)}</p>
           </div>
-          <div className="rounded-lg border border-white/10 bg-[#141414] p-4">
+          <div className="rounded-lg border border-white/10 bg-card p-4">
             <p className="text-xs uppercase text-gray-500">Next Audit</p>
             <p className="mt-1 font-medium">{formatDate(data.auditResults.nextAudit)}</p>
           </div>
-          <div className="rounded-lg border border-white/10 bg-[#141414] p-4">
+          <div className="rounded-lg border border-white/10 bg-card p-4">
             <p className="text-xs uppercase text-gray-500">Open Findings</p>
             <p className="mt-1 font-medium">{data.auditResults.findings.medium + data.auditResults.findings.low}</p>
           </div>
         </div>
       </Card>
 
-      <Card className="bg-[#0f0f0f] border-white/10 p-8">
+      <Card className="bg-background border-white/10 p-8">
         <h3 className="text-xl font-semibold mb-5">Security Category Breakdown</h3>
         <div className="space-y-4">
           {data.securityCategories.map((category) => (
@@ -171,18 +171,18 @@ export function TrustPageClient() {
                 <span className={scoreColor(category.score)}>{category.score}/100</span>
               </div>
               <div className="h-2 rounded-full bg-white/10">
-                <div className="h-2 rounded-full bg-[#06D6A0]" style={{ width: `${category.score}%` }} />
+                <div className="h-2 rounded-full bg-primary" style={{ width: `${category.score}%` }} />
               </div>
             </div>
           ))}
         </div>
       </Card>
 
-      <Card className="bg-[#0f0f0f] border-white/10 p-8">
+      <Card className="bg-background border-white/10 p-8">
         <h3 className="text-xl font-semibold mb-5">Certifications & Compliance</h3>
         <div className="grid md:grid-cols-2 gap-4">
           {data.certifications.map((certification) => (
-            <div key={certification.name} className="rounded-lg border border-white/10 bg-[#141414] p-4">
+            <div key={certification.name} className="rounded-lg border border-white/10 bg-card p-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="font-medium">{certification.name}</p>
@@ -197,11 +197,11 @@ export function TrustPageClient() {
         </div>
       </Card>
 
-      <Card className="bg-[#0f0f0f] border-white/10 p-8">
+      <Card className="bg-background border-white/10 p-8">
         <h3 className="text-xl font-semibold mb-5">Recent Incident History</h3>
         <div className="space-y-4">
           {sortedIncidents.map((incident) => (
-            <div key={`${incident.date}-${incident.description}`} className="rounded-lg border border-white/10 bg-[#141414] p-4">
+            <div key={`${incident.date}-${incident.description}`} className="rounded-lg border border-white/10 bg-card p-4">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
                 <p className="text-sm text-gray-400">{formatDate(incident.date)}</p>
                 <div className="flex gap-2">
@@ -219,9 +219,9 @@ export function TrustPageClient() {
 
       <div className="text-center text-sm text-gray-500">
         <div className="inline-flex items-center gap-2">
-          <Shield className="w-4 h-4 text-[#06D6A0]" />
+          <Shield className="w-4 h-4 text-primary" />
           <span>Security data sourced from persistent trust center records.</span>
-          <CheckCircle2 className="w-4 h-4 text-[#06D6A0]" />
+          <CheckCircle2 className="w-4 h-4 text-primary" />
         </div>
       </div>
     </div>

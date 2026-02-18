@@ -98,8 +98,8 @@ export function AccessibilityPageClient() {
 
   if (loading) {
     return (
-      <Card className="bg-[#0f0f0f] border-white/10 p-10 text-center">
-        <Loader2 className="w-7 h-7 mx-auto mb-4 animate-spin text-[#06D6A0]" />
+      <Card className="bg-background border-white/10 p-10 text-center">
+        <Loader2 className="w-7 h-7 mx-auto mb-4 animate-spin text-primary" />
         <p className="text-gray-300">Loading accessibility audit results...</p>
       </Card>
     );
@@ -123,7 +123,7 @@ export function AccessibilityPageClient() {
 
   return (
     <div className="space-y-8">
-      <Card className="bg-[#0f0f0f] border-white/10 p-8">
+      <Card className="bg-background border-white/10 p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="text-2xl font-semibold mb-2">Accessibility Compliance Snapshot</h2>
@@ -148,11 +148,11 @@ export function AccessibilityPageClient() {
         </div>
       </Card>
 
-      <Card className="bg-[#0f0f0f] border-white/10 p-8">
+      <Card className="bg-background border-white/10 p-8">
         <h3 className="text-xl font-semibold mb-5">Audit Checks</h3>
         <div className="space-y-4">
           {data.auditChecks.map((check: AccessibilityAuditCheck) => (
-            <div key={check.name} className="rounded-lg border border-white/10 bg-[#141414] p-4">
+            <div key={check.name} className="rounded-lg border border-white/10 bg-card p-4">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-2">
                 <p className="font-medium">{check.name}</p>
                 <Badge className={`border capitalize ${statusStyles(check.status)}`}>
@@ -166,7 +166,7 @@ export function AccessibilityPageClient() {
         </div>
       </Card>
 
-      <Card className="bg-[#0f0f0f] border-white/10 p-8">
+      <Card className="bg-background border-white/10 p-8">
         <h3 className="text-xl font-semibold mb-5">Priority Recommendations</h3>
         {failedChecks.length === 0 ? (
           <div className="rounded-lg border border-emerald-400/30 bg-emerald-500/10 p-4 text-emerald-200">

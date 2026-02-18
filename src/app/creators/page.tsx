@@ -152,7 +152,7 @@ export default function CreatorsPage() {
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className="text-2xl">{creator.avatar}</span>
-                      <h3 className="text-xl font-semibold text-[#F8FAFC]">{creator.displayName}</h3>
+                      <h3 className="text-xl font-semibold text-foreground">{creator.displayName}</h3>
                       {creator.featured && (
                         <Badge variant="outline" className="bg-cyan/10 text-cyan border-cyan/20">
                           Featured

@@ -174,7 +174,7 @@ function AgentCard({ agent }: { agent: RegistryAgent }) {
             <div className="text-5xl">{agent.avatar}</div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-bold text-lg text-[#F8FAFC] group-hover:text-cyan transition-colors">
+                <h3 className="font-bold text-lg text-foreground group-hover:text-cyan transition-colors">
                   {agent.name}
                 </h3>
                 {agent.verified && (

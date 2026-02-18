@@ -309,7 +309,7 @@ export default function FeedsPage() {
           </p>
           <Link
             href="/submit"
-            className="inline-flex items-center justify-center h-10 px-6 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+            className="inline-flex items-center justify-center h-10 px-6 rounded-lg bg-cyan text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
           >
             Request a Feature
           </Link>

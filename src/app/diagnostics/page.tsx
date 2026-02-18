@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function DiagnosticsPage() {
   return (
-    <main id="main-content" className="min-h-screen bg-[#0a0a0a]">
+    <main id="main-content" className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl px-4 py-10 md:py-14">
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">

@@ -19,7 +19,7 @@ export default function TokenVaultPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Breadcrumb */}
       <div className="border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -41,7 +41,7 @@ export default function TokenVaultPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-purple/5 rounded-full blur-[160px]" />
-          <div className="absolute top-1/3 right-1/3 w-[40vw] h-[40vw] max-w-[400px] max-h-[400px] bg-[#06D6A0]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/3 right-1/3 w-[40vw] h-[40vw] max-w-[400px] max-h-[400px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-16 text-center">
@@ -49,7 +49,7 @@ export default function TokenVaultPage() {
             Coming Soon
           </Badge>
           <div className="text-6xl mb-6">🔐</div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             Token Vault
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-6">
@@ -117,47 +117,47 @@ export default function TokenVaultPage() {
         </Card>
 
         {/* The Solution */}
-        <Card className="bg-gradient-to-br from-purple/5 via-card/80 to-[#06D6A0]/5 border-[#06D6A0]/20">
+        <Card className="bg-gradient-to-br from-purple/5 via-card/80 to-[#06D6A0]/5 border-primary/20">
           <CardHeader>
             <CardTitle className="text-2xl flex items-center gap-2">
-              <span className="text-[#06D6A0]">✓</span> Introducing Token Vault
+              <span className="text-primary">✓</span> Introducing Token Vault
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-foreground/90">
             <p className="text-lg">
-              A <strong className="text-[#06D6A0]">hosted token management service</strong> designed specifically for AI agents:
+              A <strong className="text-primary">hosted token management service</strong> designed specifically for AI agents:
             </p>
             <ul className="space-y-3">
               <li className="flex gap-3">
-                <span className="text-[#06D6A0] mt-1">✓</span>
+                <span className="text-primary mt-1">✓</span>
                 <div>
                   <strong>Automatic token refresh</strong> — Vault monitors token expiration and refreshes them 
                   before they expire. Your agents never see a 401.
                 </div>
               </li>
               <li className="flex gap-3">
-                <span className="text-[#06D6A0] mt-1">✓</span>
+                <span className="text-primary mt-1">✓</span>
                 <div>
                   <strong>Multi-agent sharing</strong> — Authorize once, use everywhere. All your agents access 
                   the same tokens through a simple API.
                 </div>
               </li>
               <li className="flex gap-3">
-                <span className="text-[#06D6A0] mt-1">✓</span>
+                <span className="text-primary mt-1">✓</span>
                 <div>
                   <strong>Enterprise-grade security</strong> — AES-256 encryption at rest, mTLS in transit, 
                   SOC 2 compliant infrastructure, automatic key rotation.
                 </div>
               </li>
               <li className="flex gap-3">
-                <span className="text-[#06D6A0] mt-1">✓</span>
+                <span className="text-primary mt-1">✓</span>
                 <div>
                   <strong>Comprehensive audit logs</strong> — Every token access is logged with agent identity, 
                   timestamp, and action. Perfect for compliance and debugging.
                 </div>
               </li>
               <li className="flex gap-3">
-                <span className="text-[#06D6A0] mt-1">✓</span>
+                <span className="text-primary mt-1">✓</span>
                 <div>
                   <strong>One-click revocation</strong> — Instantly revoke compromised tokens across all services 
                   from a single dashboard. No agent restarts needed.
@@ -345,7 +345,7 @@ await vault.revokeToken('github');`}</pre>
         </Card>
 
         {/* Pricing Preview */}
-        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-[#06D6A0]/20">
+        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-primary/20">
           <CardHeader>
             <CardTitle className="text-2xl">Pricing (Preview)</CardTitle>
           </CardHeader>
@@ -359,19 +359,19 @@ await vault.revokeToken('github');`}</pre>
                 <p className="text-sm text-muted-foreground mb-4">Perfect for individuals</p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Up to 3 services</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>2 agents</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Automatic refresh</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>7-day audit logs</span>
                   </li>
                 </ul>
@@ -387,23 +387,23 @@ await vault.revokeToken('github');`}</pre>
                 <p className="text-sm text-muted-foreground mb-4">For power users</p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Unlimited services</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>10 agents</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>90-day audit logs</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Security alerts</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Priority support</span>
                   </li>
                 </ul>
@@ -416,23 +416,23 @@ await vault.revokeToken('github');`}</pre>
                 <p className="text-sm text-muted-foreground mb-4">For organizations</p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Unlimited everything</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Unlimited audit retention</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>Team sharing & roles</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>SSO / SAML</span>
                   </li>
                   <li className="flex gap-2">
-                    <span className="text-[#06D6A0]">✓</span>
+                    <span className="text-primary">✓</span>
                     <span>SLA & phone support</span>
                   </li>
                 </ul>
@@ -464,7 +464,7 @@ await vault.revokeToken('github');`}</pre>
                   />
                   <button
                     type="submit"
-                    className="px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold hover:brightness-110 transition-all"
+                    className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:brightness-110 transition-all"
                   >
                     Join Waitlist
                   </button>
@@ -476,7 +476,7 @@ await vault.revokeToken('github');`}</pre>
             ) : (
               <div className="text-center py-4">
                 <div className="text-5xl mb-3">✓</div>
-                <p className="text-lg font-semibold text-[#06D6A0] mb-2">You&apos;re on the list!</p>
+                <p className="text-lg font-semibold text-primary mb-2">You&apos;re on the list!</p>
                 <p className="text-sm text-muted-foreground">
                   We&apos;ll email you when Token Vault launches.
                 </p>

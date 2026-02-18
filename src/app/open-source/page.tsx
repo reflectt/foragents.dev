@@ -106,7 +106,7 @@ export default function OpenSourcePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       {/* Mobile Nav */}
 
       {/* Hero Section */}
@@ -133,23 +133,23 @@ export default function OpenSourcePage() {
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8 hover:border-[#06D6A0]/50 transition-colors">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8 hover:border-primary/50 transition-colors">
             <div className="text-4xl mb-4">🔓</div>
-            <h3 className="text-xl font-semibold mb-3 text-[#06D6A0]">Transparency First</h3>
+            <h3 className="text-xl font-semibold mb-3 text-primary">Transparency First</h3>
             <p className="text-gray-400">
               No black boxes. See exactly how our tools work, from API routes to agent coordination logic.
             </p>
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8 hover:border-[#06D6A0]/50 transition-colors">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8 hover:border-primary/50 transition-colors">
             <div className="text-4xl mb-4">🤝</div>
-            <h3 className="text-xl font-semibold mb-3 text-[#06D6A0]">Community Built</h3>
+            <h3 className="text-xl font-semibold mb-3 text-primary">Community Built</h3>
             <p className="text-gray-400">
               Contributions from developers worldwide make our platform better every day. Your code matters.
             </p>
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8 hover:border-[#06D6A0]/50 transition-colors">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-6 sm:p-8 hover:border-primary/50 transition-colors">
             <div className="text-4xl mb-4">⚡</div>
-            <h3 className="text-xl font-semibold mb-3 text-[#06D6A0]">Innovation Velocity</h3>
+            <h3 className="text-xl font-semibold mb-3 text-primary">Innovation Velocity</h3>
             <p className="text-gray-400">
               Open collaboration accelerates progress. Hundreds of minds building together move faster than one.
             </p>
@@ -169,10 +169,10 @@ export default function OpenSourcePage() {
           {repos.map((repo) => (
             <div
               key={repo.name}
-              className="bg-white/5 border border-white/10 rounded-lg p-6 hover:border-[#06D6A0]/50 hover:bg-white/10 transition-all group"
+              className="bg-white/5 border border-white/10 rounded-lg p-6 hover:border-primary/50 hover:bg-white/10 transition-all group"
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white group-hover:text-[#06D6A0] transition-colors">
+                <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
                   {repo.name}
                 </h3>
                 <div className="flex items-center gap-1 text-yellow-400 text-sm">
@@ -195,7 +195,7 @@ export default function OpenSourcePage() {
                   href={repo.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[#06D6A0] hover:underline inline-flex items-center gap-1"
+                  className="text-sm text-primary hover:underline inline-flex items-center gap-1"
                 >
                   View on GitHub
                   <span className="text-xs">↗</span>
@@ -218,14 +218,14 @@ export default function OpenSourcePage() {
           {contributionSteps.map((step) => (
             <div
               key={step.step}
-              className="relative bg-white/5 border border-white/10 rounded-lg p-6 hover:border-[#06D6A0]/50 transition-colors"
+              className="relative bg-white/5 border border-white/10 rounded-lg p-6 hover:border-primary/50 transition-colors"
             >
               <div className="absolute top-4 right-4 text-6xl font-bold text-white/5">
                 {step.step}
               </div>
               <div className="relative">
                 <div className="text-5xl mb-4">{step.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-[#06D6A0]">
+                <h3 className="text-xl font-semibold mb-2 text-primary">
                   {step.title}
                 </h3>
                 <p className="text-gray-400 text-sm">
@@ -240,7 +240,7 @@ export default function OpenSourcePage() {
             href="https://github.com/reflectt/foragents.dev/blob/main/CONTRIBUTING.md"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[#06D6A0] hover:underline"
+            className="inline-flex items-center gap-2 text-primary hover:underline"
           >
             Read our full contribution guide
             <span className="text-sm">→</span>
@@ -260,7 +260,7 @@ export default function OpenSourcePage() {
           {contributors.map((contributor, index) => (
             <div
               key={index}
-              className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 text-3xl sm:text-4xl bg-white/5 border border-white/10 rounded-full hover:border-[#06D6A0]/50 hover:scale-110 transition-all cursor-pointer"
+              className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 text-3xl sm:text-4xl bg-white/5 border border-white/10 rounded-full hover:border-primary/50 hover:scale-110 transition-all cursor-pointer"
               title={contributor.name}
             >
               {contributor.emoji}
@@ -275,7 +275,7 @@ export default function OpenSourcePage() {
             href="https://github.com/reflectt/foragents.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#06D6A0] hover:bg-[#05c794] text-black font-semibold px-6 py-3 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary text-black font-semibold px-6 py-3 rounded-lg transition-colors"
           >
             Start Contributing Today
           </a>
@@ -284,7 +284,7 @@ export default function OpenSourcePage() {
 
       {/* License */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 border-t border-white/10">
-        <div className="bg-gradient-to-br from-[#06D6A0]/10 to-transparent border border-[#06D6A0]/30 rounded-lg p-8 sm:p-12 text-center">
+        <div className="bg-gradient-to-br from-[#06D6A0]/10 to-transparent border border-primary/30 rounded-lg p-8 sm:p-12 text-center">
           <div className="text-5xl mb-4">📜</div>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">MIT License</h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-6">
@@ -295,7 +295,7 @@ export default function OpenSourcePage() {
               href="https://github.com/reflectt/foragents.dev/blob/main/LICENSE"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[#06D6A0] text-[#06D6A0] hover:bg-[#06D6A0]/10 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary text-primary hover:bg-primary/10 transition-colors"
             >
               Read the License
               <span className="text-sm">↗</span>
@@ -304,7 +304,7 @@ export default function OpenSourcePage() {
               href="https://opensource.org/licenses/MIT"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-gray-400 hover:text-[#06D6A0] transition-colors"
+              className="text-sm text-gray-400 hover:text-primary transition-colors"
             >
               Learn more about MIT License →
             </a>

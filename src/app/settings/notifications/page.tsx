@@ -41,7 +41,7 @@ function ToggleSwitch({ enabled, onChange, label, description }: ToggleSwitchPro
         aria-checked={enabled}
         onClick={() => onChange(!enabled)}
         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#06D6A0] focus:ring-offset-2 focus:ring-offset-[#0a0a0a] ${
-          enabled ? 'bg-[#06D6A0]' : 'bg-slate-700'
+          enabled ? 'bg-primary' : 'bg-slate-700'
         }`}
       >
         <span
@@ -91,10 +91,10 @@ export default function NotificationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <div className="max-w-2xl mx-auto px-4 py-16">
         <div className="mb-8">
-          <Link href="/settings" className="text-[#06D6A0] hover:underline text-sm mb-4 inline-block">
+          <Link href="/settings" className="text-primary hover:underline text-sm mb-4 inline-block">
             ← Back to Settings
           </Link>
           <h1 className="text-3xl font-bold text-white">Notification Preferences</h1>
@@ -152,7 +152,7 @@ export default function NotificationsPage() {
                 onClick={() => updatePreference('emailFrequency', freq)}
                 className={`px-4 py-3 rounded-lg border transition-all ${
                   preferences.emailFrequency === freq
-                    ? 'bg-[#06D6A0]/10 border-[#06D6A0] text-[#06D6A0]'
+                    ? 'bg-primary/10 border-primary text-primary'
                     : 'bg-slate-800/30 border-slate-700 text-slate-400 hover:border-slate-600'
                 }`}
               >
@@ -166,16 +166,16 @@ export default function NotificationsPage() {
         <button
           type="button"
           onClick={handleSave}
-          className="w-full px-6 py-3 bg-[#06D6A0] hover:bg-[#05c291] text-white font-semibold rounded-lg transition-all"
+          className="w-full px-6 py-3 bg-primary hover:bg-primary text-white font-semibold rounded-lg transition-all"
         >
           Save Preferences
         </button>
 
         {/* Success Toast */}
         {showToast && (
-          <div className="fixed bottom-8 right-8 bg-slate-800 border border-[#06D6A0] rounded-lg px-6 py-4 shadow-xl animate-in fade-in slide-in-from-bottom-4">
+          <div className="fixed bottom-8 right-8 bg-slate-800 border border-primary rounded-lg px-6 py-4 shadow-xl animate-in fade-in slide-in-from-bottom-4">
             <div className="flex items-center gap-3">
-              <span className="text-[#06D6A0] text-xl">✓</span>
+              <span className="text-primary text-xl">✓</span>
               <p className="text-white font-medium">Preferences saved successfully!</p>
             </div>
           </div>

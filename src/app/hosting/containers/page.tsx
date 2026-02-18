@@ -437,12 +437,12 @@ export default function ContainersPage() {
   const compose = composeExamples.find((c) => c.id === selectedCompose) || composeExamples[0];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-16 text-center">
         <Link
           href="/hosting"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#06D6A0] mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary mb-6 transition-colors"
         >
           ← Back to Hosting Overview
         </Link>
@@ -492,7 +492,7 @@ export default function ContainersPage() {
               onClick={() => setSelectedTemplate(t.id)}
               className={`px-4 py-2 rounded-lg border transition-all ${
                 selectedTemplate === t.id
-                  ? "bg-[#06D6A0]/10 border-[#06D6A0] text-white"
+                  ? "bg-primary/10 border-primary text-white"
                   : "bg-gray-900/50 border-gray-800 text-gray-400 hover:border-gray-700"
               }`}
             >
@@ -530,7 +530,7 @@ export default function ContainersPage() {
               onClick={() => setSelectedCompose(c.id)}
               className={`px-4 py-2 rounded-lg border transition-all ${
                 selectedCompose === c.id
-                  ? "bg-[#06D6A0]/10 border-[#06D6A0] text-white"
+                  ? "bg-primary/10 border-primary text-white"
                   : "bg-gray-900/50 border-gray-800 text-gray-400 hover:border-gray-700"
               }`}
             >
@@ -577,23 +577,23 @@ export default function ContainersPage() {
             <h3 className="text-lg font-semibold text-white mb-4">🎯 Image Optimization</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Use Alpine Linux for smaller images (~5MB base)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Multi-stage builds to exclude build tools</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Copy package files first for better layer caching</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Use .dockerignore to exclude unnecessary files</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Clean package manager caches in same RUN layer</span>
               </li>
             </ul>
@@ -603,23 +603,23 @@ export default function ContainersPage() {
             <h3 className="text-lg font-semibold text-white mb-4">🔒 Security</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Run as non-root user (USER directive)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Don&apos;t hardcode secrets (use env vars or secrets)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Scan images for vulnerabilities (trivy, snyk)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Use official base images from trusted sources</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Limit container capabilities and resources</span>
               </li>
             </ul>
@@ -629,23 +629,23 @@ export default function ContainersPage() {
             <h3 className="text-lg font-semibold text-white mb-4">📊 Resource Limits</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Set memory limits to prevent OOM kills</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Define CPU limits for fair resource sharing</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Use health checks for automatic restarts</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Configure restart policies (unless-stopped)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Monitor resource usage in production</span>
               </li>
             </ul>
@@ -655,23 +655,23 @@ export default function ContainersPage() {
             <h3 className="text-lg font-semibold text-white mb-4">💾 Data Persistence</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Use volumes for persistent data</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Named volumes for better management</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Bind mounts for development only</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Back up volumes regularly</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#06D6A0] mt-1">→</span>
+                <span className="text-primary mt-1">→</span>
                 <span>Consider external storage for production</span>
               </li>
             </ul>
@@ -732,7 +732,7 @@ docker pull registry.example.com/agent:v1.0`}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Link
             href="/hosting/cloud"
-            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">☁️</div>
             <h3 className="text-lg font-semibold text-white mb-2">Deploy to Cloud</h3>
@@ -743,7 +743,7 @@ docker pull registry.example.com/agent:v1.0`}
 
           <Link
             href="/guides"
-            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">📖</div>
             <h3 className="text-lg font-semibold text-white mb-2">CI/CD Integration</h3>

@@ -61,7 +61,7 @@ export default async function ReviewsPage() {
   return (
     <main className="max-w-5xl mx-auto px-4 py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#F8FAFC] mb-2">Top reviewed</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Top reviewed</h1>
         <p className="text-muted-foreground">
           Skills ranked by <span className="text-foreground">review count</span>, then average rating.
         </p>
@@ -84,7 +84,7 @@ export default async function ReviewsPage() {
                   <div className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
                     Rank #{idx + 1}
                   </div>
-                  <div className="mt-1 text-lg font-semibold text-[#F8FAFC] flex items-center gap-2 flex-wrap">
+                  <div className="mt-1 text-lg font-semibold text-foreground flex items-center gap-2 flex-wrap">
                     <span>🧰 {row.skill.name}</span>
                     {row.skill.verified ? (
                       <Badge className="bg-emerald-500/15 text-emerald-300 border border-emerald-500/25 text-[11px]">

@@ -188,7 +188,7 @@ export default function DiffPage() {
       <div className="grid grid-cols-2 gap-px bg-white/5 font-mono text-sm overflow-auto">
         {/* Left side (old version) */}
         <div className="overflow-auto">
-          <div className="sticky top-0 bg-[#1a1a1a] border-b border-white/10 px-4 py-2 text-sm font-semibold text-white z-10">
+          <div className="sticky top-0 bg-secondary border-b border-white/10 px-4 py-2 text-sm font-semibold text-white z-10">
             {version1}
           </div>
           {leftLines.map((line, idx) => (
@@ -215,7 +215,7 @@ export default function DiffPage() {
 
         {/* Right side (new version) */}
         <div className="overflow-auto">
-          <div className="sticky top-0 bg-[#1a1a1a] border-b border-white/10 px-4 py-2 text-sm font-semibold text-white z-10">
+          <div className="sticky top-0 bg-secondary border-b border-white/10 px-4 py-2 text-sm font-semibold text-white z-10">
             {version2}
           </div>
           {rightLines.map((line, idx) => (
@@ -244,15 +244,15 @@ export default function DiffPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative overflow-hidden py-20">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <Badge variant="outline" className="mb-4 text-xs bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30">
+          <Badge variant="outline" className="mb-4 text-xs bg-primary/10 text-primary border-primary/30">
             <GitCompare className="w-3 h-3 mr-1 inline" />
             Diff Viewer
           </Badge>
@@ -283,7 +283,7 @@ export default function DiffPage() {
                   <SelectTrigger id="skill" className="bg-white/5 border-white/10 text-white">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#1a1a1a] border-white/10">
+                  <SelectContent className="bg-secondary border-white/10">
                     {skills.map((skill) => (
                       <SelectItem
                         key={skill.id}
@@ -306,7 +306,7 @@ export default function DiffPage() {
                   <SelectTrigger id="version1" className="bg-white/5 border-white/10 text-white">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#1a1a1a] border-white/10">
+                  <SelectContent className="bg-secondary border-white/10">
                     {selectedSkill?.versions.map((version) => (
                       <SelectItem
                         key={version.version}
@@ -329,7 +329,7 @@ export default function DiffPage() {
                   <SelectTrigger id="version2" className="bg-white/5 border-white/10 text-white">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#1a1a1a] border-white/10">
+                  <SelectContent className="bg-secondary border-white/10">
                     {selectedSkill?.versions.map((version) => (
                       <SelectItem
                         key={version.version}
@@ -354,7 +354,7 @@ export default function DiffPage() {
                   onClick={() => setViewMode("unified")}
                   className={
                     viewMode === "unified"
-                      ? "bg-[#06D6A0] text-black hover:bg-[#06D6A0]/90"
+                      ? "bg-primary text-black hover:bg-primary/90"
                       : "bg-white/5 border-white/10 text-white hover:bg-white/10"
                   }
                 >
@@ -367,7 +367,7 @@ export default function DiffPage() {
                   onClick={() => setViewMode("split")}
                   className={
                     viewMode === "split"
-                      ? "bg-[#06D6A0] text-black hover:bg-[#06D6A0]/90"
+                      ? "bg-primary text-black hover:bg-primary/90"
                       : "bg-white/5 border-white/10 text-white hover:bg-white/10"
                   }
                 >
@@ -383,7 +383,7 @@ export default function DiffPage() {
       {/* Stats Bar */}
       {diffResult && (
         <section className="max-w-7xl mx-auto px-4 pb-8">
-          <Card className="bg-gradient-to-br from-[#06D6A0]/10 via-card/80 to-purple/5 border-[#06D6A0]/30">
+          <Card className="bg-gradient-to-br from-[#06D6A0]/10 via-card/80 to-purple/5 border-primary/30">
             <CardContent className="p-6">
               <div className="grid grid-cols-3 gap-8">
                 <div className="flex items-center gap-3">
@@ -411,12 +411,12 @@ export default function DiffPage() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-lg bg-[#06D6A0]/10 text-[#06D6A0]">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
                     <FileText className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Files Changed</div>
-                    <div className="text-2xl font-bold text-[#06D6A0]">
+                    <div className="text-2xl font-bold text-primary">
                       {diffResult.filesChanged}
                     </div>
                   </div>

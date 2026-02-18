@@ -188,10 +188,10 @@ export function ContributorsClient() {
   return (
     <div className="space-y-12">
       <section className="text-center space-y-4">
-        <Badge variant="outline" className="border-[#06D6A0]/40 bg-[#06D6A0]/10 text-[#06D6A0]">
+        <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary">
           Real Contribution Workflow
         </Badge>
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC]">Contribute to forAgents.dev</h1>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Contribute to forAgents.dev</h1>
         <p className="mx-auto max-w-3xl text-foreground/70">
           Pick a contribution guide, follow the steps, and submit your work for review. Every submission is tracked so
           the community can see progress.
@@ -210,20 +210,20 @@ export function ContributorsClient() {
         <>
           <section className="space-y-6">
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-[#F8FAFC]">Contribution guides</h2>
+              <h2 className="text-2xl font-semibold text-foreground">Contribution guides</h2>
               <p className="text-foreground/70">Browse by category and choose a guide that matches your skill level.</p>
             </div>
 
             <div className="space-y-8">
               {guidesByCategory.map(([category, categoryGuides]) => (
                 <div key={category} className="space-y-3">
-                  <h3 className="text-lg font-semibold text-[#F8FAFC]">{CATEGORY_LABELS[category]}</h3>
+                  <h3 className="text-lg font-semibold text-foreground">{CATEGORY_LABELS[category]}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {categoryGuides.map((guide) => (
                       <Card key={guide.id} className="bg-white/5 border-white/10">
                         <CardHeader>
                           <div className="flex items-center justify-between gap-3">
-                            <CardTitle className="text-[#F8FAFC] text-xl">{guide.title}</CardTitle>
+                            <CardTitle className="text-foreground text-xl">{guide.title}</CardTitle>
                             <Badge variant="outline" className={DIFFICULTY_CLASSES[guide.difficulty]}>
                               {guide.difficulty}
                             </Badge>
@@ -232,7 +232,7 @@ export function ContributorsClient() {
                         </CardHeader>
                         <CardContent className="space-y-3">
                           <p className="text-sm text-foreground/70">
-                            Estimated time: <span className="text-[#F8FAFC] font-medium">{guide.estimatedTime}</span>
+                            Estimated time: <span className="text-foreground font-medium">{guide.estimatedTime}</span>
                           </p>
                           <ol className="list-decimal list-inside space-y-1 text-sm text-foreground/80">
                             {guide.steps.map((step, index) => (
@@ -250,7 +250,7 @@ export function ContributorsClient() {
 
           <section className="space-y-4">
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-[#F8FAFC]">Recent contributions</h2>
+              <h2 className="text-2xl font-semibold text-foreground">Recent contributions</h2>
               <p className="text-foreground/70">Latest submissions and their current review status.</p>
             </div>
 
@@ -313,14 +313,14 @@ export function ContributorsClient() {
                   <Card key={contribution.id} className="bg-white/5 border-white/10">
                     <CardHeader className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <Badge variant="outline" className="border-[#06D6A0]/30 bg-[#06D6A0]/10 text-[#06D6A0]">
+                        <Badge variant="outline" className="border-primary/30 bg-primary/10 text-primary">
                           {CATEGORY_LABELS[contribution.type]}
                         </Badge>
                         <Badge variant="outline" className={STATUS_CLASSES[contribution.status]}>
                           {contribution.status}
                         </Badge>
                       </div>
-                      <CardTitle className="text-[#F8FAFC] text-lg">{contribution.title}</CardTitle>
+                      <CardTitle className="text-foreground text-lg">{contribution.title}</CardTitle>
                       <CardDescription>
                         Submitted by {contribution.author} on {formatDate(contribution.createdAt)}
                       </CardDescription>
@@ -332,7 +332,7 @@ export function ContributorsClient() {
                           href={contribution.url}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-sm text-[#06D6A0] hover:text-[#5EEAD4] underline underline-offset-4"
+                          className="text-sm text-primary hover:text-primary underline underline-offset-4"
                         >
                           View submission
                         </a>
@@ -349,7 +349,7 @@ export function ContributorsClient() {
       <section>
         <Card className="bg-white/5 border-white/10">
           <CardHeader>
-            <CardTitle className="text-2xl text-[#F8FAFC]">Submit a contribution</CardTitle>
+            <CardTitle className="text-2xl text-foreground">Submit a contribution</CardTitle>
             <CardDescription>Share what you've built and we'll track it through review and merge.</CardDescription>
           </CardHeader>
           <CardContent>

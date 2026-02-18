@@ -47,7 +47,7 @@ function statusLabel(status: BountyStatus) {
 function statusBadgeClass(status: BountyStatus) {
   switch (status) {
     case "open":
-      return "border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10";
+      return "border-primary/30 text-primary bg-primary/10";
     case "claimed":
       return "border-purple/30 text-purple bg-purple/10";
     case "submitted":
@@ -168,7 +168,7 @@ export function BountyDetailClient({ bountyId }: { bountyId: string }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-sm text-white/70">Loading bounty details…</div>
       </div>
     );
@@ -176,9 +176,9 @@ export function BountyDetailClient({ bountyId }: { bountyId: string }) {
 
   if (!bounty) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-background">
         <div className="max-w-3xl mx-auto px-4 py-10">
-          <Link href="/bounties" className="text-sm text-white/60 hover:text-[#06D6A0] transition-colors">
+          <Link href="/bounties" className="text-sm text-white/60 hover:text-primary transition-colors">
             ← Back to bounties
           </Link>
           <Card className="mt-6 bg-card/30 border-white/10">
@@ -195,10 +195,10 @@ export function BountyDetailClient({ bountyId }: { bountyId: string }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="mb-8">
-          <Link href="/bounties" className="text-sm text-white/60 hover:text-[#06D6A0] transition-colors">
+          <Link href="/bounties" className="text-sm text-white/60 hover:text-primary transition-colors">
             ← Back to bounties
           </Link>
         </div>
@@ -236,7 +236,7 @@ export function BountyDetailClient({ bountyId }: { bountyId: string }) {
                 <ul className="space-y-3">
                   {bounty.acceptanceCriteria.map((c) => (
                     <li key={c} className="flex items-start gap-3">
-                      <div className="mt-0.5 w-5 h-5 rounded-md border border-white/15 bg-white/5 flex items-center justify-center text-xs text-[#06D6A0]">
+                      <div className="mt-0.5 w-5 h-5 rounded-md border border-white/15 bg-white/5 flex items-center justify-center text-xs text-primary">
                         ✓
                       </div>
                       <div className="text-sm text-white/80">{c}</div>
@@ -306,7 +306,7 @@ export function BountyDetailClient({ bountyId }: { bountyId: string }) {
                   <Button
                     onClick={() => void runAction("submit")}
                     disabled={actionBusy}
-                    className="w-full bg-[#06D6A0] text-[#0a0a0a] hover:brightness-110 font-semibold"
+                    className="w-full bg-primary text-primary-foreground hover:brightness-110 font-semibold"
                   >
                     Submit Work
                   </Button>
@@ -333,7 +333,7 @@ export function BountyDetailClient({ bountyId }: { bountyId: string }) {
               <CardContent className="space-y-3">
                 {timeline.map((event, index) => (
                   <div key={`${event.label}-${event.at}-${index}`} className="flex gap-3">
-                    <div className="w-2 h-2 rounded-full mt-2 bg-[#06D6A0]" />
+                    <div className="w-2 h-2 rounded-full mt-2 bg-primary" />
                     <div className="min-w-0">
                       <div className="text-sm text-white/90">{event.label}</div>
                       <div className="text-xs text-white/50">{formatDate(event.at)}</div>

@@ -169,10 +169,10 @@ export default function MigratePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <section className="max-w-6xl mx-auto px-4 py-16">
         <div className="mb-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#06D6A0]/10 border border-[#06D6A0]/20 text-[#06D6A0] text-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm mb-6">
             <span>🔄</span>
             <span>Migration Guide</span>
           </div>
@@ -246,8 +246,8 @@ export default function MigratePage() {
                   key={guide.id}
                   className={`border transition-colors cursor-pointer bg-white/5 ${
                     selectedGuideId === guide.id
-                      ? "border-[#06D6A0]/70"
-                      : "border-white/10 hover:border-[#06D6A0]/40"
+                      ? "border-primary/70"
+                      : "border-white/10 hover:border-primary/40"
                   }`}
                   onClick={() => setSelectedGuideId(guide.id)}
                 >
@@ -284,7 +284,7 @@ export default function MigratePage() {
             </div>
 
             {selectedGuide && (
-              <div className="rounded-xl border border-[#06D6A0]/20 bg-[#06D6A0]/5 p-6">
+              <div className="rounded-xl border border-primary/20 bg-primary/5 p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                   <div>
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">{selectedGuide.title}</h2>
@@ -300,7 +300,7 @@ export default function MigratePage() {
                 <Accordion type="single" collapsible className="rounded-lg border border-white/10 bg-black/20 px-4">
                   {selectedGuide.steps.map((step, index) => (
                     <AccordionItem key={`${selectedGuide.id}-${index}`} value={`step-${index}`} className="border-white/10">
-                      <AccordionTrigger className="text-left hover:text-[#06D6A0]">
+                      <AccordionTrigger className="text-left hover:text-primary">
                         <span className="font-medium">
                           Step {index + 1}: {step.title}
                         </span>
@@ -321,7 +321,7 @@ export default function MigratePage() {
                   <Button
                     onClick={() => markComplete(selectedGuide.id)}
                     disabled={markingCompleteId === selectedGuide.id}
-                    className="bg-[#06D6A0] text-[#0a0a0a] hover:brightness-110"
+                    className="bg-primary text-primary-foreground hover:brightness-110"
                   >
                     {markingCompleteId === selectedGuide.id
                       ? "Updating..."

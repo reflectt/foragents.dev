@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function OAuthGuidePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Breadcrumb */}
       <div className="border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -43,7 +43,7 @@ export default function OAuthGuidePage() {
 
         <div className="relative max-w-4xl mx-auto px-4 py-16 text-center">
           <div className="text-6xl mb-6">🔐</div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             OAuth 2.0 for AI Agents
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
@@ -64,7 +64,7 @@ export default function OAuthGuidePage() {
           </CardHeader>
           <CardContent className="space-y-4 text-foreground/90">
             <p>
-              <strong className="text-[#06D6A0]">OAuth 2.0</strong> is an authorization framework that enables applications to obtain 
+              <strong className="text-primary">OAuth 2.0</strong> is an authorization framework that enables applications to obtain 
               limited access to user accounts on an HTTP service. Instead of sharing passwords, users authorize 
               applications with scoped access tokens.
             </p>
@@ -106,17 +106,17 @@ export default function OAuthGuidePage() {
         </Card>
 
         {/* Solutions */}
-        <Card className="bg-card/30 border-[#06D6A0]/20">
+        <Card className="bg-card/30 border-primary/20">
           <CardHeader>
             <CardTitle className="text-2xl flex items-center gap-2">
-              <span className="text-[#06D6A0]">✓</span> Solutions for Agents
+              <span className="text-primary">✓</span> Solutions for Agents
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             
             {/* Solution 1 */}
             <div className="p-4 rounded-lg bg-black/20 border border-white/5">
-              <h3 className="text-lg font-semibold text-[#06D6A0] mb-2">1. Human-in-the-Loop (Recommended)</h3>
+              <h3 className="text-lg font-semibold text-primary mb-2">1. Human-in-the-Loop (Recommended)</h3>
               <p className="text-foreground/90 mb-3">
                 The agent asks the human to complete OAuth authorization, then receives the token.
               </p>
@@ -210,7 +210,7 @@ export default function OAuthGuidePage() {
               <div className="text-muted-foreground ml-4">refresh_token=REFRESH_TOKEN_HERE</div>
               <div className="text-muted-foreground ml-4">client_id=YOUR_CLIENT_ID</div>
               <div className="text-muted-foreground ml-4">client_secret=YOUR_CLIENT_SECRET</div>
-              <div className="mt-3 text-[#06D6A0]"># Response:</div>
+              <div className="mt-3 text-primary"># Response:</div>
               <div className="text-foreground/80">{'{'}</div>
               <div className="text-foreground/80 ml-4">&quot;access_token&quot;: &quot;new_access_token&quot;,</div>
               <div className="text-foreground/80 ml-4">&quot;expires_in&quot;: 3600,</div>
@@ -237,7 +237,7 @@ export default function OAuthGuidePage() {
             </p>
             <div className="space-y-3">
               <div>
-                <p className="font-semibold text-[#06D6A0] mb-1">✓ Good Practices:</p>
+                <p className="font-semibold text-primary mb-1">✓ Good Practices:</p>
                 <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
                   <li>Use environment variables (for development)</li>
                   <li>Encrypt tokens at rest (production)</li>
@@ -309,48 +309,48 @@ server.listen(8080);`}</pre>
         </Card>
 
         {/* Best Practices */}
-        <Card className="bg-gradient-to-br from-purple/5 via-card/80 to-[#06D6A0]/5 border-[#06D6A0]/20">
+        <Card className="bg-gradient-to-br from-purple/5 via-card/80 to-[#06D6A0]/5 border-primary/20">
           <CardHeader>
             <CardTitle className="text-2xl">Best Practices Summary</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex gap-3 p-3 rounded-lg bg-black/20">
-              <span className="text-[#06D6A0] text-lg">✓</span>
+              <span className="text-primary text-lg">✓</span>
               <div>
                 <p className="font-semibold text-foreground">Use scoped permissions</p>
                 <p className="text-sm text-muted-foreground">Request only the OAuth scopes your agent actually needs</p>
               </div>
             </div>
             <div className="flex gap-3 p-3 rounded-lg bg-black/20">
-              <span className="text-[#06D6A0] text-lg">✓</span>
+              <span className="text-primary text-lg">✓</span>
               <div>
                 <p className="font-semibold text-foreground">Implement token refresh</p>
                 <p className="text-sm text-muted-foreground">Handle 401 errors gracefully and refresh expired tokens automatically</p>
               </div>
             </div>
             <div className="flex gap-3 p-3 rounded-lg bg-black/20">
-              <span className="text-[#06D6A0] text-lg">✓</span>
+              <span className="text-primary text-lg">✓</span>
               <div>
                 <p className="font-semibold text-foreground">Store tokens securely</p>
                 <p className="text-sm text-muted-foreground">Encrypt at rest, use key vaults, never commit to git</p>
               </div>
             </div>
             <div className="flex gap-3 p-3 rounded-lg bg-black/20">
-              <span className="text-[#06D6A0] text-lg">✓</span>
+              <span className="text-primary text-lg">✓</span>
               <div>
                 <p className="font-semibold text-foreground">Provide clear user flows</p>
                 <p className="text-sm text-muted-foreground">Make authorization easy for humans to complete</p>
               </div>
             </div>
             <div className="flex gap-3 p-3 rounded-lg bg-black/20">
-              <span className="text-[#06D6A0] text-lg">✓</span>
+              <span className="text-primary text-lg">✓</span>
               <div>
                 <p className="font-semibold text-foreground">Support token revocation</p>
                 <p className="text-sm text-muted-foreground">Allow users to disconnect and revoke access easily</p>
               </div>
             </div>
             <div className="flex gap-3 p-3 rounded-lg bg-black/20">
-              <span className="text-[#06D6A0] text-lg">✓</span>
+              <span className="text-primary text-lg">✓</span>
               <div>
                 <p className="font-semibold text-foreground">Log OAuth events</p>
                 <p className="text-sm text-muted-foreground">Track authorizations, refreshes, and failures for debugging</p>

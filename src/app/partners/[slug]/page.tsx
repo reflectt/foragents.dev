@@ -88,7 +88,7 @@ export default async function PartnerDetailPage({ params }: Props) {
   const { docsUrl, contactEmail, features, integrationGuide } = getSafePartnerFields(partner);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <div className="border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -107,7 +107,7 @@ export default async function PartnerDetailPage({ params }: Props) {
 
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-16">
@@ -119,14 +119,14 @@ export default async function PartnerDetailPage({ params }: Props) {
             />
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC]">{partner.name}</h1>
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">{partner.name}</h1>
               </div>
               <div className="flex flex-wrap items-center gap-2 mb-4">
                 <Badge variant="outline" className={getTierBadgeColor(partner.tier)}>
                   {tierLabels[partner.tier]} Partner
                 </Badge>
                 {partner.featured && (
-                  <Badge variant="outline" className="border-[#06D6A0]/40 text-[#8af5d8]">
+                  <Badge variant="outline" className="border-primary/40 text-primary">
                     Featured
                   </Badge>
                 )}
@@ -144,7 +144,7 @@ export default async function PartnerDetailPage({ params }: Props) {
               href={docsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
             >
               Visit Website ↗
             </a>
@@ -170,8 +170,8 @@ export default async function PartnerDetailPage({ params }: Props) {
             <ul className="space-y-3">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#06D6A0]/20 flex items-center justify-center mt-0.5">
-                    <span className="text-[#06D6A0] text-sm">✓</span>
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                    <span className="text-primary text-sm">✓</span>
                   </div>
                   <span className="text-foreground/90">{feature}</span>
                 </li>
@@ -196,7 +196,7 @@ export default async function PartnerDetailPage({ params }: Props) {
       </section>
 
       <section className="max-w-4xl mx-auto px-4 pb-16">
-        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-[#06D6A0]/20">
+        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-primary/20">
           <CardHeader>
             <CardTitle className="text-2xl">Get in Touch</CardTitle>
             <p className="text-muted-foreground">Questions about collaborating with {partner.name}?</p>
@@ -206,24 +206,24 @@ export default async function PartnerDetailPage({ params }: Props) {
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-[#06D6A0]/30 transition-all group"
+              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-primary/30 transition-all group"
             >
               <div>
                 <p className="font-semibold text-foreground">Partner Website</p>
                 <p className="text-sm text-muted-foreground">{partner.url}</p>
               </div>
-              <span className="text-[#06D6A0] group-hover:translate-x-1 transition-transform">→</span>
+              <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
             </a>
 
             <a
               href={`mailto:${contactEmail}`}
-              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-[#06D6A0]/30 transition-all group"
+              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-primary/30 transition-all group"
             >
               <div>
                 <p className="font-semibold text-foreground">Partner Contact</p>
                 <p className="text-sm text-muted-foreground">{contactEmail}</p>
               </div>
-              <span className="text-[#06D6A0] group-hover:translate-x-1 transition-transform">→</span>
+              <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
             </a>
           </CardContent>
         </Card>

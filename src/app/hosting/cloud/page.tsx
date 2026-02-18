@@ -540,12 +540,12 @@ export default function CloudHostingPage() {
   const platform = platforms.find((p) => p.id === selectedPlatform) || platforms[3];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-16 text-center">
         <Link
           href="/hosting"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#06D6A0] mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary mb-6 transition-colors"
         >
           ← Back to Hosting Overview
         </Link>
@@ -565,7 +565,7 @@ export default function CloudHostingPage() {
               onClick={() => setSelectedPlatform(p.id)}
               className={`px-4 py-2 rounded-lg border transition-all ${
                 selectedPlatform === p.id
-                  ? "bg-[#06D6A0]/10 border-[#06D6A0] text-white"
+                  ? "bg-primary/10 border-primary text-white"
                   : "bg-gray-900/50 border-gray-800 text-gray-400 hover:border-gray-700"
               }`}
             >
@@ -620,7 +620,7 @@ export default function CloudHostingPage() {
               {platform.pricing.map((tier, i) => (
                 <div key={i} className="p-4 rounded-lg bg-gray-800/50 border border-gray-700">
                   <h4 className="font-semibold text-white mb-1">{tier.tier}</h4>
-                  <p className="text-lg text-[#06D6A0] mb-3">{tier.cost}</p>
+                  <p className="text-lg text-primary mb-3">{tier.cost}</p>
                   <ul className="space-y-1">
                     {tier.includes.map((item, j) => (
                       <li key={j} className="text-xs text-gray-400 flex items-start gap-1">
@@ -643,7 +643,7 @@ export default function CloudHostingPage() {
               <ol className="space-y-2">
                 {platform.quickStart.steps.map((step, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-gray-300">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#06D6A0]/10 text-[#06D6A0] font-semibold flex-shrink-0">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary font-semibold flex-shrink-0">
                       {i + 1}
                     </span>
                     {step}
@@ -682,25 +682,25 @@ export default function CloudHostingPage() {
             <div className="grid grid-cols-3 gap-4 text-sm text-gray-400 p-3 bg-gray-800/30 rounded">
               <div>Light (personal assistant)</div>
               <div>512 MB RAM, low traffic</div>
-              <div className="text-[#06D6A0]">$5-10/mo</div>
+              <div className="text-primary">$5-10/mo</div>
             </div>
 
             <div className="grid grid-cols-3 gap-4 text-sm text-gray-400 p-3 bg-gray-800/30 rounded">
               <div>Medium (team agent)</div>
               <div>1-2 GB RAM, moderate traffic</div>
-              <div className="text-[#06D6A0]">$15-30/mo</div>
+              <div className="text-primary">$15-30/mo</div>
             </div>
 
             <div className="grid grid-cols-3 gap-4 text-sm text-gray-400 p-3 bg-gray-800/30 rounded">
               <div>Heavy (production)</div>
               <div>4 GB RAM, high availability</div>
-              <div className="text-[#06D6A0]">$50-100/mo</div>
+              <div className="text-primary">$50-100/mo</div>
             </div>
 
             <div className="grid grid-cols-3 gap-4 text-sm text-gray-400 p-3 bg-gray-800/30 rounded">
               <div>Serverless (sporadic)</div>
               <div>On-demand, &lt;1M requests/mo</div>
-              <div className="text-[#06D6A0]">Free - $5/mo</div>
+              <div className="text-primary">Free - $5/mo</div>
             </div>
           </div>
 
@@ -715,7 +715,7 @@ export default function CloudHostingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Link
             href="/hosting/containers"
-            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">🐳</div>
             <h3 className="text-lg font-semibold text-white mb-2">Containerize Your Agent</h3>
@@ -726,7 +726,7 @@ export default function CloudHostingPage() {
 
           <Link
             href="/security"
-            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">🔒</div>
             <h3 className="text-lg font-semibold text-white mb-2">Secure Your Deployment</h3>

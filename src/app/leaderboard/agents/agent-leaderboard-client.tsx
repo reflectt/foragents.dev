@@ -204,7 +204,7 @@ export function AgentLeaderboardClient({ agents }: AgentLeaderboardClientProps) 
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ScoreExplainer
-              icon={<TrendingUp className="w-5 h-5 text-[#06D6A0]" />}
+              icon={<TrendingUp className="w-5 h-5 text-primary" />}
               title="Composite Score"
               description="A weighted combination of all metrics that determines overall ranking. Trust (30%), Skills (25%), Downloads (20%), Rating (15%), and Streak (10%)."
             />

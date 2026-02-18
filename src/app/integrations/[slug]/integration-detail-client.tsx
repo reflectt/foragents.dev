@@ -192,7 +192,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <p className="text-muted-foreground">Loading integration...</p>
       </div>
     );
@@ -200,7 +200,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
 
   if (!integration || error) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="text-center">
           <p className="text-red-400 mb-4">{error ?? "Integration not found."}</p>
           <Link
@@ -215,7 +215,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <div className="border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -234,7 +234,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
 
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-16">
@@ -242,11 +242,11 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
             <span className="text-6xl">{integration.icon}</span>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC]">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
                   {integration.name}
                 </h1>
                 {integration.featured && (
-                  <Badge className="bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30">
+                  <Badge className="bg-primary/20 text-primary border-primary/30">
                     ★ Featured
                   </Badge>
                 )}
@@ -273,7 +273,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
             <button
               onClick={handleInstall}
               disabled={isInstalling}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all disabled:opacity-60"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all disabled:opacity-60"
             >
               {isInstalling ? "Installing..." : "Install"}
             </button>
@@ -294,7 +294,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
           </div>
 
           {(successMessage || error) && (
-            <p className={`mt-4 text-sm ${error ? "text-red-400" : "text-[#06D6A0]"}`}>
+            <p className={`mt-4 text-sm ${error ? "text-red-400" : "text-primary"}`}>
               {error ?? successMessage}
             </p>
           )}
@@ -313,7 +313,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
             <ol className="space-y-4">
               {integration.steps.map((step, index) => (
                 <li key={step} className="flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#06D6A0]/20 text-[#06D6A0] flex items-center justify-center font-bold text-sm">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">
                     {index + 1}
                   </div>
                   <p className="flex-1 text-foreground/90 pt-1">{step}</p>
@@ -337,7 +337,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
               <div className="bg-black/40 rounded-lg p-4 font-mono text-sm">
                 {integration.requiredEnvVars.map((envVar) => (
                   <div key={envVar} className="py-1">
-                    <span className="text-[#06D6A0]">{envVar}</span>
+                    <span className="text-primary">{envVar}</span>
                     <span className="text-muted-foreground">=your_value_here</span>
                   </div>
                 ))}
@@ -374,10 +374,10 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="text-sm font-semibold mb-2 text-[#06D6A0]">Required keys</h3>
+              <h3 className="text-sm font-semibold mb-2 text-primary">Required keys</h3>
               <div className="flex flex-wrap gap-2">
                 {integration.configSchemaHints.required.map((key) => (
-                  <Badge key={key} variant="outline" className="border-[#06D6A0]/30 text-[#06D6A0]">
+                  <Badge key={key} variant="outline" className="border-primary/30 text-primary">
                     {key}
                   </Badge>
                 ))}
@@ -403,7 +403,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
                 <div className="space-y-1 font-mono text-sm">
                   {sampleConfigEntries.map(([key, value]) => (
                     <p key={key}>
-                      <span className="text-[#06D6A0]">{key}</span>
+                      <span className="text-primary">{key}</span>
                       <span className="text-muted-foreground">: {value}</span>
                     </p>
                   ))}
@@ -456,7 +456,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
                   onClick={() => setSelectedRating(star)}
                   className={`px-3 py-1.5 rounded-md border text-sm transition-colors ${
                     selectedRating === star
-                      ? "border-[#06D6A0]/40 bg-[#06D6A0]/20 text-[#06D6A0]"
+                      ? "border-primary/40 bg-primary/20 text-primary"
                       : "border-white/15 text-muted-foreground hover:bg-white/5"
                   }`}
                 >
@@ -466,7 +466,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
               <button
                 onClick={handleSubmitRating}
                 disabled={!selectedRating || isSubmittingRating}
-                className="ml-2 px-4 py-1.5 rounded-md bg-[#06D6A0] text-[#0a0a0a] text-sm font-semibold disabled:opacity-60"
+                className="ml-2 px-4 py-1.5 rounded-md bg-primary text-primary-foreground text-sm font-semibold disabled:opacity-60"
               >
                 {isSubmittingRating ? "Submitting..." : "Submit rating"}
               </button>
@@ -479,7 +479,7 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
       </section>
 
       <section className="max-w-4xl mx-auto px-4 pb-16">
-        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-[#06D6A0]/20">
+        <Card className="bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5 border-primary/20">
           <CardHeader>
             <CardTitle className="text-2xl">Additional Resources</CardTitle>
           </CardHeader>
@@ -488,24 +488,24 @@ export function IntegrationDetailClient({ slug }: IntegrationDetailClientProps) 
               href={integration.documentation}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-[#06D6A0]/30 transition-all group"
+              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-primary/30 transition-all group"
             >
               <div>
                 <p className="font-semibold text-foreground">Official Documentation</p>
                 <p className="text-sm text-muted-foreground">Complete API reference and guides</p>
               </div>
-              <span className="text-[#06D6A0] group-hover:translate-x-1 transition-transform">→</span>
+              <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
             </a>
 
             <Link
               href="/guides"
-              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-[#06D6A0]/30 transition-all group"
+              className="flex items-center justify-between p-4 rounded-lg bg-card/40 border border-white/10 hover:border-primary/30 transition-all group"
             >
               <div>
                 <p className="font-semibold text-foreground">forAgents.dev Guides</p>
                 <p className="text-sm text-muted-foreground">Learn how to build AI agents</p>
               </div>
-              <span className="text-[#06D6A0] group-hover:translate-x-1 transition-transform">→</span>
+              <span className="text-primary group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </CardContent>
         </Card>

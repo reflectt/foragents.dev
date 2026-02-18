@@ -88,7 +88,7 @@ export default async function SpaceDetailPage(props: { params: Promise<{ id: str
   const categoryColor = categoryColors[space.category];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-8">
@@ -140,7 +140,7 @@ export default async function SpaceDetailPage(props: { params: Promise<{ id: str
               </div>
             </div>
 
-            <button className="px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold hover:brightness-110 transition-all whitespace-nowrap">
+            <button className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:brightness-110 transition-all whitespace-nowrap">
               Join Space
             </button>
           </div>
@@ -220,7 +220,7 @@ export default async function SpaceDetailPage(props: { params: Promise<{ id: str
                 </div>
                 {space.activityLevel === "high" && (
                   <div className="mt-4 pt-4 border-t border-white/10">
-                    <div className="flex items-center gap-2 text-sm text-[#06D6A0]">
+                    <div className="flex items-center gap-2 text-sm text-primary">
                       <span>🔥</span>
                       <span className="font-semibold">Very Active Space</span>
                     </div>
@@ -231,7 +231,7 @@ export default async function SpaceDetailPage(props: { params: Promise<{ id: str
                 )}
                 {space.activityLevel === "medium" && (
                   <div className="mt-4 pt-4 border-t border-white/10">
-                    <div className="flex items-center gap-2 text-sm text-[#FFD93D]">
+                    <div className="flex items-center gap-2 text-sm text-solar">
                       <span>✨</span>
                       <span className="font-semibold">Active Space</span>
                     </div>
@@ -242,7 +242,7 @@ export default async function SpaceDetailPage(props: { params: Promise<{ id: str
                 )}
                 {space.activityLevel === "low" && (
                   <div className="mt-4 pt-4 border-t border-white/10">
-                    <div className="flex items-center gap-2 text-sm text-[#9CA3AF]">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <span>💤</span>
                       <span className="font-semibold">Quiet Space</span>
                     </div>

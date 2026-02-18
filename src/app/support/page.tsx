@@ -111,7 +111,7 @@ export default function SupportPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -121,11 +121,11 @@ export default function SupportPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center w-full">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             How Can We Help?
           </h1>
           <p className="text-xl text-foreground/80 mb-8">
@@ -141,7 +141,7 @@ export default function SupportPage() {
                 placeholder="Search for help..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-4 py-6 text-lg bg-[#0f0f0f] border-white/10 focus:border-[#06D6A0]"
+                className="pl-12 pr-4 py-6 text-lg bg-background border-white/10 focus:border-primary"
               />
             </div>
           </div>
@@ -154,10 +154,10 @@ export default function SupportPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {commonTopics.map((topic) => (
             <Link key={topic.title} href={topic.link}>
-              <Card className="bg-[#0f0f0f] border-white/10 hover:border-[#06D6A0]/50 transition-all cursor-pointer h-full">
+              <Card className="bg-background border-white/10 hover:border-primary/50 transition-all cursor-pointer h-full">
                 <CardContent className="p-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#06D6A0]/10 mb-4">
-                    <topic.icon className="w-6 h-6 text-[#06D6A0]" />
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 mb-4">
+                    <topic.icon className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2">{topic.title}</h3>
                   <p className="text-sm text-muted-foreground">
@@ -181,7 +181,7 @@ export default function SupportPage() {
               target={option.link.startsWith("http") ? "_blank" : undefined}
               rel={option.link.startsWith("http") ? "noopener noreferrer" : undefined}
             >
-              <Card className="bg-[#0f0f0f] border-white/10 hover:border-[#06D6A0]/50 transition-all cursor-pointer h-full">
+              <Card className="bg-background border-white/10 hover:border-primary/50 transition-all cursor-pointer h-full">
                 <CardContent className="p-6">
                   <div 
                     className="inline-flex items-center justify-center w-12 h-12 rounded-lg mb-4"
@@ -203,10 +203,10 @@ export default function SupportPage() {
         </div>
 
         {/* Response Times */}
-        <Card className="bg-[#0f0f0f] border-white/10">
+        <Card className="bg-background border-white/10">
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-[#06D6A0]" />
+              <Clock className="w-5 h-5 text-primary" />
               <CardTitle className="text-2xl">Response Times</CardTitle>
             </div>
           </CardHeader>
@@ -215,7 +215,7 @@ export default function SupportPage() {
               {responseTimes.map((item) => (
                 <div 
                   key={item.channel}
-                  className="flex flex-col md:flex-row md:items-center md:justify-between p-4 rounded-lg bg-[#0a0a0a] border border-white/5"
+                  className="flex flex-col md:flex-row md:items-center md:justify-between p-4 rounded-lg bg-background border border-white/5"
                 >
                   <div className="mb-2 md:mb-0">
                     <h4 className="font-semibold mb-1">{item.channel}</h4>
@@ -223,7 +223,7 @@ export default function SupportPage() {
                       {item.description}
                     </p>
                   </div>
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#06D6A0]/10 text-[#06D6A0] text-sm font-medium">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
                     {item.time}
                   </div>
                 </div>

@@ -28,10 +28,10 @@ export default async function KitIntegrationGuidePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <article className="max-w-4xl mx-auto px-4 py-12">
         <div className="mb-4">
-          <Link href="/guides" className="text-sm text-gray-400 hover:text-[#06D6A0] transition-colors">
+          <Link href="/guides" className="text-sm text-gray-400 hover:text-primary transition-colors">
             ← Back to Guides
           </Link>
         </div>

@@ -61,7 +61,7 @@ export default function MacrosPage() {
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             🔗 Macro Tools
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

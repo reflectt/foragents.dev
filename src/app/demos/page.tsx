@@ -62,18 +62,18 @@ const difficultyColors = {
 
 export default function DemosPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
 
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[300px] flex items-center">
         {/* Subtle aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-3xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Learn by Example
           </h1>
           <p className="text-xl text-foreground/80 mb-2">
@@ -87,7 +87,7 @@ export default function DemosPage() {
       {/* Featured Demo */}
       <section className="max-w-5xl mx-auto px-4 py-16">
         <div className="mb-6">
-          <Badge className="bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30 mb-4">
+          <Badge className="bg-primary/10 text-primary border-primary/30 mb-4">
             Featured Demo
           </Badge>
           <h2 className="text-3xl font-bold mb-2">Getting Started with forAgents.dev</h2>
@@ -97,25 +97,25 @@ export default function DemosPage() {
         </div>
 
         {/* Video Placeholder */}
-        <div className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#06D6A0]/20 via-purple/10 to-[#06D6A0]/10 aspect-video flex items-center justify-center group cursor-pointer hover:border-[#06D6A0]/30 transition-all">
+        <div className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#06D6A0]/20 via-purple/10 to-[#06D6A0]/10 aspect-video flex items-center justify-center group cursor-pointer hover:border-primary/30 transition-all">
           <div className="absolute inset-0 bg-gradient-to-br from-[#06D6A0]/5 via-transparent to-purple/5" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#06D6A0]/10 rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple/10 rounded-full blur-[100px]" />
           
           {/* Play Button Overlay */}
           <div className="relative z-10 flex flex-col items-center gap-4">
-            <div className="w-20 h-20 rounded-full bg-[#06D6A0] flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#06D6A0]/50">
+            <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#06D6A0]/50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-10 h-10 text-[#0a0a0a] ml-1"
+                className="w-10 h-10 text-primary-foreground ml-1"
               >
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>
             <div className="text-center">
-              <p className="text-lg font-semibold text-[#F8FAFC] mb-1">Watch Demo</p>
+              <p className="text-lg font-semibold text-foreground mb-1">Watch Demo</p>
               <p className="text-sm text-muted-foreground">20 minutes • Complete walkthrough</p>
             </div>
           </div>
@@ -137,20 +137,20 @@ export default function DemosPage() {
           {demos.map((demo, index) => (
             <Card
               key={index}
-              className="bg-card/50 border-white/10 hover:border-[#06D6A0]/30 transition-all group overflow-hidden"
+              className="bg-card/50 border-white/10 hover:border-primary/30 transition-all group overflow-hidden"
             >
               {/* Thumbnail Placeholder */}
               <div className="relative overflow-hidden bg-gradient-to-br from-[#06D6A0]/10 via-purple/5 to-transparent aspect-video flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#06D6A0]/5 via-transparent to-purple/5" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#06D6A0]/10 rounded-full blur-[60px]" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px]" />
                 
                 {/* Play Button */}
-                <div className="relative z-10 w-12 h-12 rounded-full bg-[#06D6A0]/80 flex items-center justify-center group-hover:bg-[#06D6A0] transition-colors">
+                <div className="relative z-10 w-12 h-12 rounded-full bg-primary/80 flex items-center justify-center group-hover:bg-primary transition-colors">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="w-6 h-6 text-[#0a0a0a] ml-0.5"
+                    className="w-6 h-6 text-primary-foreground ml-0.5"
                   >
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -159,7 +159,7 @@ export default function DemosPage() {
 
               <CardContent className="p-6">
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <h3 className="text-lg font-bold text-foreground group-hover:text-[#06D6A0] transition-colors">
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                     {demo.title}
                   </h3>
                 </div>
@@ -186,7 +186,7 @@ export default function DemosPage() {
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-white/5">
-                  <button className="w-full text-sm font-semibold text-[#06D6A0] hover:text-[#06D6A0]/80 transition-colors flex items-center justify-center gap-2">
+                  <button className="w-full text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center justify-center gap-2">
                     Watch
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -212,8 +212,8 @@ export default function DemosPage() {
 
       {/* Call to Action */}
       <section className="max-w-5xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
@@ -229,7 +229,7 @@ export default function DemosPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/get-started"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Get Started →
               </Link>

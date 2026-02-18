@@ -7,20 +7,20 @@ import { Separator } from "@/components/ui/separator";
 
 export default function MonetizationPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[500px] flex items-center">
         {/* Aurora background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
           <div className="absolute top-1/3 right-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-purple/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
-          <Badge className="mb-4 bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30">
+          <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
             💰 Agent Monetization
           </Badge>
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Agent Monetization Guide
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
@@ -35,10 +35,10 @@ export default function MonetizationPage() {
       <section className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link href="/monetization/calculator">
-            <Card className="bg-card/30 border-white/10 hover:border-[#06D6A0]/30 transition-all group h-full cursor-pointer">
+            <Card className="bg-card/30 border-white/10 hover:border-primary/30 transition-all group h-full cursor-pointer">
               <CardHeader>
                 <div className="text-4xl mb-3">🧮</div>
-                <CardTitle className="text-xl group-hover:text-[#06D6A0] transition-colors">
+                <CardTitle className="text-xl group-hover:text-primary transition-colors">
                   Pricing Calculator
                 </CardTitle>
               </CardHeader>
@@ -91,7 +91,7 @@ export default function MonetizationPage() {
         <article className="prose prose-invert prose-lg max-w-none">
           {/* Pricing Models */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">Pricing Models for Agents</h2>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Pricing Models for Agents</h2>
             
             <Card className="bg-card/30 border-purple-500/20 mb-8">
               <CardHeader>
@@ -136,7 +136,7 @@ const session = await stripe.checkout.sessions.create({
               </CardContent>
             </Card>
 
-            <Card className="bg-card/30 border-[#06D6A0]/20 mb-8">
+            <Card className="bg-card/30 border-primary/20 mb-8">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <span className="text-2xl">👥</span>
@@ -161,8 +161,8 @@ const session = await stripe.checkout.sessions.create({
                     <li>Can get expensive fast</li>
                   </ul>
                 </div>
-                <div className="bg-[#06D6A0]/10 border border-[#06D6A0]/30 rounded-lg p-4">
-                  <p className="text-sm font-semibold text-[#06D6A0] mb-2">💡 Implementation Pattern</p>
+                <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+                  <p className="text-sm font-semibold text-primary mb-2">💡 Implementation Pattern</p>
                   <pre className="text-xs overflow-x-auto bg-black/60 p-3 rounded">
 {`// Metered billing with Stripe
 const usageRecord = await stripe.subscriptionItems.createUsageRecord(
@@ -258,7 +258,7 @@ const trackUsage = async (userId: string, tokens: number) => {
 
           {/* Marketplace Listing Fees */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">Marketplace Distribution</h2>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Marketplace Distribution</h2>
             
             <Card className="bg-card/30 border-white/10">
               <CardHeader>
@@ -278,9 +278,9 @@ const trackUsage = async (userId: string, tokens: number) => {
                     </p>
                   </div>
                   
-                  <div className="bg-[#06D6A0]/10 border border-[#06D6A0]/30 rounded-lg p-4">
-                    <div className="font-semibold text-[#06D6A0] mb-2">🤝 Creator-Friendly</div>
-                    <div className="text-2xl font-bold text-[#06D6A0] mb-1">10-15%</div>
+                  <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+                    <div className="font-semibold text-primary mb-2">🤝 Creator-Friendly</div>
+                    <div className="text-2xl font-bold text-primary mb-1">10-15%</div>
                     <p className="text-sm text-foreground/70">
                       Lower takes for smaller platforms trying to attract developers
                     </p>
@@ -318,7 +318,7 @@ const trackUsage = async (userId: string, tokens: number) => {
 
           {/* Freemium Conversion */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">Freemium Conversion Strategies</h2>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Freemium Conversion Strategies</h2>
             
             <Card className="bg-card/30 border-white/10 mb-6">
               <CardHeader>
@@ -326,7 +326,7 @@ const trackUsage = async (userId: string, tokens: number) => {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-[#06D6A0] mb-3">1. Usage Limits</h3>
+                  <h3 className="text-lg font-semibold text-primary mb-3">1. Usage Limits</h3>
                   <p className="text-foreground/80 mb-2">
                     Free tier: 1,000 requests/month. Pro: Unlimited.
                   </p>
@@ -378,7 +378,7 @@ const trackUsage = async (userId: string, tokens: number) => {
                     <p className="text-sm text-foreground/70">Typical free → paid</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-[#06D6A0]">20-40%</div>
+                    <div className="text-3xl font-bold text-primary">20-40%</div>
                     <p className="text-sm text-foreground/70">Trial → paid</p>
                   </div>
                   <div className="text-center">
@@ -394,7 +394,7 @@ const trackUsage = async (userId: string, tokens: number) => {
 
           {/* Pricing Psychology */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">Pricing Psychology for AI Products</h2>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Pricing Psychology for AI Products</h2>
             
             <div className="space-y-6">
               <Card className="bg-card/30 border-white/10">
@@ -453,13 +453,13 @@ const trackUsage = async (userId: string, tokens: number) => {
                       <div className="text-xl font-bold">Starter</div>
                       <div className="text-2xl font-bold text-foreground/80">$29</div>
                     </div>
-                    <div className="bg-[#06D6A0]/10 rounded-lg p-4 border border-[#06D6A0]/50 relative">
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#06D6A0] text-black text-xs font-bold px-3 py-1 rounded-full">
+                    <div className="bg-primary/10 rounded-lg p-4 border border-primary/50 relative">
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full">
                         MOST POPULAR
                       </div>
-                      <div className="text-sm text-[#06D6A0] mb-2">Just right ✓</div>
+                      <div className="text-sm text-primary mb-2">Just right ✓</div>
                       <div className="text-xl font-bold">Pro</div>
-                      <div className="text-2xl font-bold text-[#06D6A0]">$99</div>
+                      <div className="text-2xl font-bold text-primary">$99</div>
                     </div>
                     <div className="bg-black/40 rounded-lg p-4 border border-white/10">
                       <div className="text-sm text-foreground/60 mb-2">Overkill</div>
@@ -505,8 +505,8 @@ const trackUsage = async (userId: string, tokens: number) => {
 
       {/* CTA Section */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-purple/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
@@ -521,7 +521,7 @@ const trackUsage = async (userId: string, tokens: number) => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/monetization/calculator"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Open Pricing Calculator →
               </Link>
