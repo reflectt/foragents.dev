@@ -86,8 +86,8 @@ export type McpServer = {
   github?: string;
   author?: string;
   tags?: string[];
-  
-  // Phase 1 stats
+
+  // Stats (populated at runtime)
   stars?: number;
   installs?: number;
   framework?: string;
