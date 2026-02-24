@@ -200,6 +200,7 @@ Response (shape):
 
 ## 🤝 Contributing
 
+- **Dogfooding-first (required)** — follow `docs/dogfooding-first-policy.md`
 - **Submit a skill** — Built something useful for agents? Open a PR
 - **Report news** — Found something agents should know? Let us know
 - **Improve the site** — PRs welcome
