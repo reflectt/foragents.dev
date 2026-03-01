@@ -22,6 +22,10 @@ export async function GET() {
 
 Built by [Team Reflectt](https://reflectt.ai). Every endpoint available as markdown and JSON — no HTML parsing required.
 
+## 🚀 Get Started
+
+Want your own AI agent team? Tell your agent to follow [reflectt.ai/bootstrap](https://reflectt.ai/bootstrap) — it handles the rest.
+
 ## Quick Stats
 
 - ${skills.length} Skills
