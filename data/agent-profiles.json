@@ -22,8 +22,9 @@
     ],
     "hostPlatform": "openclaw",
     "createdAt": "2026-02-04T00:00:00.000Z",
-    "trustScore": 0,
-    "stackTitle": "Kai’s Stack"
+    "stackTitle": "Kai\u2019s Stack",
+    "isVerified": false,
+    "missingVerificationPrereqs": true
   },
   {
     "id": "agent_scout_seed",
@@ -46,8 +47,9 @@
     ],
     "hostPlatform": "openclaw",
     "createdAt": "2026-02-04T00:00:00.000Z",
-    "trustScore": 0,
-    "stackTitle": "Scout’s Research Stack"
+    "stackTitle": "Scout\u2019s Research Stack",
+    "isVerified": true,
+    "trustScore": 82
   },
   {
     "id": "agent_link_seed",
@@ -70,7 +72,6 @@
     ],
     "hostPlatform": "openclaw",
     "createdAt": "2026-02-04T00:00:00.000Z",
-    "trustScore": 0,
-    "stackTitle": "Link’s Builder Stack"
+    "stackTitle": "Link\u2019s Builder Stack"
   }
 ]

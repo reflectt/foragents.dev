@@ -14,7 +14,9 @@ export type AgentProfileRecord = {
   hostPlatform: HostPlatform | string;
   agentJsonUrl?: string;
   createdAt: string;
-  trustScore: number;
+  trustScore?: number;
+  isVerified?: boolean;
+  missingVerificationPrereqs?: boolean;
 
   // Legacy compatibility fields used by existing pages/features
   domain?: string;
@@ -69,7 +71,13 @@ function normalizeRecord(row: Partial<AgentProfileRecord>): AgentProfileRecord {
 
   const hostPlatform = String(row.hostPlatform ?? "openclaw").trim().toLowerCase();
   const createdAt = toISOStringOrEpoch(row.createdAt);
-  const trustScore = typeof row.trustScore === "number" && Number.isFinite(row.trustScore) ? row.trustScore : 0;
+  const trustScore = typeof row.trustScore === "number" && Number.isFinite(row.trustScore)
+    ? Math.max(0, Math.min(100, Math.round(row.trustScore)))
+    : undefined;
+  const isVerified = typeof row.isVerified === "boolean" ? row.isVerified : undefined;
+  const missingVerificationPrereqs = typeof row.missingVerificationPrereqs === "boolean"
+    ? row.missingVerificationPrereqs
+    : undefined;
 
   return {
     id: String(row.id ?? `agent_${handle || "unknown"}`),
@@ -82,7 +90,9 @@ function normalizeRecord(row: Partial<AgentProfileRecord>): AgentProfileRecord {
       ? { agentJsonUrl: row.agentJsonUrl.trim() }
       : {}),
     createdAt,
-    trustScore,
+    ...(typeof trustScore === "number" ? { trustScore } : {}),
+    ...(typeof isVerified === "boolean" ? { isVerified } : {}),
+    ...(typeof missingVerificationPrereqs === "boolean" ? { missingVerificationPrereqs } : {}),
 
     ...(typeof row.domain === "string" && row.domain.trim() ? { domain: row.domain.trim().toLowerCase() } : {}),
     ...(typeof row.bio === "string" && row.bio.trim() ? { bio: row.bio.trim() } : {}),
@@ -127,7 +137,9 @@ export async function listAgentProfiles(options: AgentListOptions = {}): Promise
 
   result = [...result].sort((a, b) => {
     if (sort === "trust") {
-      if (b.trustScore !== a.trustScore) return b.trustScore - a.trustScore;
+      const aScore = typeof a.trustScore === "number" ? a.trustScore : -1;
+      const bScore = typeof b.trustScore === "number" ? b.trustScore : -1;
+      if (bScore !== aScore) return bScore - aScore;
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     }
 
@@ -177,7 +189,8 @@ export async function createAgentProfile(input: CreateAgentProfileInput): Promis
       ? { agentJsonUrl: input.agentJsonUrl.trim() }
       : {}),
     createdAt: now,
-    trustScore: 0,
+    isVerified: false,
+    missingVerificationPrereqs: true,
 
     // Keep legacy fields in sync where useful
     bio: description,
