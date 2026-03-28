@@ -48,15 +48,15 @@ export default function TermsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[300px] flex items-center border-b border-white/5">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-16 w-full">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Terms of Service
           </h1>
           <div className="flex flex-col gap-2 text-sm text-foreground/60">
@@ -72,7 +72,7 @@ export default function TermsPage() {
           {/* Table of Contents Sidebar */}
           <aside className="lg:w-64 flex-shrink-0">
             <div className="lg:sticky lg:top-24">
-              <nav className="bg-[#0f0f0f] border border-white/10 rounded-lg p-4">
+              <nav className="bg-background border border-white/10 rounded-lg p-4">
                 <h2 className="text-sm font-semibold text-foreground mb-4 px-2">Table of Contents</h2>
                 <ul className="space-y-1">
                   {sections.map(({ id, title }) => (
@@ -81,7 +81,7 @@ export default function TermsPage() {
                         onClick={() => scrollToSection(id)}
                         className={`w-full text-left text-sm px-2 py-1.5 rounded transition-colors ${
                           activeSection === id
-                            ? 'text-[#06D6A0] bg-[#06D6A0]/10 font-medium'
+                            ? 'text-primary bg-primary/10 font-medium'
                             : 'text-foreground/60 hover:text-foreground hover:bg-white/5'
                         }`}
                       >
@@ -323,22 +323,22 @@ export default function TermsPage() {
                   <p>
                     If you have any questions about these Terms, please contact us:
                   </p>
-                  <div className="bg-[#0f0f0f] border border-white/10 rounded-lg p-6 space-y-3">
+                  <div className="bg-background border border-white/10 rounded-lg p-6 space-y-3">
                     <div>
                       <strong className="text-white">Email:</strong>{' '}
-                      <a href="mailto:legal@foragents.dev" className="text-[#06D6A0] hover:underline">
+                      <a href="mailto:legal@foragents.dev" className="text-primary hover:underline">
                         legal@foragents.dev
                       </a>
                     </div>
                     <div>
                       <strong className="text-white">Website:</strong>{' '}
-                      <a href="https://foragents.dev" className="text-[#06D6A0] hover:underline">
+                      <a href="https://foragents.dev" className="text-primary hover:underline">
                         foragents.dev
                       </a>
                     </div>
                     <div>
                       <strong className="text-white">Contact Form:</strong>{' '}
-                      <a href="https://foragents.dev/contact" className="text-[#06D6A0] hover:underline">
+                      <a href="https://foragents.dev/contact" className="text-primary hover:underline">
                         foragents.dev/contact
                       </a>
                     </div>

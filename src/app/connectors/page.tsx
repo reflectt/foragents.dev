@@ -138,15 +138,15 @@ export default function ConnectorsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden min-h-[380px] flex items-center">
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-purple/5 rounded-full blur-[160px]" />
-          <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-[#06D6A0]/3 rounded-full blur-[120px]" />
+          <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-primary/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             Connector Directory
           </h1>
           <p className="text-xl text-foreground/80 mb-2">
@@ -159,7 +159,7 @@ export default function ConnectorsPage() {
           <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
             <Link
               href="/connectors/oauth-guide"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
             >
               OAuth Guide for Agents →
             </Link>
@@ -196,7 +196,7 @@ export default function ConnectorsPage() {
               onClick={() => setTypeFilter("all")}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 typeFilter === "all"
-                  ? "bg-[#06D6A0] text-[#0a0a0a]"
+                  ? "bg-primary text-background"
                   : "border border-white/10 text-foreground hover:bg-white/5"
               }`}
             >
@@ -208,7 +208,7 @@ export default function ConnectorsPage() {
                 onClick={() => setTypeFilter(type)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   typeFilter === type
-                    ? "bg-[#06D6A0] text-[#0a0a0a]"
+                    ? "bg-primary text-background"
                     : "border border-white/10 text-foreground hover:bg-white/5"
                 }`}
               >
@@ -284,7 +284,7 @@ export default function ConnectorsPage() {
                     <button
                       type="button"
                       onClick={() => trackInstall(connector.slug)}
-                      className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-[#06D6A0]/40 text-[#06D6A0] text-xs font-semibold hover:bg-[#06D6A0]/10 transition-colors"
+                      className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-primary/40 text-primary text-xs font-semibold hover:bg-primary/10 transition-colors"
                     >
                       Track install +1
                     </button>

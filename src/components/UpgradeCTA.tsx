@@ -78,12 +78,12 @@ export function UpgradeCTA({ variant = "inline", message, ctaId }: UpgradeCTAPro
   if (!isOpen) return null;
 
   const content = (
-    <div className="relative overflow-hidden rounded-xl border border-[#06D6A0]/20 bg-[#0a0a0a]">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#06D6A0]/10 via-transparent to-[#06D6A0]/10" />
+    <div className="relative overflow-hidden rounded-xl border border-primary/20 bg-background">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10" />
 
       <div className="relative flex items-start gap-3 p-4">
-        <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-[#06D6A0]/10 border border-[#06D6A0]/15">
-          <Sparkles className="h-4 w-4 text-[#06D6A0]" aria-hidden="true" />
+        <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/15">
+          <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
         </div>
 
         <div className="min-w-0 flex-1">
@@ -97,7 +97,7 @@ export function UpgradeCTA({ variant = "inline", message, ctaId }: UpgradeCTAPro
           <div className="mt-3 flex flex-wrap items-center gap-3">
             <Link
               href="/pricing"
-              className="inline-flex h-9 items-center justify-center rounded-md bg-[#06D6A0] px-4 text-sm font-semibold text-[#0a0a0a] hover:brightness-110 transition-all"
+              className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-background hover:brightness-110 transition-all"
             >
               Upgrade
             </Link>

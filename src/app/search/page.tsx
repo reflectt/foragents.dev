@@ -262,7 +262,7 @@ export default function SearchPage() {
                   href={result.url}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
-                  className="block rounded-lg border border-[#1A1F2E] bg-card/50 p-6 hover:border-cyan/20 transition-all group"
+                  className="block rounded-lg border border-border bg-card/50 p-6 hover:border-cyan/20 transition-all group"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Badge variant="outline" className={`text-xs border ${badgeClass}`}>
@@ -270,7 +270,7 @@ export default function SearchPage() {
                     </Badge>
                   </div>
 
-                  <h2 className="text-xl font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors mb-2">
+                  <h2 className="text-xl font-semibold text-foreground group-hover:text-cyan transition-colors mb-2">
                     {result.title}
                   </h2>
 

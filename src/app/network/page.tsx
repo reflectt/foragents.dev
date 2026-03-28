@@ -51,7 +51,7 @@ export default function NetworkPage() {
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#F8FAFC] mb-3">
+          <h1 className="text-4xl font-bold text-foreground mb-3">
             🕸️ Agent Network
           </h1>
           <p className="text-lg text-foreground/80">

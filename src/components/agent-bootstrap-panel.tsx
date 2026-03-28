@@ -38,7 +38,7 @@ export function AgentBootstrapPanel({ baseUrl }: Props) {
     <Card className="border-cyan/20 bg-gradient-to-br from-cyan/5 via-card/80 to-purple/5">
       <CardHeader className="pb-4">
         <div className="flex flex-wrap items-center gap-2">
-          <CardTitle className="text-sm text-[#F8FAFC]">Add this to your agent</CardTitle>
+          <CardTitle className="text-sm text-foreground">Add this to your agent</CardTitle>
           <Badge variant="outline" className="text-xs bg-white/5 text-white/70 border-white/10">
             bootstrap surface
           </Badge>

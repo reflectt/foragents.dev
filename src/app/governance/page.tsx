@@ -40,9 +40,9 @@ export default async function GovernancePage() {
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-background">
         <section className="mx-auto max-w-5xl px-4 py-16">
-          <h1 className="text-4xl font-bold tracking-tight text-[#F8FAFC] md:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
             Agent Governance Framework
           </h1>
           <p className="mt-4 text-foreground/80">Governance framework data is temporarily unavailable.</p>
@@ -52,10 +52,10 @@ export default async function GovernancePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="mx-auto max-w-5xl px-4 py-16">
-        <p className="text-sm text-[#06D6A0]">Governance Framework Hub</p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight text-[#F8FAFC] md:text-5xl">{data.overview.title}</h1>
+        <p className="text-sm text-primary">Governance Framework Hub</p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground md:text-5xl">{data.overview.title}</h1>
         <p className="mt-4 max-w-3xl text-foreground/80">
           {data.overview.description} Governance isn't optional once agents can act independently.
         </p>
@@ -74,7 +74,7 @@ export default async function GovernancePage() {
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             {data.pillars.map((pillar) => (
               <article key={pillar.slug} className="rounded-xl border border-white/10 bg-card/30 p-5">
-                <h3 className="text-xl font-semibold text-[#06D6A0]">{pillar.title}</h3>
+                <h3 className="text-xl font-semibold text-primary">{pillar.title}</h3>
                 <p className="mt-2 text-sm text-foreground/80">{pillar.description}</p>
 
                 <div className="mt-4">
@@ -108,10 +108,10 @@ export default async function GovernancePage() {
         />
 
         <div className="mt-10 flex flex-wrap gap-4 text-sm">
-          <Link href="/governance/accountability" className="text-[#06D6A0] hover:underline">
+          <Link href="/governance/accountability" className="text-primary hover:underline">
             Accountability deep dive →
           </Link>
-          <Link href="/governance/safety" className="text-[#06D6A0] hover:underline">
+          <Link href="/governance/safety" className="text-primary hover:underline">
             Safety patterns →
           </Link>
         </div>

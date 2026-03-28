@@ -6,16 +6,16 @@ type Props = {
 };
 
 const typeLabels: Record<string, { label: string; color: string }> = {
-  skill: { label: "Skill", color: "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/25" },
-  mcp: { label: "MCP", color: "bg-[#06D6A0]/15 text-[#06D6A0] border-[#06D6A0]/25" },
-  agent: { label: "Agent", color: "bg-[#8B5CF6]/15 text-[#8B5CF6] border-[#8B5CF6]/25" },
-  "llms-txt": { label: "llms-txt", color: "bg-[#3B82F6]/15 text-[#3B82F6] border-[#3B82F6]/25" },
+  skill: { label: "Skill", color: "bg-solar/15 text-solar border-solar/25" },
+  mcp: { label: "MCP", color: "bg-primary/15 text-primary border-primary/25" },
+  agent: { label: "Agent", color: "bg-purple/15 text-purple border-purple/25" },
+  "llms-txt": { label: "llms-txt", color: "bg-electric-blue/15 text-electric-blue border-electric-blue/25" },
 };
 
 const statusBadges: Record<string, { label: string; color: string }> = {
-  pending: { label: "PENDING REVIEW", color: "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/25" },
-  approved: { label: "APPROVED", color: "bg-[#06D6A0]/15 text-[#06D6A0] border-[#06D6A0]/25" },
-  rejected: { label: "NOT APPROVED", color: "bg-[#6B7280]/15 text-[#6B7280] border-[#6B7280]/25" },
+  pending: { label: "PENDING REVIEW", color: "bg-solar/15 text-solar border-solar/25" },
+  approved: { label: "APPROVED", color: "bg-primary/15 text-primary border-primary/25" },
+  rejected: { label: "NOT APPROVED", color: "bg-muted-foreground/15 text-muted-foreground border-muted/25" },
 };
 
 function timeAgo(dateStr: string): string {
@@ -61,7 +61,7 @@ export function RecentSubmissions({ submissions }: Props) {
         </p>
         <Link
           href="/submit"
-          className="inline-flex items-center justify-center h-10 px-5 rounded-lg bg-cyan text-[#0A0E17] font-semibold text-sm hover:brightness-110 transition-all"
+          className="inline-flex items-center justify-center h-10 px-5 rounded-lg bg-cyan text-background font-semibold text-sm hover:brightness-110 transition-all"
         >
           Submit a Tool →
         </Link>
@@ -88,7 +88,7 @@ export function RecentSubmissions({ submissions }: Props) {
                 {directoryLink ? (
                   <Link
                     href={directoryLink}
-                    className="font-medium text-[#F8FAFC] hover:text-cyan transition-colors truncate"
+                    className="font-medium text-foreground hover:text-cyan transition-colors truncate"
                   >
                     {sub.name}
                   </Link>
@@ -97,12 +97,12 @@ export function RecentSubmissions({ submissions }: Props) {
                     href={sub.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-[#F8FAFC] hover:text-cyan transition-colors truncate"
+                    className="font-medium text-foreground hover:text-cyan transition-colors truncate"
                   >
                     {sub.name}
                   </a>
                 ) : (
-                  <span className="font-medium text-[#F8FAFC] truncate">
+                  <span className="font-medium text-foreground truncate">
                     {sub.name}
                   </span>
                 )}

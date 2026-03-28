@@ -224,7 +224,7 @@ export default function ResourcesPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -247,7 +247,7 @@ export default function ResourcesPage() {
             onClick={() => setFilterType("All")}
             className={`px-4 py-2 rounded-lg border transition-all ${
               filterType === "All"
-                ? "bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30"
+                ? "bg-primary/10 text-primary border-primary/30"
                 : "bg-white/5 text-muted-foreground border-white/10 hover:border-white/20"
             }`}
           >
@@ -284,10 +284,10 @@ export default function ResourcesPage() {
                       href={resource.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block p-5 rounded-xl border border-white/10 bg-card/50 hover:border-[#06D6A0]/50 hover:bg-card/70 transition-all group"
+                      className="block p-5 rounded-xl border border-white/10 bg-card/50 hover:border-primary/50 hover:bg-card/70 transition-all group"
                     >
                       <div className="flex items-start justify-between gap-3 mb-2">
-                        <h3 className="font-semibold text-base group-hover:text-[#06D6A0] transition-colors">
+                        <h3 className="font-semibold text-base group-hover:text-primary transition-colors">
                           {resource.title}
                         </h3>
                         <span
@@ -301,7 +301,7 @@ export default function ResourcesPage() {
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {resource.description}
                       </p>
-                      <div className="mt-3 flex items-center gap-1 text-xs text-[#06D6A0] font-mono">
+                      <div className="mt-3 flex items-center gap-1 text-xs text-primary font-mono">
                         Visit resource
                         <span className="group-hover:translate-x-1 transition-transform">
                           →
@@ -323,7 +323,7 @@ export default function ResourcesPage() {
             </p>
             <button
               onClick={() => setFilterType("All")}
-              className="mt-4 text-[#06D6A0] hover:underline"
+              className="mt-4 text-primary hover:underline"
             >
               Clear filter
             </button>
@@ -331,11 +331,11 @@ export default function ResourcesPage() {
         )}
 
         {/* CTA */}
-        <div className="mt-16 rounded-xl border border-white/10 bg-gradient-to-br from-[#06D6A0]/5 via-card/70 to-purple/5 p-6">
+        <div className="mt-16 rounded-xl border border-white/10 bg-gradient-to-br from-primary/5 via-card/70 to-purple/5 p-6">
           <h2 className="text-lg font-bold">Want to contribute?</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Know a great resource that&apos;s missing? Submit it via{" "}
-            <Link href="/submit" className="text-[#06D6A0] hover:underline">
+            <Link href="/submit" className="text-primary hover:underline">
               /submit
             </Link>{" "}
             or open a PR on{" "}
@@ -343,7 +343,7 @@ export default function ResourcesPage() {
               href="https://github.com/reflectt/foragents.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#06D6A0] hover:underline"
+              className="text-primary hover:underline"
             >
               GitHub
             </a>

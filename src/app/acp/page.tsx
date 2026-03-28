@@ -32,7 +32,7 @@ export default function AcpPage() {
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-[32px] md:text-[42px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-3">
+          <h1 className="text-[32px] md:text-[42px] font-bold tracking-[-0.02em] text-foreground mb-3">
             🛰️ ACP Protocol Directory
           </h1>
           <p className="text-lg text-foreground/80 mb-2">

@@ -20,14 +20,14 @@ export const metadata: Metadata = {
 
 export default function SecurityPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <div className="relative">
               <Shield className="w-20 h-20" style={{ color: '#06D6A0' }} />
-              <div className="absolute inset-0 bg-[#06D6A0] opacity-20 blur-xl rounded-full" />
+              <div className="absolute inset-0 bg-primary opacity-20 blur-xl rounded-full" />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#06D6A0' }}>
@@ -42,9 +42,9 @@ export default function SecurityPage() {
         {/* Security Sections Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-16">
           {/* Data Protection */}
-          <Card className="bg-[#0f0f0f] border-white/10 p-6 hover:border-[#06D6A0]/30 transition-colors">
+          <Card className="bg-background border-white/10 p-6 hover:border-primary/30 transition-colors">
             <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-[#06D6A0]/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg">
                 <Lock className="w-6 h-6" style={{ color: '#06D6A0' }} />
               </div>
               <div>
@@ -77,9 +77,9 @@ export default function SecurityPage() {
           </Card>
 
           {/* Authentication */}
-          <Card className="bg-[#0f0f0f] border-white/10 p-6 hover:border-[#06D6A0]/30 transition-colors">
+          <Card className="bg-background border-white/10 p-6 hover:border-primary/30 transition-colors">
             <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-[#06D6A0]/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg">
                 <CheckCircle2 className="w-6 h-6" style={{ color: '#06D6A0' }} />
               </div>
               <div>
@@ -112,9 +112,9 @@ export default function SecurityPage() {
           </Card>
 
           {/* Access Control */}
-          <Card className="bg-[#0f0f0f] border-white/10 p-6 hover:border-[#06D6A0]/30 transition-colors">
+          <Card className="bg-background border-white/10 p-6 hover:border-primary/30 transition-colors">
             <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-[#06D6A0]/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg">
                 <Users className="w-6 h-6" style={{ color: '#06D6A0' }} />
               </div>
               <div>
@@ -147,9 +147,9 @@ export default function SecurityPage() {
           </Card>
 
           {/* Infrastructure */}
-          <Card className="bg-[#0f0f0f] border-white/10 p-6 hover:border-[#06D6A0]/30 transition-colors">
+          <Card className="bg-background border-white/10 p-6 hover:border-primary/30 transition-colors">
             <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-[#06D6A0]/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg">
                 <Server className="w-6 h-6" style={{ color: '#06D6A0' }} />
               </div>
               <div>
@@ -160,7 +160,7 @@ export default function SecurityPage() {
               <div>
                 <h3 className="font-semibold text-white mb-2 flex items-center gap-2">
                   SOC 2 Type II Certified
-                  <Badge variant="outline" className="border-[#06D6A0] text-[#06D6A0]">Certified</Badge>
+                  <Badge variant="outline" className="border-primary text-primary">Certified</Badge>
                 </h3>
                 <p className="text-sm">
                   Annual third-party audits verify our security controls. SOC 2 Type II compliance 
@@ -185,9 +185,9 @@ export default function SecurityPage() {
           </Card>
 
           {/* Vulnerability Disclosure */}
-          <Card className="bg-[#0f0f0f] border-white/10 p-6 hover:border-[#06D6A0]/30 transition-colors">
+          <Card className="bg-background border-white/10 p-6 hover:border-primary/30 transition-colors">
             <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-[#06D6A0]/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg">
                 <FileText className="w-6 h-6" style={{ color: '#06D6A0' }} />
               </div>
               <div>
@@ -223,9 +223,9 @@ export default function SecurityPage() {
           </Card>
 
           {/* Compliance */}
-          <Card className="bg-[#0f0f0f] border-white/10 p-6 hover:border-[#06D6A0]/30 transition-colors">
+          <Card className="bg-background border-white/10 p-6 hover:border-primary/30 transition-colors">
             <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-[#06D6A0]/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg">
                 <Shield className="w-6 h-6" style={{ color: '#06D6A0' }} />
               </div>
               <div>
@@ -236,7 +236,7 @@ export default function SecurityPage() {
               <div>
                 <h3 className="font-semibold text-white mb-2 flex items-center gap-2">
                   GDPR Compliant
-                  <Badge variant="outline" className="border-[#06D6A0] text-[#06D6A0]">Compliant</Badge>
+                  <Badge variant="outline" className="border-primary text-primary">Compliant</Badge>
                 </h3>
                 <p className="text-sm">
                   Full compliance with EU General Data Protection Regulation. Data subject rights 
@@ -246,7 +246,7 @@ export default function SecurityPage() {
               <div>
                 <h3 className="font-semibold text-white mb-2 flex items-center gap-2">
                   SOC 2 Type II
-                  <Badge variant="outline" className="border-[#06D6A0] text-[#06D6A0]">Certified</Badge>
+                  <Badge variant="outline" className="border-primary text-primary">Certified</Badge>
                 </h3>
                 <p className="text-sm">
                   Independent validation of security, availability, processing integrity, 
@@ -256,7 +256,7 @@ export default function SecurityPage() {
               <div>
                 <h3 className="font-semibold text-white mb-2 flex items-center gap-2">
                   HIPAA Ready
-                  <Badge variant="outline" className="border-[#06D6A0] text-[#06D6A0]">Available</Badge>
+                  <Badge variant="outline" className="border-primary text-primary">Available</Badge>
                 </h3>
                 <p className="text-sm">
                   Business Associate Agreements (BAA) available for healthcare customers. 
@@ -274,7 +274,7 @@ export default function SecurityPage() {
 
         {/* Report Vulnerability CTA */}
         <div className="text-center">
-          <Card className="bg-[#0f0f0f] border-white/10 p-8 inline-block">
+          <Card className="bg-background border-white/10 p-8 inline-block">
             <h2 className="text-2xl font-semibold mb-4">Found a Security Issue?</h2>
             <p className="text-gray-400 mb-6 max-w-2xl">
               We take security seriously and appreciate responsible disclosure. Report vulnerabilities 

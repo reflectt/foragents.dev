@@ -75,7 +75,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
             </Link>
           </div>
 
-          <h1 className="text-4xl font-bold text-[#F8FAFC] mb-4">{template.name}</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-4">{template.name}</h1>
           <p className="text-lg text-muted-foreground mb-6">{template.description}</p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -105,7 +105,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
       <main className="max-w-5xl mx-auto px-4 py-12">
         {/* Tags */}
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-4">🏷️ Tags</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4">🏷️ Tags</h2>
           <div className="flex flex-wrap gap-2">
             {template.tags.map((tag) => (
               <Badge key={tag} variant="outline" className="text-sm">
@@ -117,7 +117,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
 
         {/* File Tree */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <FileCode className="w-6 h-6" />
             File Structure
           </h2>
@@ -141,7 +141,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         {/* Use This Template */}
         <section className="mb-12">
           <div className="rounded-lg border border-cyan/20 bg-cyan/5 p-8 text-center">
-            <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">🚀 Ready to Build?</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">🚀 Ready to Build?</h2>
             <p className="text-muted-foreground mb-6">
               Copy the code snippets above and follow the file structure to create your skill.
             </p>
@@ -154,7 +154,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
               </Link>
               <Link
                 href="/submit"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 text-[#F8FAFC] rounded-lg font-semibold hover:border-cyan/50 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 text-foreground rounded-lg font-semibold hover:border-cyan/50 transition-colors"
               >
                 Submit Your Skill
               </Link>
@@ -164,28 +164,28 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
 
         {/* Getting Started */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">📚 Getting Started</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">📚 Getting Started</h2>
           <div className="rounded-lg border border-white/5 bg-card/40 p-6 space-y-4">
             <div>
-              <h3 className="font-semibold text-[#F8FAFC] mb-2">1. Set up your project</h3>
+              <h3 className="font-semibold text-foreground mb-2">1. Set up your project</h3>
               <p className="text-sm text-muted-foreground">
                 Create the file structure shown above in your project directory.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-[#F8FAFC] mb-2">2. Copy the code</h3>
+              <h3 className="font-semibold text-foreground mb-2">2. Copy the code</h3>
               <p className="text-sm text-muted-foreground">
                 Use the code snippets as starting points. Click the copy button on each snippet to copy to your clipboard.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-[#F8FAFC] mb-2">3. Customize</h3>
+              <h3 className="font-semibold text-foreground mb-2">3. Customize</h3>
               <p className="text-sm text-muted-foreground">
                 Adapt the template to your specific needs. Add features, modify logic, and make it your own.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-[#F8FAFC] mb-2">4. Test & Deploy</h3>
+              <h3 className="font-semibold text-foreground mb-2">4. Test & Deploy</h3>
               <p className="text-sm text-muted-foreground">
                 Test your skill thoroughly, then deploy and share it with the community!
               </p>
@@ -196,7 +196,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
         {/* Related Templates */}
         {relatedTemplates.length > 0 && (
           <section>
-            <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">🔗 Related Templates</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">🔗 Related Templates</h2>
             <div className="grid gap-4 md:grid-cols-3">
               {relatedTemplates.map((related) => (
                 <Link
@@ -205,7 +205,7 @@ export default async function TemplateDetailPage({ params }: { params: Promise<{
                   className="rounded-lg border border-white/5 bg-card/40 p-4 hover:border-cyan/20 transition-all group"
                 >
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold text-[#F8FAFC] group-hover:text-cyan transition-colors">
+                    <h3 className="font-semibold text-foreground group-hover:text-cyan transition-colors">
                       {related.name}
                     </h3>
                     <Badge

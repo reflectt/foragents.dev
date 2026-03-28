@@ -143,7 +143,7 @@ export default function WorkflowsPage() {
     <div className="min-h-screen">
       <section className="max-w-5xl mx-auto px-4 py-12 space-y-6">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight text-[#F8FAFC]">Workflow Builder</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-foreground">Workflow Builder</h1>
           <p className="text-muted-foreground mt-2">
             Create, update, and manage reusable workflows with API-backed persistence.
           </p>

@@ -112,10 +112,10 @@ export default function TrustCenterClient() {
 
   return (
     <div className="space-y-8">
-      <Card className="bg-[#0f0f0f] border-white/10 p-6">
+      <Card className="bg-background border-white/10 p-6">
         <div className="flex flex-col md:flex-row gap-4 md:items-end md:justify-between">
           <div>
-            <h2 className="text-2xl font-semibold mb-2 text-[#06D6A0]">Trust Records</h2>
+            <h2 className="text-2xl font-semibold mb-2 text-primary">Trust Records</h2>
             <p className="text-gray-400 text-sm">Live records loaded from persistent JSON through /api/trust-center.</p>
           </div>
 
@@ -134,7 +134,7 @@ export default function TrustCenterClient() {
               className="rounded-md border border-white/15 bg-black/40 px-3 py-2 text-sm text-white"
             >
               {CATEGORY_OPTIONS.map((option) => (
-                <option key={option} value={option} className="bg-[#0f0f0f]">
+                <option key={option} value={option} className="bg-background">
                   {option === "all" ? "All categories" : option}
                 </option>
               ))}
@@ -144,8 +144,8 @@ export default function TrustCenterClient() {
       </Card>
 
       {loading ? (
-        <Card className="bg-[#0f0f0f] border-white/10 p-8 text-center">
-          <Loader2 className="w-6 h-6 animate-spin mx-auto mb-3 text-[#06D6A0]" />
+        <Card className="bg-background border-white/10 p-8 text-center">
+          <Loader2 className="w-6 h-6 animate-spin mx-auto mb-3 text-primary" />
           <p className="text-gray-300 text-sm">Loading trust records...</p>
         </Card>
       ) : null}
@@ -161,7 +161,7 @@ export default function TrustCenterClient() {
         <>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {(["security", "privacy", "compliance", "transparency"] as TrustCenterCategory[]).map((label) => (
-              <Card key={label} className="bg-[#0f0f0f] border-white/10 p-4">
+              <Card key={label} className="bg-background border-white/10 p-4">
                 <p className="text-xs uppercase text-gray-500">{label}</p>
                 <p className="mt-1 text-xl font-semibold">{totalByCategory[label] ?? 0}</p>
               </Card>
@@ -170,14 +170,14 @@ export default function TrustCenterClient() {
 
           <div className="space-y-4">
             {entries.map((entry) => (
-              <Card key={entry.id} className="bg-[#0f0f0f] border-white/10 p-5">
+              <Card key={entry.id} className="bg-background border-white/10 p-5">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
                   <div>
                     <h3 className="text-lg font-medium">{entry.title}</h3>
                     <p className="text-xs text-gray-500 mt-1">Updated {formatDate(entry.updatedAt)}</p>
                   </div>
                   <div className="flex gap-2">
-                    <Badge className="capitalize border bg-[#06D6A0]/15 border-[#06D6A0]/30 text-[#9CF6DA]">{entry.category}</Badge>
+                    <Badge className="capitalize border bg-primary/15 border-primary/30 text-primary/80">{entry.category}</Badge>
                     <Badge className={`capitalize border ${statusClass(entry.status)}`}>{entry.status}</Badge>
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export default function TrustCenterClient() {
             ))}
 
             {entries.length === 0 ? (
-              <Card className="bg-[#0f0f0f] border-white/10 p-8 text-center">
+              <Card className="bg-background border-white/10 p-8 text-center">
                 <p className="text-gray-400">No trust records match your current filters.</p>
               </Card>
             ) : null}
@@ -201,7 +201,7 @@ export default function TrustCenterClient() {
 
       <div className="text-center text-sm text-gray-500">
         <div className="inline-flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-[#06D6A0]" />
+          <ShieldCheck className="w-4 h-4 text-primary" />
           <span>Persistent trust records API is active for /trust-center.</span>
         </div>
       </div>

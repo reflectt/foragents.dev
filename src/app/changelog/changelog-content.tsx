@@ -118,7 +118,7 @@ export function ChangelogContent({ entries }: ChangelogContentProps) {
             onClick={() => setSelectedFilter(filter.id)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               selectedFilter === filter.id
-                ? "bg-cyan text-[#0A0E17]"
+                ? "bg-cyan text-background"
                 : "bg-white/5 text-muted-foreground hover:bg-white/10"
             }`}
           >

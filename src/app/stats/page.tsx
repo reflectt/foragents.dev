@@ -369,7 +369,7 @@ export default async function StatsPage() {
                 <div className="flex flex-wrap gap-3 mt-8">
                   <Link
                     href="/submit"
-                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-cyan text-[#0A0E17] font-semibold hover:brightness-110 transition-all"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-cyan text-background font-semibold hover:brightness-110 transition-all"
                   >
                     Submit a Skill
                   </Link>

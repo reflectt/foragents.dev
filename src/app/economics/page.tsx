@@ -39,9 +39,9 @@ export default async function EconomicsHubPage({ searchParams }: EconomicsPagePr
   }, { pricing: 0, costs: 0, revenue: 0, roi: 0 });
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <Badge className="mb-4 border border-[#06D6A0]/30 bg-[#06D6A0]/15 text-[#06D6A0]">
+        <Badge className="mb-4 border border-primary/30 bg-primary/15 text-primary">
           Economics Knowledge Base
         </Badge>
         <h1 className="mb-4 text-4xl font-bold md:text-5xl">Economics playbooks for AI products</h1>
@@ -74,7 +74,7 @@ export default async function EconomicsHubPage({ searchParams }: EconomicsPagePr
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-foreground/70">Showing {filtered.length} entries</p>
           <div className="flex items-center gap-4 text-sm">
-            <Link href="/economics/compare" className="text-[#06D6A0] hover:underline">
+            <Link href="/economics/compare" className="text-primary hover:underline">
               Compare categories →
             </Link>
             <a href="/api/economics" className="text-foreground/70 hover:text-white">

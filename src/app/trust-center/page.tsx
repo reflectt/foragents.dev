@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function TrustCenterPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <TrustCenterClient />
       </div>

@@ -28,7 +28,7 @@ function categoryBadgeClass(category: CommunityCategory) {
     help: "border-amber-500/30 text-amber-400 bg-amber-500/10",
     showcase: "border-purple/30 text-purple bg-purple/10",
     feedback: "border-cyan-500/30 text-cyan-300 bg-cyan-500/10",
-    ideas: "border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10",
+    ideas: "border-primary/30 text-primary bg-primary/10",
   };
 
   return classes[category];
@@ -128,7 +128,7 @@ export function DiscussionDetailClient({ id }: { id: string }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-background">
         <div className="max-w-4xl mx-auto px-4 py-10">
           <Card className="bg-card/20 border-white/10">
             <CardContent className="py-12 text-center text-muted-foreground">Loading thread...</CardContent>
@@ -140,9 +140,9 @@ export function DiscussionDetailClient({ id }: { id: string }) {
 
   if (error && !thread) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
+      <div className="min-h-screen bg-background">
         <div className="max-w-4xl mx-auto px-4 py-10">
-          <Link href="/community" className="text-sm text-white/60 hover:text-[#06D6A0] transition-colors">
+          <Link href="/community" className="text-sm text-white/60 hover:text-primary transition-colors">
             ← Back to discussions
           </Link>
 
@@ -162,10 +162,10 @@ export function DiscussionDetailClient({ id }: { id: string }) {
   if (!thread) return null;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 py-10">
         <div className="mb-8">
-          <Link href="/community" className="text-sm text-white/60 hover:text-[#06D6A0] transition-colors">
+          <Link href="/community" className="text-sm text-white/60 hover:text-primary transition-colors">
             ← Back to discussions
           </Link>
         </div>
@@ -260,7 +260,7 @@ export function DiscussionDetailClient({ id }: { id: string }) {
                 <Button
                   type="submit"
                   disabled={replySubmitting}
-                  className="bg-gradient-to-r from-[#06D6A0] to-purple text-[#0a0a0a] font-semibold hover:brightness-110"
+                  className="bg-gradient-to-r from-primary to-purple text-background font-semibold hover:brightness-110"
                 >
                   {replySubmitting ? "Posting..." : "Post Reply"}
                 </Button>

@@ -192,7 +192,7 @@ export function RequestsClient() {
       ? "text-emerald-300 border-emerald-500/20 bg-emerald-500/5"
       : notice?.type === "error"
         ? "text-red-400 border-red-500/20 bg-red-500/5"
-        : "text-cyan border-[#06D6A0]/20 bg-[#06D6A0]/5";
+        : "text-cyan border-primary/20 bg-primary/5";
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
@@ -249,7 +249,7 @@ export function RequestsClient() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-gradient-to-r from-[#06D6A0] to-purple text-[#0a0a0a] font-semibold hover:brightness-110"
+                  className="w-full bg-gradient-to-r from-primary to-purple text-background font-semibold hover:brightness-110"
                 >
                   {submitting ? "Submitting…" : "Submit request"}
                 </Button>
@@ -267,7 +267,7 @@ export function RequestsClient() {
             </CardContent>
           </Card>
 
-          <div className="mt-6 p-4 rounded-xl border border-white/10 bg-gradient-to-br from-[#06D6A0]/5 via-card/60 to-purple/10">
+          <div className="mt-6 p-4 rounded-xl border border-white/10 bg-gradient-to-br from-primary/5 via-card/60 to-purple/10">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <div className="text-sm font-semibold">Live community queue</div>
@@ -275,7 +275,7 @@ export function RequestsClient() {
               </div>
               <Badge
                 variant="outline"
-                className="border-[#06D6A0]/30 text-[#06D6A0] bg-[#06D6A0]/10"
+                className="border-primary/30 text-primary bg-primary/10"
               >
                 {totalVotes} votes
               </Badge>
@@ -332,7 +332,7 @@ export function RequestsClient() {
               {requests.map((r) => (
                 <Card
                   key={r.id}
-                  className="bg-card/30 border-white/10 hover:border-[#06D6A0]/30 transition-colors"
+                  className="bg-card/30 border-white/10 hover:border-primary/30 transition-colors"
                 >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-4">
@@ -351,7 +351,7 @@ export function RequestsClient() {
                       <div className="flex items-center gap-2 shrink-0">
                         <Badge
                           variant="outline"
-                          className="bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/30"
+                          className="bg-primary/10 text-primary border-primary/30"
                         >
                           {r.votes} upvotes
                         </Badge>

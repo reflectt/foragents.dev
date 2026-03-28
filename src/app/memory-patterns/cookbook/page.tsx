@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function MemoryCookbookPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <section className="border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight">Memory Cookbook</h1>

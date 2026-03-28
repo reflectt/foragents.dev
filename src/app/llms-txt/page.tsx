@@ -40,7 +40,7 @@ export default function LlmsTxtPage() {
           <Badge className="mb-4 bg-cyan/10 text-cyan border-cyan/20 font-mono text-xs">
             FIRST ON THE WEB
           </Badge>
-          <h1 className="text-[32px] md:text-[42px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-3">
+          <h1 className="text-[32px] md:text-[42px] font-bold tracking-[-0.02em] text-foreground mb-3">
             📄 llms.txt Directory
           </h1>
           <p className="text-lg text-foreground/80 mb-2">
@@ -88,7 +88,7 @@ export default function LlmsTxtPage() {
             >
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="inline-block font-mono text-[11px] font-bold uppercase tracking-[0.08em] px-2 py-1 rounded-md bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20 border">
+                  <span className="inline-block font-mono text-[11px] font-bold uppercase tracking-[0.08em] px-2 py-1 rounded-md bg-primary/10 text-primary border-primary/20 border">
                     {entry.sections.length} sections
                   </span>
                   <a

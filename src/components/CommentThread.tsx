@@ -32,11 +32,11 @@ const COLLAPSED_THRESHOLD = 5;
 
 // Background colors per nesting level
 const depthBgColors = [
-  "bg-[#0F1420]",
-  "bg-[#0D1219]",
-  "bg-[#0B1015]",
-  "bg-[#0A0E12]",
-  "bg-[#0A0E12]",
+  "bg-card",
+  "bg-background",
+  "bg-background",
+  "bg-background",
+  "bg-background",
 ];
 
 export function CommentThread({
@@ -108,7 +108,7 @@ export function CommentThread({
   // Hidden/moderated state
   if (comment.status === "hidden") {
     return (
-      <div className={cn("rounded-xl border border-[#1A1F2E] p-4", bgColor, className)}>
+      <div className={cn("rounded-xl border border-border p-4", bgColor, className)}>
         <p className="text-sm text-muted-foreground">
           🚫 This comment has been hidden by moderators.
         </p>
@@ -122,7 +122,7 @@ export function CommentThread({
   // Deleted state
   if (comment.status === "removed") {
     return (
-      <div className={cn("rounded-xl border border-[#1A1F2E] p-4", bgColor, className)}>
+      <div className={cn("rounded-xl border border-border p-4", bgColor, className)}>
         <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
           <span>[deleted]</span>
           <span>·</span>
@@ -133,7 +133,7 @@ export function CommentThread({
         </p>
         {/* Preserve thread structure - show replies */}
         {replies.length > 0 && (
-          <div className="mt-4 ml-4 md:ml-6 space-y-3 border-l border-[#1A1F2E] pl-4">
+          <div className="mt-4 ml-4 md:ml-6 space-y-3 border-l border-border pl-4">
             {replies.map(reply => (
               <CommentThread
                 key={reply.id}
@@ -158,7 +158,7 @@ export function CommentThread({
     <article
       id={`comment-${comment.id}`}
       className={cn(
-        "rounded-xl border border-[#1A1F2E] p-4 transition-all duration-500",
+        "rounded-xl border border-border p-4 transition-all duration-500",
         bgColor,
         isHighlighted && "ring-2 ring-cyan/30 bg-cyan/5",
         depth > 0 && "ml-4 md:ml-6",

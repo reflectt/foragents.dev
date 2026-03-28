@@ -76,7 +76,7 @@ export function CompareTray() {
                 aria-disabled={!canCompare}
                 className={`inline-flex items-center justify-center h-9 px-4 rounded-md text-xs font-semibold transition-all ${
                   canCompare
-                    ? "bg-cyan text-[#0A0E17] hover:brightness-110"
+                    ? "bg-cyan text-background hover:brightness-110"
                     : "bg-white/5 text-muted-foreground cursor-not-allowed"
                 }`}
                 onClick={(e) => {

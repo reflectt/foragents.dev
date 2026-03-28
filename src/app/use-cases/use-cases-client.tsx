@@ -197,7 +197,7 @@ export default function UseCasesClient() {
           <select
             value={industry}
             onChange={(event) => setIndustry(event.target.value as Industry)}
-            className="mt-2 w-full rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2"
+            className="mt-2 w-full rounded-lg border border-white/10 bg-background px-3 py-2"
           >
             {INDUSTRY_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -213,7 +213,7 @@ export default function UseCasesClient() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search by title, description, skills, tags, or difficulty"
-            className="mt-2 w-full rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2"
+            className="mt-2 w-full rounded-lg border border-white/10 bg-background px-3 py-2"
           />
         </div>
       </section>
@@ -221,15 +221,15 @@ export default function UseCasesClient() {
       <section className="grid gap-6 md:grid-cols-3">
         <div className="rounded-xl border border-white/10 bg-slate-900/25 p-5 text-center">
           <p className="text-sm text-slate-400">Visible use cases</p>
-          <p className="text-3xl font-bold text-[#06D6A0] mt-1">{useCases.length}</p>
+          <p className="text-3xl font-bold text-primary mt-1">{useCases.length}</p>
         </div>
         <div className="rounded-xl border border-white/10 bg-slate-900/25 p-5 text-center">
           <p className="text-sm text-slate-400">Industries represented</p>
-          <p className="text-3xl font-bold text-[#06D6A0] mt-1">{industriesRepresented}</p>
+          <p className="text-3xl font-bold text-primary mt-1">{industriesRepresented}</p>
         </div>
         <div className="rounded-xl border border-white/10 bg-slate-900/25 p-5 text-center">
           <p className="text-sm text-slate-400">Difficulties represented</p>
-          <p className="text-3xl font-bold text-[#06D6A0] mt-1">{difficultiesRepresented}</p>
+          <p className="text-3xl font-bold text-primary mt-1">{difficultiesRepresented}</p>
         </div>
       </section>
 
@@ -260,9 +260,9 @@ export default function UseCasesClient() {
                 className="rounded-xl border border-white/10 bg-slate-900/30 p-5 space-y-4"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
-                  <h2 className="text-xl font-semibold text-[#F8FAFC]">{entry.title}</h2>
+                  <h2 className="text-xl font-semibold text-foreground">{entry.title}</h2>
                   <div className="flex gap-2">
-                    <span className="text-xs px-2 py-1 rounded-full border border-[#06D6A0]/30 bg-[#06D6A0]/10 text-[#06D6A0]">
+                    <span className="text-xs px-2 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary">
                       {entry.industry}
                     </span>
                     <span className="text-xs px-2 py-1 rounded-full border border-white/20 bg-white/5 text-slate-200">
@@ -293,7 +293,7 @@ export default function UseCasesClient() {
                     {entry.tags.map((tag) => (
                       <span
                         key={`${entry.id}-${tag}`}
-                        className="text-xs px-2 py-1 rounded-md border border-[#06D6A0]/30 bg-[#06D6A0]/10 text-[#06D6A0]"
+                        className="text-xs px-2 py-1 rounded-md border border-primary/30 bg-primary/10 text-primary"
                       >
                         #{tag}
                       </span>
@@ -311,7 +311,7 @@ export default function UseCasesClient() {
       </section>
 
       <section className="rounded-2xl border border-white/10 bg-slate-900/30 p-6 md:p-8">
-        <h2 className="text-2xl font-bold text-[#F8FAFC] mb-2">Share Your Use Case</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Share Your Use Case</h2>
         <p className="text-slate-400 mb-6">
           Submit your case study with clear skills and tags so others can discover it.
         </p>
@@ -322,7 +322,7 @@ export default function UseCasesClient() {
             onChange={(event) => setTitle(event.target.value)}
             required
             placeholder="Title"
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
+            className="w-full px-4 py-3 rounded-lg bg-background border border-white/10"
           />
 
           <textarea
@@ -331,14 +331,14 @@ export default function UseCasesClient() {
             required
             rows={4}
             placeholder="Description"
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 resize-none"
+            className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 resize-none"
           />
 
           <div className="grid md:grid-cols-2 gap-4">
             <select
               value={submitIndustry}
               onChange={(event) => setSubmitIndustry(event.target.value as Exclude<Industry, "all">)}
-              className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
+              className="w-full px-4 py-3 rounded-lg bg-background border border-white/10"
             >
               {INDUSTRY_OPTIONS.filter((option) => option.value !== "all").map((option) => (
                 <option key={option.value} value={option.value}>
@@ -350,7 +350,7 @@ export default function UseCasesClient() {
             <select
               value={difficulty}
               onChange={(event) => setDifficulty(event.target.value as Difficulty)}
-              className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
+              className="w-full px-4 py-3 rounded-lg bg-background border border-white/10"
             >
               {DIFFICULTY_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -365,7 +365,7 @@ export default function UseCasesClient() {
             onChange={(event) => setSkillsInput(event.target.value)}
             required
             placeholder="Skills (comma separated): monitoring, incident-response, ci-cd"
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
+            className="w-full px-4 py-3 rounded-lg bg-background border border-white/10"
           />
 
           <input
@@ -373,14 +373,14 @@ export default function UseCasesClient() {
             onChange={(event) => setTagsInput(event.target.value)}
             required
             placeholder="Tags (comma separated): reliability, automation"
-            className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10"
+            className="w-full px-4 py-3 rounded-lg bg-background border border-white/10"
           />
 
           <div className="flex items-center justify-between gap-4">
             <button
               type="submit"
               disabled={submitting}
-              className="px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold disabled:opacity-70"
+              className="px-6 py-3 rounded-lg bg-primary text-background font-semibold disabled:opacity-70"
             >
               {submitting ? "Submitting..." : "Submit Use Case"}
             </button>

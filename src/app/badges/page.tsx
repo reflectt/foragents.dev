@@ -223,15 +223,15 @@ export default function BadgesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-[#06D6A0]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-16">
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F8FAFC] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
               🏅 Badges & Achievements
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -254,7 +254,7 @@ export default function BadgesPage() {
                 id="badge-category"
                 value={category}
                 onChange={(event) => setCategory(event.target.value as "all" | BadgeCategory)}
-                className="w-full h-10 rounded-md border border-white/10 bg-[#0f0f0f] px-3 text-sm"
+                className="w-full h-10 rounded-md border border-white/10 bg-background px-3 text-sm"
               >
                 <option value="all">All categories</option>
                 {categories.map((item) => (
@@ -274,7 +274,7 @@ export default function BadgesPage() {
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search badges by name, criteria, or description"
-                className="bg-[#0f0f0f] border-white/10"
+                className="bg-background border-white/10"
               />
             </div>
 
@@ -287,7 +287,7 @@ export default function BadgesPage() {
                 value={agentHandle}
                 onChange={(event) => setAgentHandle(event.target.value)}
                 placeholder="agent-handle"
-                className="bg-[#0f0f0f] border-white/10"
+                className="bg-background border-white/10"
               />
             </div>
           </CardContent>
@@ -300,7 +300,7 @@ export default function BadgesPage() {
           {awardMessage ? (
             <>
               <span>•</span>
-              <span className="text-[#06D6A0]">{awardMessage}</span>
+              <span className="text-primary">{awardMessage}</span>
             </>
           ) : null}
         </div>
@@ -308,9 +308,9 @@ export default function BadgesPage() {
 
       <section className="max-w-7xl mx-auto px-4 pb-14">
         {isLoading ? (
-          <Card className="bg-[#0f0f0f] border-white/10 p-10 text-center text-muted-foreground">Loading badges...</Card>
+          <Card className="bg-background border-white/10 p-10 text-center text-muted-foreground">Loading badges...</Card>
         ) : error ? (
-          <Card className="bg-[#0f0f0f] border-white/10 p-10 text-center">
+          <Card className="bg-background border-white/10 p-10 text-center">
             <p className="text-red-400 mb-4">{error}</p>
             <Button
               variant="outline"
@@ -324,7 +324,7 @@ export default function BadgesPage() {
             </Button>
           </Card>
         ) : badges.length === 0 ? (
-          <Card className="bg-[#0f0f0f] border-white/10 p-10 text-center text-muted-foreground">
+          <Card className="bg-background border-white/10 p-10 text-center text-muted-foreground">
             No badges found for your current filters.
           </Card>
         ) : (
@@ -359,7 +359,7 @@ export default function BadgesPage() {
                       Details
                     </Button>
                     <Button
-                      className="flex-1 bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black"
+                      className="flex-1 bg-primary hover:bg-primary/90 text-black"
                       disabled={awardState[badge.id]}
                       onClick={() => void awardBadge(badge.id)}
                     >
@@ -381,7 +381,7 @@ export default function BadgesPage() {
           }
         }}
       >
-        <DialogContent className="bg-[#0f0f0f] border-white/10 sm:max-w-xl">
+        <DialogContent className="bg-background border-white/10 sm:max-w-xl">
           {detailLoading ? (
             <p className="text-muted-foreground">Loading badge detail...</p>
           ) : detailError ? (
@@ -405,12 +405,12 @@ export default function BadgesPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold text-[#F8FAFC] mb-1">Criteria</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-1">Criteria</h3>
                   <p className="text-sm text-muted-foreground">{badgeDetail.criteria}</p>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold text-[#F8FAFC] mb-2">Earners</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-2">Earners</h3>
                   {badgeDetail.earners.length === 0 ? (
                     <p className="text-sm text-muted-foreground">No earners yet.</p>
                   ) : (
@@ -425,7 +425,7 @@ export default function BadgesPage() {
                 </div>
 
                 <Button
-                  className="w-full bg-[#06D6A0] hover:bg-[#06D6A0]/90 text-black"
+                  className="w-full bg-primary hover:bg-primary/90 text-black"
                   disabled={awardState[badgeDetail.id]}
                   onClick={() => void awardBadge(badgeDetail.id)}
                 >

@@ -100,7 +100,7 @@ export function AddCommentForm({
   if (!isAuthenticated) {
     return (
       <div className={cn(
-        "rounded-xl border border-[#1A1F2E] bg-[#0F1420] p-6",
+        "rounded-xl border border-border bg-card p-6",
         className
       )}>
         <div className="flex flex-col items-center text-center">
@@ -114,7 +114,7 @@ export function AddCommentForm({
           <Button onClick={onAuthRequest} className="mb-4">
             Connect Agent Identity
           </Button>
-          <div className="w-full h-px bg-[#1A1F2E] my-4" />
+          <div className="w-full h-px bg-secondary my-4" />
           <p className="text-[13px] text-muted-foreground">
             Don&apos;t have an agent.json?{" "}
             <a href="/docs/agent-json" className="text-cyan hover:underline">
@@ -130,7 +130,7 @@ export function AddCommentForm({
   if (variant === "inline") {
     return (
       <div className={cn(
-        "rounded-lg bg-[#1A1F2E] p-3 mt-3",
+        "rounded-lg bg-secondary p-3 mt-3",
         className
       )}>
         <div className="flex items-center justify-between mb-2">
@@ -151,7 +151,7 @@ export function AddCommentForm({
             onChange={(e) => setContent(e.target.value)}
             placeholder="Your reply..."
             disabled={isSubmitting}
-            className="w-full min-h-[80px] bg-[#0A0E17] border border-[#1A1F2E] rounded-lg px-3 py-2 text-[15px] text-foreground placeholder:text-muted-foreground resize-y focus:outline-none focus:border-[#2A3040] focus:ring-2 focus:ring-cyan/10 disabled:opacity-50"
+            className="w-full min-h-[80px] bg-background border border-border rounded-lg px-3 py-2 text-[15px] text-foreground placeholder:text-muted-foreground resize-y focus:outline-none focus:border-input focus:ring-2 focus:ring-cyan/10 disabled:opacity-50"
           />
           {error && (
             <p className="text-sm text-aurora-pink mt-2">{error}</p>
@@ -181,7 +181,7 @@ export function AddCommentForm({
   // Standard form variant
   return (
     <div className={cn(
-      "rounded-xl border border-[#1A1F2E] bg-[#0F1420] p-4",
+      "rounded-xl border border-border bg-card p-4",
       className
     )}>
       {/* Identity header */}
@@ -203,7 +203,7 @@ export function AddCommentForm({
           onChange={(e) => setContent(e.target.value)}
           placeholder="Share your thoughts..."
           disabled={isSubmitting}
-          className="w-full min-h-[100px] max-h-[400px] bg-[#0A0E17] border border-[#1A1F2E] rounded-lg px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground resize-y focus:outline-none focus:border-[#2A3040] focus:ring-2 focus:ring-cyan/10 disabled:opacity-50"
+          className="w-full min-h-[100px] max-h-[400px] bg-background border border-border rounded-lg px-3 py-3 text-[15px] text-foreground placeholder:text-muted-foreground resize-y focus:outline-none focus:border-input focus:ring-2 focus:ring-cyan/10 disabled:opacity-50"
         />
         
         {error && (
@@ -281,12 +281,12 @@ export function AgentAuthModal({ isOpen, onClose, onVerify }: AuthModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-[#0A0E17]/80"
+        className="absolute inset-0 bg-background/80"
         onClick={onClose}
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-[440px] mx-4 rounded-2xl border border-[#1A1F2E] bg-[#0F1420] p-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <div className="relative w-full max-w-[440px] mx-4 rounded-2xl border border-border bg-card p-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-white"
@@ -315,7 +315,7 @@ export function AgentAuthModal({ isOpen, onClose, onVerify }: AuthModalProps) {
               onChange={(e) => setHandle(e.target.value)}
               placeholder="kai@reflectt.ai"
               disabled={isVerifying}
-              className="w-full bg-[#0A0E17] border border-[#1A1F2E] rounded-lg pl-8 pr-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#2A3040] focus:ring-2 focus:ring-cyan/10 disabled:opacity-50"
+              className="w-full bg-background border border-border rounded-lg pl-8 pr-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-input focus:ring-2 focus:ring-cyan/10 disabled:opacity-50"
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2">

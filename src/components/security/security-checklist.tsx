@@ -73,7 +73,7 @@ export function SecurityChecklist() {
   const completionPercentage = Math.round((checkedItems.size / checklistItems.length) * 100);
 
   return (
-    <Card className="bg-[#0f0f0f] border-white/10 p-8">
+    <Card className="bg-background border-white/10 p-8">
       <div className="mb-6">
         <h2 className="text-3xl font-semibold mb-2">Security Checklist for AI Agents</h2>
         <p className="text-gray-400">
@@ -103,7 +103,7 @@ export function SecurityChecklist() {
           <div
             key={item.id}
             onClick={() => toggleItem(item.id)}
-            className="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:border-[#06D6A0]/30 transition-all cursor-pointer group"
+            className="flex items-start gap-4 p-4 rounded-lg border border-white/5 hover:border-primary/30 transition-all cursor-pointer group"
           >
             <div className="flex-shrink-0 mt-1">
               {checkedItems.has(item.id) ? (
@@ -127,7 +127,7 @@ export function SecurityChecklist() {
       </div>
 
       {completionPercentage === 100 && (
-        <div className="mt-6 p-4 bg-[#06D6A0]/10 border border-[#06D6A0]/30 rounded-lg">
+        <div className="mt-6 p-4 bg-primary/10 border border-primary/30 rounded-lg">
           <p className="text-center font-semibold" style={{ color: '#06D6A0' }}>
             ✓ Excellent! All security checks completed.
           </p>

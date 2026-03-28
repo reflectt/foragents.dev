@@ -231,21 +231,21 @@ export default function AuditComplianceClient() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden min-h-[280px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#06D6A0]/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[160px]" />
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 py-16 w-full">
           <Link
             href="/compliance"
-            className="text-sm text-foreground/60 hover:text-[#06D6A0] transition-colors mb-4 inline-block"
+            className="text-sm text-foreground/60 hover:text-primary transition-colors mb-4 inline-block"
           >
             ← Back to Compliance Hub
           </Link>
-          <Badge className="mb-4 bg-[#06D6A0]/10 text-[#06D6A0] border-[#06D6A0]/20">Persistent Audit Data</Badge>
-          <h1 className="text-[36px] md:text-[48px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-3">Compliance Audit Tracker</h1>
+          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Persistent Audit Data</Badge>
+          <h1 className="text-[36px] md:text-[48px] font-bold tracking-[-0.02em] text-foreground mb-3">Compliance Audit Tracker</h1>
           <p className="text-lg text-foreground/80 max-w-3xl">
             Review framework controls, filter findings, and submit new audit entries backed by persistent data.
           </p>
@@ -392,7 +392,7 @@ export default function AuditComplianceClient() {
                                 href={audit.evidence}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="text-[#06D6A0] hover:underline break-all"
+                                className="text-primary hover:underline break-all"
                               >
                                 View evidence
                               </a>
@@ -533,7 +533,7 @@ export default function AuditComplianceClient() {
               </div>
 
               <div className="md:col-span-2 flex flex-col gap-2">
-                <Button type="submit" disabled={submitting} className="w-fit bg-[#06D6A0] text-[#04140e] hover:bg-[#05c790]">
+                <Button type="submit" disabled={submitting} className="w-fit bg-primary text-background hover:bg-primary/90">
                   {submitting ? "Submitting..." : "Submit finding"}
                 </Button>
 

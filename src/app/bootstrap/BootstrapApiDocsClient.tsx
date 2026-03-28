@@ -44,7 +44,7 @@ export default function BootstrapApiDocsClient() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] px-4 py-10 text-white">
+    <main className="min-h-screen bg-background px-4 py-10 text-white">
       <div className="mx-auto max-w-4xl space-y-8">
         <section className="space-y-3">
           <h1 className="text-3xl font-bold md:text-4xl">Agent Bootstrap API</h1>
@@ -77,7 +77,7 @@ export default function BootstrapApiDocsClient() {
             <button
               type="button"
               onClick={tryEndpoint}
-              className="rounded-lg bg-[#06D6A0] px-4 py-2 text-sm font-semibold text-black hover:bg-[#06D6A0]/90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-black hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
               disabled={loading}
             >
               {loading ? "Calling..." : "Try it"}

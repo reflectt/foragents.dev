@@ -34,10 +34,10 @@ export const metadata: Metadata = {
 
 export default function ShowcasePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <main id="main-content" className="max-w-7xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
-          <h1 className="text-5xl font-bold text-[#F8FAFC] mb-4">🚀 Community Showcase</h1>
+          <h1 className="text-5xl font-bold text-foreground mb-4">🚀 Community Showcase</h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             Discover what builders are shipping, vote on what should trend, then submit your own
             project for the next wave of agent developers.

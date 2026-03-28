@@ -365,12 +365,12 @@ export default function LocalHostingPage() {
   const setup = setups.find((s) => s.id === selectedSetup) || setups[0];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-16 text-center">
         <Link
           href="/hosting"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#06D6A0] mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary mb-6 transition-colors"
         >
           ← Back to Hosting Overview
         </Link>
@@ -389,7 +389,7 @@ export default function LocalHostingPage() {
               onClick={() => setSelectedSetup(s.id)}
               className={`px-4 py-2 rounded-lg border transition-all ${
                 selectedSetup === s.id
-                  ? "bg-[#06D6A0]/10 border-[#06D6A0] text-white"
+                  ? "bg-primary/10 border-primary text-white"
                   : "bg-gray-900/50 border-gray-800 text-gray-400 hover:border-gray-700"
               }`}
             >
@@ -475,7 +475,7 @@ export default function LocalHostingPage() {
               <ol className="space-y-2">
                 {setup.installation.steps.map((step, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-gray-300">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#06D6A0]/10 text-[#06D6A0] font-semibold flex-shrink-0">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary font-semibold flex-shrink-0">
                       {i + 1}
                     </span>
                     {step}
@@ -507,7 +507,7 @@ export default function LocalHostingPage() {
               <ul className="space-y-2">
                 {platform.tips.map((tip, i) => (
                   <li key={i} className="text-sm text-gray-400 flex items-start gap-2">
-                    <span className="text-[#06D6A0] mt-1">→</span>
+                    <span className="text-primary mt-1">→</span>
                     <span>{tip}</span>
                   </li>
                 ))}
@@ -631,7 +631,7 @@ df -h`}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Link
             href="/hosting/containers"
-            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">🐳</div>
             <h3 className="text-lg font-semibold text-white mb-2">Containerize Your Agent</h3>
@@ -642,7 +642,7 @@ df -h`}
 
           <Link
             href="/guides"
-            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-[#06D6A0]/50 transition-all"
+            className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:bg-gray-900 hover:border-primary/50 transition-all"
           >
             <div className="text-3xl mb-3">📖</div>
             <h3 className="text-lg font-semibold text-white mb-2">Agent Configuration</h3>

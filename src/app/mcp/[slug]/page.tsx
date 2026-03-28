@@ -45,7 +45,7 @@ export default async function McpServerDetailPage({ params }: PageProps) {
           <Badge variant="outline" className="bg-white/5 text-white/70 border-white/10">
             {server.category}
           </Badge>
-          <h1 className="text-3xl font-bold text-[#F8FAFC]">{server.name}</h1>
+          <h1 className="text-3xl font-bold text-foreground">{server.name}</h1>
           <p className="text-foreground/80 leading-relaxed">{server.description}</p>
         </div>
 
@@ -56,7 +56,7 @@ export default async function McpServerDetailPage({ params }: PageProps) {
         <Separator className="my-8 opacity-10" />
 
         <section>
-          <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Repository</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-3">Repository</h2>
           <a
             href={server.repo_url}
             target="_blank"

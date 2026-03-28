@@ -57,7 +57,7 @@ export function NewsletterSignup() {
             />
             <Button 
               type="submit" 
-              className="bg-cyan text-[#0A0E17] hover:brightness-110 font-semibold"
+              className="bg-cyan text-background hover:brightness-110 font-semibold"
               aria-label="Subscribe to newsletter"
             >
               Subscribe

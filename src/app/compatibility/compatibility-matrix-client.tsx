@@ -137,7 +137,7 @@ export function CompatibilityMatrixClient() {
 
   return (
     <div className="space-y-6">
-      <Card className="border-white/10 bg-[#0D1322]">
+      <Card className="border-white/10 bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-lg text-slate-100">Filters</CardTitle>
         </CardHeader>
@@ -146,7 +146,7 @@ export function CompatibilityMatrixClient() {
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-wide text-slate-400">Client</p>
               <Select value={clientFilter} onValueChange={setClientFilter}>
-                <SelectTrigger className="w-full border-white/10 bg-[#0A0E17] text-slate-100">
+                <SelectTrigger className="w-full border-white/10 bg-background text-slate-100">
                   <SelectValue placeholder="Select client" />
                 </SelectTrigger>
                 <SelectContent>
@@ -166,7 +166,7 @@ export function CompatibilityMatrixClient() {
                 value={statusFilter}
                 onValueChange={(value) => setStatusFilter(value as "all" | CompatibilityStatus)}
               >
-                <SelectTrigger className="w-full border-white/10 bg-[#0A0E17] text-slate-100">
+                <SelectTrigger className="w-full border-white/10 bg-background text-slate-100">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -184,7 +184,7 @@ export function CompatibilityMatrixClient() {
             <p className="text-xs text-slate-400">
               Showing {filteredRows.length} of {data.rows.length} servers
             </p>
-            <Button asChild size="sm" className="bg-cyan-500 text-[#071019] hover:bg-cyan-400">
+            <Button asChild size="sm" className="bg-cyan-500 text-background hover:bg-cyan-400">
               <Link
                 href="https://github.com/reflectt/foragents.dev/issues/new?template=blank.yml&title=%5BCompatibility%5D%20Client%20x%20Server%20report"
                 target="_blank"
@@ -197,11 +197,11 @@ export function CompatibilityMatrixClient() {
         </CardContent>
       </Card>
 
-      <div className="overflow-x-auto rounded-xl border border-white/10 bg-[#0D1322]">
+      <div className="overflow-x-auto rounded-xl border border-white/10 bg-card">
         <table className="min-w-[900px] w-full border-collapse text-sm">
           <thead>
             <tr className="border-b border-white/10 bg-white/[0.02]">
-              <th className="sticky left-0 z-10 bg-[#0F1526] px-4 py-3 text-left font-semibold text-slate-200">Server</th>
+              <th className="sticky left-0 z-10 bg-card px-4 py-3 text-left font-semibold text-slate-200">Server</th>
               {visibleClients.map((client) => (
                 <th key={client.id} className="px-4 py-3 text-left font-semibold text-slate-200">
                   <div>{client.name}</div>
@@ -213,7 +213,7 @@ export function CompatibilityMatrixClient() {
           <tbody>
             {filteredRows.map((row) => (
               <tr key={row.slug} className="border-b border-white/5 align-top">
-                <td className="sticky left-0 bg-[#0D1322] px-4 py-3">
+                <td className="sticky left-0 bg-card px-4 py-3">
                   <div className="font-medium text-slate-100">{row.name}</div>
                   <div className="mt-1 text-xs capitalize text-slate-400">{row.category}</div>
                   {row.notes ? <div className="mt-2 text-xs text-slate-500">{row.notes}</div> : null}
@@ -234,13 +234,13 @@ export function CompatibilityMatrixClient() {
         </table>
       </div>
 
-      <Card className="border-white/10 bg-[#0D1322]">
+      <Card className="border-white/10 bg-card">
         <CardHeader>
           <CardTitle className="text-lg text-slate-100">Known issues</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {data.knownIssues.map((issue) => (
-            <div key={issue.id} className="rounded-lg border border-white/10 bg-[#0A0E17] p-3">
+            <div key={issue.id} className="rounded-lg border border-white/10 bg-background p-3">
               <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="outline" className={ISSUE_SEVERITY_STYLES[issue.severity]}>
                   {issue.severity}

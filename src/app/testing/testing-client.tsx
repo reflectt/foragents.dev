@@ -80,11 +80,11 @@ export function TestingClient({ data }: { data: TestingData }) {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "beginner":
-        return "bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30";
+        return "bg-primary/20 text-primary border-primary/30";
       case "intermediate":
-        return "bg-[#3B82F6]/20 text-[#3B82F6] border-[#3B82F6]/30";
+        return "bg-electric-blue/20 text-electric-blue border-electric-blue/30";
       case "advanced":
-        return "bg-[#F59E0B]/20 text-[#F59E0B] border-[#F59E0B]/30";
+        return "bg-solar/20 text-solar border-solar/30";
       default:
         return "bg-foreground/20 text-foreground border-foreground/30";
     }
@@ -93,7 +93,7 @@ export function TestingClient({ data }: { data: TestingData }) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "passed":
-        return "bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30";
+        return "bg-primary/20 text-primary border-primary/30";
       case "failed":
         return "bg-red-500/20 text-red-500 border-red-500/30";
       case "skipped":
@@ -132,12 +132,12 @@ export function TestingClient({ data }: { data: TestingData }) {
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[#8B5CF6]/5 rounded-full blur-[160px]" />
-          <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-[#06D6A0]/3 rounded-full blur-[120px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-purple/5 rounded-full blur-[160px]" />
+          <div className="absolute top-1/3 left-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-primary/3 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-20 w-full">
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-2">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-2">
             Agent Testing Framework
           </h1>
           <p className="text-xl text-foreground/80 mb-6">
@@ -147,7 +147,7 @@ export function TestingClient({ data }: { data: TestingData }) {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowConfig(!showConfig)}
-              className="px-6 py-3 rounded-lg bg-[#8B5CF6] text-white font-semibold hover:brightness-110 transition-all"
+              className="px-6 py-3 rounded-lg bg-purple text-white font-semibold hover:brightness-110 transition-all"
             >
               {showConfig ? "Hide Configuration" : "Configure Tests"}
             </button>
@@ -349,7 +349,7 @@ export function TestingClient({ data }: { data: TestingData }) {
           onClick={() => setSelectedTemplate(null)}
         >
           <div
-            className="bg-[#0a0a0a] border border-white/10 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-background border border-white/10 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-6 border-b border-white/10">
@@ -388,7 +388,7 @@ export function TestingClient({ data }: { data: TestingData }) {
                 <ol className="space-y-2">
                   {selectedTemplate.steps.map((step, i) => (
                     <li key={i} className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#8B5CF6]/20 text-[#8B5CF6] flex items-center justify-center text-sm font-semibold">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple/20 text-purple flex items-center justify-center text-sm font-semibold">
                         {i + 1}
                       </span>
                       <span className="text-foreground/80">{step}</span>
@@ -402,7 +402,7 @@ export function TestingClient({ data }: { data: TestingData }) {
                 <ul className="space-y-2">
                   {selectedTemplate.assertions.map((assertion, i) => (
                     <li key={i} className="flex gap-3">
-                      <span className="text-[#06D6A0]">✓</span>
+                      <span className="text-primary">✓</span>
                       <span className="text-foreground/80">{assertion}</span>
                     </li>
                   ))}
@@ -424,7 +424,7 @@ export function TestingClient({ data }: { data: TestingData }) {
                 </div>
               </div>
 
-              <button className="w-full px-6 py-3 rounded-lg bg-[#8B5CF6] text-white font-semibold hover:brightness-110 transition-all">
+              <button className="w-full px-6 py-3 rounded-lg bg-purple text-white font-semibold hover:brightness-110 transition-all">
                 Run This Test
               </button>
             </div>
@@ -438,9 +438,9 @@ export function TestingClient({ data }: { data: TestingData }) {
         
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-          <Card className="bg-gradient-to-br from-[#06D6A0]/10 to-card/30 border-[#06D6A0]/20">
+          <Card className="bg-gradient-to-br from-primary/10 to-card/30 border-primary/20">
             <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-[#06D6A0] mb-1">
+              <div className="text-2xl font-bold text-primary mb-1">
                 {latestRun.results.passed}
               </div>
               <p className="text-xs text-muted-foreground">Passed</p>
@@ -465,27 +465,27 @@ export function TestingClient({ data }: { data: TestingData }) {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[#3B82F6]/10 to-card/30 border-[#3B82F6]/20">
+          <Card className="bg-gradient-to-br from-electric-blue/10 to-card/30 border-electric-blue/20">
             <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-[#3B82F6] mb-1">
+              <div className="text-2xl font-bold text-electric-blue mb-1">
                 {latestRun.results.total}
               </div>
               <p className="text-xs text-muted-foreground">Total</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[#8B5CF6]/10 to-card/30 border-[#8B5CF6]/20">
+          <Card className="bg-gradient-to-br from-purple/10 to-card/30 border-purple/20">
             <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-[#8B5CF6] mb-1">
+              <div className="text-2xl font-bold text-purple mb-1">
                 {(latestRun.results.duration / 1000).toFixed(1)}s
               </div>
               <p className="text-xs text-muted-foreground">Duration</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[#F59E0B]/10 to-card/30 border-[#F59E0B]/20">
+          <Card className="bg-gradient-to-br from-solar/10 to-card/30 border-solar/20">
             <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-[#F59E0B] mb-1">
+              <div className="text-2xl font-bold text-solar mb-1">
                 {latestRun.results.coverage.toFixed(1)}%
               </div>
               <p className="text-xs text-muted-foreground">Coverage</p>
@@ -502,13 +502,13 @@ export function TestingClient({ data }: { data: TestingData }) {
             <div className="space-y-4">
               <div className="flex items-center justify-between text-sm mb-2">
                 <span className="text-muted-foreground">Overall Coverage</span>
-                <span className="font-bold text-[#06D6A0]">
+                <span className="font-bold text-primary">
                   {latestRun.results.coverage.toFixed(1)}%
                 </span>
               </div>
               <div className="relative w-full h-8 bg-card/20 rounded-full overflow-hidden">
                 <div
-                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#06D6A0] to-[#3B82F6] rounded-full transition-all"
+                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-primary to-electric-blue rounded-full transition-all"
                   style={{ width: `${latestRun.results.coverage}%` }}
                 />
               </div>
@@ -517,7 +517,7 @@ export function TestingClient({ data }: { data: TestingData }) {
               <div className="grid grid-cols-3 gap-2 mt-4">
                 <div className="text-center">
                   <div className="text-sm text-muted-foreground mb-1">Pass Rate</div>
-                  <div className="text-lg font-bold text-[#06D6A0]">
+                  <div className="text-lg font-bold text-primary">
                     {((latestRun.results.passed / latestRun.results.total) * 100).toFixed(0)}%
                   </div>
                 </div>
@@ -601,7 +601,7 @@ export function TestingClient({ data }: { data: TestingData }) {
                           {isLatest && (
                             <Badge
                               variant="outline"
-                              className="bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30"
+                              className="bg-primary/20 text-primary border-primary/30"
                             >
                               Latest
                             </Badge>
@@ -621,7 +621,7 @@ export function TestingClient({ data }: { data: TestingData }) {
                             <span
                               className={`text-sm ${
                                 coverageDiff > 0
-                                  ? "text-[#06D6A0]"
+                                  ? "text-primary"
                                   : coverageDiff < 0
                                     ? "text-red-500"
                                     : "text-muted-foreground"
@@ -648,7 +648,7 @@ export function TestingClient({ data }: { data: TestingData }) {
                       </div>
                       <div>
                         <div className="text-xs text-muted-foreground mb-1">Passed</div>
-                        <div className="text-sm text-[#06D6A0] font-semibold">
+                        <div className="text-sm text-primary font-semibold">
                           {run.results.passed}
                         </div>
                       </div>
@@ -669,7 +669,7 @@ export function TestingClient({ data }: { data: TestingData }) {
                     </div>
 
                     {previousRun && (
-                      <button className="text-sm text-[#8B5CF6] hover:underline">
+                      <button className="text-sm text-purple hover:underline">
                         Compare with previous run →
                       </button>
                     )}
@@ -685,9 +685,9 @@ export function TestingClient({ data }: { data: TestingData }) {
 
       {/* CTA Section */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#8B5CF6]/20 bg-gradient-to-br from-[#8B5CF6]/5 via-card/80 to-[#06D6A0]/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#8B5CF6]/10 rounded-full blur-[80px]" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#06D6A0]/10 rounded-full blur-[60px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-purple/20 bg-gradient-to-br from-purple/5 via-card/80 to-primary/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-purple/10 rounded-full blur-[80px]" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -701,7 +701,7 @@ export function TestingClient({ data }: { data: TestingData }) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="/pricing"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#8B5CF6] text-white font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-purple text-white font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Upgrade to Premium →
               </a>

@@ -104,7 +104,7 @@ export function CreateArtifactForm() {
         {error && <p className="text-sm text-red-400">{error}</p>}
 
         <div className="flex items-center gap-3">
-          <Button type="submit" disabled={loading} className="bg-cyan text-[#0A0E17] hover:brightness-110">
+          <Button type="submit" disabled={loading} className="bg-cyan text-background hover:brightness-110">
             {loading ? "Creating…" : "Publish"}
           </Button>
           <p className="text-xs text-muted-foreground font-mono">

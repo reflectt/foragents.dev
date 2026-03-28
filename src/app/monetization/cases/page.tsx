@@ -307,12 +307,12 @@ const caseStudies: CaseStudy[] = [
 
 export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-purple/5 rounded-full blur-[160px]" />
-          <div className="absolute top-1/3 right-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-[#06D6A0]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/3 right-1/3 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 py-20 text-center">
@@ -321,7 +321,7 @@ export default function CaseStudiesPage() {
               ← Back to Monetization Guide
             </Badge>
           </Link>
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             📊 Agent Revenue Case Studies
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
@@ -474,14 +474,14 @@ export default function CaseStudiesPage() {
 
       {/* Summary */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <Card className="bg-gradient-to-br from-purple/5 via-card/80 to-[#06D6A0]/5 border-[#06D6A0]/30">
+        <Card className="bg-gradient-to-br from-purple/5 via-card/80 to-primary/5 border-primary/30">
           <CardHeader>
             <CardTitle className="text-2xl">Key Takeaways Across All Cases</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-black/40 rounded-lg p-4">
-                <div className="font-semibold text-[#06D6A0] mb-2">✓ What Worked</div>
+                <div className="font-semibold text-primary mb-2">✓ What Worked</div>
                 <ul className="space-y-1.5 text-sm text-foreground/80">
                   <li>• Free tiers with clear usage limits drive conversion</li>
                   <li>• Value-based pricing beats cost-plus pricing</li>
@@ -519,8 +519,8 @@ export default function CaseStudiesPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="relative overflow-hidden rounded-2xl border border-[#06D6A0]/20 bg-gradient-to-br from-[#06D6A0]/5 via-card/80 to-cyan-500/5">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#06D6A0]/10 rounded-full blur-[80px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card/80 to-cyan-500/5">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/10 rounded-full blur-[60px]" />
 
           <div className="relative p-8 md:p-12 text-center">
@@ -534,7 +534,7 @@ export default function CaseStudiesPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/monetization/calculator"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Open Pricing Calculator →
               </Link>

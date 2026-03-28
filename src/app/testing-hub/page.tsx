@@ -57,7 +57,7 @@ export default async function TestingHubPage() {
   const recent = entries.slice(0, 6);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <section className="border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">

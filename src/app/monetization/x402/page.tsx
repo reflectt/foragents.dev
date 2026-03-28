@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function X402Page() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[400px] flex items-center">
         <div className="absolute inset-0">
@@ -21,7 +21,7 @@ export default function X402Page() {
               ← Back to Monetization Guide
             </Badge>
           </Link>
-          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-4">
+          <h1 className="text-[40px] md:text-[56px] font-bold tracking-[-0.02em] text-foreground mb-4">
             ⚡ x402 Payment Protocol
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
@@ -86,7 +86,7 @@ export default function X402Page() {
       {/* Implementation */}
       <section className="max-w-4xl mx-auto px-4 py-12 space-y-8">
         <div>
-          <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">Implementation Guide</h2>
+          <h2 className="text-3xl font-bold mb-6 text-foreground">Implementation Guide</h2>
           
           {/* Server-Side */}
           <Card className="bg-card/30 border-purple-500/20 mb-8">
@@ -153,7 +153,7 @@ app.listen(3000);`}
           </Card>
 
           {/* Client-Side */}
-          <Card className="bg-card/30 border-[#06D6A0]/20 mb-8">
+          <Card className="bg-card/30 border-primary/20 mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
                 <span className="text-2xl">🤖</span>
@@ -165,8 +165,8 @@ app.listen(3000);`}
                 When your agent receives a 402, automatically deposit funds and retry.
               </p>
 
-              <div className="bg-[#06D6A0]/10 border border-[#06D6A0]/30 rounded-lg p-4">
-                <p className="text-sm font-semibold text-[#06D6A0] mb-3">TypeScript Agent Example:</p>
+              <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+                <p className="text-sm font-semibold text-primary mb-3">TypeScript Agent Example:</p>
                 <pre className="text-xs overflow-x-auto bg-black/60 p-4 rounded text-foreground/90">
 {`interface PaymentRequiredError {
   balance: number;
@@ -270,8 +270,8 @@ const result = await callAgentService(
                   </div>
                 </div>
 
-                <div className="bg-black/40 border border-[#06D6A0]/30 rounded-lg p-4">
-                  <div className="font-semibold text-[#06D6A0] mb-2">Stripe Balance</div>
+                <div className="bg-black/40 border border-primary/30 rounded-lg p-4">
+                  <div className="font-semibold text-primary mb-2">Stripe Balance</div>
                   <p className="text-xs text-foreground/70 mb-3">
                     Pre-funded balance managed via Stripe Connect
                   </p>
@@ -343,17 +343,17 @@ async function topUpBalance(userId: string, amount: number) {
 
       {/* Flow Diagram */}
       <section className="max-w-4xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">x402 Flow Diagram</h2>
+        <h2 className="text-3xl font-bold mb-6 text-foreground">x402 Flow Diagram</h2>
         
         <Card className="bg-card/30 border-white/10">
           <CardContent className="pt-6">
             <div className="space-y-4">
               {/* Request Flow */}
               <div className="flex items-center gap-4">
-                <div className="bg-[#06D6A0]/20 text-[#06D6A0] px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
+                <div className="bg-primary/20 text-primary px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
                   Agent
                 </div>
-                <div className="flex-1 h-0.5 bg-gradient-to-r from-[#06D6A0] to-purple-500"></div>
+                <div className="flex-1 h-0.5 bg-gradient-to-r from-primary to-purple-500"></div>
                 <div className="text-sm text-foreground/70">POST /api/task</div>
                 <div className="flex-1 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"></div>
                 <div className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
@@ -372,12 +372,12 @@ async function topUpBalance(userId: string, amount: number) {
 
               {/* 402 Response */}
               <div className="flex items-center gap-4">
-                <div className="bg-[#06D6A0]/20 text-[#06D6A0] px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
+                <div className="bg-primary/20 text-primary px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
                   Agent
                 </div>
                 <div className="flex-1 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500"></div>
                 <div className="text-sm text-red-400 font-semibold">402 Payment Required</div>
-                <div className="flex-1 h-0.5 bg-gradient-to-r from-purple-500 to-[#06D6A0]"></div>
+                <div className="flex-1 h-0.5 bg-gradient-to-r from-purple-500 to-primary"></div>
                 <div className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
                   Service
                 </div>
@@ -386,18 +386,18 @@ async function topUpBalance(userId: string, amount: number) {
               {/* Deposit */}
               <div className="flex items-center gap-4">
                 <div className="w-[100px]"></div>
-                <div className="flex-1 border-l-2 border-[#06D6A0]/50 pl-4 py-2">
-                  <div className="text-sm text-[#06D6A0] font-semibold">2. Deposit Funds</div>
+                <div className="flex-1 border-l-2 border-primary/50 pl-4 py-2">
+                  <div className="text-sm text-primary font-semibold">2. Deposit Funds</div>
                   <div className="text-xs text-foreground/60">amount = $1.03 (shortfall + buffer)</div>
                 </div>
               </div>
 
               {/* Retry Request */}
               <div className="flex items-center gap-4">
-                <div className="bg-[#06D6A0]/20 text-[#06D6A0] px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
+                <div className="bg-primary/20 text-primary px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
                   Agent
                 </div>
-                <div className="flex-1 h-0.5 bg-gradient-to-r from-[#06D6A0] to-purple-500"></div>
+                <div className="flex-1 h-0.5 bg-gradient-to-r from-primary to-purple-500"></div>
                 <div className="text-sm text-foreground/70">POST /api/task (retry)</div>
                 <div className="flex-1 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"></div>
                 <div className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
@@ -416,12 +416,12 @@ async function topUpBalance(userId: string, amount: number) {
 
               {/* Success Response */}
               <div className="flex items-center gap-4">
-                <div className="bg-[#06D6A0]/20 text-[#06D6A0] px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
+                <div className="bg-primary/20 text-primary px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
                   Agent
                 </div>
                 <div className="flex-1 h-0.5 bg-gradient-to-r from-cyan-500 to-green-500"></div>
                 <div className="text-sm text-green-400 font-semibold">200 OK + Result</div>
-                <div className="flex-1 h-0.5 bg-gradient-to-r from-green-500 to-[#06D6A0]"></div>
+                <div className="flex-1 h-0.5 bg-gradient-to-r from-green-500 to-primary"></div>
                 <div className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-lg font-mono text-sm font-semibold whitespace-nowrap">
                   Service
                 </div>
@@ -435,7 +435,7 @@ async function topUpBalance(userId: string, amount: number) {
 
       {/* Comparison */}
       <section className="max-w-4xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">x402 vs Traditional Billing</h2>
+        <h2 className="text-3xl font-bold mb-6 text-foreground">x402 vs Traditional Billing</h2>
         
         <Card className="bg-card/30 border-white/10">
           <CardContent className="pt-6">
@@ -500,10 +500,10 @@ async function topUpBalance(userId: string, amount: number) {
 
       {/* When to Use */}
       <section className="max-w-4xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">When to Use x402</h2>
+        <h2 className="text-3xl font-bold mb-6 text-foreground">When to Use x402</h2>
         
         <div className="grid md:grid-cols-2 gap-6">
-          <Card className="bg-gradient-to-br from-green-500/10 to-[#06D6A0]/5 border-green-500/30">
+          <Card className="bg-gradient-to-br from-green-500/10 to-primary/5 border-green-500/30">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-green-400">
                 <span className="text-2xl">✓</span>
@@ -570,7 +570,7 @@ async function topUpBalance(userId: string, amount: number) {
           </Card>
         </div>
 
-        <Card className="bg-card/30 border-[#06D6A0]/20 mt-6">
+        <Card className="bg-card/30 border-primary/20 mt-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-3">
               <span className="text-2xl">🎯</span>
@@ -595,8 +595,8 @@ async function topUpBalance(userId: string, amount: number) {
                 </p>
               </div>
             </div>
-            <div className="bg-[#06D6A0]/10 border border-[#06D6A0]/30 rounded-lg p-4 mt-4">
-              <p className="text-sm text-[#06D6A0]">
+            <div className="bg-primary/10 border border-primary/30 rounded-lg p-4 mt-4">
+              <p className="text-sm text-primary">
                 <strong>Best of both worlds:</strong> Let users choose. Pay-as-you-go for flexibility, 
                 subscription for committed users who want discounts and predictability.
               </p>
@@ -625,7 +625,7 @@ async function topUpBalance(userId: string, amount: number) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/monetization/calculator"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
               >
                 Calculate Your Pricing →
               </Link>

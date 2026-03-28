@@ -31,7 +31,7 @@ export function ColorSwatch({ name, hex, description, usage }: ColorSwatchProps)
         <div className="flex items-start justify-between mb-2">
           <div>
             <h3 className="font-semibold text-foreground">{name}</h3>
-            <code className="text-sm font-mono text-[#06D6A0]">{hex}</code>
+            <code className="text-sm font-mono text-primary">{hex}</code>
           </div>
         </div>
         <p className="text-sm text-muted-foreground mb-1">{description}</p>

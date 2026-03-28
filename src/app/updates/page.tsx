@@ -261,7 +261,7 @@ function formatDate(dateStr: string): string {
 
 export default function UpdatesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="max-w-3xl mx-auto px-4 py-12">
         <div className="mb-12">
@@ -274,11 +274,11 @@ export default function UpdatesPage() {
         </div>
 
         {/* Subscribe CTA */}
-        <Card className="bg-gradient-to-r from-[#06D6A0]/10 to-purple/10 border-[#06D6A0]/20 mb-12">
+        <Card className="bg-gradient-to-r from-primary/10 to-purple/10 border-primary/20 mb-12">
           <CardContent className="p-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex-1">
-                <h3 className="text-lg font-bold mb-1 text-[#06D6A0]">
+                <h3 className="text-lg font-bold mb-1 text-primary">
                   Subscribe to Updates
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -291,7 +291,7 @@ export default function UpdatesPage() {
                   placeholder="your@email.com"
                   className="bg-background/50 border-white/10 flex-1 sm:w-64"
                 />
-                <Button className="bg-[#06D6A0] text-[#0a0a0a] hover:bg-[#06D6A0]/90">
+                <Button className="bg-primary text-background hover:bg-primary/90">
                   Subscribe
                 </Button>
               </div>
@@ -304,20 +304,20 @@ export default function UpdatesPage() {
           {updates.map((update, index) => (
             <Card
               key={update.version}
-              className="bg-card/50 border-white/5 hover:border-[#06D6A0]/20 transition-all"
+              className="bg-card/50 border-white/5 hover:border-primary/20 transition-all"
             >
               <CardContent className="p-6">
                 {/* Version Header */}
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4 pb-4 border-b border-white/5">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
-                      <h2 className="text-2xl font-bold text-[#06D6A0]">
+                      <h2 className="text-2xl font-bold text-primary">
                         {update.version}
                       </h2>
                       {index === 0 && (
                         <Badge
                           variant="outline"
-                          className="bg-[#06D6A0]/20 text-[#06D6A0] border-[#06D6A0]/30"
+                          className="bg-primary/20 text-primary border-primary/30"
                         >
                           Latest
                         </Badge>
@@ -356,7 +356,7 @@ export default function UpdatesPage() {
                               key={idx}
                               className="flex items-start gap-2 text-sm text-muted-foreground"
                             >
-                              <span className="text-[#06D6A0] mt-1.5">•</span>
+                              <span className="text-primary mt-1.5">•</span>
                               <span>{change.description}</span>
                             </li>
                           ))}
@@ -377,13 +377,13 @@ export default function UpdatesPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/requests"
-              className="inline-flex items-center justify-center h-10 px-6 rounded-lg bg-[#06D6A0] text-[#0a0a0a] font-semibold text-sm hover:brightness-110 transition-all"
+              className="inline-flex items-center justify-center h-10 px-6 rounded-lg bg-primary text-background font-semibold text-sm hover:brightness-110 transition-all"
             >
               Request a Feature
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center h-10 px-6 rounded-lg border border-[#06D6A0] text-[#06D6A0] font-semibold text-sm hover:bg-[#06D6A0]/10 transition-all"
+              className="inline-flex items-center justify-center h-10 px-6 rounded-lg border border-primary text-primary font-semibold text-sm hover:bg-primary/10 transition-all"
             >
               Report an Issue
             </Link>
@@ -398,10 +398,10 @@ export default function UpdatesPage() {
         <h3 className="text-xl font-bold mb-4">Stay Connected</h3>
         <div className="grid gap-4 md:grid-cols-2">
           <Link href="/changelog">
-            <Card className="bg-card/50 border-white/5 hover:border-[#06D6A0]/20 transition-all group h-full">
+            <Card className="bg-card/50 border-white/5 hover:border-primary/20 transition-all group h-full">
               <CardContent className="p-6">
                 <div className="text-2xl mb-3">📝</div>
-                <h4 className="font-bold mb-2 group-hover:text-[#06D6A0] transition-colors">
+                <h4 className="font-bold mb-2 group-hover:text-primary transition-colors">
                   Changelog
                 </h4>
                 <p className="text-sm text-muted-foreground">
@@ -412,10 +412,10 @@ export default function UpdatesPage() {
           </Link>
 
           <Link href="/roadmap">
-            <Card className="bg-card/50 border-white/5 hover:border-[#06D6A0]/20 transition-all group h-full">
+            <Card className="bg-card/50 border-white/5 hover:border-primary/20 transition-all group h-full">
               <CardContent className="p-6">
                 <div className="text-2xl mb-3">🗺️</div>
-                <h4 className="font-bold mb-2 group-hover:text-[#06D6A0] transition-colors">
+                <h4 className="font-bold mb-2 group-hover:text-primary transition-colors">
                   Roadmap
                 </h4>
                 <p className="text-sm text-muted-foreground">

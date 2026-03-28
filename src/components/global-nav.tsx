@@ -134,7 +134,7 @@ function NavDropdown({
         onClick={() => setIsOpen(!isOpen)}
         className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1 ${
           hasActiveItem || isOpen
-            ? "bg-[#06D6A0]/10 text-[#06D6A0]"
+            ? "bg-primary/10 text-primary"
             : "text-slate-300 hover:text-white hover:bg-white/5"
         }`}
         aria-expanded={isOpen}
@@ -153,7 +153,7 @@ function NavDropdown({
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 top-full mt-1 w-56 bg-[#0a0a0a]/95 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl z-50 py-2">
+        <div className="absolute left-0 top-full mt-1 w-56 bg-background/95 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl z-50 py-2">
           {group.items.map((item) => (
             <Link
               key={item.href}
@@ -161,7 +161,7 @@ function NavDropdown({
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-2 text-sm transition-colors ${
                 isActive(item.href)
-                  ? "bg-[#06D6A0]/10 text-[#06D6A0]"
+                  ? "bg-primary/10 text-primary"
                   : "text-slate-300 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -192,7 +192,7 @@ function MobileNavSection({
         onClick={() => setIsExpanded(!isExpanded)}
         className={`w-full flex items-center justify-between px-4 py-3 text-sm font-semibold transition-colors ${
           hasActiveItem
-            ? "text-[#06D6A0]"
+            ? "text-primary"
             : "text-slate-200 hover:text-white"
         }`}
         aria-expanded={isExpanded}
@@ -217,7 +217,7 @@ function MobileNavSection({
               href={item.href}
               className={`block px-6 py-2 text-sm transition-colors ${
                 isActive(item.href)
-                  ? "text-[#06D6A0] bg-[#06D6A0]/10"
+                  ? "text-primary bg-primary/10"
                   : "text-slate-300 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -264,7 +264,7 @@ export function GlobalNav() {
   return (
     <>
       {/* Global Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5" role="navigation" aria-label="Global navigation">
+      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/5" role="navigation" aria-label="Global navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -274,8 +274,8 @@ export function GlobalNav() {
               aria-label="forAgents.dev home"
             >
               <span className="text-xl font-bold">
-                <span className="text-[#F8FAFC]">forAgents</span>
-                <span className="text-[#06D6A0]">.dev</span>
+                <span className="text-foreground">forAgents</span>
+                <span className="text-primary">.dev</span>
               </span>
             </Link>
 
@@ -293,7 +293,7 @@ export function GlobalNav() {
                   href={link.href}
                   className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     isActive(link.href)
-                      ? "bg-[#06D6A0]/10 text-[#06D6A0]"
+                      ? "bg-primary/10 text-primary"
                       : "text-slate-300 hover:text-white hover:bg-white/5"
                   }`}
                 >
@@ -304,7 +304,7 @@ export function GlobalNav() {
               {/* Sign In Button */}
               <Link
                 href="/auth/signin"
-                className="ml-2 px-4 py-2 text-sm font-semibold bg-[#06D6A0] text-[#0a0a0a] rounded-lg hover:brightness-110 transition-all"
+                className="ml-2 px-4 py-2 text-sm font-semibold bg-primary text-background rounded-lg hover:brightness-110 transition-all"
               >
                 Sign In
               </Link>
@@ -349,7 +349,7 @@ export function GlobalNav() {
           
           {/* Slide-out Menu */}
           <div 
-            className="md:hidden fixed top-16 right-0 bottom-0 w-80 bg-[#0a0a0a]/95 backdrop-blur-md border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto"
+            className="md:hidden fixed top-16 right-0 bottom-0 w-80 bg-background/95 backdrop-blur-md border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto"
             role="navigation"
             aria-label="Mobile navigation"
           >
@@ -363,7 +363,7 @@ export function GlobalNav() {
                     onClick={() => setMobileOpen(false)}
                     className={`block px-4 py-3 text-sm font-medium rounded-lg mb-2 transition-colors ${
                       isActive(link.href)
-                        ? "bg-[#06D6A0]/10 text-[#06D6A0]"
+                        ? "bg-primary/10 text-primary"
                         : "text-slate-300 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -384,7 +384,7 @@ export function GlobalNav() {
                 <Link
                   href="/auth/signin"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full px-4 py-3 text-sm font-semibold text-center bg-[#06D6A0] text-[#0a0a0a] rounded-lg hover:brightness-110 transition-all"
+                  className="block w-full px-4 py-3 text-sm font-semibold text-center bg-primary text-background rounded-lg hover:brightness-110 transition-all"
                 >
                   Sign In
                 </Link>

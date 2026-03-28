@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 
 export default function SignInPage() {
   return (
-    <main id="main-content" className="min-h-screen bg-[#0A0E17] text-slate-100">
+    <main id="main-content" className="min-h-screen bg-background text-slate-100">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid w-full max-w-5xl gap-10 lg:grid-cols-2 lg:items-center">
           <section>
@@ -27,7 +27,7 @@ export default function SignInPage() {
               <CardDescription className="text-slate-400">Use GitHub or your email to enter the platform.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button className="h-11 w-full bg-cyan-400 text-[#0A0E17] hover:bg-cyan-300" type="button">
+              <Button className="h-11 w-full bg-cyan-400 text-background hover:bg-cyan-300" type="button">
                 <Github className="h-4 w-4" aria-hidden="true" />
                 Sign in with GitHub
               </Button>

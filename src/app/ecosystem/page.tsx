@@ -119,14 +119,14 @@ export default function EcosystemPage() {
   }, [data]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <section className="relative overflow-hidden min-h-[320px] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#06D6A0]/5 rounded-full blur-[150px]" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-primary/5 rounded-full blur-[150px]" />
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 py-16 w-full">
-          <h1 className="text-[38px] md:text-[52px] font-bold tracking-[-0.02em] text-[#F8FAFC] mb-3">
+          <h1 className="text-[38px] md:text-[52px] font-bold tracking-[-0.02em] text-foreground mb-3">
             Ecosystem Map
           </h1>
           <p className="text-lg text-foreground/80 mb-8">
@@ -142,35 +142,35 @@ export default function EcosystemPage() {
               <Card className="bg-card/30 border-white/10">
                 <CardContent className="pt-5">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Nodes</div>
-                  <div className="text-3xl font-bold text-[#06D6A0]">{data.totals.ecosystemNodes}</div>
+                  <div className="text-3xl font-bold text-primary">{data.totals.ecosystemNodes}</div>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/30 border-white/10">
                 <CardContent className="pt-5">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Skills</div>
-                  <div className="text-3xl font-bold text-[#8B5CF6]">{data.totals.skillCount}</div>
+                  <div className="text-3xl font-bold text-purple">{data.totals.skillCount}</div>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/30 border-white/10">
                 <CardContent className="pt-5">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Agents</div>
-                  <div className="text-3xl font-bold text-[#3B82F6]">{data.totals.agentCount}</div>
+                  <div className="text-3xl font-bold text-electric-blue">{data.totals.agentCount}</div>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/30 border-white/10">
                 <CardContent className="pt-5">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">MCP Servers</div>
-                  <div className="text-3xl font-bold text-[#F59E0B]">{data.totals.mcpServerCount}</div>
+                  <div className="text-3xl font-bold text-solar">{data.totals.mcpServerCount}</div>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/30 border-white/10">
                 <CardContent className="pt-5">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Avg Growth</div>
-                  <div className="text-3xl font-bold text-[#EC4899]">+{totalGrowth}%</div>
+                  <div className="text-3xl font-bold text-aurora-pink">+{totalGrowth}%</div>
                 </CardContent>
               </Card>
             </div>

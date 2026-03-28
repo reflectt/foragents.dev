@@ -47,7 +47,7 @@ export function renderCommentLineToHtml(line: string): string {
   processed = processed.replace(/\*(.+?)\*/g, "<em>$1</em>");
   processed = processed.replace(
     /`([^`]+)`/g,
-    '<code class="px-1.5 py-0.5 rounded bg-[#1A1F2E] font-mono text-[13px]">$1</code>'
+    '<code class="px-1.5 py-0.5 rounded bg-secondary font-mono text-[13px]">$1</code>'
   );
   processed = processed.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,

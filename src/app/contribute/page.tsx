@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ContributePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <main className="max-w-6xl mx-auto px-4 py-16">
         <ContributorsClient />
       </main>

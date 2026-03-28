@@ -31,9 +31,9 @@ export default async function EconomicsComparePage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-white">
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <Badge className="mb-4 border border-[#06D6A0]/30 bg-[#06D6A0]/15 text-[#06D6A0]">
+        <Badge className="mb-4 border border-primary/30 bg-primary/15 text-primary">
           Economics Category Comparison
         </Badge>
         <h1 className="mb-3 text-4xl font-bold">Compare economics categories side-by-side</h1>
@@ -103,7 +103,7 @@ export default async function EconomicsComparePage() {
 
                 <Link
                   href={`/economics?category=${group.category}`}
-                  className="inline-block text-[#06D6A0] hover:underline"
+                  className="inline-block text-primary hover:underline"
                 >
                   View {group.category} entries →
                 </Link>
