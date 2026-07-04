@@ -115,5 +115,14 @@
     "description": "Open source JavaScript, TypeScript, and WebAssembly runtime with secure defaults. Covers the Deno CLI, Deno Deploy cloud service, and related tools.",
     "lastChecked": "2026-02-02",
     "sections": ["Runtime Documentation", "Deno Deploy", "Subhosting", "Examples"]
+  },
+  {
+    "id": "answerlens",
+    "domain": "app.sfdj.net",
+    "url": "https://app.sfdj.net/llms.txt",
+    "title": "AnswerLens",
+    "description": "AnswerLens audits the public evidence layer of B2B SaaS websites for answer-engine readiness. It checks crawlable proof pages, comparison coverage, buyer questions, metadata, freshness, and citation-friendly source pages.",
+    "lastChecked": "2026-07-04",
+    "sections": ["Canonical URL", "Audience", "Product", "Important URLs", "Public Commercial Terms", "Access Notes"]
   }
 ]
